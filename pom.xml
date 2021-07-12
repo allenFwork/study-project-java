@@ -34,18 +34,19 @@
         </dependency>
     </dependencies>
 
-    <build>
+    <!-- 添加此插件导致无法进行整个项目的 mvn clean -->
+    <!--<build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <target>1.8</target><!-- 源代码使用的JDK版本 -->
-                    <source>1.8</source><!-- 需要生成的目标class文件的编译版本 -->
-                    <encoding>UTF-8</encoding><!-- 字符集编码 -->
+                    <target>1.8</target>&lt;!&ndash; 源代码使用的JDK版本 &ndash;&gt;
+                    <source>1.8</source>&lt;!&ndash; 需要生成的目标class文件的编译版本 &ndash;&gt;
+                    <encoding>UTF-8</encoding>&lt;!&ndash; 字符集编码 &ndash;&gt;
                 </configuration>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
 </project>
