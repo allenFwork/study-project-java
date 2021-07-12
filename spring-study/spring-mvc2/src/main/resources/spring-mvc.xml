@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.tuling.mvc.control"/>
+
+    <!-- 注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!--
+        处理过程：
+        1. 浏览器发送请求，请求被DispatcherServlet接受处理
+        2. 通过配置的/hello.do 找到 SimpleUrlHandlerMapping
+        3. 再通过 SimpleUrlHandlerMapping 找到 SimpleController
+        4. 基于 controller 找到自己的 适配器 InternalResourceViewResolver
+
+    -->
+    <!-- 自定义的 controller -->
+    <bean id="simple" class="com.study.controller.SimpleControl"></bean>
+    <!-- controller对应的 HandlerMapping -->
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="urlMap">
+            <props>
+                <prop key="/hello.do">simple</prop>
+            </props>
+        </property>
+    </bean>
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/page"/>
+        <property name="suffix" value=".jsp"/>
+        <!-- 视图 -->
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+    </bean>
+
+
+    <!-- 视图仓库 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/page/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"/>
+    </bean>
+
+</beans>
