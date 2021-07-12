@@ -20,7 +20,8 @@
     <artifactId>springboot-study</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>spring boot parent</name>
+    <name>parent-project-springboot</name>
+    <description>spring boot 学习</description>
 
     <modules>
         <module>study-springboot-web</module>

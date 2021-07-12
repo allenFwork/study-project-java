@@ -11,7 +11,8 @@
 
     <artifactId>spring-study</artifactId>
     <packaging>pom</packaging>
-    <name>spring框架学习</name>
+    <name>parent-project-spring</name>
+    <description>spring框架学习</description>
 
     <modules>
         <module>spring-analysis</module>

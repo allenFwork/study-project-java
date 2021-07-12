@@ -11,6 +11,7 @@
 
     <artifactId>mybatis-study</artifactId>
     <packaging>pom</packaging>
+    <name>parent-project-mybatis</name>
 
     <modules>
         <module>mybatis-generator</module>
