@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Cookie的使用
+ */
 public class CookieServlet extends HttpServlet {
 
     @Override

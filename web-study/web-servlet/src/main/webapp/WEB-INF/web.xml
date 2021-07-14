@@ -99,6 +99,16 @@
         <url-pattern>/cookieServlet</url-pattern>
     </servlet-mapping>
 
+    <!-- session的处理 -->
+    <servlet>
+        <servlet-name>sessionServlet</servlet-name>
+        <servlet-class>com.study.servlet.SessionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sessionServlet</servlet-name>
+        <url-pattern>/sessionServlet</url-pattern>
+    </servlet-mapping>
+
     <!--<servlet>
       <servlet-name>wordChangeHtml</servlet-name>
       <servlet-class>com.study.servlet.WordChangeToServlet</servlet-class>

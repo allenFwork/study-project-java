@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * ServletContext上下文的使用
+ */
 public class ServletContextServlet extends HttpServlet {
 
     @Override
