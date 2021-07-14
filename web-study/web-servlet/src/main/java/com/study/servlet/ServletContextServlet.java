@@ -1,0 +1,29 @@
+package com.study.servlet;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class ServletContextServlet extends HttpServlet {
+
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ServletContext servletContext = getServletContext();
+        Object count = servletContext.getAttribute("count");
+        if (count == null) {
+            servletContext.setAttribute("count", 1);
+        } else {
+            servletContext.setAttribute("count", Integer.parseInt(count.toString()) + 1);
+        }
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        writer.print("总计数为 " + servletContext.getAttribute("count"));
+        System.out.println(servletContext.getAttribute("count"));
+        writer.close();
+    }
+
+}

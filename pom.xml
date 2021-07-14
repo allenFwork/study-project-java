@@ -11,13 +11,13 @@
     <name>parent-project</name>
 
     <modules>
-        <module>java-base</module>
+        <module>java</module>
         <module>design-pattern</module>
         <!--框架学习 -->
         <module>spring-study</module>
         <module>springboot-study</module>
         <module>mybatis-study</module>
-        <module>web-project</module>
+        <module>web-study</module>
         <!-- 工具整理 -->
         <module>utils</module>
     </modules>
