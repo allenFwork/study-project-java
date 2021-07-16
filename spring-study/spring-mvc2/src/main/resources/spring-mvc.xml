@@ -10,10 +10,10 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="com.tuling.mvc.control"/>
+    <!--<context:component-scan base-package="com.tuling.mvc.control"/>-->
 
     <!-- 注解驱动 -->
-    <mvc:annotation-driven/>
+    <!--<mvc:annotation-driven/>-->
 
     <!--
         处理过程：
@@ -25,7 +25,7 @@
     -->
     <!-- 自定义的 controller -->
     <bean id="simple" class="com.study.controller.SimpleControl"></bean>
-    <!-- controller对应的 HandlerMapping -->
+    <!-- controller 对应的 HandlerMapping -->
     <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="urlMap">
             <props>
@@ -33,22 +33,22 @@
             </props>
         </property>
     </bean>
+    <!-- 配置handlerAdapter适配器 -->
     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/page"/>
+        <property name="prefix" value="/WEB-INF/page/"/>
         <property name="suffix" value=".jsp"/>
         <!-- 视图 -->
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
     </bean>
 
-
     <!-- 视图仓库 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/page/"/>
         <property name="suffix" value=".jsp"/>
         <property name="viewClass"
                   value="org.springframework.web.servlet.view.JstlView"/>
-    </bean>
+    </bean>-->
 
 </beans>

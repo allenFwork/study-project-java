@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	ddd2dd
-	${name}
+	userView的jsp页面<br/>
+	<h1>${name}</h1>
 </body>
 </html>
