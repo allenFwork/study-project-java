@@ -29,6 +29,7 @@
         <module>study-springboot-jdbc</module>
         <module>study-springboot-demo</module>
         <module>study-springboot-validation</module>
+        <module>springboot-jpa</module>
     </modules>
 
     <properties>

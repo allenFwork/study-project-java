@@ -1,7 +1,7 @@
 package com.study.webflux;
 
 import com.study.entity.User;
-import com.study.repository.UserRepository;
+import com.study.UserRepository;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;

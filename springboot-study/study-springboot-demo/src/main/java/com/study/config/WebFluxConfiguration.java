@@ -1,13 +1,12 @@
 package com.study.config;
 
 import com.study.entity.User;
-import com.study.repository.UserRepository;
+import com.study.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.*;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.Collection;
 

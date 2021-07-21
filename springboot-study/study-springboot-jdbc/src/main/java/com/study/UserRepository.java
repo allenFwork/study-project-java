@@ -1,4 +1,4 @@
-package com.study.repository;
+package com.study;
 
 import com.study.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
