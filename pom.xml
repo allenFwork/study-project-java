@@ -22,6 +22,7 @@
         <module>utils</module>
         <module>springcloud-study</module>
         <module>redis-study</module>
+        <module>netty-study</module>
     </modules>
 
     <properties>
