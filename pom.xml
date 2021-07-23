@@ -20,6 +20,8 @@
         <module>web-study</module>
         <!-- 工具整理 -->
         <module>utils</module>
+        <module>springcloud-study</module>
+        <module>redis-study</module>
     </modules>
 
     <properties>
