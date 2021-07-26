@@ -29,11 +29,8 @@ public class TimeServerHandlerExecutorPool implements Executor {
          * @param unit keepAliveTime时间单位
          * @param workQueue 此线程池使用什么队列
          */
-        this.executorService = new ThreadPoolExecutor(corePoolSize,
-                                                      maxPoolSize,
-                                       120L,
-                                                      TimeUnit.SECONDS,
-                                                      new LinkedBlockingDeque<>(queueSize));
+        this.executorService = new ThreadPoolExecutor(corePoolSize, maxPoolSize, 120L,
+                                                      TimeUnit.SECONDS, new LinkedBlockingDeque<>(queueSize));
 
     }
 

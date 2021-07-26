@@ -41,7 +41,7 @@ public class Dome4 {
              */
             int readNumber = channelRead.read(byteBuffer);
 
-            System.out.println(readNumber);
+            System.out.println("readNumber：" + readNumber);
             if (-1 == readNumber) {
                 break;
             }

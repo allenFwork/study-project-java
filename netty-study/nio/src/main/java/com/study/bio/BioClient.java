@@ -15,7 +15,7 @@ public class BioClient {
         OutputStream outputStream = null;
         try {
             // 创建客户端socket实例，设置将要连接的ip和端口号
-            socket = new Socket("127.0.0.1",9999);
+            socket = new Socket("127.0.0.1", 9090);
 
             /*
              * 此处必须开启一个新的线程，进行读取服务端发来的数据信息，
@@ -30,7 +30,7 @@ public class BioClient {
             System.out.print("请输入要发送的消息：");
             while (true) {
                 String s = scanner.nextLine();
-                if(s.trim().equals("by")){
+                if (s.trim().equals("by")) {
                     break;
                 }
                 outputStream.write(s.getBytes());
@@ -38,15 +38,15 @@ public class BioClient {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if(outputStream!=null){
+        } finally {
+            if (outputStream != null) {
                 try {
                     outputStream.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            if(socket!=null){
+            if (socket != null) {
                 try {
                     socket.close();
                 } catch (IOException e) {

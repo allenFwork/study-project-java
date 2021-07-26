@@ -8,7 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BioServerHandler implements Runnable {
-    //负责客户端通信
+
+    // 负责客户端通信
     private Socket socket;
 
     public BioServerHandler(Socket socket){

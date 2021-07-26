@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.Socket;
 
 public class BioClientHandler implements  Runnable {
+
     private Socket socket;
 
     public BioClientHandler(Socket socket) {
