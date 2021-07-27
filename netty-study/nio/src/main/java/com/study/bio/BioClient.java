@@ -15,7 +15,7 @@ public class BioClient {
         OutputStream outputStream = null;
         try {
             // 创建客户端socket实例，设置将要连接的ip和端口号
-            socket = new Socket("127.0.0.1", 9090);
+            socket = new Socket("127.0.0.1", 1333);
 
             /*
              * 此处必须开启一个新的线程，进行读取服务端发来的数据信息，
