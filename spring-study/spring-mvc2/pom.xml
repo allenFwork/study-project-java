@@ -11,7 +11,7 @@
 
     <artifactId>spring-mvc2</artifactId>
     <packaging>war</packaging>
-    <name>spring mvc 学习(图灵)</name>
+    <name>spring mvc 学习(图灵二期)</name>
 
     <dependencies>
         <!-- spring webmvc 依赖 -->

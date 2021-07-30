@@ -11,7 +11,7 @@ public class BeanNameControl implements HttpRequestHandler {
     @Override
     public void handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.getWriter().println("luban is good man");
+        response.getWriter().println("BeanNameControl ... ");
         int i = 1 / 0;
     }
 }

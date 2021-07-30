@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 基于 SimpleController来寻找HandlerMapping
+ * 基于 SimpleController来寻找 HandlerMapping
  */
 public class SimpleControl implements Controller {
     @Override

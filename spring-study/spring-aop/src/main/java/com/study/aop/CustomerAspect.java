@@ -13,7 +13,11 @@ import org.springframework.stereotype.Component;
 public class CustomerAspect {
 
     /**
-     * 定义一个切点
+     *  @Pointcut : 声明切点
+     *  每个切点都要有对应的连接点，连接点就是需要添加代码进去的目标对象中的方法,
+     *  execution()中的表达式 public * com.study.dao.*.*(..)：
+     *    public    ：可写可不写，代表所有的
+     *    第一个 *  : 表示返回类型，不能省略
      */
     @Pointcut("execution(* com.study.service.*.*(..))")
     public void pointCutExecution(){

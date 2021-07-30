@@ -10,22 +10,25 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!--<context:component-scan base-package="com.tuling.mvc.control"/>-->
+    <!--<context:component-scan base-package="com.study.control"/>-->
 
     <!-- 注解驱动 -->
     <!--<mvc:annotation-driven/>-->
 
+
+    <!-- 初步使用（开始） -->
     <!--
         处理过程：
         1. 浏览器发送请求，请求被DispatcherServlet接受处理
         2. 通过配置的/hello.do 找到 SimpleUrlHandlerMapping
         3. 再通过 SimpleUrlHandlerMapping 找到 SimpleController
         4. 基于 controller 找到自己的 适配器 InternalResourceViewResolver
-
     -->
     <!-- 自定义的 controller -->
-    <bean id="simple" class="com.study.controller.SimpleControl"></bean>
-    <!-- controller 对应的 HandlerMapping -->
+    <!-- 配置一个Handler的实例，用来处理业务逻辑，此处的Handler实例是实现了Controller的Handler -->
+    <!--<bean id="simple" class="com.study.controller.SimpleControl"></bean>
+    &lt;!&ndash; url映谢器: 通过请求路径来寻找对应的Handler&ndash;&gt;
+    &lt;!&ndash; controller 对应的 HandlerMapping &ndash;&gt;
     <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="urlMap">
             <props>
@@ -33,22 +36,47 @@
             </props>
         </property>
     </bean>
-    <!-- 配置handlerAdapter适配器 -->
-    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
-    <!-- 视图解析器 -->
+    &lt;!&ndash; 配置handlerAdapter适配器：通过simple找到这个适配器 &ndash;&gt;
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+    &lt;!&ndash; 视图解析器 &ndash;&gt;
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/page/"/>
         <property name="suffix" value=".jsp"/>
-        <!-- 视图 -->
+        &lt;!&ndash; 视图 &ndash;&gt;
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-    </bean>
+    </bean>-->
+    <!-- 初步使用（结束） -->
 
-    <!-- 视图仓库 -->
-    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+    <!-- 使用BeanName作为路径（开始） -->
+    <!--<bean id="/beanName.do" class="com.study.controller.BeanNameControl"></bean>-->
+    <!-- 使用BeanName作为路径（结束） -->
+
+    <!-- 使用继承 HttpServlet作为控制器（handler）（开始） -->
+    <bean id="/sexySuperman" class="com.study.controller.ServletController"></bean>
+    <bean class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter"></bean>
+    <!-- 使用继承 HttpServlet作为控制器（handler）（结束） -->
+
+    <bean id="beanName" class="com.study.controller.BeanNameControl"></bean>
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="urlMap">
+            <props>
+                <prop key="/beanName.do">beanName</prop>
+            </props>
+        </property>
+        <!-- 将拦截器插入到handler中 -->
+        <property name="interceptors">
+            <bean class="com.study.intercept.CustomizedInterceptor"/>
+        </property>
+    </bean>
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
+    <!-- 配置异常处理器 -->
+    <bean class="com.study.exception.SimpleExceptionHandle"/>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/page/"/>
         <property name="suffix" value=".jsp"/>
-        <property name="viewClass"
-                  value="org.springframework.web.servlet.view.JstlView"/>
-    </bean>-->
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+    </bean>
 
 </beans>
