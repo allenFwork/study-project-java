@@ -22,6 +22,7 @@
         <module>spring-transaction</module>
         <module>spring-ioc2</module>
         <module>spring-mvc2</module>
+        <module>spring-mvc-customized</module>
     </modules>
 
 </project>

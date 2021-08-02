@@ -8,13 +8,12 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>spring-mvc2</artifactId>
     <packaging>war</packaging>
-    <name>spring mvc 学习使用(图灵二期)</name>
+
+    <artifactId>spring-mvc-customized</artifactId>
+    <name>spring mvc 学习自定义开发(图灵二期)</name>
 
     <dependencies>
-        <!-- spring webmvc 依赖 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -31,7 +30,7 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.3.3</version>
         </dependency>
-        <!-- jsp的依赖 -->
+        <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>

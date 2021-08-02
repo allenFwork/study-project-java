@@ -53,8 +53,8 @@
     <!-- 使用BeanName作为路径（结束） -->
 
     <!-- 使用继承 HttpServlet作为控制器（handler）（开始） -->
-    <bean id="/sexySuperman" class="com.study.controller.ServletController"></bean>
-    <bean class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter"></bean>
+    <!--<bean id="/sexySuperman" class="com.study.controller.ServletController"></bean>
+    <bean class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter"></bean>-->
     <!-- 使用继承 HttpServlet作为控制器（handler）（结束） -->
 
     <bean id="beanName" class="com.study.controller.BeanNameControl"></bean>
@@ -73,9 +73,11 @@
 
     <!-- 配置异常处理器 -->
     <bean class="com.study.exception.SimpleExceptionHandle"/>
+    <!-- 视图解析器：通过ModelAndView的视图名称，找到对应的jsp文件，在封装成视图（View） -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/page/"/>
         <property name="suffix" value=".jsp"/>
+        <!-- 视图，此处是JstlView视图 -->
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
     </bean>
 
