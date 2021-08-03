@@ -9,13 +9,14 @@ import java.util.Scanner;
  * 传统的BIO的聊天室客户端
  */
 public class BioClient {
+
     public static void main(String[] args) {
         // 聊天室客户端 socket
         Socket socket = null;
         OutputStream outputStream = null;
         try {
             // 创建客户端socket实例，设置将要连接的ip和端口号
-            socket = new Socket("127.0.0.1", 1333);
+            socket = new Socket("127.0.0.1", 9999);
 
             /*
              * 此处必须开启一个新的线程，进行读取服务端发来的数据信息，
@@ -55,4 +56,5 @@ public class BioClient {
             }
         }
     }
+
 }

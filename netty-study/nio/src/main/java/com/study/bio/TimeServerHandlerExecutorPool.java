@@ -20,7 +20,7 @@ public class TimeServerHandlerExecutorPool implements Executor {
     }
 
 
-    public TimeServerHandlerExecutorPool(int corePoolSize,int maxPoolSize, int queueSize) {
+    public TimeServerHandlerExecutorPool(int corePoolSize, int maxPoolSize, int queueSize) {
 
         /**
          * @param corePoolSize 核心线程数量
@@ -42,12 +42,12 @@ public class TimeServerHandlerExecutorPool implements Executor {
 
     public static void main(String[] args) {
         TimeServerHandlerExecutorPool timeServerHandlerExecutorPool =
-                new TimeServerHandlerExecutorPool(0,20, 5);
+                new TimeServerHandlerExecutorPool(10,20, 5);
         while (true) {
             timeServerHandlerExecutorPool.execute(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println("aaaaaa");
+                    System.out.println("服务端线程池 TimeServerHandlerExecutorPoll ... ");
                 }
             });
         }
