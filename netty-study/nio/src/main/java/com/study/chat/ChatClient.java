@@ -31,7 +31,6 @@ public class ChatClient implements Runnable {
         }
     }
 
-
     public void doConnection() {
         // 提供服务器ip与端口
         InetSocketAddress inetSocketAddress = new InetSocketAddress("127.0.0.1", 9090);

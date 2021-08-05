@@ -49,8 +49,13 @@ public class ChatService {
     }
 
     public void start() throws Exception {
+
         int count = 0;
+
+        // System.nanoTime()返回的是纳秒，nanoTime而返回的可能是任意时间，甚至可能是负数……
+        // System.currentTimeMillis()返回的毫秒，这个毫秒其实就是自1970年1月1日0时起的毫秒数.
         long start = System.nanoTime();
+
         // 干活
         while (true) {
 //            // 监控客户端
@@ -106,8 +111,7 @@ public class ChatService {
         }
     }
 
-    private void
-    rebuildSelector() throws IOException {
+    private void rebuildSelector() throws IOException {
         Selector newSelector = Selector.open();
         Selector oldSelect = selector;
         for (SelectionKey selectionKey : oldSelect.keys()) {

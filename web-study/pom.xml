@@ -15,6 +15,7 @@
 
     <modules>
         <module>web-servlet</module>
+        <module>web-api-gateway</module>
     </modules>
 
     <properties>
