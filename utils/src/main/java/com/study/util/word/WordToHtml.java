@@ -1,4 +1,4 @@
-package com.study.tuil;
+package com.study.util.word;
 
 import java.io.*;
 
