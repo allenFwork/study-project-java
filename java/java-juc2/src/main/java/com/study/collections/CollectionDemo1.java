@@ -17,11 +17,14 @@ public class CollectionDemo1 {
         Iterator<User> it = list.iterator();
         while (it.hasNext()) {
             User user = it.next();
+            // == 比较的是两个对象的在内中的地址是否相同,
             if ("User6".equals(user.getName()))
                 // 删除操作，报异常：
                 // Exception in thread "main" java.util.ConcurrentModificationException
-                list.remove(user);
+//                list.remove(user);
+                it.remove();
         }
+        System.out.println(list);
     }
 
 }

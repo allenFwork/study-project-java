@@ -31,7 +31,9 @@ public class CollectionDemo2 {
         for (int i = 0; i < 100; i++) {
             pollThreads[i] = new Thread(() -> {
                 for (int j = 0; j < 5000; j++) {
+                    // 移除最后面的元素
                     list.pollLast();
+                    // 移除最前面的元素
                     list.pollFirst();
                 }
             });
