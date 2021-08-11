@@ -1,4 +1,4 @@
-package com.study.oneReactor;
+package com.study.reactors.oneReactor;
 
 import java.io.IOException;
 import java.nio.channels.SelectionKey;

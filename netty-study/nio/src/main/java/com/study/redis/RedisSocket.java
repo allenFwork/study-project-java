@@ -5,6 +5,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
+/**
+ * 模拟redis服务端
+ */
 public class RedisSocket {
 
     private Socket socket;
@@ -16,7 +19,7 @@ public class RedisSocket {
     // 在构造器中初始化
     public RedisSocket(String ip, int port) {
         try {
-            if(!isCon()){
+            if (!isCon()) {
                 socket = new Socket(ip, port);
                 inputStream = socket.getInputStream();
                 outputStream = socket.getOutputStream();
@@ -26,9 +29,8 @@ public class RedisSocket {
         }
     }
 
-
     // 发送给客户端信息
-    public void send(String str){
+    public void send(String str) {
         System.out.println(str);
         try {
             outputStream.write(str.getBytes());
@@ -46,30 +48,30 @@ public class RedisSocket {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new String(bytes,0, count);
+        return new String(bytes, 0, count);
     }
 
 
-    public boolean isCon(){
+    public boolean isCon() {
         return socket != null && !socket.isClosed() && socket.isConnected();
     }
 
-    public void close(){
-        if(outputStream!=null){
+    public void close() {
+        if (outputStream != null) {
             try {
                 outputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        if(inputStream!=null){
+        if (inputStream != null) {
             try {
                 inputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        if(socket!=null){
+        if (socket != null) {
             try {
                 socket.close();
             } catch (IOException e) {

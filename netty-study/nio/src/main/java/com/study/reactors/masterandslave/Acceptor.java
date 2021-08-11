@@ -1,4 +1,4 @@
-package com.study.masterandslave;
+package com.study.reactors.masterandslave;
 
 import java.io.IOException;
 import java.nio.channels.SelectionKey;

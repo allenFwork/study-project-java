@@ -1,4 +1,4 @@
-package com.study.manyReactor;
+package com.study.reactors.manyReactor;
 
 import java.io.IOException;
 

@@ -1,5 +1,5 @@
     // 接受連線請求線程  
-    package com.study.manyReactor;
+    package com.study.reactors.manyReactor;
       
     import java.io.IOException;  
     import java.nio.channels.SelectionKey;  

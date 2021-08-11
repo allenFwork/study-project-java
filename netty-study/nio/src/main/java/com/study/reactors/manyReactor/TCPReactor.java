@@ -1,12 +1,11 @@
 // Reactor線程 （该类与单线程的处理基本无变动）
-package com.study.manyReactor;
+package com.study.reactors.manyReactor;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.spi.SelectorProvider;
 import java.util.Iterator;
 import java.util.Set;
 

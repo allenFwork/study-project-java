@@ -2,6 +2,9 @@ package com.study.redis;
 
 import redis.clients.jedis.Jedis;
 
+/**
+ * 模拟redis的客户端 Jedis
+ */
 public class RedisClient {
 
     private RedisSocket redisSocket;

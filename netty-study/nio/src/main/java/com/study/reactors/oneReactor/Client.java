@@ -1,4 +1,4 @@
-package com.study.oneReactor;
+package com.study.reactors.oneReactor;
 
 import java.io.BufferedReader;
 import java.io.IOException;

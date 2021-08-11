@@ -1,4 +1,4 @@
-package com.study.masterandslave;
+package com.study.reactors.manyReactor;
       
     import java.io.IOException;  
     import java.nio.ByteBuffer;  
@@ -22,7 +22,7 @@ package com.study.masterandslave;
         @Override  
         public void handle(TCPHandler h, SelectionKey sk, SocketChannel sc,  
                 ThreadPoolExecutor pool) throws IOException { // read()  
-            this.sk = sk;  
+            this.sk = sk;
             // non-blocking下不可用Readers，因為Readers不支援non-blocking  
             byte[] arr = new byte[1024];  
             ByteBuffer buf = ByteBuffer.wrap(arr);  
@@ -48,10 +48,10 @@ package com.study.masterandslave;
          * 執行邏輯處理之函數 
          */  
         synchronized void process(TCPHandler h, String str) {  
-            // do process(decode, logically process, encode)..  
+//             do process(decode, logically process, encode)..
             // ..  
-            h.setState(new WriteState()); // 改變狀態(WORKING->SENDING)  
-            this.sk.interestOps(SelectionKey.OP_WRITE); // 通過key改變通道註冊的事件  
+            h.setState(new WriteState()); // 改變狀態(WORKING->SENDING)
+            this.sk.interestOps(SelectionKey.OP_WRITE); // 通過key改變通道註冊的事件
             this.sk.selector().wakeup(); // 使一個阻塞住的selector操作立即返回  
         }  
       
