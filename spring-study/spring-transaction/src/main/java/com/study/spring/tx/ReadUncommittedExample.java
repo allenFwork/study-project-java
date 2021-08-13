@@ -38,6 +38,8 @@ public class ReadUncommittedExample {
             preparedStatement.executeUpdate();
             System.out.println("执行插入");
             Thread.sleep(30000);
+            // 提交
+//            connection.commit();
             connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -88,8 +90,8 @@ public class ReadUncommittedExample {
                     Thread.sleep(500);
                     Connection connection = openConnection();
                     // 将参数升级成 Connection.TRANSACTION_READ_COMMITTED 即可解决脏读的问题
-                    connection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
-//                    connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+//                    connection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
+                    connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                     select("superman", connection);
                 } catch (Exception e) {
                     e.printStackTrace();

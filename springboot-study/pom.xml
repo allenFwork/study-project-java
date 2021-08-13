@@ -30,6 +30,7 @@
         <module>study-springboot-demo</module>
         <module>study-springboot-validation</module>
         <module>springboot-jpa</module>
+        <module>springboot-transaction</module>
     </modules>
 
     <properties>

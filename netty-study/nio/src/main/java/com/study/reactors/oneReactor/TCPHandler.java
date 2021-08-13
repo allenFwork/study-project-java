@@ -25,7 +25,7 @@ public class TCPHandler implements Runnable {
             if (state == 0)
                 read();  // 读取网络数据
             else
-                send(); // 发送网络数据
+                send();  // 发送网络数据
         } catch (IOException e) {
             System.out.println("[Warning!] A client has been closed.");
             closeChannel();
@@ -46,21 +46,21 @@ public class TCPHandler implements Runnable {
         byte[] arr = new byte[1024];
         ByteBuffer byteBuffer = ByteBuffer.wrap(arr);
 
-        int numBytes = socketChannel.read(byteBuffer); // 讀取字符串
+        int numBytes = socketChannel.read(byteBuffer); // 读取字符串
         if (numBytes == -1) {
             System.out.println("[Warning!] A client has been closed.");
             closeChannel();
             return;
         }
-        String str = new String(arr); // 將讀取到的byte內容轉為字符串型態
+        String str = new String(arr); // 将读取到的byte內容转为字符串型態
         if ((str != null) && !str.equals(" ")) {
             process(str); // 逻辑处理
             System.out.println(socketChannel.socket().getRemoteSocketAddress().toString() + " > " + str);
-            // 改变状态
+            // 改变状态，从客户端读取数据并操作完成，修改这里的处理状态
             state = 1;
             // 通过key改变通道注册的事件
             selectionKey.interestOps(SelectionKey.OP_WRITE);
-            // 使一個阻塞的selector操作立即返回
+            // 使一個阻塞的selector操作立即返回（因为原来selector监听的是读事件,现在改为了写事件,所以让其立即返回）
             selectionKey.selector().wakeup();
         }
     }
@@ -80,6 +80,7 @@ public class TCPHandler implements Runnable {
         selectionKey.selector().wakeup(); // 使一個阻塞的selector操作立即返回
     }
 
+    // 模拟处理逻辑
     void process(String str) {
         // do process(decode, logically process, encode)..
         // ..

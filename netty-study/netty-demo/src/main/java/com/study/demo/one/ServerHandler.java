@@ -1,4 +1,4 @@
-package com.study.netty.firstdemo;
+package com.study.demo.one;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

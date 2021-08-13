@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>nio</artifactId>
-    <name>netty学习：鲁班二期</name>
+    <name>netty学习：nio学习 (鲁班二期)</name>
 
 
     <dependencies>

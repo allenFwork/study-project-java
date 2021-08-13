@@ -1,4 +1,4 @@
-package com.study.netty.seconddemo;
+package com.study.demo.two;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -16,6 +16,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
         channelHandlerContext.writeAndFlush("form server" + UUID.randomUUID());
     }
 
+    @Override
     public void exceptionCaught(ChannelHandlerContext channelHandlerContext, Throwable cause) throws Exception {
         cause.printStackTrace();
         channelHandlerContext.close();

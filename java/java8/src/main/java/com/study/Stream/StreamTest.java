@@ -1,9 +1,6 @@
 package com.study.Stream;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StreamTest {
@@ -50,6 +47,26 @@ public class StreamTest {
                                            .collect(Collectors.toList());
         System.out.println(studentIds);
         /*---------------------------- 集合处理：Stream 处理（结束） -------------------------------*/
+
+        List<Student> list = new ArrayList<>();
+        list.add(new Student(5, Grade.FIRST, 40));
+        list.add(new Student(1, Grade.FIRST, 60));
+        list.add(new Student(4, Grade.FIRST, 30));
+        list.add(new Student(2, Grade.SECOND, 80));
+        list.add(new Student(3, Grade.THIRD, 100));
+        list.add(new Student(5, Grade.FIRST, 40));
+        list.add(new Student(6, Grade.FIRST, 70));
+        list.add(new Student(7, Grade.SECOND, 10));
+        list.add(new Student(7, Grade.SECOND, 60));
+        List<Student> studentList = list.stream()
+                                        .filter(student -> !Grade.THIRD.equals(student.getGrade()))
+                                        // 去重处理
+                                        .collect(Collectors.collectingAndThen(
+                                                Collectors.toCollection(() -> new TreeSet<>(
+                                                        Comparator.comparing(Student::getId)
+                                                )), ArrayList::new)
+                                        );
+        System.out.println(studentList);
 
     }
 

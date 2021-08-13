@@ -1,4 +1,4 @@
-package com.study.netty.seconddemo;
+package com.study.demo.two;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;

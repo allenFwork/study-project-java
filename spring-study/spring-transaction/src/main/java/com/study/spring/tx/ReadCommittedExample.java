@@ -17,7 +17,7 @@ public class ReadCommittedExample {
     public static Connection openConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection =
-                DriverManager.getConnection("jdbc:mysql://localhost:3306/test_tuling?serverTimezone=GMT%2B8",
+                DriverManager.getConnection("jdbc:mysql://localhost:3306/test2?serverTimezone=GMT%2B8",
                         "root",
                         "123456");
         return connection;
@@ -77,7 +77,7 @@ public class ReadCommittedExample {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                insert("1111", "superman", 1000);
+                insert("111", "superman", 1000);
             }
         });
 
@@ -89,7 +89,7 @@ public class ReadCommittedExample {
 
                     Connection connection = openConnection();
                     connection.setAutoCommit(false);
-                    // 将参数升级成 Connection.TRANSACTION_READ_COMMITTED 即可解决不可重复读问题
+                    // 将参数升级成 Connection.TRANSACTION_READ_COMMITTED 即可解决脏读问题
                     connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
                     select("superman", connection);
 

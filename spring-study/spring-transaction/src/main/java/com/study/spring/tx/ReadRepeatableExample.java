@@ -85,8 +85,9 @@ public class ReadRepeatableExample {
                 try {
 
                     Connection connection = openConnection();
+                    // 必须先将connection设置为事务不自动提交，否则下面的事务隔离级别不生效
                     connection.setAutoCommit(false);
-                    // 将参数升级成 Connection.TRANSACTION_READ_COMMITTED 即可解决 重复读问题
+                    // 将参数升级成 Connection.TRANSACTION_REPEATABLE_READ 即可解决 不可重复读问题
                     connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 //                    connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 
