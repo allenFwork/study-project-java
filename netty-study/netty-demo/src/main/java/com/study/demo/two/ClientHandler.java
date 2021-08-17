@@ -3,7 +3,7 @@ package com.study.demo.two;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-public class ClientHandler extends SimpleChannelInboundHandler<String> {
+public class  ClientHandler extends SimpleChannelInboundHandler<String> {
     // 读取客户端数据
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, String s) throws Exception {

@@ -36,6 +36,7 @@
             <version>3.8.0</version>
         </dependency>
 
+        <!-- 专门用于反射的工具类 -->
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
