@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 public class StreamDemo1 {
 
-
     public static void main(String[] args) {
 
         /*
@@ -15,7 +14,6 @@ public class StreamDemo1 {
          *    stream() − 为集合创建串行流。
          *    parallelStream() − 为集合创建并行流。
          */
-
         List<String> strings = Arrays.asList("abc", "", "def", "g", "hi", "jkl");
         List<String> filters = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.toList());
         System.out.println(strings);

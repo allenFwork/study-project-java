@@ -41,12 +41,13 @@ public class StreamTest {
 
         /*---------------------------- 集合处理：Stream 处理（开始） -------------------------------*/
         List<Integer> studentIds = students.stream()
-                                           .filter(student -> Grade.FIRST.equals(student.getGrade()))
-                                           .sorted(Comparator.comparingInt(Student::getScore))
-                                           .map(Student::getId)
-                                           .collect(Collectors.toList());
+                .filter(student -> Grade.FIRST.equals(student.getGrade()))
+                .sorted(Comparator.comparingInt(Student::getScore))
+                .map(Student::getId)
+                .collect(Collectors.toList());
         System.out.println(studentIds);
         /*---------------------------- 集合处理：Stream 处理（结束） -------------------------------*/
+
 
         List<Student> list = new ArrayList<>();
         list.add(new Student(5, Grade.FIRST, 40));
@@ -58,16 +59,35 @@ public class StreamTest {
         list.add(new Student(6, Grade.FIRST, 70));
         list.add(new Student(7, Grade.SECOND, 10));
         list.add(new Student(7, Grade.SECOND, 60));
+        /**
+         * 过滤处理获取集合
+         */
         List<Student> studentList = list.stream()
-                                        .filter(student -> !Grade.THIRD.equals(student.getGrade()))
-                                        // 去重处理
-                                        .collect(Collectors.collectingAndThen(
-                                                Collectors.toCollection(() -> new TreeSet<>(
-                                                        Comparator.comparing(Student::getId)
-                                                )), ArrayList::new)
-                                        );
+                .filter(student -> !Grade.THIRD.equals(student.getGrade()))
+                // 去重处理
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(
+                                Comparator.comparing(Student::getId)
+                        )), ArrayList::new)
+                );
         System.out.println(studentList);
 
+        /**
+         * 聚合处理处理获取Map: 学生的id和grade相同的聚合在一起
+         * 此时Map的key是student的id_grade字符串
+         */
+        Map<String, List<Student>> groupMap = list.stream().collect(Collectors.groupingBy(x -> x.getId() + "_" + x.getGrade()));
+        List<String> strings = groupMap.entrySet().stream().map(entry -> {
+            String key = entry.getKey();
+            List<Student> tempStudents = entry.getValue();
+            String[] contents = key.split("_");
+            int totalScore = 0;
+            for (Student student : tempStudents) {
+                totalScore += student.getScore();
+            }
+            return "id为" + contents[0] + ",Grade为" + contents[1] + "的学生的分数总和为" + totalScore;
+        }).collect(Collectors.toList());
+        System.out.println(strings);
     }
 
 }
