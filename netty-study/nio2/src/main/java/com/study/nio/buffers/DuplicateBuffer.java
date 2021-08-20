@@ -5,6 +5,7 @@ import java.nio.CharBuffer;
 
 /**
  * buffer复制：duplicate方法的使用
+ * 浅复制-底层数据只有一份
  */
 public class DuplicateBuffer {
 
@@ -13,6 +14,7 @@ public class DuplicateBuffer {
 		for(int i= 0 ; i < buffer.capacity() ; i++) {
 			buffer.put(String.valueOf(i).charAt(0));
 		}
+		// 因为还是写模式(position=limit的值)，所以读取出来的数据为空
 		printBuffer(buffer); // [limit=8, position = 8, capacity = 8, array = ]
 
 		// 写入完成后，进行翻转

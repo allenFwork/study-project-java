@@ -2,10 +2,9 @@ package com.study.nio.buffers;
 
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 
 /**
- * buffer的读取
+ * buffer的访问
  */
 public class BufferAccess {
 
@@ -37,9 +36,16 @@ public class BufferAccess {
 		// buffer.rewind();
 		printBuffer(buffer);
 
+		/**
+		 *  compact()方法将模式切换为写模式，作用：
+		 *   1. 将目前剩余没有读取完的数据,全部放到buffer中,从0开始放
+		 *   2. 将目前的position的值 改为 放完未读数据的位置的最后一位 + 1
+		 *   3. limit 改为 capacity的值
+		 */
 		buffer.compact();
 		printBuffer(buffer);
 
+		// 所有指针回到初始状态
 		buffer.clear();
 		printBuffer(buffer);
 

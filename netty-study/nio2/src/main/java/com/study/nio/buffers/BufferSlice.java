@@ -4,7 +4,7 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 
 /**
- * 缓冲区分片与数据共享
+ * 浅复制-底层数据只有一个
  */
 public class BufferSlice {
 	public static void main(String[] args) {
