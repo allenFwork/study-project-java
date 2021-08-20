@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class ChatClient2 {
 
     private SocketChannel socketChannel;
-
     private String userName;
 
     public ChatClient2() {
@@ -34,7 +33,7 @@ public class ChatClient2 {
 
 
     public void writeData(String str) throws IOException {
-        if (str.equals("by")) {
+        if (str.equals("bye")) {
             socketChannel.close();
             return;
         }
@@ -55,7 +54,7 @@ public class ChatClient2 {
     public static void main(String[] args) throws IOException {
         ChatClient2 chatClient = new ChatClient2();
 
-        //读数据
+        // 读数据
         new Thread() {
             @Override
             public void run() {
@@ -72,13 +71,12 @@ public class ChatClient2 {
             }
         }.start();
 
-        //写数据
+        // 写数据
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String s = scanner.nextLine();
             chatClient.writeData(s);
         }
     }
-
 
 }

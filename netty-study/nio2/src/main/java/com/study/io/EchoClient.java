@@ -15,27 +15,27 @@ public class EchoClient {
 	public static void main(String[] args) {
 
 		Socket socket = null;
-		PrintWriter out = null;
-		BufferedReader in = null;
+		PrintWriter output = null;
+		BufferedReader bufferedReader = null;
 
 		try {
 
 			socket = new Socket("127.0.0.1", 8080);
- 			out = new PrintWriter(socket.getOutputStream(), true);
- 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+ 			output = new PrintWriter(socket.getOutputStream(), true);
+ 			bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			System.out.println("连接到服务器......");
 			System.out.println("请输入消息[输入\"Quit\"]退出：");
 			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 			String userInput;
 
 			while ((userInput = stdIn.readLine()) != null) {
-				out.println(userInput);
-				System.out.println(in.readLine());
+				output.println(userInput);
+				System.out.println(bufferedReader.readLine());
 
 				if (userInput.equals("Quit")) {
 					System.out.println("关闭客户端......");
-					out.close();
-					in.close();
+					output.close();
+					bufferedReader.close();
 					stdIn.close();
 					socket.close();
 					System.exit(1);

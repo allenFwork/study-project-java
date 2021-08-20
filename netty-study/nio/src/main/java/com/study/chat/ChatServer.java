@@ -11,47 +11,37 @@ import java.util.concurrent.TimeUnit;
 /**
  * 通过nio实现聊天室的客户端
  */
-public class ChatService {
+public class ChatServer {
 
     private Selector selector;
-
     /*
      * 1. 服务端的ServerSocketChannel,用来连接客户端的SocketChannel;
      * 2. 服务端连接上了客户端的socketChannel后（也就是接收到了客户端连接请求）,
      *    会创建一个SocketChannel与客户端的SocketChannel进行连接通信。
      */
     private ServerSocketChannel serverSocketChannel;
-
     private long timeout = 2000;
 
-    public ChatService() {
+    public ChatServer() {
         try {
             // 服务端channel
             serverSocketChannel = ServerSocketChannel.open();
-
             // 选择器对象
             selector = Selector.open();
-
             // 绑定端口
             serverSocketChannel.bind(new InetSocketAddress(9090));
-
             // 设置非阻塞式
             serverSocketChannel.configureBlocking(false);
-
             // 把ServerSocketChannel注册给Selector
             SelectionKey selectionKey = serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT); // 监听连接
-
             System.out.println("Nio版本的服务端准备就绪 ... ");
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void start() throws Exception {
-
         int count = 0;
-
         // System.nanoTime()返回的是纳秒，nanoTime而返回的可能是任意时间，甚至可能是负数……
         // System.currentTimeMillis()返回的毫秒，这个毫秒其实就是自1970年1月1日0时起的毫秒数.
         long start = System.nanoTime();
@@ -161,9 +151,8 @@ public class ChatService {
         }
     }
 
-
     public static void main(String[] args) throws Exception {
-        new ChatService().start();
+        new ChatServer().start();
     }
 
 }

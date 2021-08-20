@@ -58,7 +58,7 @@ public class ChatClient implements Runnable {
                         System.out.print("请输入要传递的信息：");
                         Scanner scanner = new Scanner(System.in);
                         String content = scanner.nextLine();
-                        if (content.equals("by")) {
+                        if (content.equals("bye")) {
                             socketChannel.close();
                             return;
                         }

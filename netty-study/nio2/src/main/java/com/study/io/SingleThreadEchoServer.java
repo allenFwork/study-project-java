@@ -34,24 +34,23 @@ public class SingleThreadEchoServer {
     }
 
     private void handleRequest(Socket clientSocket, int clientNo) {
-        PrintStream os = null;
-        BufferedReader in = null;
+        PrintStream outputStream = null;
+        BufferedReader bufferedReader = null;
         try {
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            os = new PrintStream(clientSocket.getOutputStream());
+            bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            outputStream = new PrintStream(clientSocket.getOutputStream());
             String inputLine;
-            while ((inputLine = in.readLine()) != null) {
-
+            while ((inputLine = bufferedReader.readLine()) != null) {
                 // 输入'Quit'退出
                 if (inputLine.equals("Quit")) {
                     System.out.println("关闭与客户端[" + clientNo + "]......" + clientNo);
-                    os.close();
-                    in.close();
+                    outputStream.close();
+                    bufferedReader.close();
                     clientSocket.close();
                     break;
                 } else {
                     System.out.println("来自客户端[" + clientNo + "]的输入： [" + inputLine + "]！");
-                    os.println("来自服务器端的响应：" + inputLine);
+                    outputStream.println("来自服务器端的响应：" + inputLine);
                 }
             }
         } catch (IOException e) {
