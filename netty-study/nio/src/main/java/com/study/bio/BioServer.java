@@ -46,7 +46,7 @@ public class BioServer {
                     new TimeServerHandlerExecutorPool(50, 1000);
             // 一直等待连接
             while (true) {
-                Socket socket = serverSocket.accept();  //阻塞
+                Socket socket = serverSocket.accept();  // 阻塞
                 System.out.println("客户端" + socket.getRemoteSocketAddress().toString() + "来连接了");
 //                 socket.getInputStream().read(); // 阻塞
 //                new Thread(new BioServerHandler(socket)).start();
