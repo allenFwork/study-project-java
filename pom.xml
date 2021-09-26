@@ -23,6 +23,7 @@
         <module>springcloud-study</module>
         <module>redis-study</module>
         <module>netty-study</module>
+        <module>dubbo-study</module>
     </modules>
 
     <properties>
