@@ -51,6 +51,7 @@ public class SimpleClient {
     }
 
     public static void main(String[] args) throws IOException {
+
         SimpleClient simpleClient = new SimpleClient();
 
         // 1.通过直接设置远程地址进行调用

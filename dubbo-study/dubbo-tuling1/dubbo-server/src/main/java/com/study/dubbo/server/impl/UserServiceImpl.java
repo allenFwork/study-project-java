@@ -22,12 +22,11 @@ public class UserServiceImpl implements UserService {
         u.setPort(port);
         // 获取当前用户名
         u.setName(ManagementFactory.getRuntimeMXBean().getName());
-        if (port == 20880) {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        // 延迟50毫秒，用来模拟花费时间
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         return u;
     }

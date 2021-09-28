@@ -6,9 +6,8 @@ import java.util.Iterator;
 import java.util.ServiceLoader;
 
 /**
- * @author Tommy
- * Created by Tommy on 2018/11/23
- **/
+ * java的SPI机制测试
+ */
 public class SpiTest {
     public static void main(String[] args) {
         // java 的 SPI: java.util.ServiceLoader

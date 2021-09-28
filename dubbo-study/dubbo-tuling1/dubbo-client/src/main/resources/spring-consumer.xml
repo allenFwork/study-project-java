@@ -18,7 +18,8 @@
     <!-- 3.配置服务引用对象(ReferenceConfig对象) -->
     <!-- id属性是必须项,否则会报找不到对应的bean对象 -->
     <dubbo:reference id="userService" timeout="2000" retries="2" interface="com.study.dubbo.server.UserService">
-        <dubbo:method name="getUser" timeout="2000"></dubbo:method>
+        <!-- method中 async 是否进行异步调用属性设置,默认是false -->
+        <dubbo:method name="getUser" timeout="2000" async="true"></dubbo:method>
     </dubbo:reference>
 
     <!-- 使用 consumer 将公共的属性全部配置好 -->
