@@ -7,8 +7,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * 基于数组实现阻塞队列
  * 使用 显示Lock 实现阻塞队列
  * 使用 Condition 可以有多个Condition类型的对象，从而有多个 waiting room
- *
- * @param <E>
  */
 public class ArrayBlockingQueue<E> {
 
@@ -51,9 +49,10 @@ public class ArrayBlockingQueue<E> {
     /**
      * 难点：
      * 1.为什么要加锁？
-     * 因为当该线程进入到waiting room后，被唤醒后重新竞争锁，竞争成功后可能条件又不满足了
-     * <p>
+     *
      * 2.为什么使用 while (count == items.length), 而不是用 if (count == items.length)？
+     * 因为当该线程进入到waiting room后，被唤醒后重新竞争锁，竞争失败后，有别的线程执行了相关代码后，
+     * 此线程又抢到了锁但是,可能条件又不满足了，所以使用while
      */
     public boolean put(E e) throws InterruptedException {
         checkNotNull(e);

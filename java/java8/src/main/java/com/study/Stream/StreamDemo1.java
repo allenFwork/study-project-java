@@ -1,5 +1,6 @@
 package com.study.Stream;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -18,6 +19,17 @@ public class StreamDemo1 {
         List<String> filters = strings.stream().filter(string -> !string.isEmpty()).collect(Collectors.toList());
         System.out.println(strings);
         System.out.println(filters);
+
+        List<String> strings2 = new ArrayList<>();
+        strings2.add("abc");
+        strings2.add("");
+        strings2.add("def");
+        strings2.add("g");
+        strings2.add("hi");
+        strings2.add("jkl");
+        List<String> filters2 = strings2.stream().filter(string -> !string.isEmpty()).collect(Collectors.toList());
+        strings2.clear();
+        System.out.println(filters2);
 
         Random random = new Random();
 

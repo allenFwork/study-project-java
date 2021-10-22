@@ -88,6 +88,37 @@ public class StreamTest {
             return "id为" + contents[0] + ",Grade为" + contents[1] + "的学生的分数总和为" + totalScore;
         }).collect(Collectors.toList());
         System.out.println(strings);
+
+        List<List<Student>> strings2 = groupMap.entrySet().stream().map(entry -> {
+            List<Student> stringList = new ArrayList<>();
+            Student student1 = new Student(1,Grade.FIRST,3);
+            Student student2 = new Student(1,Grade.SECOND,3);
+            Student student3 = new Student(1,Grade.THIRD,3);
+            stringList.add(student1);
+            stringList.add(student2);
+            stringList.add(student3);
+            return stringList;
+        }).collect(Collectors.toList());
+        System.out.println(strings);
+
+        /**
+         * 测试 list.clear() 方法对 新集合的影响
+         * ArrayList的clear方法源码：
+         *     public void clear() {
+         *         modCount++;
+         *
+         *         // clear to let GC do its work
+         *         for (int i = 0; i < size; i++)
+         *             elementData[i] = null;
+         *
+         *         size = 0;
+         *     }
+         * 所以通过 list 的 stream() 方法获取的集合，原来集合调用clear方法，对现有集合不会有任何影响
+         * 因为 只是将原集合中所有元素设置为了null，但是新的集合其中的元素还是指向对应的对象
+         */
+        list.clear();
+        System.out.println(studentList);
+
     }
 
 }

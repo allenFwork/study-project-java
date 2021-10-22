@@ -16,8 +16,8 @@ public class SpringClientApplication {
         ApplicationContext context = new ClassPathXmlApplicationContext("/spring-consumer.xml");
         UserService userService = context.getBean(UserService.class);
         while (!read().equals("exit")) {
-            UserVo u = userService.getUser(1111);
-            System.out.println(u);
+            UserVo userVo = userService.getUser(1111);
+            System.out.println(userVo);
         }
     }
 
