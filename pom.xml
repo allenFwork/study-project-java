@@ -25,6 +25,7 @@
         <module>netty-study</module>
         <module>dubbo-study</module>
         <module>zookeeper-study</module>
+        <module>algorithm-study</module>
     </modules>
 
     <properties>
