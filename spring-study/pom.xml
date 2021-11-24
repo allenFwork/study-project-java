@@ -17,12 +17,14 @@
     <modules>
         <module>spring-analysis</module>
         <module>spring-aop</module>
+        <module>spring-aop2</module>
         <module>spring-ioc</module>
         <module>spring-mvc</module>
         <module>spring-transaction</module>
         <module>spring-ioc2</module>
         <module>spring-mvc2</module>
         <module>spring-mvc-customized</module>
+        <module>spring-log</module>
     </modules>
 
 </project>
