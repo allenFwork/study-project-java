@@ -19,7 +19,7 @@ public class SqlServerGenerator {
             boolean overWrite = true;
             String path = this.getClass().getResource("/").getPath();
 //            File configFile = new File(path + "/generatorConfig.xml");
-            File configFile = new File("C:\\Users\\86131\\IdeaProjects\\rise-server-master\\rise-dao\\target\\test-classes\\generatorConfig.xml");
+            File configFile = new File("G:\\blue_world\\Documents\\study-project\\study-project-java\\mybatis-study\\mybatis-generator\\src\\test\\resources\\generatorConfig.xml");
 //            File configFile = new File("generatorConfig2.xml");
             System.out.println(configFile.exists());
             ConfigurationParser configurationParser = new ConfigurationParser(warnings);
