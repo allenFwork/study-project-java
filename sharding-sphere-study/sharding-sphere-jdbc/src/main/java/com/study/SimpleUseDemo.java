@@ -34,17 +34,17 @@ public class SimpleUseDemo {
         // 配置第一个数据源 BasicDataSource是commons-dbcp jar包下的类
         BasicDataSource dataSource1 = new BasicDataSource();
         dataSource1.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource1.setUrl("jdbc:mysql://192.168.33.4:3306/orders_0");
+        dataSource1.setUrl("jdbc:mysql://localhost:3307/orders_0");
         dataSource1.setUsername("root");
-        dataSource1.setPassword("root");
+        dataSource1.setPassword("");
         dataSourceMap.put("orders_0", dataSource1);
 
         // 配置第二个数据源
         BasicDataSource dataSource2 = new BasicDataSource();
         dataSource2.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource2.setUrl("jdbc:mysql://192.168.33.4:3306/orders_1");
+        dataSource2.setUrl("jdbc:mysql://localhost:3307/orders_1");
         dataSource2.setUsername("root");
-        dataSource2.setPassword("root");
+        dataSource2.setPassword("");
         dataSourceMap.put("orders_1", dataSource2);
         /*====================================== 多数据源配置(结束) ======================================*/
 
@@ -75,7 +75,6 @@ public class SimpleUseDemo {
                         return each;
                     }
                 }
-
                 throw new UnsupportedOperationException();
             }
         }));

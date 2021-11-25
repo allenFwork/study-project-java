@@ -3,23 +3,21 @@ package com.study.repository;
 import com.study.entity.OrderItem;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface OrderItemRepository {
 
-    int deleteByPrimaryKey(Long orderItemId);
-
-    int insert(OrderItem record);
-
-    int insertSelective(OrderItem record);
-
-    OrderItem selectByPrimaryKey(Long orderItemId);
-
-    int updateByPrimaryKeySelective(OrderItem record);
-
-    int updateByPrimaryKey(OrderItem record);
+    void createIfNotExitsTable();
 
     void truncateTable();
 
+    int insert(OrderItem orderItem);
+
+    void delete(Long orderId);
+
     void dropTable();
+
+    List<OrderItem> selectAll();
 
 }

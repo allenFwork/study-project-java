@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--
+        开启 @Service, @Repository 等注解的使用:
+        问题: SpringUseDemo类中使用了@Service注解,但是通过测试类启动没有找到该类的bean对象
+        原因: 当 SpringUseDemo在com.study包下时,测试类也是在该包下,属于同一级别的包里,
+              此时设置扫描包为com.study,不生效,只有更下面一层才会生效,即com.study.service包下时,生效。
+     -->
+    <context:component-scan base-package="com.study.service"/>
+
+    <!-- 添加sharding-sphere的配置信息 -->
+    <import resource="classpath:spring-sharding.xml"/>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="shardingDataSource"/>
+    </bean>
+    <!-- 开启事务注解: @Transactional -->
+    <tx:annotation-driven/>
+
+    <!-- Mybatis的相关配置 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="shardingDataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.study*"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+</beans>

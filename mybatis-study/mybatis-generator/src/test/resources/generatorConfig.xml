@@ -39,17 +39,17 @@
                         password="">
         </jdbcConnection>-->
         <!-- mysql数据库连接配置 -->
-        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3307/orders_0?serverTimezone=GMT%2B8"
                         userId="root"
-                        password="123456">
-        </jdbcConnection>-->
+                        password="">
+        </jdbcConnection>
         <!-- SqlServer数据库连接配置 -->
-        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+        <!--<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
                         connectionURL="jdbc:sqlserver://10.110.147.32:1433;DatabaseName=Lecoo"
                         userId=""
                         password="">
-        </jdbcConnection>
+        </jdbcConnection>-->
 
         <!--
              javaTypeResolver：用来指定JDBC类型和Java类型如何转换，默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，
@@ -95,7 +95,7 @@
             &lt;!&ndash;<property name="useActualColumnNames" value="true"/>&ndash;&gt;
             &lt;!&ndash;<generatedKey column="id" sqlStatement="MySql" identity="true"/>&ndash;&gt;
         </table>-->
-        <table tableName="forecast_sku_group_result_lecoo_test_bk"
+        <table tableName="t_order_0"
                enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
