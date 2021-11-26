@@ -16,4 +16,6 @@ public interface OrderRepository {
 
     void dropTable();
 
+    Order selectId(Long orderId);
+
 }

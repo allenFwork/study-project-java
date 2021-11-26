@@ -31,7 +31,8 @@
     </delete>
 
     <select id="selectAll" resultMap="BaseResultMap">
-        SELECT * FROM t_order_item
+        SELECT n.* FROM t_order m, t_order_item n
+        WHERE m.order_id = n.order_id
     </select>
 
 </mapper>

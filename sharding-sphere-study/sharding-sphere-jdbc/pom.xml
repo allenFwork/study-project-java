@@ -97,16 +97,16 @@
         </dependency>
 
         <!-- for spring boot -->
-        <dependency>
+        <!--<dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
             <version>3.0.0.M4</version>
-        </dependency>
+        </dependency>-->
         <!-- for spring namespace -->
         <dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-namespace</artifactId>
-            <version>3.0.0.M4</version>
+            <version>3.0.0</version>
         </dependency>
         <!-- =========================== 通过spring配置使用sharding-sphere-jdbc(结束) =========================== -->
     </dependencies>

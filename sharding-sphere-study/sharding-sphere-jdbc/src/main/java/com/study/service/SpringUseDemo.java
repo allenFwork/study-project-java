@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 通过 spring 框架使用 Sharding-Sphere 实现分库分表功能
@@ -33,16 +34,16 @@ public class SpringUseDemo {
         System.out.println("1.Insert ------------------ ");
 
         for (int i = 0; i < 10; i++) {
+            int rand = new Random().nextInt(20);
             Order order = new Order();
-            order.setOrderId(51);
+            order.setUserId(rand);
+            order.setOrderId(rand + 1);
             order.setStatus("INSERT_TEST");
             orderRepository.insert(order);
-            long orderId = order.getOrderId();
-            orderIds.add(orderId);
 
             OrderItem orderItem = new OrderItem();
-            orderItem.setOrderId(orderId);
-            orderItem.setUserId(51);
+            orderItem.setOrderId(rand);
+            orderItem.setUserId(rand + 1);
             orderItem.setStatus("INSERT_TEST");
             orderItemRepository.insert(orderItem);
         }

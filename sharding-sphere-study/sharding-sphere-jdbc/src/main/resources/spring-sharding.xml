@@ -8,7 +8,7 @@
                            http://shardingsphere.io/schema/shardingsphere/sharding/sharding.xsd">
 
     <!-- sharding-sphere-jdbc整合spring的配置文件 -->
-    <!-- 数据源配置 -->
+    <!-- 2个数据源配置 -->
     <bean id="orders_0" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3307/orders_0"/>
@@ -22,13 +22,13 @@
         <property name="password" value=""/>
     </bean>
 
-    <sharding:inline-strategy id="databaseStrategy" sharding-column="user_id"
-                              algorithm-expression="orders_$->{user_id % 2}"/>
-    <sharding:inline-strategy id="orderTableStrategy" sharding-column="order_id"
-                              algorithm-expression="t_order_$->{order_id % 2}"/>
-    <sharding:inline-strategy id="orderItemTableStrategy" sharding-column="order_id"
-                              algorithm-expression="t_order_item_$->{order_id % 2}"/>
+    <!-- 数据库分片配置策略 -->
+    <sharding:inline-strategy id="databaseStrategy" sharding-column="user_id" algorithm-expression="orders_$->{user_id % 2}"/>
+    <!-- 表分片配置策略 -->
+    <sharding:inline-strategy id="orderTableStrategy" sharding-column="order_id" algorithm-expression="t_order_$->{order_id % 2}"/>
+    <sharding:inline-strategy id="orderItemTableStrategy" sharding-column="order_id" algorithm-expression="t_order_item_$->{order_id % 2}"/>
 
+    <!-- sharding-sphere的数据源对象 -->
     <sharding:data-source id="shardingDataSource">
         <sharding:props>
             <prop key="sql.show">true</prop>
