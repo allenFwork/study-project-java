@@ -27,6 +27,7 @@
         <module>zookeeper-study</module>
         <module>algorithm-study</module>
         <module>sharding-sphere-study</module>
+        <module>data-migration-study</module>
     </modules>
 
     <properties>
