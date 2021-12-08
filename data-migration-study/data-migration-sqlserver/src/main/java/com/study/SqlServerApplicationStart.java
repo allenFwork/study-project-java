@@ -20,7 +20,7 @@ public class SqlServerApplicationStart {
     public static void main(String[] args) {
 
         // 数据库中总记录数
-        long rows = 27854644L;
+        long rows = 1740916L;
 //        long rows = 27854644L;  6985280
 
         // 核心线程数
@@ -78,15 +78,29 @@ public class SqlServerApplicationStart {
         @Override
         public Object call() throws Exception {
             System.out.println("[起始页码: " + pageNo + ", 结束页码: " + (pageNo + pageSize) + "] 开始执行 ... ");
+            /**
+             * JDBC的事务支持：
+             *
+             *  JDBC对事务的支持体现在三个方面：
+             *  1. 自动提交模式(Auto-commit mode)：Connection提供了一个auto-commit的属性来指定事务何时结束。
+             * 　 (1) 当 auto-commit 为 true 时，当每个独立SQL操作的执行完毕，事务立即自动提交，也就是说每个SQL操作都是一个事务。
+             * 　　一个独立SQL操作什么时候算执行完毕，JDBC规范是这样规定的：
+             * 　　   对数据操作语言(DML，如insert,update,delete)和数据定义语言(如create,drop)，语句一执行完就视为执行完毕。
+             *        对select语句，当与它关联的ResultSet对象关闭时，视为执行完毕。
+             * 　　   对存储过程或其他返回多个结果的语句，当与它关联的所有ResultSet对象全部关闭，所有update count(update,delete等语句操作影响的行数)和output parameter(存储过程的输出参数)都已经获取之后，视为执行完毕。
+             * 　 (2)当auto-commit为false时，每个事务都必须显示调用commit方法进行提交，或者显示调用rollback方法进行回滚。auto-commit默认为true。
+             */
             connection1.setAutoCommit(true);
-            connection2.setAutoCommit(true);
+            connection2.setAutoCommit(false);
             try {
-                PreparedStatement preparedStatement = connection1.prepareStatement("SELECT * FROM Tactical_Offline..sc_ship_part_cml_copy ORDER BY BU OFFSET ? rows fetch next ? rows only");
+                PreparedStatement preparedStatement = connection1.prepareStatement("SELECT * FROM Tactical_Offline..sc_ship_part_cml_copy33 ORDER BY product,sbb OFFSET ? rows fetch next ? rows only");
                 preparedStatement.setLong(1, pageNo);
                 preparedStatement.setLong(2, pageSize);
+                System.out.println("executeQuery执行前");
                 ResultSet resultSet = preparedStatement.executeQuery();
+                System.out.println("executeQuery执行后");
                 PreparedStatement preparedStatement2 =
-                        connection2.prepareStatement("INSERT INTO HAWK_TACTICAL..sc_ship_part_cml_copy " +
+                        connection2.prepareStatement("INSERT INTO HAWK_TACTICAL..sc_ship_part_cml " +
                                 "(bu,product_group,brand,plant_code,geo,subgeo,site_id,family,product,product_qty,sbb,sbb_qty,part,part_qty,ship_date,sys_created_by,update_timestamp,itemgroup,sci_site_id,product_line,ludp_update_timestamp,segment) " +
                                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 while (resultSet.next()) {
@@ -113,14 +127,23 @@ public class SqlServerApplicationStart {
                     preparedStatement2.setString(21, resultSet.getString(21));
                     preparedStatement2.setString(22, resultSet.getString(22));
                     preparedStatement2.executeUpdate();
-                    System.out.println("+1");
+                    connection2.commit();
                 }
+                System.out.println("executeUpdate执行后");
+                // 关闭了查询的事务(自动提交)
+                resultSet.close();
+                preparedStatement.close();
+                preparedStatement2.close();
             } catch (Exception e) {
                 e.printStackTrace();
                 return "[起始页码: " + pageNo + ", 结束页码: " + (pageNo + pageSize) + "] 执行失败! ";
             } finally {
-                dataBaseConnectPool1.releaseConnection(connection1);
-                dataBaseConnectPool2.releaseConnection(connection2);
+                // 连接放回连接池中重复利用
+//                dataBaseConnectPool1.releaseConnection(connection1);
+//                dataBaseConnectPool2.releaseConnection(connection2);
+                // 直接关闭连接
+                connection1.close();
+                connection2.close();
             }
             return "[起始页码: " + pageNo + ", 结束页码: " + (pageNo + pageSize) + "] 执行成功! ";
         }

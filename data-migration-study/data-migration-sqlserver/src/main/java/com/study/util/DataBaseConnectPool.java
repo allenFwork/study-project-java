@@ -41,7 +41,7 @@ public class DataBaseConnectPool {
     private LinkedList<Connection> connectPool = new LinkedList<>();
 
     // 配置文件中获取的配置信息
-    private static final int INIT_CONNECTIONS = Runtime.getRuntime().availableProcessors() * 50;
+    private static final int INIT_CONNECTIONS = Runtime.getRuntime().availableProcessors() * 11;
     private static final String DRIVER_CLASS = "";
     private static final String URL = "jdbc:sqlserver://10.110.147.31:1433;DatabaseName=Tactical_Offline";
     private static final String USERNAME = "sa";
