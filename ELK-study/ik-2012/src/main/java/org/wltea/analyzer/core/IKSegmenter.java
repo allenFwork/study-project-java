@@ -57,9 +57,8 @@ public final class IKSegmenter {
 	 * 
 	 * @param input
 	 * @param useSmart
-	 *            为true，使用智能分词策略
-	 * 
-	 *            非智能分词：细粒度输出所有可能的切分结果 智能分词： 合并数词和量词，对分词结果进行歧义判断
+	 * 		为 true，使用智能分词策略
+	 * 		非智能分词：细粒度输出所有可能的切分结果 智能分词： 合并数词和量词，对分词结果进行歧义判断
 	 */
 	public IKSegmenter(Reader input, boolean useSmart) {
 		this.input = input;

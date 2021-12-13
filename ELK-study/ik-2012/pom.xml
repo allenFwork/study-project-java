@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ik-2012</artifactId>
+    <name>源码项目: ik分词器学习</name>
 
     <dependencies>
         <dependency>

@@ -8,11 +8,16 @@ import org.wltea.analyzer.core.IKSegmenter;
 import org.wltea.analyzer.model.analyzer.Lexeme;
 
 /**
+ * 互联网目前的搜索引擎,使用策略：
+ * 	 建立索引时，使用细粒度
+ * 	 查询时，使用粗粒度
  */
 public class IKSegmenterTest {
 
 	public void print(String str) {
 		try {
+
+			// true: 表示最粗粒度, false: 表示最细粒度
 			IKSegmenter ik = new IKSegmenter(new StringReader(str), true);
 			Lexeme l = null;
 			while ((l = ik.next()) != null) {

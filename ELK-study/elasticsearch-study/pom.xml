@@ -3,19 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>study-project-java</artifactId>
+        <artifactId>ELK-study</artifactId>
         <groupId>com.study</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ELK-study</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>elasticsearch-study</module>
-        <module>ik-2012</module>
-        <module>my-search-api</module>
-    </modules>
+    <artifactId>elasticsearch-study</artifactId>
 
 
 </project>

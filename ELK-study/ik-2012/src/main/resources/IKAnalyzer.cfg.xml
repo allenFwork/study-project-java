@@ -5,10 +5,18 @@
 
 	<comment>IK Analyzer 扩展配置</comment>
 
-	<!-- 用户可以在这里配置自己的扩展字典 -->
+	<!--
+		用户可以在这里配置自己的扩展字典:
+			通过(主词典)词库中的词语来作为拆分的单元(词语)
+			通过分号 “;” 分开词库
+	 -->
 	<entry key="ext_dict">dic/main.dic;dic/chinese_medicine.dic;</entry>
 	
-	<!-- 用户可以在这里配置自己的扩展停止词字典 -->
+	<!--
+		用户可以在这里配置自己的扩展停止词字典:
+			通过(停用词典)来去除掉不用的词语,例如 “的”、“呢” 等等
+			可以直接使用网上提供的停用词库
+	 -->
 	<entry key="ext_stopwords">dic/stopword.dic;</entry>
 
 </properties>
