@@ -21,10 +21,10 @@ public class SqlServerApplicationStartUpdate {
     public static void main(String[] args) {
 
         // 数据库中总记录数
-        long rows = 4713347L;
+        long rows = 4004272L;
 
         // 核心线程数
-        int kThreads = Runtime.getRuntime().availableProcessors() * 10; // 80
+        int kThreads = Runtime.getRuntime().availableProcessors() * 2; // 80
         System.out.println("线程数量: " + kThreads);
         // 任务数(这里需要求一下平均每个任务需要执行的任务id大小是多少，实际测试中，20-30w 快则 2秒，慢则3-5秒，这个阈值是比较理想的 也就是 总记录数/任意数 等到想要的平均任务数)
 //        Long pageSize = (rows / 8000) + 1;
@@ -50,7 +50,7 @@ public class SqlServerApplicationStartUpdate {
             while (connection2 == null) {
                 connection2 = dataBaseConnectPool2.getConnection();
             }
-            final Future submit = threadPool.submit(new DataThread(pageNo, pageSize, connection1, connection2));
+            final Future submit = threadPool.submit(new DataThread(pageNo, pageSize, connection2, connection1));
             pageNo = pageNo + pageSize;
             list.add(submit);
         }
@@ -118,9 +118,18 @@ public class SqlServerApplicationStartUpdate {
 //                String sql2 = "INSERT INTO HAWK_TACTICAL..sc_dim_product_rt_cml (product,maktx,extwg,brand,product_group,business_unit,prodh,ph1_desc,ph2_desc,ph3_desc,ph4_desc,matkl,sys_creation_date,product_family,mvgr3,effstartdate,effenddate,ph5_desc,ph6_desc,ph1,ph2,ph3,ph4,ph5,ph6,mbg_family) " +
 //                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-                String sql1 = "SELECT material, bu, commodity, itemgroup, leadtime, liabilitywindow, material_category, sys_creation_date, sys_last_modified_date, sys_created_by, sys_last_modified_by, site_code, commodity_source FROM Tactical_Offline..sc_parts_attribute_fact_rt_cml ORDER BY id OFFSET ? rows fetch next ? rows only";
-                String sql2 = "INSERT INTO HAWK_TACTICAL..sc_parts_attribute_fact_rt_cml (material, bu, commodity, itemgroup, leadtime, liabilitywindow, material_category, sys_creation_date, sys_last_modified_date, sys_created_by, sys_last_modified_by, site_code, commodity_source) " +
-                        "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//                String sql1 = "SELECT material, bu, commodity, itemgroup, leadtime, liabilitywindow, material_category, sys_creation_date, sys_last_modified_date, sys_created_by, sys_last_modified_by, site_code, commodity_source FROM Tactical_Offline..sc_parts_attribute_fact_rt_cml ORDER BY id OFFSET ? rows fetch next ? rows only";
+//                String sql2 = "INSERT INTO HAWK_TACTICAL..sc_parts_attribute_fact_rt_cml (material, bu, commodity, itemgroup, leadtime, liabilitywindow, material_category, sys_creation_date, sys_last_modified_date, sys_created_by, sys_last_modified_by, site_code, commodity_source) " +
+//                        "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                String sql1 = "SELECT 商品编码,商品名称,商品属性,计量单位,保管数,可卖数,三级账,预售数,延付数,暂存数,结算价,订单在途,\n" +
+                                "订单金额,转仓在途,转仓在途金额,借出在途,借出在途金额,集团在途,集团在途金额,供应商编码,供应商,部门编码,采购部门,品牌,商品分类,一级分类名称,二级分类名称,三级分类名称,\n" +
+                                "四级分类名称,平均单价,平均库存金额,三级账库存金额,可卖数库存金额,安全库存,上限库存,仓库编码,仓库名称,最早入库日期,门店库龄,最后入库日期,商品库龄,库存预警,\n" +
+                                "零售单价,会员单价,最新进价,销售控制,仓库类型,保管结算金额,近1月销量,近3月销量,CPU型号,CPU品牌,机械硬盘,固态硬盘,显卡型号,AT,机械厚度,屏幕尺寸,运行内存,date FROM LENOVO_SKUJCSJ_SPKC_BACKUP_copy ORDER BY date,商品编码 OFFSET ? rows fetch next ? rows only";
+                String sql2 = "INSERT INTO LENOVO_SKUJCSJ_SPKC_BACKUP_copy (商品编码,商品名称,商品属性,计量单位,保管数,可卖数,三级账,预售数,延付数,暂存数,结算价,订单在途,\n" +
+                                            "订单金额,转仓在途,转仓在途金额,借出在途,借出在途金额,集团在途,集团在途金额,供应商编码,供应商,部门编码,采购部门,品牌,商品分类,一级分类名称,二级分类名称,三级分类名称,\n" +
+                                            "四级分类名称,平均单价,平均库存金额,三级账库存金额,可卖数库存金额,安全库存,上限库存,仓库编码,仓库名称,最早入库日期,门店库龄,最后入库日期,商品库龄,库存预警,\n" +
+                                            "零售单价,会员单价,最新进价,销售控制,仓库类型,保管结算金额,近1月销量,近3月销量,CPU型号,CPU品牌,机械硬盘,固态硬盘,显卡型号,AT,机械厚度,屏幕尺寸,运行内存,date) " +
+                        "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // 60
 
                 PreparedStatement preparedStatement1 = null;
                 PreparedStatement preparedStatement2 = null;
@@ -187,15 +196,70 @@ public class SqlServerApplicationStartUpdate {
                         preparedStatement2.setString(2, resultSet.getString(2));
                         preparedStatement2.setString(3, resultSet.getString(3));
                         preparedStatement2.setString(4, resultSet.getString(4));
+
                         preparedStatement2.setFloat(5, resultSet.getFloat(5));
                         preparedStatement2.setFloat(6, resultSet.getFloat(6));
-                        preparedStatement2.setString(7, resultSet.getString(7));
-                        preparedStatement2.setString(8, resultSet.getString(8));
-                        preparedStatement2.setString(9, resultSet.getString(9));
-                        preparedStatement2.setString(10, resultSet.getString(10));
-                        preparedStatement2.setString(11, resultSet.getString(11));
-                        preparedStatement2.setString(12, resultSet.getString(12));
-                        preparedStatement2.setString(13, resultSet.getString(13));
+                        preparedStatement2.setFloat(7, resultSet.getFloat(7));
+                        preparedStatement2.setFloat(8, resultSet.getFloat(8));
+                        preparedStatement2.setFloat(9, resultSet.getFloat(9));
+                        preparedStatement2.setFloat(10, resultSet.getFloat(10));
+                        preparedStatement2.setFloat(11, resultSet.getFloat(11));
+                        preparedStatement2.setFloat(12, resultSet.getFloat(12));
+
+                        preparedStatement2.setInt(13, resultSet.getInt(13));
+
+                        preparedStatement2.setFloat(14, resultSet.getFloat(14));
+
+                        preparedStatement2.setFloat(15, resultSet.getFloat(15));
+                        preparedStatement2.setFloat(16, resultSet.getFloat(16));
+                        preparedStatement2.setFloat(17, resultSet.getFloat(17));
+                        preparedStatement2.setFloat(18, resultSet.getFloat(18));
+                        preparedStatement2.setFloat(19, resultSet.getFloat(19));
+
+                        preparedStatement2.setString(20, resultSet.getString(20));
+                        preparedStatement2.setString(21, resultSet.getString(21));
+                        preparedStatement2.setString(22, resultSet.getString(22));
+                        preparedStatement2.setString(23, resultSet.getString(23));
+                        preparedStatement2.setString(24, resultSet.getString(24));
+                        preparedStatement2.setString(25, resultSet.getString(25));
+                        preparedStatement2.setString(26, resultSet.getString(26));
+                        preparedStatement2.setString(27, resultSet.getString(27));
+                        preparedStatement2.setString(28, resultSet.getString(28));
+                        preparedStatement2.setString(29, resultSet.getString(29));
+
+                        preparedStatement2.setFloat(30, resultSet.getFloat(30));
+                        preparedStatement2.setFloat(31, resultSet.getFloat(31));
+                        preparedStatement2.setFloat(32, resultSet.getFloat(32));
+                        preparedStatement2.setFloat(33, resultSet.getFloat(33));
+                        preparedStatement2.setFloat(34, resultSet.getFloat(34));
+                        preparedStatement2.setFloat(35, resultSet.getFloat(35));
+
+                        preparedStatement2.setString(36, resultSet.getString(36));
+                        preparedStatement2.setString(37, resultSet.getString(37));
+                        preparedStatement2.setString(38, resultSet.getString(38));
+
+                        preparedStatement2.setInt(39, resultSet.getInt(39));
+                        preparedStatement2.setString(40, resultSet.getString(40));
+                        preparedStatement2.setInt(41, resultSet.getInt(41));
+                        preparedStatement2.setString(42, resultSet.getString(42));
+                        preparedStatement2.setInt(43, resultSet.getInt(43));
+                        preparedStatement2.setFloat(44, resultSet.getFloat(44));
+                        preparedStatement2.setFloat(45, resultSet.getFloat(45));
+                        preparedStatement2.setString(46, resultSet.getString(46));
+                        preparedStatement2.setString(47, resultSet.getString(47));
+                        preparedStatement2.setFloat(48, resultSet.getFloat(48));
+                        preparedStatement2.setInt(49, resultSet.getInt(49));
+                        preparedStatement2.setInt(50, resultSet.getInt(50));
+                        preparedStatement2.setString(51, resultSet.getString(51));
+                        preparedStatement2.setString(52, resultSet.getString(52));
+                        preparedStatement2.setString(53, resultSet.getString(53));
+                        preparedStatement2.setString(54, resultSet.getString(54));
+                        preparedStatement2.setString(55, resultSet.getString(55));
+                        preparedStatement2.setString(56, resultSet.getString(56));
+                        preparedStatement2.setString(57, resultSet.getString(57));
+                        preparedStatement2.setString(58, resultSet.getString(58));
+                        preparedStatement2.setString(59, resultSet.getString(59));
+                        preparedStatement2.setString(60, resultSet.getString(60));
                         preparedStatement2.addBatch();
 
                     }
@@ -263,19 +327,88 @@ public class SqlServerApplicationStartUpdate {
 //                        preparedStatement2.setString(26, resultSet.getString(26));
 //                        preparedStatement2.addBatch();
 
+//                        preparedStatement2.setString(1, resultSet.getString(1));
+//                        preparedStatement2.setString(2, resultSet.getString(2));
+//                        preparedStatement2.setString(3, resultSet.getString(3));
+//                        preparedStatement2.setString(4, resultSet.getString(4));
+//                        preparedStatement2.setFloat(5, resultSet.getFloat(5));
+//                        preparedStatement2.setFloat(6, resultSet.getFloat(6));
+//                        preparedStatement2.setString(7, resultSet.getString(7));
+//                        preparedStatement2.setString(8, resultSet.getString(8));
+//                        preparedStatement2.setString(9, resultSet.getString(9));
+//                        preparedStatement2.setString(10, resultSet.getString(10));
+//                        preparedStatement2.setString(11, resultSet.getString(11));
+//                        preparedStatement2.setString(12, resultSet.getString(12));
+//                        preparedStatement2.setString(13, resultSet.getString(13));
+
                         preparedStatement2.setString(1, resultSet.getString(1));
                         preparedStatement2.setString(2, resultSet.getString(2));
                         preparedStatement2.setString(3, resultSet.getString(3));
                         preparedStatement2.setString(4, resultSet.getString(4));
+
                         preparedStatement2.setFloat(5, resultSet.getFloat(5));
                         preparedStatement2.setFloat(6, resultSet.getFloat(6));
-                        preparedStatement2.setString(7, resultSet.getString(7));
-                        preparedStatement2.setString(8, resultSet.getString(8));
-                        preparedStatement2.setString(9, resultSet.getString(9));
-                        preparedStatement2.setString(10, resultSet.getString(10));
-                        preparedStatement2.setString(11, resultSet.getString(11));
-                        preparedStatement2.setString(12, resultSet.getString(12));
-                        preparedStatement2.setString(13, resultSet.getString(13));
+                        preparedStatement2.setFloat(7, resultSet.getFloat(7));
+                        preparedStatement2.setFloat(8, resultSet.getFloat(8));
+                        preparedStatement2.setFloat(9, resultSet.getFloat(9));
+                        preparedStatement2.setFloat(10, resultSet.getFloat(10));
+                        preparedStatement2.setFloat(11, resultSet.getFloat(11));
+                        preparedStatement2.setFloat(12, resultSet.getFloat(12));
+
+                        preparedStatement2.setInt(13, resultSet.getInt(13));
+
+                        preparedStatement2.setFloat(14, resultSet.getFloat(14));
+
+                        preparedStatement2.setFloat(15, resultSet.getFloat(15));
+                        preparedStatement2.setFloat(16, resultSet.getFloat(16));
+                        preparedStatement2.setFloat(17, resultSet.getFloat(17));
+                        preparedStatement2.setFloat(18, resultSet.getFloat(18));
+                        preparedStatement2.setFloat(19, resultSet.getFloat(19));
+
+                        preparedStatement2.setString(20, resultSet.getString(20));
+                        preparedStatement2.setString(21, resultSet.getString(21));
+                        preparedStatement2.setString(22, resultSet.getString(22));
+                        preparedStatement2.setString(23, resultSet.getString(23));
+                        preparedStatement2.setString(24, resultSet.getString(24));
+                        preparedStatement2.setString(25, resultSet.getString(25));
+                        preparedStatement2.setString(26, resultSet.getString(26));
+                        preparedStatement2.setString(27, resultSet.getString(27));
+                        preparedStatement2.setString(28, resultSet.getString(28));
+                        preparedStatement2.setString(29, resultSet.getString(29));
+
+                        preparedStatement2.setFloat(30, resultSet.getFloat(30));
+                        preparedStatement2.setFloat(31, resultSet.getFloat(31));
+                        preparedStatement2.setFloat(32, resultSet.getFloat(32));
+                        preparedStatement2.setFloat(33, resultSet.getFloat(33));
+                        preparedStatement2.setFloat(34, resultSet.getFloat(34));
+                        preparedStatement2.setFloat(35, resultSet.getFloat(35));
+
+                        preparedStatement2.setString(36, resultSet.getString(36));
+                        preparedStatement2.setString(37, resultSet.getString(37));
+                        preparedStatement2.setString(38, resultSet.getString(38));
+
+                        preparedStatement2.setInt(39, resultSet.getInt(39));
+                        preparedStatement2.setString(40, resultSet.getString(40));
+                        preparedStatement2.setInt(41, resultSet.getInt(41));
+                        preparedStatement2.setString(42, resultSet.getString(42));
+                        preparedStatement2.setInt(43, resultSet.getInt(43));
+                        preparedStatement2.setFloat(44, resultSet.getFloat(44));
+                        preparedStatement2.setFloat(45, resultSet.getFloat(45));
+                        preparedStatement2.setString(46, resultSet.getString(46));
+                        preparedStatement2.setString(47, resultSet.getString(47));
+                        preparedStatement2.setFloat(48, resultSet.getFloat(48));
+                        preparedStatement2.setInt(49, resultSet.getInt(49));
+                        preparedStatement2.setInt(50, resultSet.getInt(50));
+                        preparedStatement2.setString(51, resultSet.getString(51));
+                        preparedStatement2.setString(52, resultSet.getString(52));
+                        preparedStatement2.setString(53, resultSet.getString(53));
+                        preparedStatement2.setString(54, resultSet.getString(54));
+                        preparedStatement2.setString(55, resultSet.getString(55));
+                        preparedStatement2.setString(56, resultSet.getString(56));
+                        preparedStatement2.setString(57, resultSet.getString(57));
+                        preparedStatement2.setString(58, resultSet.getString(58));
+                        preparedStatement2.setString(59, resultSet.getString(59));
+                        preparedStatement2.setString(60, resultSet.getString(60));
                         preparedStatement2.addBatch();
                     }
                     preparedStatement2.executeBatch();

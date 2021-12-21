@@ -17,8 +17,6 @@ import org.wltea.analyzer.core.IKAnalyzer5x;
 
 /**
  * 创建Lucene索引的类
- * @author Administrator
- *
  */
 public class Indexer {
 	// 写索引实例

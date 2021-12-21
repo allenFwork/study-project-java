@@ -43,9 +43,12 @@ public class DataBaseConnectPool2 {
     // 配置文件中获取的配置信息
     private static final int INIT_CONNECTIONS = Runtime.getRuntime().availableProcessors() * 11;
     private static final String DRIVER_CLASS = "";
-    private static final String URL = "jdbc:sqlserver://10.122.130.148:1433;DatabaseName=HAWK_TACTICAL";
-    private static final String USERNAME = "a_appconnect";
-    private static final String PASSWORD = "1kl%d(H%";
+//    private static final String URL = "jdbc:sqlserver://10.122.130.148:1433;DatabaseName=HAWK_TACTICAL";
+//    private static final String USERNAME = "a_appconnect";
+//    private static final String PASSWORD = "1kl%d(H%";
+    private static final String URL = "jdbc:sqlserver://10.110.147.32:1433;DatabaseName=Lecoo";
+    private static final String USERNAME = "sa";
+    private static final String PASSWORD = "zhangyh33!";
 
     private Lock lock = new ReentrantLock();
     private Condition condition = lock.newCondition();
