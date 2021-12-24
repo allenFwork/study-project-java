@@ -1,9 +1,9 @@
-package com.study.util.excel;
+package com.study.util.excel.easy_excel_util;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
-import com.study.util.excel.entity.StoreInformation;
+import com.study.util.excel.easy_excel_util.entity.StoreInformation;
 
 import java.util.ArrayList;
 import java.util.HashMap;

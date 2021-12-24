@@ -1,4 +1,4 @@
-package com.study.util.excel.entity;
+package com.study.util.excel.easy_excel_util.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
@@ -9,15 +9,6 @@ import lombok.Data;
  */
 @Data
 public class StoreInformation {
-
-    @ExcelProperty("店面大区")
-    private String storeDistrict;
-
-    @ExcelProperty("店面战区")
-    private String storeWarZone;
-
-    @ExcelProperty("店面编号")
-    private String shopCode;
 
     @ExcelProperty("店面名称")
     private String storeName;
@@ -38,7 +29,7 @@ public class StoreInformation {
     private String dealerType;
 
     @ExcelProperty("店面经度")
-    private String StoreLongitude;
+    private String storeLongitude;
 
     @ExcelProperty("店面纬度")
     private String storeLatitude;
@@ -64,6 +55,15 @@ public class StoreInformation {
     @ExcelProperty("装修时间")
     @DateTimeFormat("yyyy-MM-dd HH:mm:ss")
     private String decorateTime;
+
+    @ExcelProperty("店面大区")
+    private String storeDistrict;
+
+    @ExcelProperty("店面战区")
+    private String storeWarZone;
+
+    @ExcelProperty("店面编号")
+    private String shopCode;
 
     @ExcelProperty("营业面积")
     private String storeArea;
