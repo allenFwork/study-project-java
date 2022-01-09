@@ -12,6 +12,7 @@
     <artifactId>my-search-api</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
+    <name>搜索引擎项目学习：elasticsearch引擎</name>
 
     <properties>
         <java.version>1.8</java.version>
