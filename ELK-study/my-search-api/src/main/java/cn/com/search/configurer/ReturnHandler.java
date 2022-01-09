@@ -17,8 +17,8 @@ public class ReturnHandler implements HandlerMethodReturnValueHandler {
 	}
 
 	@Override
-	public void handleReturnValue(Object returnValue, MethodParameter returnType, ModelAndViewContainer mavContainer,
-			NativeWebRequest webRequest) throws Exception {
+	public void handleReturnValue(Object returnValue, MethodParameter returnType,
+								  ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
 		if(returnValue instanceof Result) {
 			Result result = (Result)returnValue;
 			mavContainer.setRequestHandled(true);

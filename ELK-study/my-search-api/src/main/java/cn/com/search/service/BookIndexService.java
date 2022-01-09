@@ -6,7 +6,7 @@ import cn.com.search.model.ReadBooks;
 
 public interface BookIndexService {
 
-	Integer index();
+	Integer creatIndexLucene();
 	
 	List<ReadBooks> search(String keywords, String bookName, String author);
 }

@@ -83,6 +83,13 @@
             <version>1.7.25</version><!-- 注意版本号要一致 -->
         </dependency>
 
+        <!-- freemarker框架依赖 -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.28</version>
+        </dependency>
+
     </dependencies>
 
 </project>

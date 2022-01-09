@@ -57,7 +57,7 @@ public class BookIndexServiceImpl implements BookIndexService {
 	private String indexDir = "d:\\lucene\\book";
 
 	@Override
-	public Integer index() {
+	public Integer creatIndexLucene() {
 		try {
 			Directory dir = FSDirectory.open(Paths.get(indexDir));
 			// 标准分词器

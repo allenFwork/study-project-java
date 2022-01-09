@@ -12,4 +12,6 @@ import cn.com.search.core.Service;
 public interface ReadBooksService extends Service<ReadBooks> {
 
 	List<ReadBooks> search(String keyWords);
+	
+	public Boolean creatIndex();
 }

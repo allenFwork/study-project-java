@@ -48,12 +48,12 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 	RedisService redisUtils;
 	
 	
-    //使用阿里 FastJson 作为JSON MessageConverter
+    // 使用阿里 FastJson 作为 JSON MessageConverter
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         FastJsonConfig config = new FastJsonConfig();
-        config.setSerializerFeatures(SerializerFeature.WriteMapNullValue,//保留空的字段
+        config.setSerializerFeatures(SerializerFeature.WriteMapNullValue, //保留空的字段
                 SerializerFeature.WriteNullStringAsEmpty,//String null -> ""
                 SerializerFeature.WriteNullNumberAsZero);//Number null -> 0
         converter.setFastJsonConfig(config);
@@ -62,7 +62,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     }
 
 
-    //统一异常处理
+    // 统一异常处理
     @Override
     public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
         exceptionResolvers.add(new HandlerExceptionResolver() {
@@ -98,7 +98,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         });
     }
 
-    //解决跨域问题
+    // 解决跨域问题
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -115,7 +115,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     		WebMvcConfigurer.super.addReturnValueHandlers(handlers);
     }
 
-    //添加拦截器
+    // 添加拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //接口签名认证拦截器，该签名认证比较简单，实际项目中可以使用Json Web Token或其他更好的方式替代。
