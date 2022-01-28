@@ -10,18 +10,40 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>study-springboot-demo</artifactId>
+    <!-- 打成war需要交由tomcat来启动 -->
+    <!--<packaging>war</packaging>-->
     <name>spring boot 初体验模块</name>
     <description>第四天：自行搭建spring boot应用，学习使用</description>
 
+
     <dependencies>
         <!-- spring-webflux 不能与 spring-webmvc 同时使用 -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-web</artifactId>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>-->
+
+        <!-- 将springboot打成war包时需要tomcat参与编译 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- 前端框架 -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.3.1-2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>4.3.1</version>
         </dependency>
 
         <dependency>
