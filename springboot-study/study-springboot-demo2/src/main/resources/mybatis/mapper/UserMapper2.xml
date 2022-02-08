@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.mapper.UserMapper2">
+
+    <select id="queryAll" resultType="com.study.mapper.User">
+        select * from user
+    </select>
+
+    <select id="findByUserId" parameterType="java.lang.Integer" resultType="com.study.mapper.User">
+        select * from user where user_id = #{userId}
+    </select>
+
+    <insert id="saveUser" parameterType="com.study.mapper.User">
+        insert into user (user_id, host, user, password) values (#{userId}, #{host}, #{user}, #{password})
+    </insert>
+
+</mapper>

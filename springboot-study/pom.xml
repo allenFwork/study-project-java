@@ -31,6 +31,7 @@
         <module>study-springboot-validation</module>
         <module>springboot-jpa</module>
         <module>springboot-transaction</module>
+        <module>study-springboot-demo2</module>
     </modules>
 
     <properties>

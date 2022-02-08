@@ -1,0 +1,41 @@
+## spring默认的数据源配置
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3307/test
+#    username: root
+#    password:
+
+# 自定义的数据源信息配置，需要写对应的类进行处理匹配，如：DruidDataSourceProperties类
+spring:
+  datasource:
+    druid:
+      username: root
+      password:
+      jdbcUrl: jdbc:mysql://localhost:3307/test
+      driverClassName: com.mysql.jdbc.Driver
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+#      filters: stat,wall,log4j
+      filters: stat,wall
+      maxPoolPreparedStatementPerConnectionSize: 20
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+# 配置mybatis的信息
+mybatis:
+  configuration-properties:
+    # 开启驼峰命名规则
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mybatis/mapper/*.xml
+  config-location:
