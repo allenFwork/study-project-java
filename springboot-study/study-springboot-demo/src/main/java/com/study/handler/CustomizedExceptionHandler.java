@@ -31,6 +31,7 @@ public class CustomizedExceptionHandler {
         info.put("code", exception.getMsg());
         request.setAttribute("javax.servlet.error.status_code", 500);
         request.setAttribute("ext", info);
+        // 重定向,将请求转发到BasicErrorController来处理： /error
         return "forward:/error";
     }
 

@@ -34,7 +34,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- 前端框架 -->
+        <!-- 前端框架: 以jar包的形式来引入前端资源 -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
@@ -61,6 +61,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 工程中出现多个mainClass的时候需要通过该配置来指定启动类 -->
+                <configuration>
+                    <mainClass>com.study.SpringBootDemoApplication</mainClass>
+                </configuration>
+                <goals>
+                    <goal>repackage</goal>
+                </goals>
             </plugin>
         </plugins>
     </build>
