@@ -32,6 +32,7 @@
         <module>springboot-jpa</module>
         <module>springboot-transaction</module>
         <module>study-springboot-demo2</module>
+        <module>study-springboot-starter-parent</module>
     </modules>
 
     <properties>
