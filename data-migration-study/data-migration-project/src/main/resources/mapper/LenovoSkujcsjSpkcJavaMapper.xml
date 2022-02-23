@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mapper.lec2.interfaces.LenovoSkujcsjSpkcJavaMapper">
+  <resultMap id="BaseResultMap" type="com.study.mapper.lec2.entity.LenovoSkujcsjSpkcJava">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
+    <result column="item_name" jdbcType="NVARCHAR" property="itemName" />
+    <result column="product_property" jdbcType="VARCHAR" property="productProperty" />
+    <result column="measure_unit" jdbcType="VARCHAR" property="measureUnit" />
+    <result column="keep_number" jdbcType="DOUBLE" property="keepNumber" />
+    <result column="sell_number" jdbcType="DOUBLE" property="sellNumber" />
+    <result column="three_level_account" jdbcType="DOUBLE" property="threeLevelAccount" />
+    <result column="booking_number" jdbcType="DOUBLE" property="bookingNumber" />
+    <result column="pay_number" jdbcType="DOUBLE" property="payNumber" />
+    <result column="temporary_storage_number" jdbcType="DOUBLE" property="temporaryStorageNumber" />
+    <result column="settlement_price" jdbcType="DOUBLE" property="settlementPrice" />
+    <result column="order_in_transit" jdbcType="DOUBLE" property="orderInTransit" />
+    <result column="order_money" jdbcType="BIGINT" property="orderMoney" />
+    <result column="switch_in_transit" jdbcType="DOUBLE" property="switchInTransit" />
+    <result column="switch_in_transit_money" jdbcType="BIGINT" property="switchInTransitMoney" />
+    <result column="borrow_in_transit" jdbcType="BIGINT" property="borrowInTransit" />
+    <result column="borrow_in_transit_money" jdbcType="BIGINT" property="borrowInTransitMoney" />
+    <result column="group_in_transit" jdbcType="DOUBLE" property="groupInTransit" />
+    <result column="group_in_transit_money" jdbcType="BIGINT" property="groupInTransitMoney" />
+    <result column="supplier_code" jdbcType="VARCHAR" property="supplierCode" />
+    <result column="supplier" jdbcType="VARCHAR" property="supplier" />
+    <result column="department_code" jdbcType="VARCHAR" property="departmentCode" />
+    <result column="purchase_department" jdbcType="VARCHAR" property="purchaseDepartment" />
+    <result column="branch" jdbcType="VARCHAR" property="branch" />
+    <result column="goods_classification" jdbcType="VARCHAR" property="goodsClassification" />
+    <result column="one_level_classification_name" jdbcType="VARCHAR" property="oneLevelClassificationName" />
+    <result column="two_level_classification_name" jdbcType="VARCHAR" property="twoLevelClassificationName" />
+    <result column="three_level_classification_name" jdbcType="VARCHAR" property="threeLevelClassificationName" />
+    <result column="four_level_classification_name" jdbcType="VARCHAR" property="fourLevelClassificationName" />
+    <result column="average_price" jdbcType="DOUBLE" property="averagePrice" />
+    <result column="average_stock_money" jdbcType="DOUBLE" property="averageStockMoney" />
+    <result column="three_level_stock_money" jdbcType="DOUBLE" property="threeLevelStockMoney" />
+    <result column="sell_number_stock_money" jdbcType="DOUBLE" property="sellNumberStockMoney" />
+    <result column="safe_stock" jdbcType="BIGINT" property="safeStock" />
+    <result column="high_limit_stock" jdbcType="BIGINT" property="highLimitStock" />
+    <result column="warehouse_code" jdbcType="VARCHAR" property="warehouseCode" />
+    <result column="warehouse_name" jdbcType="VARCHAR" property="warehouseName" />
+    <result column="earliest_stock_time" jdbcType="VARCHAR" property="earliestStockTime" />
+    <result column="stores_library_age" jdbcType="BIGINT" property="storesLibraryAge" />
+    <result column="latest_stock_time" jdbcType="VARCHAR" property="latestStockTime" />
+    <result column="product_library_age" jdbcType="BIGINT" property="productLibraryAge" />
+    <result column="stock_early_warning" jdbcType="VARCHAR" property="stockEarlyWarning" />
+    <result column="retail_price" jdbcType="BIGINT" property="retailPrice" />
+    <result column="member_price" jdbcType="DOUBLE" property="memberPrice" />
+    <result column="latest_purchase_price" jdbcType="DOUBLE" property="latestPurchasePrice" />
+    <result column="marketing_control" jdbcType="VARCHAR" property="marketingControl" />
+    <result column="stock_type" jdbcType="VARCHAR" property="stockType" />
+    <result column="keep_account_money" jdbcType="DOUBLE" property="keepAccountMoney" />
+    <result column="nearly_one_month_sales_volume" jdbcType="BIGINT" property="nearlyOneMonthSalesVolume" />
+    <result column="nearly_three_month_sales_volume" jdbcType="BIGINT" property="nearlyThreeMonthSalesVolume" />
+    <result column="cpu_model" jdbcType="VARCHAR" property="cpuModel" />
+    <result column="cpu_branch" jdbcType="VARCHAR" property="cpuBranch" />
+    <result column="mechanical_hard_disk" jdbcType="VARCHAR" property="mechanicalHardDisk" />
+    <result column="solid_state_disk" jdbcType="VARCHAR" property="solidStateDisk" />
+    <result column="display_card_model" jdbcType="VARCHAR" property="displayCardModel" />
+    <result column="at" jdbcType="VARCHAR" property="at" />
+    <result column="mechanical_thickness" jdbcType="VARCHAR" property="mechanicalThickness" />
+    <result column="screen_size" jdbcType="VARCHAR" property="screenSize" />
+    <result column="random_access_memory" jdbcType="VARCHAR" property="randomAccessMemory" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, item_code, item_name, product_property, measure_unit, keep_number, sell_number, 
+    three_level_account, booking_number, pay_number, temporary_storage_number, settlement_price, 
+    order_in_transit, order_money, switch_in_transit, switch_in_transit_money, borrow_in_transit, 
+    borrow_in_transit_money, group_in_transit, group_in_transit_money, supplier_code, 
+    supplier, department_code, purchase_department, branch, goods_classification, one_level_classification_name, 
+    two_level_classification_name, three_level_classification_name, four_level_classification_name, 
+    average_price, average_stock_money, three_level_stock_money, sell_number_stock_money, 
+    safe_stock, high_limit_stock, warehouse_code, warehouse_name, earliest_stock_time, 
+    stores_library_age, latest_stock_time, product_library_age, stock_early_warning, 
+    retail_price, member_price, latest_purchase_price, marketing_control, stock_type, 
+    keep_account_money, nearly_one_month_sales_volume, nearly_three_month_sales_volume, 
+    cpu_model, cpu_branch, mechanical_hard_disk, solid_state_disk, display_card_model, 
+    at, mechanical_thickness, screen_size, random_access_memory
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from LENOVO_SKUJCSJ_SPKC_java
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from LENOVO_SKUJCSJ_SPKC_java
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.study.mapper.lec2.entity.LenovoSkujcsjSpkcJava">
+    insert into LENOVO_SKUJCSJ_SPKC_java (id, item_code, item_name, 
+      product_property, measure_unit, keep_number, 
+      sell_number, three_level_account, booking_number, 
+      pay_number, temporary_storage_number, settlement_price, 
+      order_in_transit, order_money, switch_in_transit, 
+      switch_in_transit_money, borrow_in_transit, borrow_in_transit_money, 
+      group_in_transit, group_in_transit_money, supplier_code, 
+      supplier, department_code, purchase_department, 
+      branch, goods_classification, one_level_classification_name, 
+      two_level_classification_name, three_level_classification_name, 
+      four_level_classification_name, average_price, 
+      average_stock_money, three_level_stock_money, 
+      sell_number_stock_money, safe_stock, high_limit_stock, 
+      warehouse_code, warehouse_name, earliest_stock_time, 
+      stores_library_age, latest_stock_time, product_library_age, 
+      stock_early_warning, retail_price, member_price, 
+      latest_purchase_price, marketing_control, stock_type, 
+      keep_account_money, nearly_one_month_sales_volume, 
+      nearly_three_month_sales_volume, cpu_model, cpu_branch, 
+      mechanical_hard_disk, solid_state_disk, display_card_model, 
+      at, mechanical_thickness, screen_size, 
+      random_access_memory)
+    values (#{id,jdbcType=INTEGER}, #{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=NVARCHAR}, 
+      #{productProperty,jdbcType=VARCHAR}, #{measureUnit,jdbcType=VARCHAR}, #{keepNumber,jdbcType=DOUBLE}, 
+      #{sellNumber,jdbcType=DOUBLE}, #{threeLevelAccount,jdbcType=DOUBLE}, #{bookingNumber,jdbcType=DOUBLE}, 
+      #{payNumber,jdbcType=DOUBLE}, #{temporaryStorageNumber,jdbcType=DOUBLE}, #{settlementPrice,jdbcType=DOUBLE}, 
+      #{orderInTransit,jdbcType=DOUBLE}, #{orderMoney,jdbcType=BIGINT}, #{switchInTransit,jdbcType=DOUBLE}, 
+      #{switchInTransitMoney,jdbcType=BIGINT}, #{borrowInTransit,jdbcType=BIGINT}, #{borrowInTransitMoney,jdbcType=BIGINT}, 
+      #{groupInTransit,jdbcType=DOUBLE}, #{groupInTransitMoney,jdbcType=BIGINT}, #{supplierCode,jdbcType=VARCHAR}, 
+      #{supplier,jdbcType=VARCHAR}, #{departmentCode,jdbcType=VARCHAR}, #{purchaseDepartment,jdbcType=VARCHAR}, 
+      #{branch,jdbcType=VARCHAR}, #{goodsClassification,jdbcType=VARCHAR}, #{oneLevelClassificationName,jdbcType=VARCHAR}, 
+      #{twoLevelClassificationName,jdbcType=VARCHAR}, #{threeLevelClassificationName,jdbcType=VARCHAR}, 
+      #{fourLevelClassificationName,jdbcType=VARCHAR}, #{averagePrice,jdbcType=DOUBLE}, 
+      #{averageStockMoney,jdbcType=DOUBLE}, #{threeLevelStockMoney,jdbcType=DOUBLE}, 
+      #{sellNumberStockMoney,jdbcType=DOUBLE}, #{safeStock,jdbcType=BIGINT}, #{highLimitStock,jdbcType=BIGINT}, 
+      #{warehouseCode,jdbcType=VARCHAR}, #{warehouseName,jdbcType=VARCHAR}, #{earliestStockTime,jdbcType=VARCHAR}, 
+      #{storesLibraryAge,jdbcType=BIGINT}, #{latestStockTime,jdbcType=VARCHAR}, #{productLibraryAge,jdbcType=BIGINT}, 
+      #{stockEarlyWarning,jdbcType=VARCHAR}, #{retailPrice,jdbcType=BIGINT}, #{memberPrice,jdbcType=DOUBLE}, 
+      #{latestPurchasePrice,jdbcType=DOUBLE}, #{marketingControl,jdbcType=VARCHAR}, #{stockType,jdbcType=VARCHAR}, 
+      #{keepAccountMoney,jdbcType=DOUBLE}, #{nearlyOneMonthSalesVolume,jdbcType=BIGINT}, 
+      #{nearlyThreeMonthSalesVolume,jdbcType=BIGINT}, #{cpuModel,jdbcType=VARCHAR}, #{cpuBranch,jdbcType=VARCHAR}, 
+      #{mechanicalHardDisk,jdbcType=VARCHAR}, #{solidStateDisk,jdbcType=VARCHAR}, #{displayCardModel,jdbcType=VARCHAR}, 
+      #{at,jdbcType=VARCHAR}, #{mechanicalThickness,jdbcType=VARCHAR}, #{screenSize,jdbcType=VARCHAR}, 
+      #{randomAccessMemory,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.study.mapper.lec2.entity.LenovoSkujcsjSpkcJava">
+    insert into LENOVO_SKUJCSJ_SPKC_java
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="itemCode != null">
+        item_code,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="productProperty != null">
+        product_property,
+      </if>
+      <if test="measureUnit != null">
+        measure_unit,
+      </if>
+      <if test="keepNumber != null">
+        keep_number,
+      </if>
+      <if test="sellNumber != null">
+        sell_number,
+      </if>
+      <if test="threeLevelAccount != null">
+        three_level_account,
+      </if>
+      <if test="bookingNumber != null">
+        booking_number,
+      </if>
+      <if test="payNumber != null">
+        pay_number,
+      </if>
+      <if test="temporaryStorageNumber != null">
+        temporary_storage_number,
+      </if>
+      <if test="settlementPrice != null">
+        settlement_price,
+      </if>
+      <if test="orderInTransit != null">
+        order_in_transit,
+      </if>
+      <if test="orderMoney != null">
+        order_money,
+      </if>
+      <if test="switchInTransit != null">
+        switch_in_transit,
+      </if>
+      <if test="switchInTransitMoney != null">
+        switch_in_transit_money,
+      </if>
+      <if test="borrowInTransit != null">
+        borrow_in_transit,
+      </if>
+      <if test="borrowInTransitMoney != null">
+        borrow_in_transit_money,
+      </if>
+      <if test="groupInTransit != null">
+        group_in_transit,
+      </if>
+      <if test="groupInTransitMoney != null">
+        group_in_transit_money,
+      </if>
+      <if test="supplierCode != null">
+        supplier_code,
+      </if>
+      <if test="supplier != null">
+        supplier,
+      </if>
+      <if test="departmentCode != null">
+        department_code,
+      </if>
+      <if test="purchaseDepartment != null">
+        purchase_department,
+      </if>
+      <if test="branch != null">
+        branch,
+      </if>
+      <if test="goodsClassification != null">
+        goods_classification,
+      </if>
+      <if test="oneLevelClassificationName != null">
+        one_level_classification_name,
+      </if>
+      <if test="twoLevelClassificationName != null">
+        two_level_classification_name,
+      </if>
+      <if test="threeLevelClassificationName != null">
+        three_level_classification_name,
+      </if>
+      <if test="fourLevelClassificationName != null">
+        four_level_classification_name,
+      </if>
+      <if test="averagePrice != null">
+        average_price,
+      </if>
+      <if test="averageStockMoney != null">
+        average_stock_money,
+      </if>
+      <if test="threeLevelStockMoney != null">
+        three_level_stock_money,
+      </if>
+      <if test="sellNumberStockMoney != null">
+        sell_number_stock_money,
+      </if>
+      <if test="safeStock != null">
+        safe_stock,
+      </if>
+      <if test="highLimitStock != null">
+        high_limit_stock,
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code,
+      </if>
+      <if test="warehouseName != null">
+        warehouse_name,
+      </if>
+      <if test="earliestStockTime != null">
+        earliest_stock_time,
+      </if>
+      <if test="storesLibraryAge != null">
+        stores_library_age,
+      </if>
+      <if test="latestStockTime != null">
+        latest_stock_time,
+      </if>
+      <if test="productLibraryAge != null">
+        product_library_age,
+      </if>
+      <if test="stockEarlyWarning != null">
+        stock_early_warning,
+      </if>
+      <if test="retailPrice != null">
+        retail_price,
+      </if>
+      <if test="memberPrice != null">
+        member_price,
+      </if>
+      <if test="latestPurchasePrice != null">
+        latest_purchase_price,
+      </if>
+      <if test="marketingControl != null">
+        marketing_control,
+      </if>
+      <if test="stockType != null">
+        stock_type,
+      </if>
+      <if test="keepAccountMoney != null">
+        keep_account_money,
+      </if>
+      <if test="nearlyOneMonthSalesVolume != null">
+        nearly_one_month_sales_volume,
+      </if>
+      <if test="nearlyThreeMonthSalesVolume != null">
+        nearly_three_month_sales_volume,
+      </if>
+      <if test="cpuModel != null">
+        cpu_model,
+      </if>
+      <if test="cpuBranch != null">
+        cpu_branch,
+      </if>
+      <if test="mechanicalHardDisk != null">
+        mechanical_hard_disk,
+      </if>
+      <if test="solidStateDisk != null">
+        solid_state_disk,
+      </if>
+      <if test="displayCardModel != null">
+        display_card_model,
+      </if>
+      <if test="at != null">
+        at,
+      </if>
+      <if test="mechanicalThickness != null">
+        mechanical_thickness,
+      </if>
+      <if test="screenSize != null">
+        screen_size,
+      </if>
+      <if test="randomAccessMemory != null">
+        random_access_memory,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="itemCode != null">
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=NVARCHAR},
+      </if>
+      <if test="productProperty != null">
+        #{productProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="measureUnit != null">
+        #{measureUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="keepNumber != null">
+        #{keepNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="sellNumber != null">
+        #{sellNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="threeLevelAccount != null">
+        #{threeLevelAccount,jdbcType=DOUBLE},
+      </if>
+      <if test="bookingNumber != null">
+        #{bookingNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="payNumber != null">
+        #{payNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="temporaryStorageNumber != null">
+        #{temporaryStorageNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="settlementPrice != null">
+        #{settlementPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderInTransit != null">
+        #{orderInTransit,jdbcType=DOUBLE},
+      </if>
+      <if test="orderMoney != null">
+        #{orderMoney,jdbcType=BIGINT},
+      </if>
+      <if test="switchInTransit != null">
+        #{switchInTransit,jdbcType=DOUBLE},
+      </if>
+      <if test="switchInTransitMoney != null">
+        #{switchInTransitMoney,jdbcType=BIGINT},
+      </if>
+      <if test="borrowInTransit != null">
+        #{borrowInTransit,jdbcType=BIGINT},
+      </if>
+      <if test="borrowInTransitMoney != null">
+        #{borrowInTransitMoney,jdbcType=BIGINT},
+      </if>
+      <if test="groupInTransit != null">
+        #{groupInTransit,jdbcType=DOUBLE},
+      </if>
+      <if test="groupInTransitMoney != null">
+        #{groupInTransitMoney,jdbcType=BIGINT},
+      </if>
+      <if test="supplierCode != null">
+        #{supplierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null">
+        #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentCode != null">
+        #{departmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDepartment != null">
+        #{purchaseDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="branch != null">
+        #{branch,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsClassification != null">
+        #{goodsClassification,jdbcType=VARCHAR},
+      </if>
+      <if test="oneLevelClassificationName != null">
+        #{oneLevelClassificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="twoLevelClassificationName != null">
+        #{twoLevelClassificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="threeLevelClassificationName != null">
+        #{threeLevelClassificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="fourLevelClassificationName != null">
+        #{fourLevelClassificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="averagePrice != null">
+        #{averagePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="averageStockMoney != null">
+        #{averageStockMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="threeLevelStockMoney != null">
+        #{threeLevelStockMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="sellNumberStockMoney != null">
+        #{sellNumberStockMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="safeStock != null">
+        #{safeStock,jdbcType=BIGINT},
+      </if>
+      <if test="highLimitStock != null">
+        #{highLimitStock,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseCode != null">
+        #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseName != null">
+        #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="earliestStockTime != null">
+        #{earliestStockTime,jdbcType=VARCHAR},
+      </if>
+      <if test="storesLibraryAge != null">
+        #{storesLibraryAge,jdbcType=BIGINT},
+      </if>
+      <if test="latestStockTime != null">
+        #{latestStockTime,jdbcType=VARCHAR},
+      </if>
+      <if test="productLibraryAge != null">
+        #{productLibraryAge,jdbcType=BIGINT},
+      </if>
+      <if test="stockEarlyWarning != null">
+        #{stockEarlyWarning,jdbcType=VARCHAR},
+      </if>
+      <if test="retailPrice != null">
+        #{retailPrice,jdbcType=BIGINT},
+      </if>
+      <if test="memberPrice != null">
+        #{memberPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="latestPurchasePrice != null">
+        #{latestPurchasePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="marketingControl != null">
+        #{marketingControl,jdbcType=VARCHAR},
+      </if>
+      <if test="stockType != null">
+        #{stockType,jdbcType=VARCHAR},
+      </if>
+      <if test="keepAccountMoney != null">
+        #{keepAccountMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="nearlyOneMonthSalesVolume != null">
+        #{nearlyOneMonthSalesVolume,jdbcType=BIGINT},
+      </if>
+      <if test="nearlyThreeMonthSalesVolume != null">
+        #{nearlyThreeMonthSalesVolume,jdbcType=BIGINT},
+      </if>
+      <if test="cpuModel != null">
+        #{cpuModel,jdbcType=VARCHAR},
+      </if>
+      <if test="cpuBranch != null">
+        #{cpuBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanicalHardDisk != null">
+        #{mechanicalHardDisk,jdbcType=VARCHAR},
+      </if>
+      <if test="solidStateDisk != null">
+        #{solidStateDisk,jdbcType=VARCHAR},
+      </if>
+      <if test="displayCardModel != null">
+        #{displayCardModel,jdbcType=VARCHAR},
+      </if>
+      <if test="at != null">
+        #{at,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanicalThickness != null">
+        #{mechanicalThickness,jdbcType=VARCHAR},
+      </if>
+      <if test="screenSize != null">
+        #{screenSize,jdbcType=VARCHAR},
+      </if>
+      <if test="randomAccessMemory != null">
+        #{randomAccessMemory,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.mapper.lec2.entity.LenovoSkujcsjSpkcJava">
+    update LENOVO_SKUJCSJ_SPKC_java
+    <set>
+      <if test="itemCode != null">
+        item_code = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=NVARCHAR},
+      </if>
+      <if test="productProperty != null">
+        product_property = #{productProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="measureUnit != null">
+        measure_unit = #{measureUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="keepNumber != null">
+        keep_number = #{keepNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="sellNumber != null">
+        sell_number = #{sellNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="threeLevelAccount != null">
+        three_level_account = #{threeLevelAccount,jdbcType=DOUBLE},
+      </if>
+      <if test="bookingNumber != null">
+        booking_number = #{bookingNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="payNumber != null">
+        pay_number = #{payNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="temporaryStorageNumber != null">
+        temporary_storage_number = #{temporaryStorageNumber,jdbcType=DOUBLE},
+      </if>
+      <if test="settlementPrice != null">
+        settlement_price = #{settlementPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderInTransit != null">
+        order_in_transit = #{orderInTransit,jdbcType=DOUBLE},
+      </if>
+      <if test="orderMoney != null">
+        order_money = #{orderMoney,jdbcType=BIGINT},
+      </if>
+      <if test="switchInTransit != null">
+        switch_in_transit = #{switchInTransit,jdbcType=DOUBLE},
+      </if>
+      <if test="switchInTransitMoney != null">
+        switch_in_transit_money = #{switchInTransitMoney,jdbcType=BIGINT},
+      </if>
+      <if test="borrowInTransit != null">
+        borrow_in_transit = #{borrowInTransit,jdbcType=BIGINT},
+      </if>
+      <if test="borrowInTransitMoney != null">
+        borrow_in_transit_money = #{borrowInTransitMoney,jdbcType=BIGINT},
+      </if>
+      <if test="groupInTransit != null">
+        group_in_transit = #{groupInTransit,jdbcType=DOUBLE},
+      </if>
+      <if test="groupInTransitMoney != null">
+        group_in_transit_money = #{groupInTransitMoney,jdbcType=BIGINT},
+      </if>
+      <if test="supplierCode != null">
+        supplier_code = #{supplierCode,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null">
+        supplier = #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentCode != null">
+        department_code = #{departmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDepartment != null">
+        purchase_department = #{purchaseDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="branch != null">
+        branch = #{branch,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsClassification != null">
+        goods_classification = #{goodsClassification,jdbcType=VARCHAR},
+      </if>
+      <if test="oneLevelClassificationName != null">
+        one_level_classification_name = #{oneLevelClassificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="twoLevelClassificationName != null">
+        two_level_classification_name = #{twoLevelClassificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="threeLevelClassificationName != null">
+        three_level_classification_name = #{threeLevelClassificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="fourLevelClassificationName != null">
+        four_level_classification_name = #{fourLevelClassificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="averagePrice != null">
+        average_price = #{averagePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="averageStockMoney != null">
+        average_stock_money = #{averageStockMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="threeLevelStockMoney != null">
+        three_level_stock_money = #{threeLevelStockMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="sellNumberStockMoney != null">
+        sell_number_stock_money = #{sellNumberStockMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="safeStock != null">
+        safe_stock = #{safeStock,jdbcType=BIGINT},
+      </if>
+      <if test="highLimitStock != null">
+        high_limit_stock = #{highLimitStock,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseName != null">
+        warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="earliestStockTime != null">
+        earliest_stock_time = #{earliestStockTime,jdbcType=VARCHAR},
+      </if>
+      <if test="storesLibraryAge != null">
+        stores_library_age = #{storesLibraryAge,jdbcType=BIGINT},
+      </if>
+      <if test="latestStockTime != null">
+        latest_stock_time = #{latestStockTime,jdbcType=VARCHAR},
+      </if>
+      <if test="productLibraryAge != null">
+        product_library_age = #{productLibraryAge,jdbcType=BIGINT},
+      </if>
+      <if test="stockEarlyWarning != null">
+        stock_early_warning = #{stockEarlyWarning,jdbcType=VARCHAR},
+      </if>
+      <if test="retailPrice != null">
+        retail_price = #{retailPrice,jdbcType=BIGINT},
+      </if>
+      <if test="memberPrice != null">
+        member_price = #{memberPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="latestPurchasePrice != null">
+        latest_purchase_price = #{latestPurchasePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="marketingControl != null">
+        marketing_control = #{marketingControl,jdbcType=VARCHAR},
+      </if>
+      <if test="stockType != null">
+        stock_type = #{stockType,jdbcType=VARCHAR},
+      </if>
+      <if test="keepAccountMoney != null">
+        keep_account_money = #{keepAccountMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="nearlyOneMonthSalesVolume != null">
+        nearly_one_month_sales_volume = #{nearlyOneMonthSalesVolume,jdbcType=BIGINT},
+      </if>
+      <if test="nearlyThreeMonthSalesVolume != null">
+        nearly_three_month_sales_volume = #{nearlyThreeMonthSalesVolume,jdbcType=BIGINT},
+      </if>
+      <if test="cpuModel != null">
+        cpu_model = #{cpuModel,jdbcType=VARCHAR},
+      </if>
+      <if test="cpuBranch != null">
+        cpu_branch = #{cpuBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanicalHardDisk != null">
+        mechanical_hard_disk = #{mechanicalHardDisk,jdbcType=VARCHAR},
+      </if>
+      <if test="solidStateDisk != null">
+        solid_state_disk = #{solidStateDisk,jdbcType=VARCHAR},
+      </if>
+      <if test="displayCardModel != null">
+        display_card_model = #{displayCardModel,jdbcType=VARCHAR},
+      </if>
+      <if test="at != null">
+        at = #{at,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanicalThickness != null">
+        mechanical_thickness = #{mechanicalThickness,jdbcType=VARCHAR},
+      </if>
+      <if test="screenSize != null">
+        screen_size = #{screenSize,jdbcType=VARCHAR},
+      </if>
+      <if test="randomAccessMemory != null">
+        random_access_memory = #{randomAccessMemory,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.study.mapper.lec2.entity.LenovoSkujcsjSpkcJava">
+    update LENOVO_SKUJCSJ_SPKC_java
+    set item_code = #{itemCode,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=NVARCHAR},
+      product_property = #{productProperty,jdbcType=VARCHAR},
+      measure_unit = #{measureUnit,jdbcType=VARCHAR},
+      keep_number = #{keepNumber,jdbcType=DOUBLE},
+      sell_number = #{sellNumber,jdbcType=DOUBLE},
+      three_level_account = #{threeLevelAccount,jdbcType=DOUBLE},
+      booking_number = #{bookingNumber,jdbcType=DOUBLE},
+      pay_number = #{payNumber,jdbcType=DOUBLE},
+      temporary_storage_number = #{temporaryStorageNumber,jdbcType=DOUBLE},
+      settlement_price = #{settlementPrice,jdbcType=DOUBLE},
+      order_in_transit = #{orderInTransit,jdbcType=DOUBLE},
+      order_money = #{orderMoney,jdbcType=BIGINT},
+      switch_in_transit = #{switchInTransit,jdbcType=DOUBLE},
+      switch_in_transit_money = #{switchInTransitMoney,jdbcType=BIGINT},
+      borrow_in_transit = #{borrowInTransit,jdbcType=BIGINT},
+      borrow_in_transit_money = #{borrowInTransitMoney,jdbcType=BIGINT},
+      group_in_transit = #{groupInTransit,jdbcType=DOUBLE},
+      group_in_transit_money = #{groupInTransitMoney,jdbcType=BIGINT},
+      supplier_code = #{supplierCode,jdbcType=VARCHAR},
+      supplier = #{supplier,jdbcType=VARCHAR},
+      department_code = #{departmentCode,jdbcType=VARCHAR},
+      purchase_department = #{purchaseDepartment,jdbcType=VARCHAR},
+      branch = #{branch,jdbcType=VARCHAR},
+      goods_classification = #{goodsClassification,jdbcType=VARCHAR},
+      one_level_classification_name = #{oneLevelClassificationName,jdbcType=VARCHAR},
+      two_level_classification_name = #{twoLevelClassificationName,jdbcType=VARCHAR},
+      three_level_classification_name = #{threeLevelClassificationName,jdbcType=VARCHAR},
+      four_level_classification_name = #{fourLevelClassificationName,jdbcType=VARCHAR},
+      average_price = #{averagePrice,jdbcType=DOUBLE},
+      average_stock_money = #{averageStockMoney,jdbcType=DOUBLE},
+      three_level_stock_money = #{threeLevelStockMoney,jdbcType=DOUBLE},
+      sell_number_stock_money = #{sellNumberStockMoney,jdbcType=DOUBLE},
+      safe_stock = #{safeStock,jdbcType=BIGINT},
+      high_limit_stock = #{highLimitStock,jdbcType=BIGINT},
+      warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      earliest_stock_time = #{earliestStockTime,jdbcType=VARCHAR},
+      stores_library_age = #{storesLibraryAge,jdbcType=BIGINT},
+      latest_stock_time = #{latestStockTime,jdbcType=VARCHAR},
+      product_library_age = #{productLibraryAge,jdbcType=BIGINT},
+      stock_early_warning = #{stockEarlyWarning,jdbcType=VARCHAR},
+      retail_price = #{retailPrice,jdbcType=BIGINT},
+      member_price = #{memberPrice,jdbcType=DOUBLE},
+      latest_purchase_price = #{latestPurchasePrice,jdbcType=DOUBLE},
+      marketing_control = #{marketingControl,jdbcType=VARCHAR},
+      stock_type = #{stockType,jdbcType=VARCHAR},
+      keep_account_money = #{keepAccountMoney,jdbcType=DOUBLE},
+      nearly_one_month_sales_volume = #{nearlyOneMonthSalesVolume,jdbcType=BIGINT},
+      nearly_three_month_sales_volume = #{nearlyThreeMonthSalesVolume,jdbcType=BIGINT},
+      cpu_model = #{cpuModel,jdbcType=VARCHAR},
+      cpu_branch = #{cpuBranch,jdbcType=VARCHAR},
+      mechanical_hard_disk = #{mechanicalHardDisk,jdbcType=VARCHAR},
+      solid_state_disk = #{solidStateDisk,jdbcType=VARCHAR},
+      display_card_model = #{displayCardModel,jdbcType=VARCHAR},
+      at = #{at,jdbcType=VARCHAR},
+      mechanical_thickness = #{mechanicalThickness,jdbcType=VARCHAR},
+      screen_size = #{screenSize,jdbcType=VARCHAR},
+      random_access_memory = #{randomAccessMemory,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="dropTable">
+    TRUNCATE table LENOVO_SKUJCSJ_SPKC_java
+  </update>
+
+  <select id="countAll" resultType="java.lang.Integer">
+    select count(*) from LENOVO_SKUJCSJ_SPKC_java
+  </select>
+
+</mapper>

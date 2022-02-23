@@ -1,0 +1,123 @@
+# 开发环境配置文件
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: Data-Migration-function
+  datasource:
+    datasource1:
+      url: jdbc:sqlserver://10.110.147.32:1433;DatabaseName=Lecoo
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      username: sa
+      password: zhangyh33!
+      # 修改springboot默认数据源为Druid
+      type: com.alibaba.druid.pool.DruidDataSource
+      # 数据源(Druid连接池)其他配置
+      ## 初始化连接数量
+      initialSize: 5
+      ## 最小空闲连接数
+      minIdle: 5
+      ## 最大并发连接数
+      maxActive: 20
+      ## 配置获取连接等待超时的时间
+      maxWait: 60000
+      ##  配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      ## 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      # filters: stat,wall,logback
+      filters: stat,wall,slf4j
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    datasource2:
+      url: jdbc:sqlserver://10.110.147.31:1433;DatabaseName=Lecoo
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      username: sa
+      password: zhangyh33!
+      # 修改springboot默认数据源为Druid
+      type: com.alibaba.druid.pool.DruidDataSource
+      # 数据源(Druid连接池)其他配置
+      ## 初始化连接数量
+      initialSize: 5
+      ## 最小空闲连接数
+      minIdle: 5
+      ## 最大并发连接数
+      maxActive: 20
+      ## 配置获取连接等待超时的时间
+      maxWait: 60000
+      ##  配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      ## 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      # filters: stat,wall,logback
+      filters: stat,wall,slf4j
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  # 清除缓存
+  thymeleaf:
+    cache: false
+
+# mybatis配置
+mybatis:
+#  config-location: classpath:mybatis-config.xml
+#  mapper-locations: classpath:com/study/mapper/*/interfaces/*.xml
+#  type-aliases-package: com.study.mapper.lec2.interfaces
+
+# 日志配置文件见设置
+logging:
+  config: classpath:logback.xml
+
+# SqlServer数据库驱动
+SqlServer:
+  db:
+    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+# mysql数据库驱动
+MySql:
+  db:
+    dirver: com.mysql.cj.jdbc.Driver
+
+# mongo数据库
+mongo:
+  address: 10.110.149.135:27017
+  database: dps_ml
+  minConnectionsPerHost: 0
+  maxConnectionsPerHost: 100
+  threadsAllowedToBlockForConnectionMultiplier: 5
+  serverSelectionTimeout: 30000
+  maxWaitTime: 120000
+  maxConnectionIdleTime: 0
+  maxConnectionLifeTime: 0
+  connectTimeout: 10000
+  socketTimeout: 0
+  socketKeepAlive: false
+  sslEnabled: false
+  sslInvalidHostNameAllowed: false
+  alwaysUseMBeans: false
+  heartbeatFrequency: 10000
+  minHeartbeatFrequency: 500
+  heartbeatConnectTimeout: 20000
+  heartbeatSocketTimeout: 20000
+  localThreshold: 15
+
+#es配置
+Elasticsearch:
+  ip: 10.110.147.32
+  port: 9200
