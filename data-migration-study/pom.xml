@@ -12,9 +12,10 @@
     <artifactId>data-migration-study</artifactId>
     <packaging>pom</packaging>
     <name>数据迁移java项目开发</name>
+
     <modules>
         <module>data-migration-sqlserver</module>
+        <module>data-migration-project</module>
     </modules>
-
 
 </project>
