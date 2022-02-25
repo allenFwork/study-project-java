@@ -12,6 +12,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 @Configuration
 public class RedisConfig {
 
+    // 方法一：通过创建一个 RedisTemplate 类型的bean对象交由spring管理,spring就不会默认地创建自己的RedisTemplate对象管理
     /**
      * 通过自动装配：(spring会默认帮忙管理bean对象)
      * 读取application.properties中的配置信息，将其封装到 RedisConnectionFactory对象中，
@@ -26,6 +27,8 @@ public class RedisConfig {
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         return redisTemplate;
     }
+
+    // 方法二：直接通过处理器对Bean对象进行修改 CustomizedRedisBeanPostProcessor
 
 }
 
