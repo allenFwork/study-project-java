@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+#        git:
+#          # 配置文件在github上的地址
+#          uri: https://github.com/513667225/my-spring-cloud-config.git
+#          username:
+#          password:
+          # config-server会在Git仓库根目录、foo子目录,以及所有以bar开头的子目录中查找配置文件。
+#          search-paths: foo,bar*
+          # 启动时,就克隆仓库到本地,默认是在配置微服务被首次请求时,config-server才会clone git仓库
+#          clone-on-start: true
+        # 若配置文件在本地,则通过此配置本地地址
+        native:
+          search-locations: classpath:/config.txt

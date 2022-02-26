@@ -3,21 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>study-project-java</artifactId>
+        <artifactId>springcloud-luban1-study</artifactId>
         <groupId>com.study</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springcloud-study</artifactId>
-    <packaging>pom</packaging>
-
-    <name>spring cloud study</name>
-
-    <modules>
-        <module>springcloud-tuling2-study</module>
-        <module>springcloud-luban1-study</module>
-    </modules>
+    <artifactId>test</artifactId>
 
 
 </project>

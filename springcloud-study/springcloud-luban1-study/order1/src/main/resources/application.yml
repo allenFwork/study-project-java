@@ -1,0 +1,26 @@
+server:
+  port: 7001
+
+# Eureka配置
+eureka:
+  client:
+    serviceUrl:
+      # eureka服务端提供的注册地址 参考服务端配置的这个路径
+      defaultZone: http://localhost:3000/eureka/
+  #      defaultZone: http://eureka3000.com:3000/eureka/,http://eureka3001.com:3001/eureka/,http://eureka3002.com:3002/eureka/
+  instance:
+    # 此实例注册到eureka服务端的唯一的 实例ID （集群中通过实例ID区分微服务）
+    instance-id: order-1
+    # 是否显示IP地址
+    prefer-ip-address: true
+    # Eureka客户需要多长时间发送心跳给eureka服务器,表明它仍然活着,默认为30秒 (与下面配置的单位都是秒)
+    leaseRenewalIntervalInSeconds: 1
+    # Eureka服务器在接收到实例的最后一次发出的心跳后,需要等待多久才可以将此实例删除,默认为90秒
+    leaseExpirationDurationInSeconds: 3
+
+# spring配置
+spring:
+  application:
+    # 此实例注册到 Eureka服务端的名字
+    # 在集群中使用时，相同的服务部署到两个机器上是，此处的Eureka服务端名字一样
+    name: server-order

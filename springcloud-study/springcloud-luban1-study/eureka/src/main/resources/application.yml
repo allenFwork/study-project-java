@@ -1,0 +1,20 @@
+server:
+  port: 3000
+eureka:
+  server:
+    # 表示 关闭自我保护机制
+#     enable-self-preservation: false
+    # 表示 设置清理时间间隔（单位：毫秒，默认是60*1000）
+    # 某个微服务注册到eureka服务端上，如果该微服务出现问题，eureka微服务会将其清理掉，不再将其放在他的注册表中
+#     eviction-interval-timer-in-ms: 4000
+  instance:
+    hostname: localhost
+
+  client:
+    # 表示不把自己作为一个客户端注册到自己身上
+    registerWithEureka: false
+    # 表示 不需要从服务端获取注册信息（因为在这里自己就是服务端，而且已经禁用了注册自己了）
+    fetchRegistry: false
+    serviceUrl:
+      # 其他微服务客户端(EurekaClient) 注册到 微服务的服务端(EurekaServer)时，微服务客户端的地址就是下面这个defaultZone
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.study</groupId>
+    <artifactId>springcloud-luban1-study</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>spring cloud项目学习(鲁班一期)</name>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.2.RELEASE</version>
+    </parent>
+
+    <modules>
+        <module>user</module>
+        <module>order</module>
+        <module>power</module>
+        <module>power1</module>
+        <module>eureka</module>
+        <module>eureka3000</module>
+        <module>eureka3001</module>
+        <module>eureka3002</module>
+        <module>order1</module>
+        <module>zuul</module>
+        <module>zuul9001</module>
+        <module>zuul9002</module>
+        <module>test</module>
+        <module>hystrix-dashboard</module>
+        <module>config-server</module>
+        <module>config-client</module>
+        <module>zipkin-server</module>
+    </modules>
+
+</project>
