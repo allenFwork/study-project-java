@@ -73,6 +73,17 @@ public class StreamTest {
         System.out.println(studentList);
 
         /**
+         * 获取分数最高的学生
+         */
+        Student maxStudent = list.stream().max(Comparator.comparing(Student::getScore)).orElse(null);
+        System.out.println(maxStudent);
+        /**
+         * 获取id值最大的学生
+         */
+        maxStudent = list.stream().max(Comparator.comparing(Student::getId)).orElse(null);
+        System.out.println(maxStudent);
+
+        /**
          * 聚合处理处理获取Map: 学生的id和grade相同的聚合在一起
          * 此时Map的key是student的id_grade字符串
          */
