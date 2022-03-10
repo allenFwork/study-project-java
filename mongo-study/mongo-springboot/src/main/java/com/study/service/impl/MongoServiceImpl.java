@@ -1,6 +1,7 @@
 package com.study.service.impl;
 
 import com.study.entity.Student;
+import com.study.mongo1.entity.Student1Entity;
 import com.study.service.MongoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.convert.CustomConversions;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -22,26 +21,18 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * mongo多数据源配置类：
- *  配置多个数据源时,需要给一个添加 @Primary 注解, 因为 springboot自动装配mongo的操作对象时,会需要相应的bean对象,
- *  如果不设置该注解, 出现有多个实例无法选择的异常问题
- */
 @Configuration
-// 通过 @EnableMongoRepositories 注解知道使用哪个mongo客户端进行操作哪些包下的接口
-@EnableMongoRepositories(basePackages = {"com.study.mongo1"}, mongoTemplateRef = "mongoTemplate1")
-public class Mongo1Config {
+@EnableMongoRepositories(basePackages = {"com.study.mongo2"}, mongoTemplateRef = "mongoTemplate2")
+public class Mongo2Config {
 
-    @Primary
-    @Bean(name = "mongoProperties1")
-    @ConfigurationProperties(prefix = "mongodb.mongo1")
-    public MongoProperties mongoProperties1() {
+    @Bean(name = "mongoProperties2")
+    @ConfigurationProperties(prefix = "mongodb.mongo2")
+    public MongoProperties mongoProperties2() {
         return new MongoProperties();
     }
 
-    @Primary
-    @Bean(name = "mongoDbFactory1")
-    public MongoDbFactory mongoDbFactory1(MongoProperties properties) {
+    @Bean(name = "mongoDbFactory2")
+    public MongoDbFactory mongoDbFactory2(@Qualifier("mongoProperties2") MongoProperties properties) {
         // 客户端配置（连接数，副本集群验证）
         MongoClientOptions.Builder builder = new MongoClientOptions.Builder();
         builder.connectionsPerHost(properties.getMaxConnectionsPerHost());
@@ -77,9 +68,8 @@ public class Mongo1Config {
         return mongoDbFactory;
     }
 
-    @Primary
-    @Bean(name = "mappingMongoConverter1")
-    public MappingMongoConverter mappingMongoConverter1(MongoDbFactory factory,
+    @Bean(name = "mappingMongoConverter2")
+    public MappingMongoConverter mappingMongoConverter2(@Qualifier("mongoDbFactory2") MongoDbFactory factory,
                                                         MongoMappingContext context,
                                                         @Qualifier("mongoCustomConversions") CustomConversions conversions) {
         DbRefResolver dbRefResolver = new DefaultDbRefResolver(factory);
@@ -90,10 +80,9 @@ public class Mongo1Config {
         return mappingConverter;
     }
 
-    @Primary
-    @Bean(name = "mongoTemplate1")
-    public MongoTemplate mongoTemplate1(MongoDbFactory mongoDbFactory,
-                                        MappingMongoConverter mappingMongoConverter) throws Exception {
+    @Bean(name = "mongoTemplate2")
+    public MongoTemplate mongoTemplate2(@Qualifier("mongoDbFactory2") MongoDbFactory mongoDbFactory,
+                                        @Qualifier("mappingMongoConverter2") MappingMongoConverter mappingMongoConverter) throws Exception {
         return new MongoTemplate(mongoDbFactory, mappingMongoConverter);
     }
 

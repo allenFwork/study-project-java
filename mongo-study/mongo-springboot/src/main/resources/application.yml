@@ -11,7 +11,29 @@ spring:
 
 # mongoDB数据库连接配置
 mongodb:
-  # 数据源1：10.110.147.37:8008地址, dps_ml数据库
+  # 数据源：10.110.147.37:8008地址, dps_ml数据库
+  mongo:
+    address: 10.110.147.37:8008
+    database: dps_ml
+    minConnectionsPerHost: 0
+    maxConnectionsPerHost: 100
+    threadsAllowedToBlockForConnectionMultiplier: 5
+    serverSelectionTimeout: 30000
+    maxWaitTime: 120000
+    maxConnectionIdleTime: 0
+    maxConnectionLifeTime: 0
+    connectTimeout: 10000
+    socketTimeout: 0
+    socketKeepAlive: false
+    sslEnabled: false
+    sslInvalidHostNameAllowed: false
+    alwaysUseMBeans: false
+    heartbeatFrequency: 10000
+    minHeartbeatFrequency: 500
+    heartbeatConnectTimeout: 20000
+    heartbeatSocketTimeout: 20000
+    localThreshold: 15
+    # 数据源1：10.110.147.37:8008地址, dps_ml数据库
   mongo1:
     address: 10.110.147.37:8008
     database: dps_ml
