@@ -1,0 +1,57 @@
+server:
+  port: 8000
+
+# no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS)
+# 看到是序列化报错，马上检查了自己所有的bean，都implements Serializable了
+# 然后去查了一下SpringBoot对Json格式的解析，果真Springboot中有一套对Json格式输出的严格控制--JackSon
+spring:
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+# mongoDB数据库连接配置
+mongodb:
+  # 数据源1：10.110.147.37:8008地址, dps_ml数据库
+  mongo1:
+    address: 10.110.147.37:8008
+    database: dps_ml
+    minConnectionsPerHost: 0
+    maxConnectionsPerHost: 100
+    threadsAllowedToBlockForConnectionMultiplier: 5
+    serverSelectionTimeout: 30000
+    maxWaitTime: 120000
+    maxConnectionIdleTime: 0
+    maxConnectionLifeTime: 0
+    connectTimeout: 10000
+    socketTimeout: 0
+    socketKeepAlive: false
+    sslEnabled: false
+    sslInvalidHostNameAllowed: false
+    alwaysUseMBeans: false
+    heartbeatFrequency: 10000
+    minHeartbeatFrequency: 500
+    heartbeatConnectTimeout: 20000
+    heartbeatSocketTimeout: 20000
+    localThreshold: 15
+  # 数据源2：10.110.147.37:8008地址, dps_ml_online数据库
+  mongo2:
+    address: 10.110.147.37:8008
+    database: dps_ml_online
+    minConnectionsPerHost: 0
+    maxConnectionsPerHost: 100
+    threadsAllowedToBlockForConnectionMultiplier: 5
+    serverSelectionTimeout: 30000
+    maxWaitTime: 120000
+    maxConnectionIdleTime: 0
+    maxConnectionLifeTime: 0
+    connectTimeout: 10000
+    socketTimeout: 0
+    socketKeepAlive: false
+    sslEnabled: false
+    sslInvalidHostNameAllowed: false
+    alwaysUseMBeans: false
+    heartbeatFrequency: 10000
+    minHeartbeatFrequency: 500
+    heartbeatConnectTimeout: 20000
+    heartbeatSocketTimeout: 20000
+    localThreshold: 15
