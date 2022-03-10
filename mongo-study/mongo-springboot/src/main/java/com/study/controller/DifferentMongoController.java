@@ -18,5 +18,11 @@ public class DifferentMongoController {
         return differentMongoService.insertOne();
     }
 
+    @ResponseBody
+    @RequestMapping("/mongo/different/findAll")
+    public String findAll() {
+        return differentMongoService.findAll();
+    }
+
 
 }

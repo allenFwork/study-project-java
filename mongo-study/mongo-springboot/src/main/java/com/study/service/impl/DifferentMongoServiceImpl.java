@@ -42,7 +42,9 @@ public class DifferentMongoServiceImpl implements DifferentMongoService {
 
     @Override
     public String findAll() {
-        return null;
+        System.out.println(student1Dao.findStudent1EntityList("student1", 20));
+        System.out.println(student2Dao.findStudent2EntityList("student2", 20));;
+        return "success";
     }
 
     @Override
