@@ -59,12 +59,11 @@ public class StreamTest {
         list.add(new Student(6, Grade.FIRST, 70));
         list.add(new Student(7, Grade.SECOND, 10));
         list.add(new Student(7, Grade.SECOND, 60));
-        /**
-         * 过滤处理获取集合
-         */
+
+        /*---------------------------------- Stream：去重处理（开始） ----------------------------------*/
         List<Student> studentList = list.stream()
                 .filter(student -> !Grade.THIRD.equals(student.getGrade()))
-                // 去重处理
+                // 去重处理,通过对某个属性进行去重,获取对象集合
                 .collect(Collectors.collectingAndThen(
                         Collectors.toCollection(() -> new TreeSet<>(
                                 Comparator.comparing(Student::getId)
@@ -72,16 +71,30 @@ public class StreamTest {
                 );
         System.out.println(studentList);
 
+        // distinct的使用
+        List<Integer> scoreList = list.stream()
+                // 去重处理,通过对某个属性进行去重,只获取该属性值的去重集合
+                .map(Student::getScore).distinct()
+                .collect(Collectors.toList());
+        System.out.println("分数去重后结果集合, scoreList: " + scoreList);
+
+        Set<Integer> scoreSet = list.stream()
+                // 去重处理,通过对某个属性进行去重,只获取该属性值的去重集合
+                .map(Student::getScore)
+                .collect(Collectors.toSet());
+        System.out.println("分数去重后结果集合, scoreSet: " + scoreSet);
+        /*---------------------------------- Stream：去重处理（结束） ----------------------------------*/
+
         /**
          * 获取分数最高的学生
          */
         Student maxStudent = list.stream().max(Comparator.comparing(Student::getScore)).orElse(null);
-        System.out.println(maxStudent);
+        System.out.println("分数最高的学生: " + maxStudent.getScore());
         /**
          * 获取id值最大的学生
          */
         maxStudent = list.stream().max(Comparator.comparing(Student::getId)).orElse(null);
-        System.out.println(maxStudent);
+        System.out.println("id最大的学生: " + maxStudent.getId());
 
         /**
          * 聚合处理处理获取Map: 学生的id和grade相同的聚合在一起
@@ -102,9 +115,9 @@ public class StreamTest {
 
         List<List<Student>> strings2 = groupMap.entrySet().stream().map(entry -> {
             List<Student> stringList = new ArrayList<>();
-            Student student1 = new Student(1,Grade.FIRST,3);
-            Student student2 = new Student(1,Grade.SECOND,3);
-            Student student3 = new Student(1,Grade.THIRD,3);
+            Student student1 = new Student(1, Grade.FIRST, 3);
+            Student student2 = new Student(1, Grade.SECOND, 3);
+            Student student3 = new Student(1, Grade.THIRD, 3);
             stringList.add(student1);
             stringList.add(student2);
             stringList.add(student3);
