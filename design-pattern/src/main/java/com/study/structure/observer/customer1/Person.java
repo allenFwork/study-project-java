@@ -3,7 +3,7 @@ package com.study.structure.observer.customer1;
 /**
  * 观察者 - 人
  */
-public class Person implements Runnable{
+public class Person implements Runnable {
 
     private Movie movie;
 

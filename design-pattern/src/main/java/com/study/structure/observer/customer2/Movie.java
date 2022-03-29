@@ -28,4 +28,5 @@ public class Movie implements Runnable {
         System.out.println("--------------被观察者（电影）开始播放--------------");
         play();
     }
+
 }

@@ -1,12 +1,12 @@
 package com.study.structure.observer;
 
-import com.study.observer.jdk.Man;
-import com.study.observer.jdk.Movie;
-import com.study.observer.jdk.Woman;
+import com.study.structure.observer.jdk.Man;
+import com.study.structure.observer.jdk.Woman;
 
 public class ObserverTest {
 
     public static void main(String[] args) {
+
         // 1. 观察者设计模式测试-版本1
 //        Movie movie = new Movie();
 //        Person person = new Person(movie);
@@ -18,8 +18,8 @@ public class ObserverTest {
 //        personThread.start();
 
         // 2. 观察者设计模式测试-版本2
-//        Movie movie = new Movie();
-//        Person person = new Person();
+//        com.study.structure.observer.customer2.Movie movie = new com.study.structure.observer.customer2.Movie();
+//        com.study.structure.observer.customer2.Person person = new com.study.structure.observer.customer2.Person();
 //
 //        movie.setPerson(person);
 //
@@ -27,9 +27,9 @@ public class ObserverTest {
 //        movieThread.start();
 
         // 3. 观察者设计模式测试-版本3
-//        Movie movie = new Movie();
-//        Man man = new Man();
-//        Woman woman = new Woman();
+//        com.study.structure.observer.customer3.Movie movie = new com.study.structure.observer.customer3.Movie();
+//        com.study.structure.observer.customer3.Man man = new com.study.structure.observer.customer3.Man();
+//        com.study.structure.observer.customer3.Woman woman = new com.study.structure.observer.customer3.Woman();
 //
 //        movie.addPerson(man);
 //        movie.addPerson(woman);
@@ -37,14 +37,15 @@ public class ObserverTest {
 //        Thread movieThread = new Thread(movie);
 //        movieThread.start();
 
-        Movie movie = new Movie();
+        // 4. 使用jdk的api实现
+        com.study.structure.observer.jdk.Movie movie = new com.study.structure.observer.jdk.Movie();
         Man man = new Man();
         Woman woman = new Woman();
 
         movie.addObserver(man);
         movie.addObserver(woman);
 
-        movie.paly();
+        movie.play();
     }
 
 }

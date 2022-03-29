@@ -11,7 +11,7 @@ public class Movie extends Observable {
     /**
      * 播放电影
      */
-    public void paly() {
+    public void play() {
         // setChanged() 表示电影进行到了某个场景，状态改变了
         setChanged();
         // 通知 观察者
