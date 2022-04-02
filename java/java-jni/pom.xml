@@ -3,20 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>study-project-java</artifactId>
+        <artifactId>java</artifactId>
         <groupId>com.study</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>java</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>java8</module>
-        <module>java-basic</module>
-        <module>java-juc</module>
-        <module>java-juc2</module>
-        <module>java-jni</module>
-    </modules>
+    <artifactId>java-jni</artifactId>
+    <description>java对native方法的操作学习: 通过java操作C或C++语言编写的方法</description>
 
 </project>
