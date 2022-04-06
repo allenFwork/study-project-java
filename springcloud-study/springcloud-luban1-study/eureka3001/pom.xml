@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>eureka3001</artifactId>
+    <name>鲁班一期:spring cloud:eureka3001</name>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

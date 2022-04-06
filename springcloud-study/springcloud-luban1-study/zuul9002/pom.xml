@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>zuul9002</artifactId>
+    <name>鲁班一期:spring cloud:zuul9002</name>
 
     <dependencies>
         <!-- 添加spring cloud客户端依赖 -->

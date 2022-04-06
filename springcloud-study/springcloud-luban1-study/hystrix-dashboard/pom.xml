@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hystrix-dashboard</artifactId>
+    <name>鲁班一期:spring cloud:hystrix-dashboard</name>
 
     <dependencies>
         <!-- hystrix监听微服务, 使用这个依赖能够使hystrix的监听数据更好看 -->

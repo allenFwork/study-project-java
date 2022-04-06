@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>zipkin-server</artifactId>
+    <name>鲁班一期:spring cloud:zipkin-server</name>
+
 
     <dependencies>
         <dependency>

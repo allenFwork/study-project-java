@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>order1</artifactId>
+    <name>鲁班一期:spring cloud:order1</name>
 
     <dependencies>
         <dependency>
