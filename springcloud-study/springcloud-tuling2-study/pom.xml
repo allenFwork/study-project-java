@@ -11,6 +11,10 @@
     <modules>
         <module>ms-eureka-server</module>
         <module>ms-eureka-client</module>
+        <module>ms-consumer-ribbon</module>
+        <module>ms-consumer-feign</module>
+        <module>ms-provider-order</module>
+        <module>ms-provider-user</module>
     </modules>
 
     <name>spring cloud项目学习(图灵二期)</name>
