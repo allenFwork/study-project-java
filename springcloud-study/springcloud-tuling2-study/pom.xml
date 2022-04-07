@@ -15,6 +15,7 @@
         <module>ms-consumer-feign</module>
         <module>ms-provider-order</module>
         <module>ms-provider-user</module>
+        <module>ms-provider-user2</module>
     </modules>
 
     <name>spring cloud项目学习(图灵二期)</name>

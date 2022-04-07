@@ -1,25 +1,27 @@
 package com.study.controller;
 
-import com.study.entity.Order;
-import com.study.interfaces.OrderApi;
+import com.study.entity.User;
+import com.study.interfaces.UserApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RequestMapping("/feign")
 @RestController
-public class TestOrderController {
+public class TestUserController {
 
     @Autowired
-    private OrderApi orderApi;
+    private UserApi userApi;
 
-    @RequestMapping(value = "/queryOrder/{orderId}", method = RequestMethod.GET)
-    public Order queryOrder(@PathVariable("orderId") String orderId) {
+    @RequestMapping(value = "/queryUser/{userId}", method = RequestMethod.GET)
+    public User queryOrder(@PathVariable("userId") String userId) {
         // 通过 Feign框架调用
-        return orderApi.queryOrdersByOrderId(orderId);
+        List<User> userList = userApi.queryUserByUserId(1);
+        return userList.get(0);
     }
-
 
 }

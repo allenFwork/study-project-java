@@ -16,12 +16,12 @@ public class UserController {
 
     @RequestMapping(value = "/queryUsersByUserId/{userId}", method = RequestMethod.GET)
     public List<User> queryUsersByUserId(@PathVariable("userId") Integer userId) {
-        System.out.println("this is ms-provider-user-8002, parameter is " + userId);
+        System.out.println("this is ms-provider-user-8003, parameter is " + userId);
         List<User> userList = new ArrayList<>();
-        User user = new User();
-        user.setName("superman");
-        user.setUserId(1);
-        userList.add(user);
+        User user2 = new User();
+        user2.setName("batman");
+        user2.setUserId(2);
+        userList.add(user2);
         return userList;
     }
 
