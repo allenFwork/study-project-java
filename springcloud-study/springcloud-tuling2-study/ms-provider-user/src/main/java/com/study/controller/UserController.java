@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 // 不要写成 @RestController("/user") 没有用的路径配置
 @RestController
@@ -22,6 +23,12 @@ public class UserController {
         user.setName("superman");
         user.setUserId(1);
         userList.add(user);
+        // 模拟花费3秒钟的时间处理
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return userList;
     }
 

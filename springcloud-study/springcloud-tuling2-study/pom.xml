@@ -16,6 +16,7 @@
         <module>ms-provider-order</module>
         <module>ms-provider-user</module>
         <module>ms-provider-user2</module>
+        <module>ms-consumer-hystrix</module>
     </modules>
 
     <name>spring cloud项目学习(图灵二期)</name>
