@@ -127,4 +127,8 @@ public class Code_03_StackAndQueueConvert {
 
     }
 
+    public static void main(String[] args) {
+
+    }
+
 }

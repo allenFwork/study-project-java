@@ -12,6 +12,7 @@ import java.util.Stack;
  */
 public class Code_02_GetMinStack {
 
+	// 思路一
     public static class MyStack1 {
     	// 真正的栈,压入的数据都直接存储到该栈中
         private Stack<Integer> stackData;
@@ -55,6 +56,7 @@ public class Code_02_GetMinStack {
         }
     }
 
+    // 思路二
     public static class MyStack2 {
         private Stack<Integer> stackData;
         private Stack<Integer> stackMin;
