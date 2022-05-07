@@ -33,25 +33,40 @@ public class Code_00_BubbleSort {
         }
     }
 
-//    public static void swap(int[] arr, int i, int j) {
-//        int temp = arr[i];
-//        arr[i] = arr[j];
-//        arr[j] = temp;
-//    }
-
     public static void swap(int[] arr, int i, int j) {
         arr[i] = arr[i] ^ arr[j];
         arr[j] = arr[i] ^ arr[j];
         arr[i] = arr[i] ^ arr[j];
+        // 上面代码实现的就是下面代码的逻辑
+//        int temp = arr[i];
+//        arr[i] = arr[j];
+//        arr[j] = temp;
     }
 
-    // for test
+    /*============================================ 对数器(开始) ============================================*/
+    /**
+     * 一个绝对正确的排序方法，用于验证结果是否正确的，
+     * 该方法中使用的算法不要求时间复杂度的好坏，只要求结果一定正确
+     *
+     * @param arr 来排序的数组
+     */
     public static void comparator(int[] arr) {
         Arrays.sort(arr);
     }
 
-    // for test
+    /**
+     * 生成一个随机数组，用于测试的
+     *
+     * @param maxSize  生成出来数组的元素个数的最大值
+     * @param maxValue 数组中数值的最大值
+     * @return
+     */
     public static int[] generateRandomArray(int maxSize, int maxValue) {
+        /**
+         * 生成长度随机的数组
+         * Math.random()  表示生成一个 [0,1) 的随机数，该数是 double 类型的（等概率的）
+         * (int) ((maxSize + 1) * Math.random()) 表示生成一个 [0,maxSize] 的随机一个整数（等概率的）
+         */
         int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
@@ -59,7 +74,6 @@ public class Code_00_BubbleSort {
         return arr;
     }
 
-    // for test
     public static int[] copyArray(int[] arr) {
         if (arr == null) {
             return null;
@@ -71,7 +85,12 @@ public class Code_00_BubbleSort {
         return res;
     }
 
-    // for test
+    /**
+     * 验证数组arr1和数组arr2对应位置上的数值是否相等
+     * @param arr1
+     * @param arr2
+     * @return
+     */
     public static boolean isEqual(int[] arr1, int[] arr2) {
         if ((arr1 == null && arr2 != null) || (arr1 != null && arr2 == null)) {
             return false;
@@ -90,7 +109,6 @@ public class Code_00_BubbleSort {
         return true;
     }
 
-    // for test
     public static void printArray(int[] arr) {
         if (arr == null) {
             return;
@@ -100,5 +118,32 @@ public class Code_00_BubbleSort {
         }
         System.out.println();
     }
+
+    // 大样本测试
+    public static void main(String[] args) {
+        int testTime = 500000;
+        int size = 10;
+        int value = 100;
+        boolean succeed = true;
+        for (int i = 0; i < testTime; i++) {
+            int[] arr1 = generateRandomArray(size, value);
+            int[] arr2 = copyArray(arr1);
+            int[] arr3 = copyArray(arr1);
+            bubbleSort(arr1);
+            comparator(arr2);
+            if (!isEqual(arr1, arr2)) {
+                succeed = false;
+                printArray(arr3);
+                break;
+            }
+        }
+        System.out.println(succeed ? "Nice!" : "Fucking fucked!");
+
+        int[] arr = generateRandomArray(size, value);
+        printArray(arr);
+        bubbleSort(arr);
+        printArray(arr);
+    }
+    /*============================================ 对数器(结束) ============================================*/
 
 }
