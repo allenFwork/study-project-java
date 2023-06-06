@@ -17,7 +17,7 @@ public class ReadCommittedExample {
     public static Connection openConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection =
-                DriverManager.getConnection("jdbc:mysql://localhost:3306/test2?serverTimezone=GMT%2B8",
+                DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8",
                         "root",
                         "123456");
         return connection;
@@ -71,7 +71,13 @@ public class ReadCommittedExample {
             @Override
             public void run() {
                 try {
+                    // 同步代码块,锁住了实例对象lock，所有使用该对象的线程互斥，只有一个县城能使用
                     synchronized (lock) {
+                        /**
+                         * wait()
+                         * 调用该方法的线程进入WAITING状态，只有等待另外线程的通知或被中断才会返回，
+                         * 需要注意，调用wait()方法后，会释放对象的锁。
+                         */
                         lock.wait();
                     }
                 } catch (InterruptedException e) {
@@ -95,6 +101,7 @@ public class ReadCommittedExample {
 
                     // 释放锁
                     synchronized (lock) {
+                        // 通知一个在对象上等待的线程，使其从wait()返回，而返回的前提是该线程获取到了对象的锁
                         lock.notify();
                     }
 
