@@ -1,0 +1,16 @@
+package com.study.lucene.dao;
+
+import com.study.lucene.pojo.Sku;
+
+import java.util.List;
+
+public interface SkuDao {
+
+    /**
+     * 查询所有的Sku数据
+     *
+     * @return
+     **/
+    public List<Sku> querySkuList();
+
+}
