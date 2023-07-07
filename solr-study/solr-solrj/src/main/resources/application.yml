@@ -1,1 +1,10 @@
-url: http://localhost:9080/solr/CollectionTest
+# 本地启动单机Solr服务测试
+# url: http://localhost:9080/solr/CollectionTest
+#url: http://localhost:9080/solr
+# 测试Solr集群功能
+url: http://192.168.80.4:8180/solr
+
+# zookeeper集群地址
+zk01: 192.168.80.4:2181
+zk02: 192.168.80.4:2182
+zk03: 192.168.80.4:2183

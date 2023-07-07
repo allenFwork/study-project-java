@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 
+/**
+ * SolrJ的基本查询：简单查询，过滤查询，分页查询，组合查询
+ */
 public class SolrJTest_query extends SolrJTest {
 
     @Autowired
