@@ -52,7 +52,10 @@ public class BeanConfig {
         cloudSolrClient.setZkClientTimeout(300000);
 
         // 设置collection
-        cloudSolrClient.setDefaultCollection("testcore");
+        // 连接基于tomcat集群中的collection
+//        cloudSolrClient.setDefaultCollection("testcore");
+        // 连接docker集群中的collection
+        cloudSolrClient.setDefaultCollection("myCollection");
 
         return cloudSolrClient;
     }
