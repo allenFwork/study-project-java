@@ -24,4 +24,5 @@ mybatis-plus:
   type-aliases-package: com.study.redis.apply.entity # 别名扫描包
 logging:
   level:
-    com.hmdp: debug
+#    com.hmdp: DEBUG 没有打印日志，因为包路径错误
+    com.study.redis.apply.mapper: debug

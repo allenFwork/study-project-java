@@ -37,7 +37,7 @@ public class ShopController {
         // return Result.ok(shopService.getById(id));
 
         // 改进逻辑：添加redis缓存
-        return shopService.queryById();
+        return shopService.queryById(id);
     }
 
     /**
@@ -60,11 +60,12 @@ public class ShopController {
      * @param shop 商铺数据
      * @return 无
      */
-    @PutMapping
+    @PutMapping("/update") // 此处是PutMapping，所以只能使用 PUT 方式请求，不能使用POST请求
     public Result updateShop(@RequestBody Shop shop) {
-        // 写入数据库
-        shopService.updateById(shop);
-        return Result.ok();
+        // 写入数据库（使用Mybatis plus的方法）
+//        shopService.updateById(shop);
+//        return Result.ok();
+        return shopService.updateShopById(shop);
     }
 
     /**
