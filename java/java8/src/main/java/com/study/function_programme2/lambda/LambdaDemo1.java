@@ -1,4 +1,4 @@
-package com.study.function_programme2;
+package com.study.function_programme2.lambda;
 
 import java.util.function.Function;
 import java.util.function.IntBinaryOperator;
