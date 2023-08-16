@@ -1,5 +1,6 @@
 package com.study.function_programme2.stream;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -29,12 +30,34 @@ public class StreamMainClass2 {
 //                .forEach(System.out::println);
 
         // 并行流处理
-        Stream<Integer> streamInt = Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-        // Stream<Integer> streamInt = Arrays.stream(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 10000; i++) {
+            list.add(i);
+        }
+        Stream<Integer> streamInt = list.stream();
+        Long start = System.currentTimeMillis();
         Integer sum = streamInt.filter(num -> num > 5).reduce((result, element) -> result + element).get();
-        System.out.println(sum);
-        sum = streamInt.parallel() // 并行流处理
+        Long end = System.currentTimeMillis();
+        System.out.println("串行处理时间为：" + (end - start) + "毫秒");
+
+        streamInt = list.stream();
+        start = System.currentTimeMillis();
+        sum = streamInt.parallel() // 并行流处理(方法1)
                 .filter(num -> num > 5).reduce((result, element) -> result + element).get();
-        System.out.println(sum);
+        end = System.currentTimeMillis();
+        System.out.println("并行1处理时间为：" + (end - start) + "毫秒");
+
+        streamInt = list.parallelStream(); // 并行处理(方法2)
+        start = System.currentTimeMillis();
+        sum = streamInt.filter(num -> num > 5).reduce((result, element) -> result + element).get();
+        end = System.currentTimeMillis();
+        System.out.println("并行2处理时间为：" + (end - start) + "毫秒");
+
+        /**
+         * 处理结果：
+         * 串行处理时间为：34毫秒
+         * 并行1处理时间为：5毫秒
+         * 并行2处理时间为：2毫秒
+         */
     }
 }
