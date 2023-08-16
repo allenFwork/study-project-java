@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class MainClass {
+public class StreamMainClass {
 
     public static void main(String[] args) {
 
@@ -68,7 +68,7 @@ public class MainClass {
     }
 
     // 数据初始化
-    private static List<Author> getAuthors() {
+    public static List<Author> getAuthors() {
         Author author1 = new Author(1L, "蒙多", 33, "一个从才到中明悟哲理的祖安人", null);
         Author author2 = new Author(2L, "压缩", 15, "一个从才到中明悟哲理的祖安人", null);
         Author author3 = new Author(3L, "易", 14, "是这个世界在限制他的思维", null);

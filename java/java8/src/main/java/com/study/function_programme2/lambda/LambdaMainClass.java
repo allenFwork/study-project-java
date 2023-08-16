@@ -8,7 +8,7 @@ import java.util.function.IntPredicate;
 /**
  * lambda学习一：从匿名内部类转化为lambda表达式练习
  */
-public class LambdaDemo1 {
+public class LambdaMainClass {
 
     public static void main(String[] args) {
 

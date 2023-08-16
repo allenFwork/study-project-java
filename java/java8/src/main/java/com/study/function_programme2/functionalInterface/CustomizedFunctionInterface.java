@@ -1,4 +1,6 @@
-package com.study.functionalInterface;
+package com.study.function_programme2.functionalInterface;
+
+import java.util.function.*;
 
 /*
  * 函数式接口
@@ -13,5 +15,8 @@ package com.study.functionalInterface;
  */
 @FunctionalInterface
 public interface CustomizedFunctionInterface {
+
+    // 只能定义一个抽象方法，才能作为函数直接扣
     void test();
+
 }
