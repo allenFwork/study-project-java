@@ -2,7 +2,7 @@ package com.study.redis.apply.service.impl;
 
 import com.study.redis.apply.entity.SeckillVoucher;
 import com.study.redis.apply.mapper.SeckillVoucherMapper;
-import com.study.redis.apply.service.ISeckillVoucherService;
+import com.study.redis.apply.service.ISecKillVoucherService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-01-04
  */
 @Service
-public class SeckillVoucherServiceImpl extends ServiceImpl<SeckillVoucherMapper, SeckillVoucher> implements ISeckillVoucherService {
+public class SecKillVoucherServiceImpl extends ServiceImpl<SeckillVoucherMapper, SeckillVoucher> implements ISecKillVoucherService {
 
 }

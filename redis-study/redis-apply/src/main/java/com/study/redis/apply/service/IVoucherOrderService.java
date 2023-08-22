@@ -1,16 +1,14 @@
 package com.study.redis.apply.service;
 
-import com.study.redis.apply.entity.VoucherOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.study.redis.apply.dto.Result;
+import com.study.redis.apply.entity.VoucherOrder;
 
-/**
- * <p>
- *  服务类
- * </p>
- *
- * @author 虎哥
- * @since 2021-12-22
- */
 public interface IVoucherOrderService extends IService<VoucherOrder> {
+
+    // 传入参数为优惠券的id
+    public Result secKillVoucher(Long voucherId);
+
+    public Result createVoucherOrder(Long voucherId);
 
 }

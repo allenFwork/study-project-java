@@ -5,7 +5,7 @@ import com.study.redis.apply.dto.Result;
 import com.study.redis.apply.entity.Voucher;
 import com.study.redis.apply.mapper.VoucherMapper;
 import com.study.redis.apply.entity.SeckillVoucher;
-import com.study.redis.apply.service.ISeckillVoucherService;
+import com.study.redis.apply.service.ISecKillVoucherService;
 import com.study.redis.apply.service.IVoucherService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +25,7 @@ import java.util.List;
 public class VoucherServiceImpl extends ServiceImpl<VoucherMapper, Voucher> implements IVoucherService {
 
     @Resource
-    private ISeckillVoucherService seckillVoucherService;
+    private ISecKillVoucherService seckillVoucherService;
 
     @Override
     public Result queryVoucherOfShop(Long shopId) {
