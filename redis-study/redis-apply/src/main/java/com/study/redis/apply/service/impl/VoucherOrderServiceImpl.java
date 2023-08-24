@@ -10,6 +10,8 @@ import com.study.redis.apply.service.IVoucherOrderService;
 import com.study.redis.apply.utils.RedisIdWorker;
 import com.study.redis.apply.utils.SimpleRedisLock;
 import com.study.redis.apply.utils.UserHolder;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -144,9 +146,8 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
         }
     }
 
-    // 版本3：分布式锁解决了一人一单的单机问题
-    @Override
-    public Result secKillVoucher(Long voucherId) {
+    // 版本3：分布式锁解决了一人一单的单机问题（自定义的redis分布式锁）
+    public Result secKillVoucher3(Long voucherId) {
         // 1.查询优惠券信息
         SeckillVoucher voucher = secKillVoucherService.getById(voucherId);
         // 2.判断优惠券的秒杀活动是否开始
@@ -183,6 +184,53 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
         } finally {
             // 释放锁
             lock.unLock();
+        }
+
+    }
+
+    @Autowired
+    private RedissonClient redissonClient;
+
+    // 版本4：分布式锁解决了一人一单问题（使用Redisson的分布式锁）
+    @Override
+    public Result secKillVoucher(Long voucherId) {
+        // 1.查询优惠券信息
+        SeckillVoucher voucher = secKillVoucherService.getById(voucherId);
+        // 2.判断优惠券的秒杀活动是否开始
+        LocalDateTime beginTime = voucher.getBeginTime();
+        if (beginTime.isAfter(LocalDateTime.now())) {
+            // 尚未开始活动
+            return Result.fail("秒杀尚未开始！");
+        }
+        // 3.判断优惠券的秒杀活动是否结束
+        LocalDateTime endTime = voucher.getEndTime();
+        if (endTime.isBefore(LocalDateTime.now())) {
+            return Result.fail("秒杀已经结束！");
+        }
+        // 4.判断库存是否充足
+        long stock = voucher.getStock();
+        if (stock < 1) {
+            // 库存不足
+            return Result.fail("库存不足！");
+        }
+
+        Long userId = UserHolder.getUser().getId();
+        // 创建锁对象：通过 order:用户id 来设置一个用户一个锁
+        RLock rLock = redissonClient.getLock("order:" + userId);
+        // 获取锁（肯能成功，可能失败）
+        boolean isLock = rLock.tryLock();
+
+        if (!isLock) {
+            // 获取锁失败，返回错误或重试
+            return Result.fail("不允许重复下单");
+        }
+        try {
+            // 获取代理对象（事务）
+            IVoucherOrderService proxy = (IVoucherOrderService) AopContext.currentProxy();
+            return proxy.createVoucherOrder(voucherId);
+        } finally {
+            // 释放锁
+            rLock.unlock();
         }
 
     }
