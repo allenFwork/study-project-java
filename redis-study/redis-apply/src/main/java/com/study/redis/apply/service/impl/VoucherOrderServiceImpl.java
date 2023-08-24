@@ -14,11 +14,19 @@ import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Service
 public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, VoucherOrder> implements IVoucherOrderService {
@@ -192,8 +200,7 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
     private RedissonClient redissonClient;
 
     // 版本4：分布式锁解决了一人一单问题（使用Redisson的分布式锁）
-    @Override
-    public Result secKillVoucher(Long voucherId) {
+    public Result secKillVoucher4(Long voucherId) {
         // 1.查询优惠券信息
         SeckillVoucher voucher = secKillVoucherService.getById(voucherId);
         // 2.判断优惠券的秒杀活动是否开始
@@ -278,6 +285,131 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
         // 8.返回订单id
         return Result.ok(orderId);
 
+    }
+
+    /*--------------------------------------------------- 异步处理秒杀活动下单功能，提高性能 ---------------------------------------------------*/
+    // 版本5：使用异步处理优化秒杀功能，提高性能
+    @Override
+    public Result secKillVoucher(Long voucherId) {
+        Long userId = UserHolder.getUser().getId();
+        Long orderId = redisIdWorker.nextId("order");
+        // 1.执行Lua的脚本
+        Long result = stringRedisTemplate.execute(SECKILL_SCRIPT,
+                Collections.emptyList(),
+                voucherId.toString(),
+                userId.toString(),
+                orderId.toString()
+        );
+        // 2.判断是否为0（lua脚本执行的结果为0时，表示可以下单）
+        int r = result.intValue();
+        if (r != 0) {
+            // 2.1 不为0，代表没有购买资格
+            return Result.fail(r == 1 ? "库存不足" : "不能重复下单");
+        }
+        // 2.2 为0有购买资格，把下单信息保存到阻塞队列
+        // 2.2.1 创建订单
+        VoucherOrder voucherOrder = new VoucherOrder();
+        // 2.2.2 订单ids
+        voucherOrder.setId(orderId);
+        // 2.2.3 用户id
+        voucherOrder.setUserId(userId);
+        // 2.2.4 代金券id
+        voucherOrder.setVoucherId(voucherId);
+        // 2.2.5 放入阻塞队列中
+        orderTasks.add(voucherOrder);
+
+        // 3.获取代理对象（为了子任务执行时使用事务）
+        proxy = (IVoucherOrderService) AopContext.currentProxy();
+
+        // 4.返回订单
+        return Result.ok(orderId);
+    }
+
+    // Lua的脚本文件
+    private static final DefaultRedisScript<Long> SECKILL_SCRIPT;
+
+    static {
+        SECKILL_SCRIPT = new DefaultRedisScript<>();
+        SECKILL_SCRIPT.setLocation(new ClassPathResource("secKill.lua"));
+        SECKILL_SCRIPT.setResultType(Long.class);
+    }
+
+    // 需要消耗内存空间，所以设置了限定的大小
+    private BlockingQueue<VoucherOrder> orderTasks = new ArrayBlockingQueue<>(1024 * 1024);
+    // 创建一个单线程的线程池
+    private static final ExecutorService SECKILL_EXECUTOR = Executors.newSingleThreadExecutor();
+
+    @PostConstruct // 在类初始化的时候，开始执行线程池中的任务
+    private void init() {
+        SECKILL_EXECUTOR.submit(new VoucherOrderHandler());
+    }
+
+    // 用于线程池处理的任务
+    // 当初始化完毕后，就会去从对列中去拿信息
+    private class VoucherOrderHandler implements Runnable {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    // 1.获取队列中的订单信息
+                    VoucherOrder voucherOrder = orderTasks.take();
+                    // 2.处理订单
+                    handleVoucherOrder(voucherOrder);
+                } catch (Exception e) {
+                    log.error("处理订单异常：", e);
+                }
+            }
+        }
+    }
+
+    private IVoucherOrderService proxy;
+
+    // 处理创建订单
+    private void handleVoucherOrder(VoucherOrder voucherOrder) {
+        // 1.获取用户id (不能通过UserHolder获取了，因为这是多线程任务，对应的ThreadLocal中没有用户信息)
+        Long userId = voucherOrder.getUserId();
+        // 2.创建锁对象
+        RLock rLock = redissonClient.getLock("order:" + userId);
+        // 3.获取锁（肯能成功，可能失败）
+        boolean isLock = rLock.tryLock();
+        // 4.判断是否获取锁
+        if (!isLock) {
+            // 获取锁失败，返回错误或重试
+            log.error("不允许重复下单");
+            return;
+        }
+        try {
+            // 不能通过 AopContext.currentProxy() 获取代理对象，因为该方法底层是通过 ThreadLocal 获取，此处是多线程任务不成功
+            // IVoucherOrderService proxy = (IVoucherOrderService) AopContext.currentProxy();
+            proxy.createVoucherOrder(voucherOrder);
+        } finally {
+            // 释放锁
+            rLock.unlock();
+        }
+    }
+
+    @Transactional // 数据库中保存订单，事务控制原子性
+    public void createVoucherOrder(VoucherOrder voucherOrder) {
+        // 1.获取用户id
+        Long userId = voucherOrder.getUserId();
+
+        // 2.查询订单
+        int count = query().eq("user_id", userId).eq("voucher_id", voucherOrder.getVoucherId()).count();
+        if (count > 0) {
+            // 用户已经购买过了
+            log.error("用户已经购买过了！");
+        }
+        boolean success = secKillVoucherService.update()
+                .setSql("stock = stock -1")
+                .eq("voucher_id", voucherOrder.getVoucherId())
+                .gt("stock", 0) // 乐观锁思想，解决超卖问题(方案二)
+                .update();
+        if (!success) {
+            // 扣减失败
+            log.error("扣减失败！");
+        }
+
+        save(voucherOrder);
     }
 
 }
