@@ -57,6 +57,7 @@
             <artifactId>easyexcel</artifactId>
             <!--<version>2.1.6</version>-->
             <version>2.2.8</version>
+            <!--<version>3.0.5</version>-->
         </dependency>
         <!-- hutool工具包:用于给excel添加批注时使用 -->
         <dependency>
@@ -88,6 +89,13 @@
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <version>2.3.28</version>
+        </dependency>
+
+        <!-- hutool工具包：处理csv文件 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.6.5</version>
         </dependency>
 
     </dependencies>
