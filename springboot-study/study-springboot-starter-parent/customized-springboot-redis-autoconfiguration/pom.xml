@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>customzied-sprintboot-redis-autoconfiguration</artifactId>
-    
+    <artifactId>customzied-springboot-redis-autoconfiguration</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.data</groupId>

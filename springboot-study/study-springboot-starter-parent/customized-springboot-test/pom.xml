@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>com.study</groupId>
-    <artifactId>customized-springboot-tetst</artifactId>
+    <artifactId>customized-springboot-test</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>springboot自定义启动器测试</name>
     <description>测试自定义启动器的项目</description>
@@ -37,7 +37,7 @@
 
         <dependency>
             <groupId>com.study</groupId>
-            <artifactId>customzied-sprintboot-redis-starter</artifactId>
+            <artifactId>customzied-springboot-redis-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

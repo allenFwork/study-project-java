@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.study</groupId>
-    <artifactId>customzied-sprintboot-redis-starter</artifactId>
+    <artifactId>customzied-springboot-redis-starter</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
 
@@ -21,7 +21,7 @@
         <!-- starter中引用自动配置的项目 -->
         <dependency>
             <groupId>com.study</groupId>
-            <artifactId>customzied-sprintboot-redis-autoconfiguration</artifactId>
+            <artifactId>customzied-springboot-redis-autoconfiguration</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

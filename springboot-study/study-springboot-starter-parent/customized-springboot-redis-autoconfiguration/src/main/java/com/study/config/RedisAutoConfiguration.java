@@ -13,6 +13,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 @ConditionalOnClass(value = {Jedis.class, JedisPool.class, JedisPoolConfig.class})
+// @EnableConfigurationProperties 等价于 @Import，将其中的类交由spring容器管理
 @EnableConfigurationProperties(value = CustomizedRedisProperties.class)
 @Configuration
 public class RedisAutoConfiguration {
