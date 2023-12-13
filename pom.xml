@@ -11,25 +11,7 @@
     <name>parent-project</name>
 
     <modules>
-        <module>java</module>
-        <module>design-pattern</module>
-        <!--框架学习 -->
-        <module>spring-study</module>
-        <module>springboot-study</module>
-        <module>mybatis-study</module>
-        <module>web-study</module>
-        <!-- 工具整理 -->
-        <module>utils</module>
-        <module>springcloud-study</module>
-        <module>redis-study</module>
-        <module>netty-study</module>
-        <module>dubbo-study</module>
-        <module>zookeeper-study</module>
         <module>algorithm-study</module>
-        <module>sharding-sphere-study</module>
-        <module>data-migration-study</module>
-        <module>ELK-study</module>
-        <module>lucene-study</module>
     </modules>
 
     <properties>
