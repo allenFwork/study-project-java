@@ -27,7 +27,7 @@ public class ApplicationContextExtendUse {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, IOException {
 
         ConfigurableApplicationContext context = SpringApplication.run(ApplicationContextExtendUse.class, args);
-        /**
+        /*
          * 1. 到底什么是 BeanFactory
          *      - 它是 ApplicationContext 的父接口
          *      - 它才是 Spring 的核心容器, 主要的 ApplicationContext 实现都【组合】了它的功能
@@ -35,7 +35,7 @@ public class ApplicationContextExtendUse {
         System.out.println(context);
 
 
-        /**
+        /*
          * 2. BeanFactory 能干点啥
          *      - 表面上只有 getBean
          *      - 实际上控制反转、基本的依赖注入、直至 Bean 的生命周期的各种功能, 都由它的实现类提供
@@ -51,7 +51,7 @@ public class ApplicationContextExtendUse {
                     System.out.println(e.getKey() + "=" + e.getValue());
                 });
 
-        /**
+        /*
          * 3. ApplicationContext 比 BeanFactory 多点啥（如下4个）
          *      - 国际化
          *      - 资源路径匹配获取资源对象
@@ -78,7 +78,7 @@ public class ApplicationContextExtendUse {
         // 通过实际逻辑发布事件
         context.getBean(UserRegisterServiceImpl.class).register();
 
-        /**
+        /*
          * 4. 学到了什么
          *      a. BeanFactory 与 ApplicationContext 并不仅仅是简单接口继承的关系, ApplicationContext 组合并扩展了 BeanFactory 的功能
          *      b. 又新学一种代码之间解耦途径

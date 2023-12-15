@@ -19,7 +19,7 @@ public class UserRegisterServiceImpl {
 
     public void register() {
         log.debug("执行用户注册逻辑");
-        /**
+        /*
          * 发布用户注册事件,注意点：线性执行，必须等待监听的方法全部执行完，才会向下执行
          */
         context.publishEvent(new UserRegisteredEvent(this));
