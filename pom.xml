@@ -13,6 +13,7 @@
     <modules>
         <module>algorithm-study</module>
         <module>spring-study</module>
+        <module>springboot-study</module>
     </modules>
 
     <properties>
