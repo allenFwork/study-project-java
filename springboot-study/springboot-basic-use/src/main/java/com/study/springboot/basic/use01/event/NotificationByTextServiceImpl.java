@@ -17,9 +17,9 @@ public class NotificationByTextServiceImpl {
     public void sendMessage(UserRegisteredEvent event) {
         log.debug("spring容器管理的监听事件：{}", event);
         log.debug("发送短信");
-        if (true) {
-            throw new RuntimeException("测试异常问题");
-        }
+//        if (true) {
+//            throw new RuntimeException("测试异常问题");
+//        }
     }
 
 }
