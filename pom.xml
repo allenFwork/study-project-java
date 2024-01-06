@@ -14,6 +14,8 @@
         <module>algorithm-study</module>
         <module>spring-study</module>
         <module>springboot-study</module>
+        <module>util-module</module>
+        <module>jvm-study</module>
     </modules>
 
     <properties>
