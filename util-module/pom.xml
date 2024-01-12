@@ -8,7 +8,7 @@
     </parent>
     <groupId>com.study.spring</groupId>
     <artifactId>util-module</artifactId>
-    <name>Archetype - util-module</name>
+    <name>工具模块</name>
 
 
     <dependencies>
@@ -23,6 +23,33 @@
             <artifactId>poi-ooxml</artifactId>
             <version>3.16</version>
         </dependency>
+
+        <!-- 调用远程Http请求依赖 -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+            <!--<version>4.5.13</version>-->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.4.1</version>
+            <!--<version>4.5.13</version>-->
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.76</version>
+        </dependency>
+
+
 
         <dependency>
             <groupId>junit</groupId>
