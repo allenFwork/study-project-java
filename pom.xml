@@ -16,7 +16,8 @@
         <module>springboot-study</module>
         <module>util-module</module>
         <module>jvm-study</module>
-        <module>MyBatis-Plus-study</module>
+        <module>mybatis-plus-study</module>
+        <module>springcloud-study</module>
     </modules>
 
     <properties>
