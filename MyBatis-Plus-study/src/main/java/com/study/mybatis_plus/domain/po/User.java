@@ -1,9 +1,12 @@
 package com.study.mybatis_plus.domain.po;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
+
+@TableName("user") // mybatis plus框架的 @TableName 注解表示该实体类映射到哪张表
 @Data
 public class User {
 

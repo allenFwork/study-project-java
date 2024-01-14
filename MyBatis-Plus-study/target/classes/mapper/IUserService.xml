@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mybatis_plus.mapper.UserMapper2">
+
+    <select id="queryById" resultType="User2">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+
+    <select id="queryUserByWrapper" resultType="com.study.mybatis_plus.domain.po.User2">
+        select u.* from user u inner join address a on u.id = a.user_id ${ew.customSqlSegment}
+    </select>
+
+</mapper>
