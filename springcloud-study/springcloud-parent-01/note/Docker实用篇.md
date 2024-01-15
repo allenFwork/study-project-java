@@ -574,7 +574,7 @@ docker volume命令是数据卷操作，根据命令后跟随的command来确定
 
 
 
-### 2.3.3.创建和查看数据卷
+### 2.3.3. 创建和查看数据卷
 
 **需求**：创建一个数据卷，并查看数据卷在宿主机的目录位置
 
@@ -598,8 +598,6 @@ docker volume ls
 
 
 
-
-
 ③ 查看数据卷详细信息卷
 
 ```sh
@@ -611,10 +609,6 @@ docker volume inspect html
 ![image-20210731173809877](assets/image-20210731173809877.png)
 
 可以看到，我们创建的html这个数据卷关联的宿主机目录为`/var/lib/docker/volumes/html/_data`目录。
-
-
-
-
 
 
 
@@ -634,7 +628,7 @@ docker volume inspect html
 
 
 
-### 2.3.4.挂载数据卷
+### 2.3.4. 挂载数据卷
 
 我们在创建容器时，可以通过 -v 参数来挂载一个数据卷到某个容器内目录，命令格式如下：
 
@@ -652,11 +646,9 @@ docker run \
 
 
 
-### 2.3.5.案例-给nginx挂载数据卷
+### 2.3.5. 案例-给nginx挂载数据卷
 
 **需求**：创建一个nginx容器，修改容器内的html目录内的index.html内容
-
-
 
 **分析**：上个案例中，我们进入nginx容器内部，已经知道nginx的html目录所在位置/usr/share/nginx/html ，我们需要把这个目录挂载到html这个数据卷上，方便操作其中的内容。
 
@@ -669,8 +661,6 @@ docker run \
 ```sh
 docker run --name mn -v html:/usr/share/nginx/html -p 80:80 -d nginx
 ```
-
-
 
 ② 进入html数据卷所在位置，并修改HTML内容
 
@@ -685,7 +675,7 @@ vi index.html
 
 
 
-### 2.3.6.案例-给MySQL挂载本地目录
+### 2.3.6. 案例-给MySQL挂载本地目录
 
 容器不仅仅可以挂载数据卷，也可以直接挂载到宿主机目录上。关联关系如下：
 
@@ -705,11 +695,7 @@ vi index.html
 
 
 
-
-
 **需求**：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器
-
-
 
 实现思路如下：
 
@@ -729,7 +715,7 @@ vi index.html
 
 
 
-### 2.3.7.小结
+### 2.3.7. 小结
 
 docker run的命令中通过 -v 参数挂载文件或目录到容器中：
 
@@ -746,15 +732,13 @@ docker run的命令中通过 -v 参数挂载文件或目录到容器中：
 
 
 
-
-
-# 3.Dockerfile自定义镜像
+# 3. Dockerfile自定义镜像
 
 常见的镜像在DockerHub就能找到，但是我们自己写的项目就必须自己构建镜像了。
 
 而要自定义镜像，就必须先了解镜像的结构才行。
 
-## 3.1.镜像结构
+## 3.1. 镜像结构
 
 镜像是将应用程序及其需要的系统函数库、环境、配置、依赖打包而成。
 
@@ -762,27 +746,19 @@ docker run的命令中通过 -v 参数挂载文件或目录到容器中：
 
 ![image-20210731175806273](assets/image-20210731175806273.png)
 
-
-
 简单来说，镜像就是在系统函数库、运行环境基础上，添加应用程序文件、配置文件、依赖文件等组合，然后编写好启动脚本打包在一起形成的文件。
-
-
 
 我们要构建镜像，其实就是实现上述打包的过程。
 
 
 
-## 3.2.Dockerfile语法
+## 3.2. Dockerfile语法
 
 构建自定义的镜像时，并不需要一个个文件去拷贝，打包。
 
 我们只需要告诉Docker，我们的镜像的组成，需要哪些BaseImage、需要拷贝什么文件、需要安装什么依赖、启动脚本是什么，将来Docker会帮助我们构建镜像。
 
-
-
 而描述上述信息的文件就是Dockerfile文件。
-
-
 
 **Dockerfile**就是一个文本文件，其中包含一个个的**指令(Instruction)**，用指令来说明要执行什么操作来构建镜像。每一个指令都会形成一层Layer。
 
@@ -796,13 +772,9 @@ docker run的命令中通过 -v 参数挂载文件或目录到容器中：
 
 
 
+## 3.3. 构建Java项目
 
-
-## 3.3.构建Java项目
-
-
-
-### 3.3.1.基于Ubuntu构建Java项目
+### 3.3.1. 基于Ubuntu构建Java项目
 
 需求：基于Ubuntu镜像构建一个新镜像，运行一个java项目
 
@@ -861,13 +833,12 @@ docker run的命令中通过 -v 参数挂载文件或目录到容器中：
   docker build -t javaweb:1.0 .
   ```
 
-  
 
 最后访问 http://192.168.150.101:8090/hello/count，其中的ip改成你的虚拟机ip
 
 
 
-### 3.3.2.基于java8构建Java项目
+### 3.3.2. 基于java8构建Java项目
 
 虽然我们可以基于Ubuntu基础镜像，添加任意自己需要的安装包，构建镜像，但是却比较麻烦。所以大多数情况下，我们都可以在一些安装了部分软件的基础镜像上做改造。
 
@@ -902,15 +873,13 @@ docker run的命令中通过 -v 参数挂载文件或目录到容器中：
     ENTRYPOINT java -jar /tmp/app.jar
     ```
 
-    
-
 - ④ 使用docker build命令构建镜像
 
 - ⑤ 使用docker run创建容器并运行
 
 
 
-## 3.4.小结
+## 3.4. 小结
 
 小结：
 
@@ -922,19 +891,20 @@ docker run的命令中通过 -v 参数挂载文件或目录到容器中：
 
 
 
-# 4.Docker-Compose
+# 4. Docker-Compose
 
 Docker Compose可以基于Compose文件帮我们快速的部署分布式应用，而无需手动一个个创建和运行容器！
 
 ![image-20210731180921742](assets/image-20210731180921742.png)
 
-## 4.1.初识DockerCompose
+## 4.1. 初识DockerCompose
 
 Compose文件是一个文本文件，通过指令定义集群中的每个容器如何运行。格式如下：
 
 ```json
 version: "3.8"
- services:
+
+services:
   mysql:
     image: mysql:5.7.25
     environment:
@@ -954,27 +924,21 @@ version: "3.8"
 - mysql：一个基于`mysql:5.7.25`镜像构建的容器，并且挂载了两个目录
 - web：一个基于`docker build`临时构建的镜像容器，映射端口时8090
 
-
-
 DockerCompose的详细语法参考官网：https://docs.docker.com/compose/compose-file/
-
-
 
 其实DockerCompose文件可以看做是将多个docker run命令写到一个文件，只是语法稍有差异。
 
 
 
-## 4.2.安装DockerCompose
+## 4.2. 安装DockerCompose
 
-参考课前资料
+https://gitee.com/allenFwork/study-project-java/blob/study-java-2023/springcloud-study/springcloud-parent-01/note/Centos7%E5%AE%89%E8%A3%85Docker.md#2centos7%E5%AE%89%E8%A3%85dockercompose
 
 
 
-## 4.3.部署微服务集群
+## 4.3. 部署微服务集群
 
 **需求**：将之前学习的cloud-demo微服务集群利用DockerCompose部署
-
-
 
 **实现思路**：
 
@@ -990,7 +954,7 @@ DockerCompose的详细语法参考官网：https://docs.docker.com/compose/compo
 
 
 
-### 4.3.1.compose文件
+### 4.3.1. compose文件
 
 查看课前资料提供的cloud-demo文件夹，里面已经编写好了docker-compose文件，而且每个微服务都准备了一个独立的目录：
 
@@ -1059,9 +1023,7 @@ ENTRYPOINT java -jar /tmp/app.jar
 
 
 
-
-
-### 4.3.2.修改微服务配置
+### 4.3.2. 修改微服务配置
 
 因为微服务将来要部署为docker容器，而容器之间互联不是通过IP地址，而是通过容器名。这里我们将order-service、user-service、gateway服务的mysql、nacos地址都修改为基于容器名的访问。
 
@@ -1083,7 +1045,7 @@ spring:
 
 
 
-### 4.3.3.打包
+### 4.3.3. 打包
 
 接下来需要将我们的每个微服务都打包。因为之前查看到Dockerfile中的jar包名称都是app.jar，因此我们的每个微服务都需要用这个名称。
 
@@ -1106,7 +1068,7 @@ spring:
 
 ![image-20210801095951030](assets/image-20210801095951030.png)
 
-### 4.3.4.拷贝jar包到部署目录
+### 4.3.4. 拷贝jar包到部署目录
 
 编译打包好的app.jar文件，需要放到Dockerfile的同级目录中。注意：每个微服务的app.jar放到与服务名称对应的目录，别搞错了。
 
@@ -1122,7 +1084,7 @@ gateway：
 
 ![image-20210801100308102](assets/image-20210801100308102.png)
 
-### 4.3.5.部署
+### 4.3.5. 部署
 
 最后，我们需要将文件整个cloud-demo文件夹上传到虚拟机中，理由DockerCompose部署。
 
@@ -1138,23 +1100,27 @@ gateway：
 docker-compose up -d
 ```
 
+当启动微服务时，查看日志发现抱错，因为nacos还没有启动好，就已经在启动微服务了，结果导致微服务启动失败。重启其中的几个微服务命令如下：
+
+```
+docker-compose restart 微服务名称1 微服务名称1
+```
 
 
 
 
 
+# 5. Docker镜像仓库 
 
-# 5.Docker镜像仓库 
-
-
-
-## 5.1.搭建私有镜像仓库
+## 5.1. 搭建私有镜像仓库
 
 参考课前资料《CentOS7安装Docker.md》
 
+https://gitee.com/allenFwork/study-project-java/blob/study-java-2023/springcloud-study/springcloud-parent-01/note/Centos7%E5%AE%89%E8%A3%85Docker.md#3docker%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93
 
 
-## 5.2.推送、拉取镜像
+
+## 5.2. 推送、拉取镜像
 
 推送镜像到私有镜像服务必须先tag，步骤如下：
 
@@ -1164,15 +1130,11 @@ docker-compose up -d
 docker tag nginx:latest 192.168.150.101:8080/nginx:1.0 
  ```
 
-
-
 ② 推送镜像
 
 ```sh
 docker push 192.168.150.101:8080/nginx:1.0 
 ```
-
-
 
 ③ 拉取镜像
 

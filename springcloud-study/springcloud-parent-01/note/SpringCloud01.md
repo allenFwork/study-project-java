@@ -832,8 +832,6 @@ Nacos是SpringCloudAlibaba的组件，而SpringCloudAlibaba也遵循SpringCloud�
 </dependency>
 ```
 
-
-
 > **注意**：不要忘了注释掉eureka的依赖。
 
 
@@ -848,8 +846,6 @@ spring:
     nacos:
       server-addr: localhost:8848 # nacos注册中心的服务地址
 ```
-
-
 
 > **注意**：不要忘了注释掉eureka的地址
 
@@ -930,7 +926,7 @@ spring:
 
 
 
-### 5.3.2.同集群优先的负载均衡
+### 5.3.2. 同集群优先的负载均衡
 
 默认的`ZoneAvoidanceRule`并不能实现根据同集群优先来实现负载均衡。
 
@@ -987,8 +983,6 @@ userservice:
 
 
 
-
-
 > **注意**：如果权重修改为0，则该实例永远不会被访问
 
 
@@ -1018,8 +1012,6 @@ Nacos提供了namespace来实现环境隔离功能。
 我们可以点击页面新增按钮，添加一个namespace：
 
 ![image-20210714000440143](assets/image-20210714000440143.png)
-
-
 
 然后，填写表单：
 
@@ -1061,13 +1053,17 @@ spring:
 
 ![image-20210714000941256](assets/image-20210714000941256.png)
 
+```
+01-15 23:01:50:217 ERROR 12108 --- [nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: No instances available for ms-user-service] with root cause
+```
+
 
 
 ## 5.6. Nacos与Eureka的区别
 
 Nacos的服务实例分为两种l类型：
 
-- 临时实例：如果实例宕机超过一定时间，会从服务列表剔除，默认的类型。
+- 临时实例：如果实例宕机超过一定时间，会从服务列表剔除，默认的类型就是临时实例。
 
 - 非临时实例：如果实例宕机，不会从服务列表剔除，也可以叫永久实例。
 
