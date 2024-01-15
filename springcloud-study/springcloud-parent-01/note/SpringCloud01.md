@@ -782,11 +782,11 @@ ribbon:
 
 
 
-# 5.Nacos注册中心
+# 5. Nacos注册中心
 
 国内公司一般都推崇阿里巴巴的技术，比如注册中心，SpringCloudAlibaba也推出了一个名为Nacos的注册中心。
 
-## 5.1.认识和安装Nacos
+## 5.1. 认识和安装Nacos
 
 [Nacos](https://nacos.io/)是阿里巴巴的产品，现在是[SpringCloud](https://spring.io/projects/spring-cloud)中的一个组件。相比[Eureka](https://github.com/Netflix/eureka)功能更加丰富，在国内受欢迎程度较高。
 
@@ -798,9 +798,7 @@ ribbon:
 
 
 
-
-
-## 5.2.服务注册到nacos
+## 5.2. 服务注册到nacos
 
 Nacos是SpringCloudAlibaba的组件，而SpringCloudAlibaba也遵循SpringCloud中定义的服务注册、服务发现规范。因此使用Nacos和使用Eureka对于微服务来说，并没有太大区别。
 
@@ -848,7 +846,7 @@ Nacos是SpringCloudAlibaba的组件，而SpringCloudAlibaba也遵循SpringCloud�
 spring:
   cloud:
     nacos:
-      server-addr: localhost:8848
+      server-addr: localhost:8848 # nacos注册中心的服务地址
 ```
 
 
@@ -865,7 +863,7 @@ spring:
 
 
 
-## 5.3.服务分级存储模型
+## 5.3. 服务分级存储模型
 
 一个**服务**可以有多个**实例**，例如我们的user-service，可以有:
 
@@ -895,11 +893,7 @@ Nacos就将同一机房内的实例 划分为一个**集群**。
 
 
 
-
-
-### 5.3.1.给user-service配置集群
-
-
+### 5.3.1. 给user-service配置集群
 
 修改user-service的application.yml文件，添加集群配置：
 
@@ -969,7 +963,7 @@ userservice:
 
 
 
-## 5.4.权重配置
+## 5.4. 权重配置
 
 实际部署中会出现这样的场景：
 
@@ -999,7 +993,7 @@ userservice:
 
 
 
-## 5.5.环境隔离
+## 5.5. 环境隔离
 
 Nacos提供了namespace来实现环境隔离功能。
 
@@ -1013,7 +1007,7 @@ Nacos提供了namespace来实现环境隔离功能。
 
 
 
-### 5.5.1.创建namespace
+### 5.5.1. 创建namespace
 
 默认情况下，所有service、data、group都在同一个namespace，名为public：
 
@@ -1037,7 +1031,7 @@ Nacos提供了namespace来实现环境隔离功能。
 
 
 
-### 5.5.2.给微服务配置namespace
+### 5.5.2. 给微服务配置namespace
 
 给微服务配置namespace只能通过修改配置来实现。
 
@@ -1069,7 +1063,7 @@ spring:
 
 
 
-## 5.6.Nacos与Eureka的区别
+## 5.6. Nacos与Eureka的区别
 
 Nacos的服务实例分为两种l类型：
 
@@ -1091,8 +1085,6 @@ spring:
 
 
 
-
-
 Nacos和Eureka整体结构类似，服务注册、服务拉取、心跳等待，但是也存在一些差异：
 
 ![image-20210714001728017](assets/image-20210714001728017.png)
@@ -1110,6 +1102,18 @@ Nacos和Eureka整体结构类似，服务注册、服务拉取、心跳等待，
   - Nacos集群默认采用AP方式，当集群中存在非临时实例时，采用CP模式；Eureka采用AP方式
 
 
+
+### 5.6.1 Nacos临时与非临时实例配置
+
+服务注册到Nacos时，可以选择注册为临时或非临时实例，通过下面的配置来设置：
+
+```yaml
+spring:
+  cloud:
+    nacos:
+      discovery:
+        ephemeral: false  # 是否是临时实例，默认是true，设置该实例为临时的实例
+```
 
 
 
