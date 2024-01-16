@@ -17,7 +17,7 @@
         <module>util-module</module>
         <module>jvm-study</module>
         <module>mybatis-plus-study</module>
-        <module>springcloud-study</module>
+        <module>microservice-study</module>
     </modules>
 
     <properties>
