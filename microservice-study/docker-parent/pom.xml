@@ -7,6 +7,5 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>docker-parent</artifactId>
-    <name>Archetype - docker-parent</name>
-    <url>http://maven.apache.org</url>
+    <name>parent docker</name>
 </project>
