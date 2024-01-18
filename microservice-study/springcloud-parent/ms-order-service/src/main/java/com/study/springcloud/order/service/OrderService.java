@@ -1,8 +1,10 @@
 package com.study.springcloud.order.service;
 
+
 import com.study.springcloud.order.mapper.OrderMapper;
 import com.study.springcloud.order.pojo.Order;
-import com.study.springcloud.order.pojo.User;
+import com.study.feign.clients.UserClient;
+import com.study.feign.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,7 +18,7 @@ public class OrderService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public Order queryOrderById(Long orderId) {
+    /*public Order queryOrderById(Long orderId) {
         // 1.查询订单
         Order order = orderMapper.findById(orderId);
         // 2.利用RestTemplate发起http请求，查询用户
@@ -29,9 +31,9 @@ public class OrderService {
         order.setUser(user);
         // 4.返回
         return order;
-    }
+    }*/
 
-/*    @Autowired
+    @Autowired
     private UserClient userClient;
 
     public Order queryOrderById(Long orderId) {
@@ -43,5 +45,5 @@ public class OrderService {
         order.setUser(user);
         // 4.返回
         return order;
-    }*/
+    }
 }

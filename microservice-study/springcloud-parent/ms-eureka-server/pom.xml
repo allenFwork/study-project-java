@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ms-eureka-server</artifactId>
-    <name>spring cloud学习: Eureka服务端-服务注册中心</name>
+    <description>spring cloud学习: Eureka服务端-服务注册中心</description>
 
 
     <dependencies>

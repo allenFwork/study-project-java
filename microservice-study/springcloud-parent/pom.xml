@@ -5,13 +5,15 @@
     <groupId>com.study.springcloud</groupId>
     <artifactId>springcloud-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>spring cloud parent</name>
+    <name>parent spring cloud</name>
     <packaging>pom</packaging>
 
     <modules>
         <module>ms-user-service</module>
         <module>ms-order-service</module>
         <module>ms-eureka-server</module>
+        <module>ms-feign-api</module>
+        <module>ms-gateway-service</module>
     </modules>
 
     <parent>
@@ -32,7 +34,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--  引入spring cloud版本 -->
+            <!-- 引入spring cloud版本 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -40,7 +42,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--  引入spring cloud Alibaba版本 -->
+            <!-- 引入spring cloud Alibaba版本 -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>

@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ms-user-service</artifactId>
-    <name>spring cloud学习: ms-user-service</name>
+    <description>spring cloud学习: ms-user-service</description>
 
     <dependencies>
         <dependency>
@@ -47,8 +47,10 @@
 
     </dependencies>
 
+
     <build>
-        <finalName>app</finalName>
+        <!-- 服务打包的最终名称 -->
+        <finalName>ms-user-service-app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

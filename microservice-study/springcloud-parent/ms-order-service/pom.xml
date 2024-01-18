@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ms-order-service</artifactId>
-    <name>spring cloud学习: ms-order-service</name>
+    <description>spring cloud学习: ms-order-service</description>
 
     <dependencies>
         <dependency>
@@ -51,15 +51,27 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
-        <!-- 使用 feign 实现webservice客户端 -->
+        <!--
+        &lt;!&ndash; 使用 feign 实现webservice客户端 &ndash;&gt;
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-
+        &lt;!&ndash; feign的httpClient的依赖,优化feign底层的http请求功能 &ndash;&gt;
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+        </dependency>-->
+        <dependency>
+            <groupId>com.study.springcloud</groupId>
+            <artifactId>ms-feign-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
+        <!-- 服务打包的最终名称 -->
+        <finalName>ms-order-service-app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

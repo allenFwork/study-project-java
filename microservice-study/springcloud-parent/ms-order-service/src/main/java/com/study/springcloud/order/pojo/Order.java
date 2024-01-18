@@ -1,5 +1,6 @@
 package com.study.springcloud.order.pojo;
 
+import com.study.feign.pojo.User;
 import lombok.Data;
 
 @Data
