@@ -12,6 +12,7 @@
         <module>springcloud-parent</module>
         <module>message-queue-parent</module>
         <module>docker-parent</module>
+        <module>search-engine-parent</module>
     </modules>
 
     <properties>
