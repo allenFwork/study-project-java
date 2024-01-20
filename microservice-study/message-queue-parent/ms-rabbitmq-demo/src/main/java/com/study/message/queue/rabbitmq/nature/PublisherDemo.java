@@ -28,8 +28,8 @@ public class PublisherDemo {
         // 2.创建通道Channel
         Channel channel = connection.createChannel();
 
-        // 3.创建队列
-        String queueName = "simple.queue";
+        // 3.创建队列： 如果该队列不存在可以创建该队列，因为有队列的声明
+        String queueName = "work.queue";
         channel.queueDeclare(queueName, false, false, false, null);
 
         // 4.发送消息

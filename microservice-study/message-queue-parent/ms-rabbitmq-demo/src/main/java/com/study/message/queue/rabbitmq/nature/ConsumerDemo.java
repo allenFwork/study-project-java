@@ -40,5 +40,6 @@ public class ConsumerDemo {
             }
         });
         System.out.println("等待接收消息。。。。");
+        System.in.read();
     }
 }
