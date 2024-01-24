@@ -3,14 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.study.microservice</groupId>
-        <artifactId>microservice-study</artifactId>
+        <artifactId>search-engine-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>search-engine-parent</artifactId>
-    <packaging>pom</packaging>
-    <description>分布式搜索引擎学习</description>
-    <modules>
-        <module>ms-elasticsearch-demo</module>
-    </modules>
-
+    <artifactId>ms-elasticsearch-demo</artifactId>
+    <description>分布式搜索引擎学习：Elasticsearch技术</description>
 </project>

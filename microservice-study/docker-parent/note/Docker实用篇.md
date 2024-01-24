@@ -187,8 +187,6 @@ DockerHub：
 
 ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-01-17-21-03-10-image.png)
 
-
-
 # 2. Docker的基本操作
 
 ## 2.1. 镜像操作
@@ -599,11 +597,23 @@ vi index.html
 
 4）去DockerHub查阅资料，创建并运行MySQL容器，要求：
 
-① 挂载/tmp/mysql/data到mysql容器内数据存储目录
+    ① 挂载/tmp/mysql/data到mysql容器内数据存储目录
 
-② 挂载/tmp/mysql/conf/hmy.cnf到mysql容器的配置文件
+    ② 挂载/tmp/mysql/conf/hmy.cnf到mysql容器的配置文件
 
-③ 设置MySQL密码
+    ③ 设置MySQL密码
+
+补充：启动 mysql 8.0.34的容器脚本如下
+
+```shell
+docker run -p 3310:3306 --name mysql8 \ 
+-v /usr/local/apps_data/docker_workspace/miscroservice-image/mysql/conf/mysql:/etc/mysql \
+-v /usr/local/apps_data/docker_workspace/miscroservice-image/mysql/logs:/logs \
+-v /usr/local/apps_data/docker_workspace/miscroservice-image/mysql/data:/var/lib/mysql \
+-v /etc/localtime:/etc/localtime \
+-e MYSQL_ROOT_PASSWORD=123456 \
+-d mysql:8.0.34
+```
 
 ### 2.3.7. 小结
 
@@ -760,8 +770,6 @@ docker run的命令中通过 -v 参数挂载文件或目录到容器中：
 
 3. 基础镜像可以是基本操作系统，如Ubuntu。也可以是其他人制作好的镜像，例如：java:8-alpine
 
-
-
 # 4. Docker-Compose
 
 Docker Compose可以基于Compose文件帮我们快速的部署分布式应用，而无需手动一个个创建和运行容器！
@@ -799,8 +807,6 @@ DockerCompose的详细语法参考官网：https://docs.docker.com/compose/compo
 其实DockerCompose文件可以看做是将多个docker run命令写到一个文件，只是语法稍有差异。
 
 ## 4.2. 安装DockerCompose
-
-
 
 ## 4.3. 部署微服务集群
 
@@ -875,7 +881,7 @@ services:
     ports:
       - "3310:3306"
   ms-user-service:
-    build: ./gateway-service
+    build: ./user-service
   ms-order-service:
     build: ./order-service
   ms-gateway-service:
@@ -995,8 +1001,6 @@ docker-compose up -d
 docker-compose restart 微服务名称1 微服务名称1
 ```
 
-
-
 # 5. Docker镜像仓库
 
 ## 5.1. 搭建私有镜像仓库
@@ -1025,4 +1029,19 @@ docker push 192.168.150.101:8080/nginx:1.0
 
 ```sh
 docker pull 192.168.150.101:8080/nginx:1.0 
+```
+
+
+
+# 6. Docker特殊命令
+
+```shell
+# 停止所有在跑的docker容器
+docker kill $(docker ps -q)
+
+# 删除所有的docker容器
+docker rm $(docker ps -a -q)
+
+# 删除所有的docker镜像
+docker rmi $(docker images -q)
 ```

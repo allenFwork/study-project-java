@@ -103,8 +103,6 @@ docker官方镜像仓库网速较差，我们需要设置国内镜像服务：
 
 参考阿里云的镜像加速文档： https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
 
-
-
 # 2. CentOS7安装DockerCompose
 
 ## 2.1.下载
@@ -149,8 +147,6 @@ echo "199.232.68.133 raw.githubusercontent.com" >> /etc/hosts
 ```shell
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
-
-
 
 # 3. Docker镜像仓库
 

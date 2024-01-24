@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ms-user-service # 服务名称
+  profiles:
+    active: test #开发环境，这里是dev
+  cloud:
+    nacos:
+      server-addr: nacos:8848 # Nacos地址
+      config:
+        file-extension: yaml # 文件后缀名
