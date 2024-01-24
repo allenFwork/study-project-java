@@ -11,6 +11,7 @@
     <description>分布式搜索引擎学习</description>
     <modules>
         <module>ms-elasticsearch-demo</module>
+        <module>ms-hotel-admin</module>
     </modules>
 
 </project>

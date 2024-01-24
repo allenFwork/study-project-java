@@ -1,0 +1,14 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.study.microservice</groupId>
+        <artifactId>search-engine-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>ms-hotel-admin</artifactId>
+    <description>
+        测试elasticsearch数据同步功能的服务，该服务用来修改数据库数据，然后发送此消息到消息队列中。
+        elasticsearch服务端接受该消息，然后修改索引库，从而保证数据库与elasticsearch的数据一致。
+    </description>
+</project>

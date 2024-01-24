@@ -335,8 +335,6 @@ class HotelAdminApplicationTests {
 }
 ```
 
-
-
 # 2. 自动补全
 
 当用户在搜索框输入字符时，我们应该提示出与该字符有关的搜索项，如图：
@@ -716,7 +714,7 @@ public class HotelDoc {
 
 ![image-20210723213917524](assets/image-20210723213917524.png)
 
-### 2.4.5.实现搜索框自动补全
+### 2.4.5. 实现搜索框自动补全
 
 查看前端页面，可以发现当我们在输入框键入时，前端会发起ajax请求：
 
@@ -776,13 +774,13 @@ public List<String> getSuggestions(String prefix) {
 }
 ```
 
-# 3.数据同步
+# 3. 数据同步
 
 elasticsearch中的酒店数据来自于mysql数据库，因此mysql数据发生改变时，elasticsearch也必须跟着改变，这个就是elasticsearch与mysql之间的**数据同步**。
 
 ![image-20210723214758392](assets/image-20210723214758392.png)
 
-## 3.1.思路分析
+## 3.1. 思路分析
 
 常见的数据同步方案有三种：
 
@@ -790,7 +788,7 @@ elasticsearch中的酒店数据来自于mysql数据库，因此mysql数据发生
 - 异步通知
 - 监听binlog
 
-### 3.1.1.同步调用
+### 3.1.1. 同步调用
 
 方案一：同步调用
 
@@ -801,7 +799,7 @@ elasticsearch中的酒店数据来自于mysql数据库，因此mysql数据发生
 - hotel-demo对外提供接口，用来修改elasticsearch中的数据
 - 酒店管理服务在完成数据库操作后，直接调用hotel-demo提供的接口，
 
-### 3.1.2.异步通知
+### 3.1.2. 异步通知
 
 方案二：异步通知
 
@@ -812,7 +810,7 @@ elasticsearch中的酒店数据来自于mysql数据库，因此mysql数据发生
 - hotel-admin对mysql数据库数据完成增、删、改后，发送MQ消息
 - hotel-demo监听MQ，接收到消息后完成elasticsearch数据修改
 
-### 3.1.3.监听binlog
+### 3.1.3. 监听binlog
 
 方案三：监听binlog
 
@@ -824,7 +822,7 @@ elasticsearch中的酒店数据来自于mysql数据库，因此mysql数据发生
 - mysql完成增、删、改操作都会记录在binlog中
 - hotel-demo基于canal监听binlog变化，实时更新elasticsearch中的内容
 
-### 3.1.4.选择
+### 3.1.4. 选择
 
 方式一：同步调用
 
@@ -841,9 +839,9 @@ elasticsearch中的酒店数据来自于mysql数据库，因此mysql数据发生
 - 优点：完全解除服务间耦合
 - 缺点：开启binlog增加数据库负担、实现复杂度高
 
-## 3.2.实现数据同步
+## 3.2. 实现数据同步
 
-### 3.2.1.思路
+### 3.2.1. 思路
 
 利用课前资料提供的hotel-admin项目作为酒店管理的微服务。当酒店数据发生增、删、改时，要求对elasticsearch中数据也要完成相同操作。
 
@@ -859,9 +857,9 @@ elasticsearch中的酒店数据来自于mysql数据库，因此mysql数据发生
 
 - 启动并测试数据同步功能
 
-### 3.2.2.导入demo
+### 3.2.2. 导入demo
 
-导入课前资料提供的hotel-admin项目：
+导入note目录下的hotel-admin项目：
 
 ![image-20210723220237930](assets/image-20210723220237930.png)
 
@@ -898,7 +896,7 @@ MQ结构如图：
 ```java
 package cn.itcast.hotel.constatnts;
 
-    public class MqConstants {
+public class MqConstants {
     /**
      * 交换机
      */
@@ -941,6 +939,7 @@ import org.springframework.context.annotation.Configuration;
 public class MqConfig {
     @Bean
     public TopicExchange topicExchange(){
+        // 交换机名字，是否持久化，是否自动删除
         return new TopicExchange(MqConstants.HOTEL_EXCHANGE, true, false);
     }
 
@@ -966,13 +965,13 @@ public class MqConfig {
 }
 ```
 
-### 3.2.4.发送MQ消息
+### 3.2.4. 发送MQ消息
 
 在hotel-admin中的增、删、改业务中分别发送MQ消息：
 
 ![image-20210723221843816](assets/image-20210723221843816.png)
 
-### 3.2.5.接收MQ消息
+### 3.2.5. 接收MQ消息
 
 hotel-demo接收到MQ消息要做的事情包括：
 
@@ -1061,7 +1060,13 @@ public class HotelListener {
 }
 ```
 
-# 4.集群
+补充：
+
+![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-01-24-10-34-04-image.png)
+
+![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-01-24-10-34-55-image.png)
+
+# 4. 集群
 
 单机的elasticsearch做数据存储，必然面临两个问题：海量数据存储问题、单点故障问题。
 
@@ -1105,9 +1110,9 @@ public class HotelListener {
 - node1：保存了分片0和2
 - node2：保存了分片1和2
 
-## 4.1.搭建ES集群
+## 4.1. 搭建ES集群
 
-参考课前资料的文档：
+参考note目录下 `安装elasticsearch.md` 文档：
 
 ![image-20210723222732427](assets/image-20210723222732427.png) 
 
@@ -1115,9 +1120,9 @@ public class HotelListener {
 
 ![image-20210723222812619](assets/image-20210723222812619.png) 
 
-## 4.2.集群脑裂问题
+## 4.2. 集群脑裂问题
 
-### 4.2.1.集群职责划分
+### 4.2.1. 集群职责划分
 
 elasticsearch中集群节点有不同的职责划分：
 
@@ -1127,7 +1132,7 @@ elasticsearch中集群节点有不同的职责划分：
 
 但是真实的集群一定要将集群职责分离：
 
-- master节点：对CPU要求高，但是内存要求第
+- master节点：对CPU要求高，但是内存要求低
 - data节点：对CPU和内存要求都高
 - coordinating节点：对网络带宽、CPU要求高
 
@@ -1137,7 +1142,7 @@ elasticsearch中集群节点有不同的职责划分：
 
 ![image-20210723223629142](assets/image-20210723223629142.png)
 
-### 4.2.2.脑裂问题
+### 4.2.2. 脑裂问题
 
 脑裂是因为集群中的节点失联导致的。
 
@@ -1159,7 +1164,7 @@ elasticsearch中集群节点有不同的职责划分：
 
 例如：3个节点形成的集群，选票必须超过 （3 + 1） / 2 ，也就是2票。node3得到node2和node3的选票，当选为主。node1只有自己1票，没有当选。集群中依然只有1个主节点，没有出现脑裂。
 
-### 4.2.3.小结
+### 4.2.3. 小结
 
 master eligible节点的作用是什么？
 
@@ -1176,11 +1181,11 @@ coordinator节点的作用是什么？
 
 - 合并查询到的结果，返回给用户
 
-## 4.3.集群分布式存储
+## 4.3. 集群分布式存储
 
 当新增文档时，应该保存到不同分片，保证数据均衡，那么coordinating node如何确定数据该存储到哪个分片呢？
 
-### 4.3.1.分片存储测试
+### 4.3.1. 分片存储测试
 
 插入三条数据：
 
@@ -1198,7 +1203,7 @@ coordinator节点的作用是什么？
 
 ![image-20210723225342120](assets/image-20210723225342120.png)
 
-### 4.3.2.分片存储原理
+### 4.3.2. 分片存储原理
 
 elasticsearch会通过hash算法来计算文档应该存储到哪个分片：
 
@@ -1207,7 +1212,7 @@ elasticsearch会通过hash算法来计算文档应该存储到哪个分片：
 说明：
 
 - _routing默认是文档的id
-- 算法与分片数量有关，因此索引库一旦创建，分片数量不能修改！
+- <font color=red>算法与分片数量有关，因此索引库一旦创建，分片数量不能修改！</font>
 
 新增文档的流程如下：
 
@@ -1222,7 +1227,7 @@ elasticsearch会通过hash算法来计算文档应该存储到哪个分片：
 - 5）同步给shard-2的副本replica-2，在node2节点
 - 6）返回结果给coordinating-node节点
 
-## 4.4.集群分布式查询
+## 4.4. 集群分布式查询
 
 elasticsearch的查询分成两个阶段：
 
@@ -1232,7 +1237,7 @@ elasticsearch的查询分成两个阶段：
 
 ![image-20210723225809848](assets/image-20210723225809848.png)
 
-## 4.5.集群故障转移
+## 4.5. 集群故障转移
 
 集群的master节点会监控集群中的节点状态，如果发现有节点宕机，会立即将宕机节点的分片数据迁移到其它节点，确保数据安全，这个叫做故障转移。
 

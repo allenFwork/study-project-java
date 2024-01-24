@@ -1,10 +1,8 @@
 # 安装elasticsearch
 
+# 1. 部署单点es
 
-
-# 1.部署单点es
-
-## 1.1.创建网络
+## 1.1 创建网络
 
 因为我们还需要部署kibana容器，因此需要让es和kibana容器互联。这里先创建一个网络：
 
@@ -12,9 +10,7 @@
 docker network create es-net
 ```
 
-
-
-## 1.2.加载镜像
+## 1.2 加载镜像
 
 这里我们采用elasticsearch的7.12.1版本的镜像，这个镜像体积非常大，接近1G。不建议大家自己pull。
 
@@ -31,15 +27,13 @@ docker load -i es.tar
 
 同理还有`kibana`的tar包也需要这样做。
 
-
-
-## 1.3.运行
+## 1.3 运行
 
 运行docker命令，部署单点es：
 
 ```sh
 docker run -d \
-	--name es \
+    --name es \
     -e "ES_JAVA_OPTS=-Xms512m -Xmx512m" \
     -e "discovery.type=single-node" \
     -v es-data:/usr/share/elasticsearch/data \
@@ -64,21 +58,15 @@ elasticsearch:7.12.1
 - `--network es-net` ：加入一个名为es-net的网络中
 - `-p 9200:9200`：端口映射配置
 
-
-
 在浏览器中输入：http://192.168.150.101:9200 即可看到elasticsearch的响应结果：
 
 ![image-20210506101053676](assets/image-20210506101053676.png)
 
-
-
-
-
-# 2.部署kibana
+# 2. 部署kibana
 
 kibana可以给我们提供一个elasticsearch的可视化界面，便于我们学习。
 
-## 2.1.部署
+## 2.1 部署
 
 运行docker命令，部署kibana
 
@@ -107,7 +95,7 @@ docker logs -f kibana
 
 此时，在浏览器输入地址访问：http://192.168.150.101:5601，即可看到结果
 
-## 2.2.DevTools
+## 2.2 DevTools
 
 kibana中提供了一个DevTools界面：
 
@@ -115,13 +103,9 @@ kibana中提供了一个DevTools界面：
 
 这个界面中可以编写DSL来操作elasticsearch。并且对DSL语句有自动补全功能。
 
+# 3. 安装IK分词器
 
-
-# 3.安装IK分词器
-
-
-
-## 3.1.在线安装ik插件（较慢）
+## 3.1 在线安装ik插件（较慢）
 
 ```shell
 # 进入容器内部
@@ -136,7 +120,7 @@ exit
 docker restart elasticsearch
 ```
 
-## 3.2.离线安装ik插件（推荐）
+## 3.2 离线安装ik插件（推荐）
 
 ### 1）查看数据卷目录
 
@@ -164,8 +148,6 @@ docker volume inspect es-plugins
 
 说明plugins目录被挂载到了：`/var/lib/docker/volumes/es-plugins/_data `这个目录中。
 
-
-
 ### 2）解压缩分词器安装包
 
 下面我们需要把课前资料中的ik分词器解压缩，重命名为ik
@@ -178,9 +160,7 @@ docker volume inspect es-plugins
 
 ![image-20210506110704293](assets/image-20210506110704293.png)
 
-
-
-###  4）重启容器
+### 4）重启容器
 
 ```shell
 # 4、重启容器
@@ -199,8 +179,6 @@ IK分词器包含两种模式：
 * `ik_smart`：最少切分
 
 * `ik_max_word`：最细切分
-
-
 
 ```json
 GET /_analyze
@@ -281,10 +259,6 @@ GET /_analyze
   ]
 }
 ```
-
-
-
-
 
 ## 3.3 扩展词词典
 
@@ -391,17 +365,13 @@ GET /_analyze
 
 > 注意当前文件的编码必须是 UTF-8 格式，严禁使用Windows记事本编辑
 
-
-
-
-
-# 4.部署es集群
+# 4. 部署es集群
 
 我们会在单机上利用docker容器运行多个es实例来模拟es集群。不过生产环境推荐大家每一台服务节点仅部署一个es的实例。
 
 部署es集群可以直接使用docker-compose来完成，但这要求你的Linux虚拟机至少有**4G**的内存空间
 
-## 4.1.创建es集群
+## 4.1. 创建es集群
 
 首先编写一个docker-compose文件，内容如下：
 
@@ -466,17 +436,13 @@ networks:
     driver: bridge
 ```
 
-
-
-
-
 es运行需要修改一些linux系统权限，修改`/etc/sysctl.conf`文件
 
 ```sh
 vi /etc/sysctl.conf
 ```
 
-添加下面的内容：
+添加下面的内容：（放开虚拟机内存大小）
 
 ```sh
 vm.max_map_count=262144
@@ -488,19 +454,13 @@ vm.max_map_count=262144
 sysctl -p
 ```
 
-
-
 通过docker-compose启动集群：
 
 ```sh
 docker-compose up -d
 ```
 
-
-
-
-
-## 4.2.集群状态监控
+## 4.2. 集群状态监控
 
 kibana可以监控es集群，不过新版本需要依赖es的x-pack 功能，配置比较复杂。
 
@@ -520,13 +480,9 @@ kibana可以监控es集群，不过新版本需要依赖es的x-pack 功能，配
 
 ![image-20210602220846137](assets/image-20210602220846137.png)
 
-
-
 双击其中的cerebro.bat文件即可启动服务。
 
 ![image-20210602220941101](assets/image-20210602220941101.png)
-
-
 
 访问http://localhost:9000 即可进入管理界面：
 
@@ -534,15 +490,11 @@ kibana可以监控es集群，不过新版本需要依赖es的x-pack 功能，配
 
 输入你的elasticsearch的任意节点的地址和端口，点击connect即可：
 
-
-
 ![image-20210109181106866](assets/image-20210109181106866.png)
 
 绿色的条，代表集群处于绿色（健康状态）。
 
-
-
-## 4.3.创建索引库
+## 4.3. 创建索引库
 
 ### 1）利用kibana的DevTools创建索引库
 
@@ -551,9 +503,10 @@ kibana可以监控es集群，不过新版本需要依赖es的x-pack 功能，配
 ```json
 PUT /itcast
 {
+  // setting中可以配置分片信息
   "settings": {
-    "number_of_shards": 3, // 分片数量
-    "number_of_replicas": 1 // 副本数量
+    "number_of_shards": 3,  // 分片数量
+    "number_of_replicas": 1 // 副本数量，给每个分片添加一个副本
   },
   "mappings": {
     "properties": {
@@ -562,10 +515,6 @@ PUT /itcast
   }
 }
 ```
-
-
-
-
 
 ### 2）利用cerebro创建索引库
 
@@ -581,11 +530,8 @@ PUT /itcast
 
 ![image-20210602221542745](assets/image-20210602221542745.png)
 
-
-
 ## 4.4.查看分片效果
 
 回到首页，即可查看索引库分片效果：
 
 ![image-20210602221914483](assets/image-20210602221914483.png)
-
