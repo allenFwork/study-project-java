@@ -103,6 +103,10 @@ kibana中提供了一个DevTools界面：
 
 这个界面中可以编写DSL来操作elasticsearch。并且对DSL语句有自动补全功能。
 
+![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-01-25-13-19-07-image.png)
+
+
+
 # 3. 安装IK分词器
 
 ## 3.1 在线安装ik插件（较慢）

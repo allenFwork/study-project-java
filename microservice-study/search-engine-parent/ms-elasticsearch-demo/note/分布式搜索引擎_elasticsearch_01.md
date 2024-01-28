@@ -38,7 +38,7 @@ elasticsearch结合kibana、Logstash、Beats，也就是elastic stack（ELK）�
 
 ![image-20210720194230265](assets/image-20210720194230265.png)
 
-### 1.1.3. elasticsearch和lucene
+### 1.1.3. elasticsearch 和 lucene
 
 elasticsearch底层是基于**lucene**来实现的。
 
@@ -168,7 +168,7 @@ elasticsearch中有很多独有的概念，与mysql中略有差别，但也有�
 
 ### 1.3.1.文档和字段
 
-elasticsearch是面向 **文档（Document）** 存储的，可以是数据库中的一条商品数据，一个订单信息。文档数据会被序列化为json格式后存储在elasticsearch中：
+elasticsearch是面向 **文档（Document）** 存储的，可以是数据库中的一条商品数据，一个订单信息。<font color=green>文档数据会被序列化为json格式后存储在elasticsearch中</font>：
 
 <img title="" src="assets/image-20210720202707797.png" alt="image-20210720202707797" width="1013">
 
@@ -236,7 +236,7 @@ elasticsearch是面向 **文档（Document）** 存储的，可以是数据库�
 
 分词器的作用是什么？
 
-- 创建倒排索引时对文档分词
+- 创建倒排索引时，对文档分词
 - 用户搜索时，对输入的内容分词
 
 IK分词器有几种模式？
@@ -721,7 +721,7 @@ PUT /hotel
 
 几个特殊字段说明：
 
-- location：地理坐标，里面包含精度、纬度
+- location：地理坐标，里面包含经度、纬度
 - all：一个组合字段，其目的是将多字段的值 利用copy_to合并，提供给用户搜索
 
 地理坐标说明：
@@ -958,6 +958,8 @@ JavaRestClient操作elasticsearch的流程基本类似。核心是client.indices
 - 创建XxxIndexRequest。XXX是Create、Get、Delete
 - 准备DSL（ Create时需要，其它是无参）
 - 发送请求。调用RestHighLevelClient#indices().xxx()方法，xxx是create、exists、delete
+
+
 
 # 5. RestClient操作文档
 
