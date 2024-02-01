@@ -15,6 +15,9 @@ spring:
         cluster-name: HZ # 配置该微服务的集群名称
         # namespace: 7c738296-85a6-4f09-a92f-f69e5cfaa6e6 # nacos中配置的命名空间，填ID，生成命名空间时的唯一标识
         ephemeral: false # 设置为非临时实例，默认是临时实例
+    sentinel:
+      transport:
+        dashboard: localhost:9000
 
 mybatis:
   type-aliases-package: com.study.springcloud.order.pojo
