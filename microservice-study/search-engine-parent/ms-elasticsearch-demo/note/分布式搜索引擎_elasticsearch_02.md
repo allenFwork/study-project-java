@@ -308,7 +308,7 @@ GET /indexName/_search
 - fuction score：算分函数查询，可以控制文档相关性算分，控制文档排名
 - bool query：布尔查询，利用逻辑关系组合多个其它的查询，实现复杂搜索
 
-### 1.5.1.相关性算分
+### 1.5.1. 相关性算分
 
 当我们利用match查询时，文档结果会根据与搜索词条的关联度打分（_score），返回结果时按照分值降序排列。
 
@@ -1054,7 +1054,7 @@ private void handleResponse(SearchResponse response) {
 - 我周边的酒店
 - 酒店竞价排名
 
-启动我们提供的hotel-demo项目，其默认端口是8089，访问http://localhost:8090，就能看到项目页面了：
+启动我们提供的ms-elasticsearch-demo项目，其默认端口是8089，访问http://localhost:8090，就能看到项目页面了：
 
 <img src="assets/image-20210721223159598.png" title="" alt="image-20210721223159598" width="1066">
 

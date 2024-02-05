@@ -14,6 +14,7 @@
         <module>ms-eureka-server</module>
         <module>ms-feign-api</module>
         <module>ms-gateway-service</module>
+        <module>ms-cache-service</module>
     </modules>
 
     <parent>
