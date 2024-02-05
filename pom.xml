@@ -18,6 +18,8 @@
         <module>jvm-study</module>
         <module>mybatis-plus-study</module>
         <module>microservice-study</module>
+        <module>juc-study</module>
+        <module>redis-study</module>
     </modules>
 
     <properties>

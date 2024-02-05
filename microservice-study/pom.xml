@@ -13,6 +13,7 @@
         <module>docker-parent</module>
         <module>message-queue-parent</module>
         <module>search-engine-parent</module>
+        <module>distributed-transaction-parent</module>
     </modules>
 
     <properties>
