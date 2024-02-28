@@ -5,26 +5,36 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
+import javax.persistence.Column;
 import java.util.Date;
 
 @Data
 @TableName("tb_item")
 public class Item {
+    @Id
     @TableId(type = IdType.AUTO)
-    private Long id;//商品id
-    private String name;//商品名称
-    private String title;//商品标题
-    private Long price;//价格（分）
-    private String image;//商品图片
+    private Long id;       //商品id
+    @Column(name = "name")
+    private String name;   //商品名称
+
+    private String title;  //商品标题
+    private Long price;    //价格（分）
+    private String image;  //商品图片
     private String category;//分类名称
-    private String brand;//品牌名称
-    private String spec;//规格
+    private String brand;  //品牌名称
+    private String spec;   //规格
     private Integer status;//商品状态 1-正常，2-下架
     private Date createTime;//创建时间
     private Date updateTime;//更新时间
+
+    @Transient  // 告诉canal该字段是不属于该表的字段
     @TableField(exist = false)
     private Integer stock;
+
+    @Transient  // 告诉canal该字段是不属于该表的字段
     @TableField(exist = false)
     private Integer sold;
 }

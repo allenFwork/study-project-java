@@ -1,6 +1,7 @@
 package com.study.cache.web;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.benmanes.caffeine.cache.Cache;
 import com.study.cache.pojo.Item;
 import com.study.cache.pojo.ItemStock;
 import com.study.cache.pojo.PageDTO;
@@ -20,6 +21,11 @@ public class ItemController {
     private IItemService itemService;
     @Autowired
     private IItemStockService stockService;
+
+    @Autowired
+    private Cache<Long, Item> itemCache; // JVM中item对象的缓存
+    @Autowired
+    private Cache<Long, ItemStock> stockCache;// JVM中stock对象的缓存
 
     @GetMapping("list")
     public PageDTO queryItemPage(
@@ -63,13 +69,20 @@ public class ItemController {
 
     @GetMapping("/{id}")
     public Item findById(@PathVariable("id") Long id) {
-        return itemService.query()
-                .ne("status", 3).eq("id", id)
-                .one();
+        /*
+         * 先查询itemCache中是否有数据，
+         * 1.如果有数据直接返回
+         * 2.如果没有数据，就执行lambda表达式逻辑，将执行结果放入到itemCache中，在返回该结果
+         */
+        return itemCache.get(id, key -> itemService.query()
+                .ne("status", 3)
+                .eq("id", id)
+                .one()
+        );
     }
 
     @GetMapping("/stock/{id}")
     public ItemStock findStockById(@PathVariable("id") Long id) {
-        return stockService.getById(id);
+        return stockCache.get(id, key -> stockService.getById(id));
     }
 }

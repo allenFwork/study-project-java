@@ -1,16 +1,14 @@
 # 安装和配置Canal
 
-
-
 下面我们就开启mysql的主从同步机制，让Canal来模拟salve
 
-# 1.开启MySQL主从
+# 1. 开启MySQL主从
 
 Canal是基于MySQL的主从同步功能，因此必须先开启MySQL的主从功能才可以。
 
 这里以之前用Docker运行的mysql为例：
 
-## 1.1.开启binlog
+## 1.1. 开启binlog
 
 打开mysql容器挂载的日志文件，我的在`/tmp/mysql/conf`目录:
 
@@ -46,27 +44,43 @@ log-bin=/var/lib/mysql/mysql-bin
 binlog-do-db=heima
 ```
 
+以上是 mysql5，以下是mysql8配置
 
+```ini
+# 指定binlog的文件名前缀
+log-bin=mysql-bin
+# 指定binlog的存储目录
+datadir=/var/lib/mysql
+# 开启binlog
+binlog_format=ROW
+binlog-do-db=heima
+```
 
-## 1.2.设置用户权限
+## 1.2. 设置用户权限
 
 接下来添加一个仅用于数据同步的账户，出于安全考虑，这里仅提供对heima这个库的操作权限。
 
 ```mysql
 create user canal@'%' IDENTIFIED by 'canal';
-GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT,SUPER ON *.* TO 'canal'@'%' identified by 'canal';
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT, SUPER ON *.* TO 'canal'@'%' identified by 'canal';
 FLUSH PRIVILEGES;
+
+
+-- 上述赋予权限的语句是mysql5中使用，mysql8使用会报错，修改为以下的：
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT, SUPER ON *.* TO 'canal'@'%';
+
+
+--自MySQL 8.0.3开始，身份验证插件默认使用caching_sha2_password，所以使用上述的canal连接mysql会报错
+--解决办法：
+--修改canal用户对应的身份验证插件为mysql_native_password
+ALTER USER 'canal'@'%' IDENTIFIED WITH mysql_native_password BY 'canal';
 ```
-
-
 
 重启mysql容器即可
 
 ```
 docker restart mysql
 ```
-
-
 
 测试设置是否成功：在mysql控制台，或者Navicat中，输入命令：
 
@@ -76,13 +90,9 @@ show master status;
 
 ![image-20200327094735948](assets/image-20200327094735948.png) 
 
+# 2. 安装Canal
 
-
-# 2.安装Canal
-
-
-
-## 2.1.创建网络
+## 2.1. 创建网络
 
 我们需要创建一个网络，将MySQL、Canal、MQ放到同一个Docker网络中：
 
@@ -96,11 +106,7 @@ docker network create heima
 docker network connect heima mysql
 ```
 
-
-
-
-
-## 2.3.安装Canal
+## 2.3. 安装Canal
 
 课前资料中提供了canal的镜像压缩包:
 
@@ -111,8 +117,6 @@ docker network connect heima mysql
 ```
 docker load -i canal.tar
 ```
-
-
 
 然后运行命令创建Canal容器：
 
@@ -125,12 +129,10 @@ docker run -p 11111:11111 --name canal \
 -e canal.instance.connectionCharset=UTF-8 \
 -e canal.instance.tsdb.enable=true \
 -e canal.instance.gtidon=false  \
--e canal.instance.filter.regex=heima\\..* \
+-e canal.instance.filter.regex=heima\\..* \            
 --network heima \
 -d canal/canal-server:v1.1.5
 ```
-
-
 
 说明:
 
@@ -138,7 +140,7 @@ docker run -p 11111:11111 --name canal \
 - `-e canal.instance.master.address=mysql:3306`：数据库地址和端口，如果不知道mysql容器地址，可以通过`docker inspect 容器id`来查看
 - `-e canal.instance.dbUsername=canal`：数据库用户名
 - `-e canal.instance.dbPassword=canal` ：数据库密码
-- `-e canal.instance.filter.regex=`：要监听的表名称
+- `-e canal.instance.filter.regex=`：要监听的表名称 （上述表示监听heima数据库下所有的表）
 
 表名称监听支持的语法：
 
@@ -152,4 +154,3 @@ mysql 数据解析关注的表，Perl正则表达式.
 4.  canal schema下的一张表：canal.test1
 5.  多个规则组合使用然后以逗号隔开：canal\\..*,mysql.test1,mysql.test2 
 ```
-

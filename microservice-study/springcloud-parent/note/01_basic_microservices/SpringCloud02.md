@@ -637,8 +637,6 @@ public class DefaultFeignConfiguration {
 
 - 比较推荐第二种方案，使用哪个，就加载哪个为Bean对象
 
-
-
 # 3. Gateway服务网关
 
 Spring Cloud Gateway 是 Spring Cloud 的一个全新项目，该项目是基于 Spring 5.0，Spring Boot 2.0 和 Project Reactor 等响应式编程和事件流技术开发的网关，它旨在为微服务架构提供一种简单有效的统一的 API 路由管理方式。
@@ -987,8 +985,6 @@ public class AuthorizeFilter implements GlobalFilter {
 ​    ① order值越小，优先级越高
 
 ​    ② 当order值一样时，顺序是defaultFilter最先，然后是局部的路由过滤器，最后是全局过滤器
-
-
 
 ## 3.6. 跨域问题
 

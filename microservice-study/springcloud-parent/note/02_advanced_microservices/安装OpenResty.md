@@ -77,8 +77,6 @@ NGINX_HOME：后面是OpenResty安装目录下的nginx的目录
 source /etc/profile
 ```
 
-
-
 # 2. 启动和运行
 
 OpenResty底层是基于Nginx的，查看OpenResty目录的nginx目录，结构与windows中安装的nginx基本一致：
@@ -137,8 +135,6 @@ nginx
 ```
 
 然后访问页面：http://192.168.150.101:8081，注意ip地址替换为你自己的虚拟机IP：
-
-
 
 # 3. 备注
 
