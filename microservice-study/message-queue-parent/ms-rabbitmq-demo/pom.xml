@@ -9,7 +9,7 @@
 
     <artifactId>ms-rabbitmq-demo</artifactId>
     <packaging>jar</packaging>
-    <name>RabbitMQ</name>
+    <name>RabbitMQ基础使用</name>
     <description>消息中间件：RabbitMQ学习</description>
 
     <properties>

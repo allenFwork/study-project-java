@@ -18,6 +18,7 @@
 
     <modules>
         <module>ms-rabbitmq-demo</module>
+        <module>ms-rabbitmq-demo2</module>
     </modules>
 
     <properties>
