@@ -9,8 +9,11 @@
 
     <groupId>com.study.jvm</groupId>
     <artifactId>jvm-study</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>jvm底层学习</name>
+    <modules>
+        <module>jvm-basic-demo</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
