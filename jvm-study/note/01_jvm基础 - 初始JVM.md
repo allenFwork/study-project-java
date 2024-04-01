@@ -61,6 +61,7 @@
 1. JVM到底是什么?
 - JVM 全称是  Java  Virtual Machine，中文译名 Java虚拟机，是一个运行在计算机上的程序，他的职责是运行Java字节码文件。
 2. JVM的三大核心功能是什么？
-- JVM 包含内存管理、解释执行虚拟机指令、即时编译三大功能。
+- JVM 包含 
+- 理、解释执行虚拟机指令、即时编译三大功能。
 3. 常见的JVM虚拟机有哪些？
 - 常见的JVM有HotSpot、GraalVM、OpenJ9等，另外DragonWell龙井JDK也提供了一款功能增强版的JVM。其中使用最广泛的是HotSpot虚拟机。
