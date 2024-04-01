@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 
 /**
- * 打破双亲委派机制 - 自定义类加载器
+ * 打破双亲委派机制(方法一) - 自定义类加载器
+ * 此处直接从写了loadClass方法，在其中直接调用defineClass来直接加载类，
+ * 实际使用中应当重写findClass方法，通过它来寻找要加载的类文件数据
  */
 public class CustomizedClassLoader extends ClassLoader {
 

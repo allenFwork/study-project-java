@@ -5,7 +5,7 @@
 //import java.sql.*;
 //
 ///**
-// * 打破双亲委派机制 - JDBC案例
+// * 打破双亲委派机制(方法二) - JDBC案例
 // */
 //
 //public class JDBCExample {

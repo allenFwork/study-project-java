@@ -13,6 +13,7 @@
     <name>jvm底层学习</name>
     <modules>
         <module>jvm-basic-demo</module>
+        <module>jvm-classloader-demo</module>
     </modules>
 
     <properties>
