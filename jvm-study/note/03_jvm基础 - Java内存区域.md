@@ -1,102 +1,313 @@
-![Image 1](images/image-1/image_1.png)
-![Image 2](images/image-1/image_2.png)
-![Image 3](images/image-1/image_3.png)
-![Image 4](images/image-1/image_4.png)
-![Image 5](images/image-1/image_5.png)
-![Image 6](images/image-1/image_6.png)
-![Image 7](images/image-1/image_7.png)
-![Image 8](images/image-1/image_8.png)
-![Image 9](images/image-1/image_9.png)
-![Image 10](images/image-1/image_10.png)
-![Image 11](images/image-1/image_11.png)
-![Image 12](images/image-1/image_12.png)
-![Image 13](images/image-1/image_13.png)
-![Image 14](images/image-1/image_14.png)
-![Image 15](images/image-1/image_15.png)
-![Image 16](images/image-1/image_16.png)
-![Image 17](images/image-1/image_17.png)
-![Image 18](images/image-1/image_18.png)
-![Image 19](images/image-1/image_19.png)
-![Image 20](images/image-1/image_20.png)
-![Image 21](images/image-1/image_21.png)
-![Image 22](images/image-1/image_22.png)
-![Image 23](images/image-1/image_23.png)
-![Image 24](images/image-1/image_24.png)
-![Image 25](images/image-1/image_25.png)
-![Image 26](images/image-1/image_26.png)
-![Image 27](images/image-1/image_27.png)
-![Image 28](images/image-1/image_28.png)
-![Image 29](images/image-1/image_29.png)
-![Image 30](images/image-1/image_30.png)
-![Image 31](images/image-1/image_31.png)
-![Image 32](images/image-1/image_32.png)
-![Image 33](images/image-1/image_33.png)
-![Image 34](images/image-1/image_34.png)
-![Image 35](images/image-1/image_35.png)
-![Image 36](images/image-1/image_36.png)
-![Image 37](images/image-1/image_37.png)
-![Image 38](images/image-1/image_38.png)
-![Image 39](images/image-1/image_39.png)
-![Image 40](images/image-1/image_40.png)
-![Image 41](images/image-1/image_41.png)
-![Image 42](images/image-1/image_42.png)
-![Image 43](images/image-1/image_43.png)
-![Image 44](images/image-1/image_44.png)
-![Image 45](images/image-1/image_45.png)
-![Image 46](images/image-1/image_46.png)
-![Image 47](images/image-1/image_47.png)
-![Image 48](images/image-1/image_48.png)
-![Image 49](images/image-1/image_49.png)
-![Image 50](images/image-1/image_50.png)
-![Image 51](images/image-1/image_51.png)
-![Image 52](images/image-1/image_52.png)
-![Image 53](images/image-1/image_53.png)
-![Image 54](images/image-1/image_54.png)
-![Image 55](images/image-1/image_55.png)
-![Image 56](images/image-1/image_56.png)
-![Image 57](images/image-1/image_57.png)
-![Image 58](images/image-1/image_58.png)
-![Image 59](images/image-1/image_59.png)
-![Image 60](images/image-1/image_60.png)
-![Image 61](images/image-1/image_61.png)
-![Image 62](images/image-1/image_62.png)
-![Image 63](images/image-1/image_63.png)
-![Image 64](images/image-1/image_64.png)
-![Image 65](images/image-1/image_65.png)
-![Image 66](images/image-1/image_66.png)
-![Image 67](images/image-1/image_67.png)
-![Image 68](images/image-1/image_68.png)
-![Image 69](images/image-1/image_69.png)
-![Image 70](images/image-1/image_70.png)
-![Image 71](images/image-1/image_71.png)
-![Image 72](images/image-1/image_72.png)
-![Image 73](images/image-1/image_73.png)
-![Image 74](images/image-1/image_74.png)
-![Image 75](images/image-1/image_75.png)
-![Image 76](images/image-1/image_76.png)
-![Image 77](images/image-1/image_77.png)
-![Image 78](images/image-1/image_78.png)
-![Image 79](images/image-1/image_79.png)
-![Image 80](images/image-1/image_80.png)
-![Image 81](images/image-1/image_81.png)
-![Image 82](images/image-1/image_82.png)
-![Image 83](images/image-1/image_83.png)
-![Image 84](images/image-1/image_84.png)
-![Image 85](images/image-1/image_85.png)
-![Image 86](images/image-1/image_86.png)
-![Image 87](images/image-1/image_87.png)
-![Image 88](images/image-1/image_88.png)
-![Image 89](images/image-1/image_89.png)
-![Image 90](images/image-1/image_90.png)
-![Image 91](images/image-1/image_91.png)
-![Image 92](images/image-1/image_92.png)
-![Image 93](images/image-1/image_93.png)
-![Image 94](images/image-1/image_94.png)
-![Image 95](images/image-1/image_95.png)
-![Image 96](images/image-1/image_96.png)
-![Image 97](images/image-1/image_97.png)
-![Image 98](images/image-1/image_98.png)
-![Image 99](images/image-1/image_99.png)
-![Image 100](images/image-1/image_100.png)
-![Image 101](images/image-1/image_101.png)
-![Image 102](images/image-1/image_102.png)
+# JVM运行时数据区
+
+<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-11-30-image.png" title="" alt="" width="888">
+
+## 0. 概述
+
+- Java虚拟机在运行Java程序过程中管理的内存区域，称之为<font color=red>运行时数据区</font>。
+
+- 《Java虚拟机规范》中规定了每一部分的作用。
+
+- 运行时数据区划分为 线程共享的 和 线程不共享的的区域：
+  
+  <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-14-00-image.png" alt="" width="870">
+1. 面试题
+   
+   1. Java的内存分成哪几部分？详细介绍一下吧
+   
+   2. Java内存中哪些部分会内存溢出？
+   
+   3. JDK7和8中在内存结构上的区别是什么？
+
+2. 工作中的实际问题 – 内存溢出
+   
+   <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-18-04-image.png" alt="" width="759">
+   
+   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-18-40-image.png" title="" alt="" width="755">
+
+3. 内存调优学习路线
+   
+   1. 了解运行时内存结构
+   - 了解JVM运行过程中每一部分的内存结构，以及哪些部分容易出现内存溢出
+   2. 掌握内存问题的产生原因
+   - 学习代码中常见的几种内存泄漏、性能问题的常见原因
+   3. 掌握内存调优的基本方法
+   - 学习内存泄漏、性能问题 等常见JVM问题的常规解决方案
+
+## 1. 程序计数器
+
+- 程序计数器（Program Counter Register）也叫PC寄存器，每个线程会通过程序计数器记录当前要执行的的字节码指令的地址。
+
+<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-31-41-image.png" title="" alt="" width="742">
+
+- 一个程序计数器的具体案例：
+  
+  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-33-58-image.png" title="" alt="" width="833">
+
+- 在加载阶段，虚拟机将字节码文件中的指令读取到内存之后，会将原文件中的偏移量转换成内存地址。每一条字节码指令都会拥有一个内存地址
+  
+  <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-35-07-image.png" alt="" width="845">
+
+- 在代码执行过程中，程序计数器会记录下一行字节码指令的地址。执行完当前指令之后，虚拟机的执行引擎根据程序计数器执行下一行指令。
+
+- 程序计数器可以控制程序指令的进行，实现分支、跳转、异常等逻辑。
+
+- 在多线程执行情况下，Java虚拟机需要通过程序计数器记录CPU切换前解释执行到那一句指令并继续解释运行。
+  
+  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-37-44-image.png" title="" alt="" width="831">
+
+- 程序计数器在运行中会出现内存溢出吗？
+  
+  - <mark>内存溢出</mark>指的是程序在使用某一块内存区域时，存放的数据需要占用的内存大小超过了虚拟机能提供的内存上限。溢出的。
+  
+  - 因为每个线程只存储一个固定长度的内存地址，程序计数器是不会发生内存
+  
+  - 程序员无需对程序计数器做任何处理。
+
+# 2. 栈
+
+Java虚拟机栈 和 本地方法栈，一个存放java编写的方法数据，一个存放native修饰的方法数据，HotSpot虚拟机中认为都是方法，统一存在栈中
+
+## 2.1 Java虚拟机栈
+
+Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管理方法调用中的基本数据，先进后出（First In Last Out），每一个方法的调用都使用一个栈帧(Stack Frame) 来保存。
+
+<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-41-43-image.png" title="" alt="" width="981">
+
+案例：通过Idea的debug工具查看栈帧的内容
+
+<img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-42-28-image.png" alt="" width="933">
+
+- Java虚拟机栈随着线程的创建而创建，而回收则会在线程的销毁时进行。由于方法可能会在不同线程中执行，每个线程都会包含一个自己的虚拟机栈
+  
+  <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-46-36-image.png" alt="" width="669">
+
+<img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-48-32-image.png" alt="" width="889">
+
+### 2.1.1 局部变量表
+
+- 局部变量表的作用是在方法执行过程中，存放所有的局部变量。编译成字节码文件时，就可以确定局部变量表的内容。
+  
+  <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-51-12-image.png" alt="" width="1034">
+  
+  - 局部变量表的第一个变量，通过偏移量为 0 和 1 的两条指令完成初始化，起始PC 和 长度 确定该变量的生效范围，有安全校验作用；
+  
+  - 起始PC值为2：表示该变量的使用范围必须从偏移量为2的那行指令开始；
+  
+  - 长度值为3：表示有3条指令可以使用该变量，即偏移量为2、3、4 的三条指令
+
+- 栈帧中的局部变量表是一个数组，数组中每一个位置称之为槽(slot) ，long和double类型占用两个槽，其他类型占用一个槽。
+  
+  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-23-07-image.png" title="" alt="" width="1035">
+  
+  - i 变量是int类型的，存储只占用一个槽，其对应的的起始下标是0，所以局部量表中该变量的序号为0
+  
+  - j 变量是long类型的，存储需要占用两个槽，其对应的起始下标是1，所以局部量表中该变量的序号为1，但是它占用了下标1和2的两个位置。
+
+- 实例方法中的序号为0的位置存放的是this，指的是当前调用方法的对象，运行时会在内存中存放实例对象的地址。
+  
+  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-27-03-image.png" title="" alt="" width="1035">
+
+- 方法参数也会保存在局部变量表中，其顺序与方法中参数定义的顺序一致。
+
+- 局部变量表保存的内容有：实例方法的this对象，方法的参数，方法体中声明的局部变量
+  
+  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-28-18-image.png" title="" alt="" width="1026">
+
+### 练习题：以下代码的局部变量表中会占用几个槽？
+
+<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-33-02-image.png" title="" alt="" width="1041">
+
+- 上述代码，局部变量最大槽数是 6
+
+- 为了节省空间，**局部变量表中的槽是可以复用的**，一旦某个局部变量不再生效，当前槽就可以再次被使用。
+
+- 字节码指令执行逻辑：
+  
+  1. 将 this、k、m 放入槽的0、1、2三个位置，占用三个槽的位置
+  
+  2. 执行字节码偏移量为0至3的命令：将 a 和 b 放入槽的3和4位置上，占用两个位置
+  
+  3. 执行字节码偏移量为5和6的命令：将 c 放入槽的4位置上，占用一个值（已经开始复用了，a 等于被删除了）
+  
+  4. 执行字节码偏移量为7至10的命令：将 i 和 j 放入槽的3和4位置上，占用三个位置（因为j是long类型的，占用两个槽）
+  
+  5. 命令执行完成后，统计发现只是用了6个空间的槽
+
+### 2.1.2 操作数栈
+
+- 操作数栈是栈帧中虚拟机在执行指令过程中用来存放中间数据的一块区域。他是一种栈式的数据结构，如果一条指令将一个值压入操作数栈，则后面的指令可以弹出并使用该值。
+
+- 在 <font color=red>编译期</font> 就可以确定操作数栈的最大深度，从而在执行时正确的分配内存大小。
+  
+  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-45-38-image.png" title="" alt="" width="960">
+
+- 操作数栈的深度是2，通过字节码指令执行流程需要的临时空间确定
+
+### 2.1.3 帧数据
+
+- 当前类的字节码指令引用了其他类的属性或者方法时，需要将符号引用（编号）转换成对应的<font color=red>运行时常量池中的内存地址</font>。动态链接就保存了编号到运行时常量池的内存地址的映射关系。
+  
+  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-52-25-image.png" title="" alt="" width="981">
+  
+  - 指令 `getstatic #10` 表示获取某个类的静态变量，#10 就是那个类
+  
+  - 理论上在 连接的解析 阶段，会将 #10 替换为该变量的内存地址，但是因为该变量不是在此类中，无法直接确定地址，所以不会替换
+  
+  - 会通过 #10 动态链接到 运行时常量池中的 该变量
+
+- 方法出口指的是方法在正确或者异常结束时，当前栈帧会被弹出，同时程序计数器应该指向上一个栈帧中的下一条指令的地址。所以在当前栈帧中，需要存储此方法出口的地址。
+
+- 异常表存放的是代码中异常的处理信息，包含了异常捕获的生效范围，以及异常发生后跳转到的字节码指令位置。
+  
+  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-17-03-04-image.png" title="" alt="" width="1019">
+  
+  - 偏移量7对应的指令 `astore_1` 表示将异常信息存储到局部变量表的1的位置
+
+### 2.1.4 栈内存溢出
+
+- Java虚拟机栈如果栈帧过多，占用内存超过栈内存可以分配的最大大小就会出现内存溢出。
+
+- Java虚拟机栈内存溢出时会出现StackOverflowError的错误
+
+- Java虚拟机栈 – 默认大小
+  
+  - 如果我们不指定栈的大小，JVM 将创建一个具有默认大小的栈。大小取决于操作系统和计算机的体系结构。
+    
+    <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-17-06-55-image.png" alt="" width="622">
+
+- 栈内存溢出模拟
+  
+  - 需求：使用递归让方法调用自身，但是不设置退出条件。定义调用次数的变量，每一次调用让变量加1。查看错误发生时总调用的次数。
+  
+  - 代码：
+    
+    ```java
+    public static int count = 0;
+    
+    // 递归调用自己，测试虚拟机栈的大小
+    public static void recursion() {
+        System.out.println(++count);
+        recursion();
+    }
+    ```
+
+- 要修改Java虚拟机栈的大小，可以使用虚拟机参数 -Xss 。
+  
+  - 语法：-Xss栈大小
+  
+  - 单位：字节（默认，必须是 1024 的倍数）、k或者K(KB)、m或者M(MB)、g或者G(GB)
+
+### 2.1.5 注意事项
+
+1. 与-Xss类似，也可以使用 -XX:ThreadStackSize 调整标志来配置堆栈大小。
+   
+   - 格式为： -XX:ThreadStackSize=1024
+
+2. HotSpot JVM对栈大小的最大值和最小值有要求，比如测试如下两个参数:
+   
+   - -Xss1k
+   
+   - -Xss1025m
+- Windows（64位）下的 JDK8 测试最小值为180k，最大值为1024m。
+3. 局部变量过多、操作数栈深度过大也会影响栈内存的大小。
+
+<font color=red>一般情况下，工作中即便使用了递归进行操作，栈的深度最多也只能到几百,不会出现栈的溢出。所以此参数可以手动指定为-Xss256k节省内存</font>。
+
+## 2.2 本地方法栈
+
+- Java虚拟机栈存储了Java方法调用时的栈帧，而本地方法栈存储的是native本地方法的栈帧。
+
+- 在Hotspot虚拟机中，Java虚拟机栈和本地方法栈实现上使用了同一个栈空间。本地方法栈会在栈内
+
+- 存上生成一个栈帧，临时保存方法的参数同时方便出现异常时也把本地方法的栈信息打印出来。
+
+# 3. Java堆
+
+- 一般Java程序中堆内存是空间最大的一块内存区域，创建出来的对象都存在于堆上。
+
+- 栈的局部变量表中，可以存放堆上对象的引用。静态变量也可以存放堆对象的引用，通过静态变量就可以实现对象在线程之间共享。
+  
+  <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-18-02-42-image.png" alt="" width="992">
+
+## 3.1 模拟堆区的溢出
+
+需求：
+
+- 通过new关键字不停创建对象，放入集合中，模拟堆内存的溢出，观察堆溢出之后的异常信息。
+
+现象：
+
+- 堆内存大小是有上限的，当对象一直向堆中放入对象达到上限之后，就会抛出OutOfMemory错误。
+  
+  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-18-03-59-image.png" title="" alt="" width="684">
+
+堆空间有三个需要关注的值，used total max。
+
+used指的是当前已使用的堆内存，total是java虚拟机已经分配的可用堆内存，max是java虚拟机可以分配的最大堆内存。
+
+## 3.2 arthas中堆内存相关的功能
+
+- 堆内存used total max三个值可以通过dashboard命令看到。
+
+- 手动指定刷新频率（不指定默认5秒一次）：dashboard –i 刷新频率(毫秒)
+  
+  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-18-06-16-image.png" title="" alt="" width="928">
+
+- 随着堆中的对象增多，当total可以使用的内存即将不足时，java虚拟机会继续分配内存给堆。
+
+- 如果堆内存不足，java虚拟机就会不断的分配内存，total值会变大。total最多只能与max相等。
+
+问题：是不是当 used = max = total 的时候，堆内存就溢出了呢？
+
+- 不是，堆内存溢出的判断条件比较复杂，在下一章《垃圾回收器》中会详细介绍。
+
+如果不设置任何的虚拟机参数，max默认是系统内存的1/4，total默认是系统内存的1/64。在实际应用中一般都需要设置total和max的值。
+
+Oracle官方文档：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html
+
+## 3.3 设置大小
+
+- 要修改堆的大小，可以使用虚拟机参数 –Xmx（max最大值）和-Xms (初始的total)。
+
+- 语法：`-Xmx值 -Xms值`
+
+- 单位：字节（默认，必须是 1024 的倍数）、k或者K(KB)、m或者M(MB)、g或者G(GB)
+
+- 限制：Xmx必须大于 2 MB，Xms必须大于1MB
+
+问题：为什么arthas中显示的heap堆大小与设置的值不一样呢？
+
+- arthas中的heap堆内存使用了JMX技术中内存获取方式，这种方式与垃圾回收器有关，计算的是可以分配对象的内存，而不是整个内存。
+
+## 3.4 建议
+
+- Java服务端程序开发时，<font color=red>建议将-Xmx和-Xms设置为相同的值</font>，这样在程序启动之后可使用的总内存就是最大内存，而无需向java虚拟机再次申请，减少了申请并分配内存时间上的开销，同时也不会出现内存过剩之后堆收缩的情况。
+
+- -Xmx具体设置的值与实际的应用程序运行环境有关，在《实战篇》中会给出设置方案。
+
+# 4. 方法区（Method Area）
+
+方法区是存放基础信息的位置，线程共享，主要包含三部分内容：
+
+- 类的元信息：保存了所有类的基本信息
+
+- 运行时常量池：保存了字节码文件中的常量池内容
+
+- 字符串常量池：保存了字符串常量
+
+方法区是用来存储每个类的基本信息（元信息），一般称之为InstanceKlass对象。在类的加载阶段完成。
+
+<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-18-15-29-image.png" title="" alt="" width="798">
+
+方法区除了存储类的元信息之外，还存放了运行时常量池，常量池中存放的是字节码中的常量池内容。
+
+字节码文件中通过编号查表的方式找到常量，这种常量池称为静态常量池。当常量池加载到内存中之后，可以通过内存地址快速的定位到常量池中的内容，这种常量池称为运行时常量池。
+
+![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-18-18-46-image.png)
+
+
+
+
+
+# 5. 直接内存
