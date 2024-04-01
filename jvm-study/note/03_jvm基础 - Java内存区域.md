@@ -1,6 +1,6 @@
 # JVM运行时数据区
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-11-30-image.png" title="" alt="" width="888">
+<img src="images\image-1.3\2024-04-01-14-11-30-image.png" title="" alt="" width="888">
 
 ## 0. 概述
 
@@ -10,7 +10,7 @@
 
 - 运行时数据区划分为 线程共享的 和 线程不共享的的区域：
   
-  <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-14-00-image.png" alt="" width="870">
+  <img title="" src="images\image-1.3\2024-04-01-14-14-00-image.png" alt="" width="870">
 1. 面试题
    
    1. Java的内存分成哪几部分？详细介绍一下吧
@@ -21,9 +21,9 @@
 
 2. 工作中的实际问题 – 内存溢出
    
-   <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-18-04-image.png" alt="" width="759">
+   <img title="" src="images\image-1.3\2024-04-01-14-18-04-image.png" alt="" width="759">
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-18-40-image.png" title="" alt="" width="755">
+   <img src="images\image-1.3\2024-04-01-14-18-40-image.png" title="" alt="" width="755">
 
 3. 内存调优学习路线
    
@@ -38,15 +38,15 @@
 
 - 程序计数器（Program Counter Register）也叫PC寄存器，每个线程会通过程序计数器记录当前要执行的的字节码指令的地址。
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-31-41-image.png" title="" alt="" width="742">
+<img src="images\image-1.3\2024-04-01-14-31-41-image.png" title="" alt="" width="742">
 
 - 一个程序计数器的具体案例：
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-33-58-image.png" title="" alt="" width="833">
+  <img src="images\image-1.3\2024-04-01-14-33-58-image.png" title="" alt="" width="833">
 
 - 在加载阶段，虚拟机将字节码文件中的指令读取到内存之后，会将原文件中的偏移量转换成内存地址。每一条字节码指令都会拥有一个内存地址
   
-  <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-35-07-image.png" alt="" width="845">
+  <img title="" src="images\image-1.3\2024-04-01-14-35-07-image.png" alt="" width="845">
 
 - 在代码执行过程中，程序计数器会记录下一行字节码指令的地址。执行完当前指令之后，虚拟机的执行引擎根据程序计数器执行下一行指令。
 
@@ -54,7 +54,7 @@
 
 - 在多线程执行情况下，Java虚拟机需要通过程序计数器记录CPU切换前解释执行到那一句指令并继续解释运行。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-37-44-image.png" title="" alt="" width="831">
+  <img src="images\image-1.3\2024-04-01-14-37-44-image.png" title="" alt="" width="831">
 
 - 程序计数器在运行中会出现内存溢出吗？
   
@@ -72,23 +72,23 @@ Java虚拟机栈 和 本地方法栈，一个存放java编写的方法数据，�
 
 Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管理方法调用中的基本数据，先进后出（First In Last Out），每一个方法的调用都使用一个栈帧(Stack Frame) 来保存。
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-41-43-image.png" title="" alt="" width="981">
+<img src="images\image-1.3\2024-04-01-14-41-43-image.png" title="" alt="" width="981">
 
 案例：通过Idea的debug工具查看栈帧的内容
 
-<img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-42-28-image.png" alt="" width="933">
+<img title="" src="images\image-1.3\2024-04-01-14-42-28-image.png" alt="" width="933">
 
 - Java虚拟机栈随着线程的创建而创建，而回收则会在线程的销毁时进行。由于方法可能会在不同线程中执行，每个线程都会包含一个自己的虚拟机栈
   
-  <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-46-36-image.png" alt="" width="669">
+  <img title="" src="images\image-1.3\2024-04-01-14-46-36-image.png" alt="" width="669">
 
-<img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-48-32-image.png" alt="" width="889">
+<img title="" src="images\image-1.3\2024-04-01-14-48-32-image.png" alt="" width="889">
 
 ### 2.1.1 局部变量表
 
 - 局部变量表的作用是在方法执行过程中，存放所有的局部变量。编译成字节码文件时，就可以确定局部变量表的内容。
   
-  <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-14-51-12-image.png" alt="" width="1034">
+  <img title="" src="images\image-1.3\2024-04-01-14-51-12-image.png" alt="" width="1034">
   
   - 局部变量表的第一个变量，通过偏移量为 0 和 1 的两条指令完成初始化，起始PC 和 长度 确定该变量的生效范围，有安全校验作用；
   
@@ -98,7 +98,7 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
 
 - 栈帧中的局部变量表是一个数组，数组中每一个位置称之为槽(slot) ，long和double类型占用两个槽，其他类型占用一个槽。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-23-07-image.png" title="" alt="" width="1035">
+  <img src="images\image-1.3\2024-04-01-16-23-07-image.png" title="" alt="" width="1035">
   
   - i 变量是int类型的，存储只占用一个槽，其对应的的起始下标是0，所以局部量表中该变量的序号为0
   
@@ -106,17 +106,17 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
 
 - 实例方法中的序号为0的位置存放的是this，指的是当前调用方法的对象，运行时会在内存中存放实例对象的地址。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-27-03-image.png" title="" alt="" width="1035">
+  <img src="images\image-1.3\2024-04-01-16-27-03-image.png" title="" alt="" width="1035">
 
 - 方法参数也会保存在局部变量表中，其顺序与方法中参数定义的顺序一致。
 
 - 局部变量表保存的内容有：实例方法的this对象，方法的参数，方法体中声明的局部变量
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-28-18-image.png" title="" alt="" width="1026">
+  <img src="images\image-1.3\2024-04-01-16-28-18-image.png" title="" alt="" width="1026">
 
 ### 练习题：以下代码的局部变量表中会占用几个槽？
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-33-02-image.png" title="" alt="" width="1041">
+<img src="images\image-1.3\2024-04-01-16-33-02-image.png" title="" alt="" width="1041">
 
 - 上述代码，局部变量最大槽数是 6
 
@@ -140,7 +140,7 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
 
 - 在 <font color=red>编译期</font> 就可以确定操作数栈的最大深度，从而在执行时正确的分配内存大小。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-45-38-image.png" title="" alt="" width="960">
+  <img src="images\image-1.3\2024-04-01-16-45-38-image.png" title="" alt="" width="960">
 
 - 操作数栈的深度是2，通过字节码指令执行流程需要的临时空间确定
 
@@ -148,7 +148,7 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
 
 - 当前类的字节码指令引用了其他类的属性或者方法时，需要将符号引用（编号）转换成对应的<font color=red>运行时常量池中的内存地址</font>。动态链接就保存了编号到运行时常量池的内存地址的映射关系。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-16-52-25-image.png" title="" alt="" width="981">
+  <img src="images\image-1.3\2024-04-01-16-52-25-image.png" title="" alt="" width="981">
   
   - 指令 `getstatic #10` 表示获取某个类的静态变量，#10 就是那个类
   
@@ -160,7 +160,7 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
 
 - 异常表存放的是代码中异常的处理信息，包含了异常捕获的生效范围，以及异常发生后跳转到的字节码指令位置。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-17-03-04-image.png" title="" alt="" width="1019">
+  <img src="images\image-1.3\2024-04-01-17-03-04-image.png" title="" alt="" width="1019">
   
   - 偏移量7对应的指令 `astore_1` 表示将异常信息存储到局部变量表的1的位置
 
@@ -174,7 +174,7 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
   
   - 如果我们不指定栈的大小，JVM 将创建一个具有默认大小的栈。大小取决于操作系统和计算机的体系结构。
     
-    <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-17-06-55-image.png" alt="" width="622">
+    <img title="" src="images\image-1.3\2024-04-01-17-06-55-image.png" alt="" width="622">
 
 - 栈内存溢出模拟
   
@@ -228,7 +228,7 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
 
 - 栈的局部变量表中，可以存放堆上对象的引用。静态变量也可以存放堆对象的引用，通过静态变量就可以实现对象在线程之间共享。
   
-  <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-18-02-42-image.png" alt="" width="992">
+  <img title="" src="images\image-1.3\2024-04-01-18-02-42-image.png" alt="" width="992">
 
 ## 3.1 模拟堆区的溢出
 
@@ -240,7 +240,7 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
 
 - 堆内存大小是有上限的，当对象一直向堆中放入对象达到上限之后，就会抛出OutOfMemory错误。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-18-03-59-image.png" title="" alt="" width="684">
+  <img src="images\image-1.3\2024-04-01-18-03-59-image.png" title="" alt="" width="684">
 
 堆空间有三个需要关注的值，used total max。
 
@@ -252,7 +252,7 @@ used指的是当前已使用的堆内存，total是java虚拟机已经分配的�
 
 - 手动指定刷新频率（不指定默认5秒一次）：dashboard –i 刷新频率(毫秒)
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-18-06-16-image.png" title="" alt="" width="928">
+  <img src="images\image-1.3\2024-04-01-18-06-16-image.png" title="" alt="" width="928">
 
 - 随着堆中的对象增多，当total可以使用的内存即将不足时，java虚拟机会继续分配内存给堆。
 
@@ -298,16 +298,185 @@ Oracle官方文档：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/
 
 方法区是用来存储每个类的基本信息（元信息），一般称之为InstanceKlass对象。在类的加载阶段完成。
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-18-15-29-image.png" title="" alt="" width="798">
+<img src="images\image-1.3\2024-04-01-18-15-29-image.png" title="" alt="" width="798">
 
 方法区除了存储类的元信息之外，还存放了运行时常量池，常量池中存放的是字节码中的常量池内容。
 
-字节码文件中通过编号查表的方式找到常量，这种常量池称为静态常量池。当常量池加载到内存中之后，可以通过内存地址快速的定位到常量池中的内容，这种常量池称为运行时常量池。
+字节码文件中通过编号查表的方式找到常量，这种常量池称为<font color=red>静态常量池</font>。当常量池加载到内存中之后，可以通过内存地址快速的定位到常量池中的内容，这种常量池称为<font color=red>运行时常量池</font>。
 
 ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-18-18-46-image.png)
 
+方法区是《Java虚拟机规范》中设计的虚拟概念，每款Java虚拟机在实现上都各不相同。Hotspot设计如下：
 
+- <font color=red>JDK7及之前的版本</font>将方法区存放在<font color=red>堆区域中的永久代空间</font>，堆的大小由虚拟机参数来控制。
 
+- <font color=red>JDK8及之后的版本</font>将方法区存放在<font color=red>元空间</font>中，元空间位于操作系统维护的直接内存中，默认情况下只要不超过操作系统承受的上限，可以一直分配。
 
+![](images\image-1.3\2024-04-01-21-08-02-image.png)
+
+## arthas中查看方法区
+
+- 使用memory打印出内存情况，JDK7及之前的版本查看ps_perm_gen属性。
+
+- JDK8及之后的版本查看metaspace属性。
+
+![](images\image-1.3\2024-04-01-21-09-41-image.png)
+
+## 案例：模拟方法区的溢出
+
+需求：
+
+- 通过ByteBuddy框架，动态生成字节码数据，加载到内存中。通过死循环不停地加载到方法区，观察方法区是否会出现内存溢出的情况。
+
+- 分别在JDK7和JDK8上运行上述代码。
+
+### ByteBuddy框架的基本使用方法
+
+ByteBuddy是一个基于Java的开源库，用于生成和操作Java字节码。
+
+1. 引入依赖
+   
+   ```xml
+   <dependency>
+       <groupId>net.bytebuddy</groupId>
+       <artifactId>byte-buddy</artifactId>
+       <version>1.12.23</version>
+   </dependency>
+   ```
+
+2. 创建ClassWriter对象
+   
+   ```java
+   ClassWriter classWriter = new ClassWriter(0);
+   ```
+
+3. 调用visit方法，创建字节码数据
+   
+   ```java
+   classWriter.visit(Opcodes.V1_8, Opcodes.ACC_PUBLIC, name, null, "java/lang/Object", null);
+   byte[] bytes = classWriter.toByteArray();
+   ```
+
+实验发现，JDK7上运行大概十几万次，就出现了错误。在JDK8上运行百万次，程序都没有出现任何错误，但是内存会直线升高。这说明JDK7和JDK8在方法区的存放上，采用了不同的设计
+
+- JDK7将方法区存放在<font color=red>堆区域中的永久代空间</font>，堆的大小由虚拟机参数 <font color=red>-XX:MaxPermSize=值 </font>来控制
+
+- JDK8将方法区存放在<font color=red>元空间</font>中，元空间位于操作系统维护的直接内存中，默认情况下只要不超过操作系统承受的上限，可以一直分配。
+  
+  可以使用<font color=red> -XX:MaxMetaspaceSize=值 </font>将元空间最大大小进行限制。
+
+## 字符串常量池
+
+方法区中除了类的元信息、运行时常量池之外，还有一块区域叫字符串常量池 (**StringTable**)。
+
+字符串常量池存储在代码中定义的常量字符串内容。比如“123” 这个123就会被放入字符串常量池。
+
+![](images\image-1.3\2024-04-01-21-29-25-image.png)
+
+字符串常量池和运行时常量池有什么关系？
+
+早期设计时，字符串常量池是属于运行时常量池的一部分，他们存储的位置也是一致的。后续做出了调整，将字符串常量池和运行时常量池做了拆分.
+
+![](images\image-1.3\2024-04-01-21-41-38-image.png)
+
+练习题1：通过字节码指令如下代码的运行结果
+
+```java
+public static void main(String[] args) {
+    String a = "1";
+    String b = "2";
+    String c = "12";
+    String d = a + b;
+    System.out.println(c == d); // false
+}
+```
+
+![](images\image-1.3\2024-04-01-22-09-43-image.png)
+
+- 变量连接使用StringBuilder
+
+练习题2：通过字节码指令如下代码的运行结果
+
+```java
+public static void main(String[] args) {
+    String a = "1";
+    String b = "2";
+    String c = "12";
+    String d = "1" + "2";
+    System.out.println(c == d); // true
+}
+```
+
+- 常量，编译阶段直接连接
+
+### String 的 intern方法
+
+需求：
+
+- String.intern()方法是可以手动将字符串放入字符串常量池中，分别在 JDK6 和 JDK8 下执行代码
+
+- JDK6 中结果是 false false，JDK8 中结果是 true false
+  
+  ```java
+  public static void main(String[] args) {
+      String s1 = new StringBuilder().append("think").append("123").toString();
+      System.out.println(s1.intern() == s1);
+  
+      String s2 = new StringBuilder().append("ja").append("va").toString();
+      System.out.println(s2.intern() == s2);
+  }
+  ```
+
+分析：
+
+JDK6版本中 `intern()` 方法会把第一次遇到的字符串实例复制到永久代的字符串常量池中，返回的也是永久代里面这个字符串实例的引用。JVM启动时就会把java加入到常量池中。
+
+JDK7及之后版本中由于字符串常量池在堆上，所以 `intern()` 方法会把第一次遇到的字符串的引用放入字符串常量池。
+
+### 静态变量的存储
+
+运行时数据区都学完了，静态变量存储在哪里呢？
+
+- JDK6及之前的版本中，静态变量是存放在方法区中的，也就是永久代。
+
+- JDK7及之后的版本中，静态变量是存放在堆中的Class对象中，脱离了永久代。具体源码可参考虚拟机源码：BytecodeInterpreter针对putstatic指令的处理。
 
 # 5. 直接内存
+
+直接内存（Direct Memory）并不在《Java虚拟机规范》中存在，所以并不属于Java运行时的内存区域。
+
+在 JDK 1.4 中引入了NIO 机制，使用了直接内存，主要为了解决以下两个问题:
+
+1、Java堆中的对象如果不再使用要回收，回收时会影响对象的创建和使用。
+
+2、IO操作比如读文件，需要先把文件读入直接内存（缓冲区）再把数据复制到Java堆中。
+
+现在直接放入直接内存即可，同时Java堆上维护直接内存的引用，减少了数据复制的开销。写文件也是类似的思路。
+
+![](images\image-1.3\2024-04-01-22-43-56-image.png)
+
+- 要创建直接内存上的数据，可以使用ByteBuffer。
+
+- 语法：ByteBufferdirectBuffer= ByteBuffer.allocateDirect(size);
+
+- 注意事项：arthas的memory命令可以查看直接内存大小，属性名direct。
+
+![](images\image-1.3\2024-04-01-22-44-37-image.png)
+
+- 如果需要手动调整直接内存的大小，可以使用-XX:MaxDirectMemorySize=大小
+  
+  单位k或K表示千字节，m或M表示兆字节，g或G表示千兆字节。默认不设置该参数情况下，JVM自动选择最大分配的大小。
+  
+  以下示例，以不同的单位说明如何将直接内存大小设置为1024 KB：
+  
+  - -XX:MaxDirectMemorySize=1m
+  
+  - -XX:MaxDirectMemorySize=1024k
+  
+  - -XX:MaxDirectMemorySize=1048576
+
+# 6. 总结
+
+1、运行时数据区分成哪几部分，每一部分的作用是什么？
+
+2、不同JDK版本之间运行时数据区域的区别是什么？
