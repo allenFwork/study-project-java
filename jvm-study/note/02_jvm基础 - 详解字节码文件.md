@@ -351,11 +351,11 @@ k += 1;      // 解释为执行 1 条指令
 
 - 作为后续大量知识点的基础
   
-  <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-14-51-42-image.png" title="" alt="" data-align="center">
+  <img src="images\images-1.X\2024-03-30-14-51-42-image.png" title="" alt="" data-align="center">
 
 ## 3.1 生命周期概述
 
-<img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-15-20-58-image.png" alt="" data-align="center">
+<img title="" src="images\images-1.X\2024-03-30-15-20-58-image.png" alt="" data-align="center">
 
 ## 3.2 加载阶段
 
@@ -364,19 +364,19 @@ k += 1;      // 解释为执行 1 条指令
 1. 加载(Loading)阶段 第一步是类加载器根据类的全限定名通过不同的渠道以二进制流的方式获取字节码信息。
 - 程序员可以使用Java代码拓展的不同的渠道。
 
-<img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-14-57-15-image.png" alt="" data-align="inline">
+<img title="" src="images\images-1.X\2024-03-30-14-57-15-image.png" alt="" data-align="inline">
 
 2. 类加载器在加载完类之后，Java虚拟机会将字节码中的信息保存到方法区中。
 - <font color=red>生成一个InstanceKlass对象，保存类的所有信息，里边还包含实现特定功能比如多态的信息。</font>
 
 - 方法区是一个抽象的概念，老版本jdk将方法区放在老年代中，新版本jdk将方法区放在元空间中
   
-  ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-30-15-01-40-image.png)
+  ![](images\images-1.X\2024-03-30-15-01-40-image.png)
 3. 同时，Java虚拟机还会在堆中生成一份与方法区中数据类似的java.lang.Class对象。
 - <font color=red>作用是在Java代码中去获取类的信息，以及存储静态字段的数据（JDK8及之后）。</font>
   
-    ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-30-15-15-50-image.png)
-    ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-30-15-15-21-image.png)
+    ![](images\images-1.X\2024-03-30-15-15-50-image.png)
+    ![](images\images-1.X\2024-03-30-15-15-21-image.png)
 
 - InstanceKclass是由C++语言开发的，java程序员无法直接访问。
 
@@ -390,7 +390,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - 推荐使用JDK自带的hsdb工具查看Java虚拟机内存信息。工具位于JDK安装目录下lib文件夹中的sa-jdi.jar中。
   
-  <img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-16-18-43-image.png" alt="" width="740">
+  <img title="" src="images\images-1.X\2024-03-30-16-18-43-image.png" alt="" width="740">
 
 - 启动命令：` java -cp sa-jdi.jar sun.jvm.hotspot.HSDB ` 
   
@@ -402,27 +402,27 @@ k += 1;      // 解释为执行 1 条指令
   
   1. 执行命令
      
-     <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-16-24-39-image.png" title="" alt="" width="698">
+     <img src="images\images-1.X\2024-03-30-16-24-39-image.png" title="" alt="" width="698">
   
   2. 启动准备的测试程序
      
-     <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-16-26-50-image.png" title="" alt="" width="701">
+     <img src="images\images-1.X\2024-03-30-16-26-50-image.png" title="" alt="" width="701">
   
   3. 查看该进程的id，在HSDB-HotSpot窗口中打开该进程（File -> Attach to HotSpot Process），填写进程Id，点击OK
      
-     <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-16-29-26-image.png" title="" alt="" width="710">
+     <img src="images\images-1.X\2024-03-30-16-29-26-image.png" title="" alt="" width="710">
   
   4. Tools -> Object Histogram(对象直方图)，搜索框中输入类名，找到后双击
      
-     ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-30-16-37-41-image.png)
+     ![](images\images-1.X\2024-03-30-16-37-41-image.png)
   
   5. 点击Inspect
      
-     ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-30-16-41-15-image.png)
+     ![](images\images-1.X\2024-03-30-16-41-15-image.png)
   
   6. 查看 InstanceKlass 与 Class 中是否有 静态变量i 的数据信息
      
-     ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-30-16-48-20-image.png)
+     ![](images\images-1.X\2024-03-30-16-48-20-image.png)
 
 ## 3.3 连接阶段
 
@@ -438,7 +438,7 @@ k += 1;      // 解释为执行 1 条指令
   
   3. 验证程序执行指令的语义，比如方法内的指令执行中跳转到不正确的位置。(下面跳转到2是可以的，但是如果跳转到15就是错的)
      
-     <img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-15-24-24-image.png" alt="" data-align="center" width="374">
+     <img title="" src="images\images-1.X\2024-03-30-15-24-24-image.png" alt="" data-align="center" width="374">
   
   4. 符号引用验证，例如是否访问了其他类中private的方法等。
 
@@ -446,7 +446,7 @@ k += 1;      // 解释为执行 1 条指令
   
   - Hotspot JDK8中虚拟机源码对版本号检测的代码如下，你能读懂它的含义吗
     
-    <img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-15-25-59-image.png" alt="" width="949">
+    <img title="" src="images\images-1.X\2024-03-30-15-25-59-image.png" alt="" width="949">
 
 ### 3.3.2 连接阶段之准备
 
@@ -454,7 +454,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - <font color=red>注意：本章涉及到的内存结构只讨论JDK8及之后的版本，8之前的版本后续章节详述。</font>
   
-  <img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-15-32-07-image.png" alt="" width="735">
+  <img title="" src="images\images-1.X\2024-03-30-15-32-07-image.png" alt="" width="735">
 
 - 上述代码：在加载阶段时，在堆区中准备Class的内存；在连接的准备阶段时，在该Class的内存中的value变量赋初始值，即0。
 
@@ -473,11 +473,11 @@ k += 1;      // 解释为执行 1 条指令
 
 - **final修饰** 的 **基本数据类型** 的 **静态变量**，准备阶段直接会将代码中的值进行赋值。
   
-  <img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-15-32-37-image.png" alt="" width="708">
+  <img title="" src="images\images-1.X\2024-03-30-15-32-37-image.png" alt="" width="708">
 
-![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-30-17-14-00-image.png)
+![](images\images-1.X\2024-03-30-17-14-00-image.png)
 
-<img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-17-16-39-image.png" title="" alt="" width="1080">
+<img src="images\images-1.X\2024-03-30-17-16-39-image.png" title="" alt="" width="1080">
 
 - 上述途中有错误：clinit方法是 class init，表示类的初始化方法，在类的初始化阶段执行
 
@@ -487,11 +487,11 @@ k += 1;      // 解释为执行 1 条指令
 
 - <font color=red>符号引用就是在字节码文件中使用编号来访问常量池中的内容。</font>
   
-  <img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-15-35-16-image.png" alt="" width="563">
+  <img title="" src="images\images-1.X\2024-03-30-15-35-16-image.png" alt="" width="563">
 
 - <font color=red>直接引用不在使用编号，而是使用内存中地址进行访问具体的数据。</font>
   
-  <img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-15-34-52-image.png" alt="" width="578">
+  <img title="" src="images\images-1.X\2024-03-30-15-34-52-image.png" alt="" width="578">
 
 ## 3.4 初始化阶段
 
@@ -501,7 +501,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - 初始化阶段会执行字节码文件中 <font color=red>clinit</font> 部分的字节码指令。
   
-  <img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-15-38-27-image.png" alt="" width="754">
+  <img title="" src="images\images-1.X\2024-03-30-15-38-27-image.png" alt="" width="754">
   
   ```java
   package com.study.jvm.demo1.clinit;
@@ -756,9 +756,9 @@ k += 1;      // 解释为执行 1 条指令
 
 ## 3.5 总结
 
-<img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-19-06-04-image.png" title="" alt="" width="799">
+<img src="images\images-1.X\2024-03-30-19-06-04-image.png" title="" alt="" width="799">
 
-<img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-19-06-29-image.png" title="" alt="" width="765">
+<img src="images\images-1.X\2024-03-30-19-06-29-image.png" title="" alt="" width="765">
 
 几个要点：
 
@@ -774,7 +774,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - 类加载器只参与加载过程中的字节码获取并加载到内存这一部分。
   
-  <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-31-14-04-48-image.png" title="" alt="" width="903">
+  <img src="images\images-1.X\2024-03-31-14-04-48-image.png" title="" alt="" width="903">
 
 - 应用场景：
   
@@ -802,11 +802,11 @@ k += 1;      // 解释为执行 1 条指令
 
 类加载器分为两类，一类是Java代码中实现的，一类是Java虚拟机底层源码实现的。
 
-<img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-22-11-49-image.png" alt="" width="877">
+<img title="" src="images\images-1.X\2024-03-30-22-11-49-image.png" alt="" width="877">
 
 类加载器的设计JDK8和8之后的版本差别较大，JDK8及之前的版本中默认的类加载器有如下几种：
 
-<img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-23-21-44-image.png" alt="" width="881">
+<img title="" src="images\images-1.X\2024-03-30-23-21-44-image.png" alt="" width="881">
 
 ### Arthas中类加载器相关的功能1
 
@@ -814,7 +814,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - classloader -查看classloader 的继承树，urls，类加载信息，使用classloader 去 getResource
   
-  ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-31-14-13-45-image.png)
+  ![](images\images-1.X\2024-03-31-14-13-45-image.png)
 
 ### 4.1.1 启动类加载器
 
@@ -822,7 +822,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - 默认加载 Java安装目录 /jre/lib 下的类文件，比如 rt.jar，tools.jar，resources.jar等。
   
-  <img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-23-32-45-image.png" alt="" width="533">
+  <img title="" src="images\images-1.X\2024-03-30-23-32-45-image.png" alt="" width="533">
 
 - 通过启动类加载器去加载用户jar包：
   
@@ -845,7 +845,7 @@ k += 1;      // 解释为执行 1 条指令
     }
     ```
     
-    ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-31-15-04-06-image.png)
+    ![](images\images-1.X\2024-03-31-15-04-06-image.png)
     
     ```xml
     <!-- 打jar包时，只打包 com.study.jvm.demo.MyClassA 类，并且打包的名字设置为classloader-test -->
@@ -884,7 +884,7 @@ k += 1;      // 解释为执行 1 条指令
   }
   ```
   
-  <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-31-14-27-29-image.png" title="" alt="" width="634">
+  <img src="images\images-1.X\2024-03-31-14-27-29-image.png" title="" alt="" width="634">
 
 ### 4.1.2 Java中的默认类加载器
 
@@ -892,7 +892,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - <font color=red>它们的源码都位于sun.misc.Launcher中，是一个静态内部类。继承自URLClassLoader。具备通过目录或者指定jar包将字节码文件加载到内存中。</font>
 
-<img title="" src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-23-40-51-image.png" alt="" width="1026">
+<img title="" src="images\images-1.X\2024-03-30-23-40-51-image.png" alt="" width="1026">
 
 #### 4.1.2.1 扩展类加载器
 
@@ -900,7 +900,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - 默认加载 Java安装目录 /jre/lib/ext 下的类文件。
   
-  <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-30-23-40-19-image.png" title="" alt="" width="579">
+  <img src="images\images-1.X\2024-03-30-23-40-19-image.png" title="" alt="" width="579">
 
 - 通过扩展类加载器去加载用户jar包：
   
@@ -963,9 +963,9 @@ public class AppClassLoaderDemo {
   
   2. 执行 `classloaser -c hash码值` 
      
-     ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-31-15-47-29-image.png)
+     ![](images\images-1.X\2024-03-31-15-47-29-image.png)
      
-     ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-31-15-56-25-image.png)
+     ![](images\images-1.X\2024-03-31-15-56-25-image.png)
 
 ## 4.2 双亲委派机制
 
@@ -992,7 +992,7 @@ System.out.println(clazz.getClassLoader()); // null
 
 - 启动类加载器使用C++编写，没有上级类加载器。
   
-  <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-31-10-30-34-image.png" title="" alt="" width="585">
+  <img src="images\images-1.X\2024-03-31-10-30-34-image.png" title="" alt="" width="585">
 3. 类加载步骤：
    
    1）在类加载的过程中，每个类加载器都会先检查是否已经加载了该类，如果已经加载则直接返回，否则会将加载请求委派给父类加载器。
@@ -1007,13 +1007,13 @@ System.out.println(clazz.getClassLoader()); // null
    
    - 向下委派加载起到了一个加载优先级的作用。
    
-   <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-31-10-36-47-image.png" title="" alt="" width="683">
+   <img src="images\images-1.X\2024-03-31-10-36-47-image.png" title="" alt="" width="683">
 
 ### Arthas中类加载器相关的功能3
 
 - 类加载器的继承关系可以通过classloader–t 查看：
   
-  <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-31-10-31-35-image.png" title="" alt="" width="876">
+  <img src="images\images-1.X\2024-03-31-10-31-35-image.png" title="" alt="" width="876">
 
 ### 4.2.2 三个问题
 
@@ -1068,7 +1068,7 @@ System.out.println(clazz.getClassLoader()); // null
   
   - 历史上Osgi框架实现了一套新的类加载器机制，允许同级之间委托进行类的加载
 
-### 4.3.1 自定义类加载器
+### 4.3.1 第一种方法：自定义类加载器
 
 - 一个Tomcat程序中是可以运行多个Web应用的，如果这两个应用中出现了相同限定名的类，比如Servlet类，Tomcat要保证这两个类都能加载并且它们应该是不同的类。
 
@@ -1080,32 +1080,32 @@ System.out.println(clazz.getClassLoader()); // null
 
 - 双亲委派机制的核心代码就位于loadClass方法中。
   
-  ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-31-12-25-09-image.png)
+  ![](images\images-1.X\2024-03-31-12-25-09-image.png)
 
 - 阅读双亲委派机制的核心代码，分析如何通过自定义的类加载器打破双亲委派机制。
 
 - 打破双亲委派机制的核心就是将下边这一段代码重新实现。
   
-  ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-31-12-26-39-image.png)
+  ![](images\images-1.X\2024-03-31-12-26-39-image.png)
 1. 自定义类加载器默认的父类加载器 
 - 自定义类加载器父类怎么是AppClassLoader呢？
   
-  <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-31-12-28-50-image.png" title="" alt="" width="569">
+  <img src="images\images-1.X\2024-03-31-12-28-50-image.png" title="" alt="" width="569">
 
 - 以Jdk8为例，ClassLoader类中提供了构造方法设置parent的内容：
   
-  ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-31-12-29-30-image.png)
+  ![](images\images-1.X\2024-03-31-12-29-30-image.png)
 
 - 这个构造方法由另外一个构造方法调用，其中父类加载器由getSystemClassLoader方法设置，该方法返回的是AppClassLoader。
   
-  <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-31-12-30-38-image.png" title="" alt="" width="857">
+  <img src="images\images-1.X\2024-03-31-12-30-38-image.png" title="" alt="" width="857">
 2. 两个自定义类加载器加载相同限定名的类，不会冲突吗？
 - <font color=red>不会冲突</font>，在同一个Java虚拟机中，只有<font color=red>相同类加载器+相同的类限定名</font>才会被认为是同一个类。
 
 - 在Arthas中使用sc–d 类名的方式查看具体的情况。
 3. 正确的去实现一个自定义类加载器的方式是重写<font color=red>findClass</font>方法，这样不会破坏双亲委派机制。
    
-   ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-31-12-33-41-image.png)
+   ![](images\images-1.X\2024-03-31-12-33-41-image.png)
 
 上述知识点，通过以下代码解析：
 
@@ -1186,27 +1186,167 @@ public class CustomizedClassLoader extends ClassLoader {
         System.in.read();
     }
 }
-
-
 ```
 
-### 4.3.2 第二种方法：JDBC案例
+### 4.3.2 第二种方法：JDBC案例 (也可以认为没有打破)
 
 - JDBC中使用了DriverManager来管理项目中引入的不同数据库的驱动，比如mysql驱动、oracle驱动。
   
-  ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-31-12-36-09-image.png)
+  ![](images\images-1.X\2024-03-31-12-36-09-image.png)
 
 - DriverManager类位于rt.jar包中，由启动类加载器加载。
   
-  <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-31-12-37-35-image.png" title="" alt="" width="702">
+  <img title="" src="images\images-1.X\2024-03-31-12-37-35-image.png" alt="" width="1073">
 
 - 依赖中的mysql驱动对应的类，由应用程序类加载器来加载。
   
-  <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-03-31-12-38-18-image.png" title="" alt="" width="715">
+  <img title="" src="images\images-1.X\2024-03-31-12-38-18-image.png" alt="" width="1076">
 
 - DriverManager属于rt.jar是启动类加载器加载的。而用户jar包中的驱动需要由应用类加载器加载，这就违反了双亲委派机制。
   
-  ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-03-31-12-39-27-image.png)
-1. DriverManager怎么知道jar包中要加载的驱动在哪儿？
+  ![](images\images-1.X\2024-03-31-12-39-27-image.png)
 
-## 4.4 JDK9之后的类加载器
+#### 4.3.2.1 JDBC案例之SPI机制
+
+- SPI 全称为 Service Provider Interface，是JDK内置的一种服务提供发现机制
+
+- SPI的工作原理：
+  
+  1. 在 ClassPath路径下的 META-INF/services 文件夹中，以接口的全限定名来命名文件名，对应的文件里面写该接口的实现。
+     
+     <img src="images\images-1.X\2024-04-01-10-18-10-image.png" title="" alt="" width="855">
+  
+  2. 使用ServiceLoader加载实现类。
+     
+     <img src="images\images-1.X\2024-04-01-10-19-54-image.png" title="" alt="" width="840">
+
+#### 4.3.2.2 DriverManager怎么知道jar包中要加载的驱动在哪儿
+
+1. 通过 `conn = DriverManager.getConnection(DB_URL, USER, PASS);` 获取连接对象时，getConnection是DriverManager类的静态方法，调用该方法一定会导致DriverManager类的初始化(clinit)方法被执行。
+   
+   <img src="images\images-1.X\2024-04-01-10-41-02-image.png" title="" alt="" width="1060">
+
+2. SPI机制加载实现类，即加载驱动实现类
+   
+   <img src="images\images-1.X\2024-04-01-10-43-10-image.png" title="" alt="" width="635">
+
+3. MySql的驱动jar包中，配置了相应的SPI信息，如下图所示：
+   
+   ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-10-51-09-image.png)
+
+4. `loadInitialDrviers()`方法中，会通过 `ServiceLoader.load(Driver.class)`获取项目中所有 `java.sql.Driver` 接口的实现类迭代器，然后依次遍历
+   
+   ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-10-57-46-image.png)
+   
+   - `ServiceLoader.load` 方法内部会通过获取当前线程的上下文类加载器，即应用程序类加载器，在后续使用该类加载器加载实现类。
+     
+     <img src="images\images-1.X\2024-04-01-11-05-34-image.png" title="" alt="" width="904">
+   
+   - 在 `driversIterator.next()` 方法中，会调用 `Class.forName`方法，导致实现类的初始化(clinit)方法被调用
+     
+     ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-10-59-49-image.png)
+
+5. MySql驱动包的实现类被加载，并执行对应的初始化方法
+   
+   <img src="images\images-1.X\2024-04-01-11-01-57-image.png" title="" alt="" width="799">
+
+#### 4.3.2.3 总结
+
+1. 启动类加载器加载DriverManager。
+
+2. 在初始化DriverManager时，通过SPI机制加载jar包中的myql驱动。
+
+3. SPI中利用了线程上下文类加载器（应用程序类加载器）去加载类并创建对象 (Driver的具体实现类对象)。
+- <font color=red>这种由启动类加载器加载的类，委派应用程序类加载器去加载类的方式，打破了双亲委派机制。</font>
+  
+  <img title="" src="images\images-1.X\2024-04-01-11-13-02-image.png" alt="" width="829">
+
+### 4.3.3 第三种方法：Osgi框架(已经不用了)
+
+- 历史上，OSGi模块化框架。它存在同级之间的类加载器的委托加载。OSGi还使用类加载器实现了热部署的功能。
+
+- 热部署指的是在服务不停止的情况下，动态地更新字节码文件到内存中。
+
+### 使用阿里arthas不停机解决线上问题
+
+#### 背景
+
+- 小李的团队将代码上线之后，发现存在一个小bug，但是用户急着使用，如果重新打包再发布需要一个多小时的时间，所以希望能使用arthas尽快的将这个问题修复。
+
+#### 思路
+
+1. 在出问题的服务器上部署一个 arthas，并启动。
+
+2. <font color=red>jad --source-only 类全限定名 > 目录/文件名.java</font>
+- jad 命令反编译，然后可以用其它编译器，比如 vim 来修改源码
+3. <font color=red>mc –c 类加载器的hashcode 目录/文件名.java -d 输出目录</font>
+- mc 命令用来编译修改过的代码，必须通过类加载器来编译，否则会报找不到许多类的错误
+4. <font color=red>retransform class文件所在目录/xxx.class</font>
+- 用 retransform 命令加载新的字节码
+
+#### 注意事项
+
+1. 程序重启之后，字节码文件会恢复，除非将class文件放入jar包中进行更新。
+
+2. 使用retransform不能添加方法或者字段，也不能更新正在执行中的方法。
+
+## 4.4 JDK9之后的类加载器(了解)
+
+### 4.4.1 JDK8及之前的类加载器
+
+- JDK8及之前的版本中，扩展类加载器和应用程序类加载器的源码位于rt.jar包中的sun.misc.Launcher.java。
+
+![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-11-26-15-image.png)
+
+### 4.4.2 JDK8之后的类加载器
+
+- 由于JDK9引入了module的概念，类加载器在设计上发生了很多变化。
+  
+  ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-13-45-50-image.png)
+1. 启动类加载器使用Java编写，位于 jdk.internal.loader.ClassLoaders 类中。
+   
+   - Java中的BootClassLoader 继承自 BuiltinClassLoader，实现从模块中找到要加载的字节码资源文件。
+   
+   - <font color=red>启动类加载器依然无法通过java代码获取到，返回的仍然是null，保持了统一。</font>避免用户操作启动类加载器
+     
+     <img src="images\images-1.X\2024-04-01-13-46-26-image.png" title="" alt="" width="614">
+
+2. 扩展类加载器被替换成了平台类加载器（Platform Class Loader）。
+   
+   - 平台类加载器遵循模块化方式加载字节码文件，所以继承关系从URLClassLoader变成了BuiltinClassLoader。
+   
+   - BuiltinClassLoader实现了从模块中加载字节码文件。
+   
+   - <font color=red>平台类加载器的存在更多的是为了与老版本的设计方案兼容，自身没有特殊的逻辑。</font>
+     
+     <img title="" src="images\images-1.X\2024-04-01-13-49-52-image.png" alt="" width="678">
+
+## 4.5 总结
+
+1. 类加载器的作用是什么？
+- 类加载器（ClassLoader）负责在类加载过程中的字节码获取并加载到内存这一部分。
+
+- 通过加载字节码数据放入内存转换成byte[]，接下来调用虚拟机底层方法将byte[]转换成方法区和堆中的数据。
+2. 有几种类加载器？
+   
+   1. 启动类加载器（BootstrapClassLoader）加载核心类
+   
+   2. 扩展类加载器（Extension ClassLoader）加载扩展类
+   
+   3. 应用程序类加载器（Application ClassLoader）加载应用classpath中的类
+   
+   4. 自定义类加载器，重写findClass方法。
+- JDK9及之后扩展类加载器（Extension ClassLoader）变成了平台类加载器（PlatformClassLoader）
+3. 什么是双亲委派机制？
+- 每个Java实现的类加载器中保存了一个成员变量叫“父”（Parent）类加载器。
+
+- 自底向上查找是否加载过，再由顶向下进行加载。
+
+- 避免了核心类被应用程序重写并覆盖的问题，提升了安全性。
+4. 怎么打破双亲委派机制？
+   
+   1. 重写loadClass方法，不再实现双亲委派机制。
+   
+   2. JNDI、JDBC、JCE、JAXB和JBI等框架使用了SPI机制+线程上下文类加载器。
+   
+   3. OSGi实现了一整套类加载机制，允许同级类加载器之间互相调用。

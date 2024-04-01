@@ -66,7 +66,7 @@ public class CustomizedClassLoader extends ClassLoader {
 
         // 当前线程的类加载器是：sun.misc.Launcher$AppClassLoader@18b4aac2
         System.out.println("当前线程的类加载器是：" + Thread.currentThread().getContextClassLoader());
-        Thread.currentThread().setContextClassLoader(classLoader1);
+        Thread.currentThread().setContextClassLoader(classLoader1); // 修改当前线程的上下文类加载器
         // 当前线程的类加载器是：com.study.jvm.broken.CustomizedClassLoader@9807454
         System.out.println("当前线程的类加载器是：" + Thread.currentThread().getContextClassLoader());
 
