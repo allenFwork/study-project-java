@@ -6,11 +6,11 @@
 
 <font color=red>JVM</font> 本质上是一个运行在计算机上的程序，他的职责是运行<font color=red>Java字节码文件</font>。
 
-![image-20240105151758073](images\images-1.X\image-20240105151758073.png)
+![image-20240105151758073](images/images-1.X/image-20240105151758073.png)
 
 ## 2. JVM的功能
 
-![image-20240105152121928](images\images-1.X\image-20240105152121928.png)
+![image-20240105152121928](images/images-1.X/image-20240105152121928.png)
 
 ### 2.1 解释和运行
 
@@ -26,23 +26,23 @@
 - 对热点代码进行优化，提升执行效率
 1. Java语言如果不做任何优化，性能不如C、C++等语言。
    
-   ![image-20240105152604485](images\images-1.X\image-20240105152604485.png)
+   ![image-20240105152604485](images/images-1.X/image-20240105152604485.png)
 
 2. Java需要实时解释，主要是为了支持跨平台特性。
    
-   ![image-20240105152638585](images\images-1.X\image-20240105152638585.png)
+   ![image-20240105152638585](images/images-1.X/image-20240105152638585.png)
 
 3. 由于JVM需要实时解释虚拟机指令，不做任何优化性能不如直接运行机器码的C、C++等语言。
    
-   ![image-20240105152747478](images\images-1.X\image-20240105152747478.png)
+   ![image-20240105152747478](images/images-1.X/image-20240105152747478.png)
 
 4. JVM提供了<font color=red>即时编译（Just-In-Time 简称JIT) </font>进行性能的优化，最终能达到接近C、C++语言的运行性能甚至在特定场景下实现超越。
    
-   ![image-20240105171019807](images\images-1.X\image-20240105171019807.png)
+   ![image-20240105171019807](images/images-1.X/image-20240105171019807.png)
 
 ## 3. 常见的JVM
 
-![image-20240105171203383](images\images-1.X\image-20240105171203383.png)
+![image-20240105171203383](images/images-1.X/image-20240105171203383.png)
 
 ### 3.1 Java虚拟机规范
 
@@ -54,7 +54,7 @@
 
 ### 3.2 HotSpot的发展历程
 
-![image-20240105171509487](images\images-1.X\image-20240105171509487.png)
+![image-20240105171509487](images/images-1.X/image-20240105171509487.png)
 
 ## 4. 总结
 

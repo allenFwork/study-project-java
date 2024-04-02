@@ -2,7 +2,7 @@
 
 # 1. Java虚拟机的组成
 
-![](images\images-1.X\2024-03-29-10-41-18-image.png)
+![](images/images-1.X/2024-03-29-10-41-18-image.png)
 
 # 2. 字节码文件的组成
 
@@ -10,15 +10,15 @@
 
 1. 解决面试难题
    
-   <img src="images\images-1.X\image-20240106085532286.png" alt="image-20240106085532286" style="zoom:50%;" />
+   <img src="images/images-1.X/image-20240106085532286.png" alt="image-20240106085532286" style="zoom:50%;" />
 
 2. 解决工作中的实际问题：版本冲突问题
    
-   <img src="images\images-1.X\image-20240106085601818.png" style="zoom: 67%;" />
+   <img src="images/images-1.X/image-20240106085601818.png" style="zoom: 67%;" />
 
 3. 解决工作中的实际问题：系统升级
    
-   <img src="images\images-1.X\image-20240106085717019.png" alt="image-20240106085717019" style="zoom:67%;" />
+   <img src="images/images-1.X/image-20240106085717019.png" alt="image-20240106085717019" style="zoom:67%;" />
 
 ## 2.2 学习路线
 
@@ -28,13 +28,13 @@
 
 - 通过NotePad++使用十六进制插件查看class文件：
   
-  ![image-20240106090306720](images\images-1.X\image-20240106090306720.png)
+  ![image-20240106090306720](images/images-1.X/image-20240106090306720.png)
 
 - 推荐使用<font color=red> jclasslib</font>工具查看字节码文件。
 
 - Github地址： https://github.com/ingokegel/jclasslib 
   
-  ![image-20240106090507873](images\images-1.X\image-20240106090507873.png)
+  ![image-20240106090507873](images/images-1.X/image-20240106090507873.png)
 
 #### 2.2.1.1 案例代码（修改后版本）
 
@@ -81,49 +81,49 @@ public class SimpleClass implements SimpleInterface {
 
 1. 查看字节码文件的基本信息
    
-   ![image-20240106090707755](images\images-1.X\image-20240106090707755.png)
+   ![image-20240106090707755](images/images-1.X/image-20240106090707755.png)
 
 2. 查看字节码文件的常量池
    
-   ![image-20240106093011090](images\images-1.X\image-20240106093011090.png)
+   ![image-20240106093011090](images/images-1.X/image-20240106093011090.png)
 
 3. 查看字节码文件的字段信息
    
-   ![image-20240106093113970](images\images-1.X\image-20240106093113970.png)
+   ![image-20240106093113970](images/images-1.X/image-20240106093113970.png)
 
 4. 选择方法中对应的方法名，查看字节码文件的 <font color=red>字节码指令</font>
    
-   ![image-20240106093323375](images\images-1.X\image-20240106093323375.png)
+   ![image-20240106093323375](images/images-1.X/image-20240106093323375.png)
    
-   <img src="images\images-1.X\image-20240106093401202.png" alt="image-20240106093401202" style="zoom: 50%;" />
+   <img src="images/images-1.X/image-20240106093401202.png" alt="image-20240106093401202" style="zoom: 50%;" />
 
 5. 查看字节码文件的属性：类的属性，不是字段信息，是例如源码文件名、内部类的列表等信息
    
-   ![image-20240106093454135](images\images-1.X\image-20240106093454135.png)
+   ![image-20240106093454135](images/images-1.X/image-20240106093454135.png)
 
 #### 2.2.1.3 Idea中安装jclasslib的插件使用
 
 1. 安装插件
    
-   ![image-20240106102933097](images\images-1.X\image-20240106102933097.png)
+   ![image-20240106102933097](images/images-1.X/image-20240106102933097.png)
 
 2. 单击选中对应的类文件（也可以是对应的class文件），点击View选框，选择 Show Bytecode With Jclasslib
    
-   <img src="images\images-1.X\image-20240106103345769.png" alt="image-20240106103345769" style="zoom:50%;" />
+   <img src="images/images-1.X/image-20240106103345769.png" alt="image-20240106103345769" style="zoom:50%;" />
 
 3. 右侧弹出对应的视图，查看相应信息
    
-   ![image-20240106103510738](images\images-1.X\image-20240106103510738.png)
+   ![image-20240106103510738](images/images-1.X/image-20240106103510738.png)
 
 ### 2.2.2 字节码文件的组成
 
-<img src="images\images-1.X\image-20240106103615716.png" alt="image-20240106103615716" style="zoom:67%;" />
+<img src="images/images-1.X/image-20240106103615716.png" alt="image-20240106103615716" style="zoom:67%;" />
 
 #### 2.2.2.1 Magic 魔数
 
-![image-20240106103954885](images\images-1.X\image-20240106103954885.png)
+![image-20240106103954885](images/images-1.X/image-20240106103954885.png)
 
-<img title="" src="images\images-1.X\2024-03-29-15-18-12-image.png" alt="" data-align="inline">
+<img title="" src="images/images-1.X/2024-03-29-15-18-12-image.png" alt="" data-align="inline">
 
 - 文件是<font color=red>无法通过文件扩展名</font>来确定文件类型的，文件扩展名可以随意修改，不影响文件的内容。
 
@@ -131,7 +131,7 @@ public class SimpleClass implements SimpleInterface {
 
 - Java字节码文件中，将文件头称为<font color=red>magic魔数。</font>
   
-  ![image-20240106104215244](images\images-1.X\image-20240106104215244.png)
+  ![image-20240106104215244](images/images-1.X/image-20240106104215244.png)
 
 #### 2.2.2.2 主副版本号
 
@@ -142,13 +142,13 @@ public class SimpleClass implements SimpleInterface {
 
 - <font color=red>版本号的作用主要是判断当前字节码的版本和运行时的JDK是否兼容。</font>
   
-  ![image-20240106105343965](images\images-1.X\image-20240106105343965.png)
+  ![image-20240106105343965](images/images-1.X/image-20240106105343965.png)
 
 ##### 主版本号不兼容导致的错误
 
 **需求：** 解决以下由于主版本号不兼容导致的错误
 
-![image-20240106105615039](images\images-1.X\image-20240106105615039.png)
+![image-20240106105615039](images/images-1.X/image-20240106105615039.png)
 
 **两种方案：** 
 
@@ -158,49 +158,49 @@ public class SimpleClass implements SimpleInterface {
 
 #### 2.2.2.3 基础信息
 
-![image-20240106110124710](images\images-1.X\image-20240106110124710.png)
+![image-20240106110124710](images/images-1.X/image-20240106110124710.png)
 
 #### 2.2.2.4 常量池
 
 - 字节码文件中常量池的作用：避免相同的内容重复定义，节省空间。
   
-  ![image-20240106110324063](images\images-1.X\image-20240106110324063.png)
+  ![image-20240106110324063](images/images-1.X/image-20240106110324063.png)
 
 - 常量池中的数据都有一个编号，编号从1开始。在字段或者字节码指令中通过编号可以快速的找到对应的数据。
 
 - 字节码指令中通过编号引用到常量池的过程称之为<font color=red>符号引用。</font>
   
-  ![image-20240106110528874](images\images-1.X\image-20240106110528874.png)
+  ![image-20240106110528874](images/images-1.X/image-20240106110528874.png)
 
 #### 2.2.2.5 方法
 
-![image-20240106110948494](images\images-1.X\image-20240106110948494.png)
+![image-20240106110948494](images/images-1.X/image-20240106110948494.png)
 
 - 字节码中的方法区域是存放<font color=red>字节码指令</font>的核心位置，字节码指令的内容存放在方法的Code属性中。
   
-  ![image-20240106111107942](images\images-1.X\image-20240106111107942.png)
+  ![image-20240106111107942](images/images-1.X/image-20240106111107942.png)
 
 - 操作数栈是临时存放数据的地方，局部变量表是存放方法中的局部变量的位置。
 
 ##### i = i + 1执行流程分析
 
-![image-20240106120956610](images\images-1.X\image-20240106120956610.png)
+![image-20240106120956610](images/images-1.X/image-20240106120956610.png)
 
 ##### i = i++ 执行流程分析
 
-![image-20240106121158407](images\images-1.X\image-20240106121158407.png)
+![image-20240106121158407](images/images-1.X/image-20240106121158407.png)
 
 - 原因：<font color =blue>`i++` 先用后加，字节码指令中 **先 iload_位置，再 iinc 位置 by 1**，即先将 i 的值放入操作数栈，然后局部变量表中该位置值加一，操作数栈中还是原来的值  </font> 。
 
 ##### i = ++i 执行流程分析
 
-![image-20240106121545168](images\images-1.X\image-20240106121545168.png)
+![image-20240106121545168](images/images-1.X/image-20240106121545168.png)
 
 - 原因：<font color=blue>`++i` 先加后用，字节码指令中 **先 iinc 位置 by 1，再 iload_位置**，即先将 局部变量表中i位置的值加一，再取该值放入操作数栈，操作数栈中的值加过一了 </font>。
 
 ##### 总结
 
-![image-20240106121622019](images\images-1.X\image-20240106121622019.png)
+![image-20240106121622019](images/images-1.X/image-20240106121622019.png)
 
 ##### 练习：查看字节码文件并解答问题
 
@@ -213,9 +213,9 @@ j = j + 1;   // 解释为执行 4 条指令
 k += 1;      // 解释为执行 1 条指令
 ```
 
-![image-20240106133706222](images\images-1.X\image-20240106133706222.png)
+![image-20240106133706222](images/images-1.X/image-20240106133706222.png)
 
-![image-20240106133757911](images\images-1.X\image-20240106133757911.png)
+![image-20240106133757911](images/images-1.X/image-20240106133757911.png)
 
 ### 2.2.3 玩转字节码常用工具
 
@@ -224,11 +224,11 @@ k += 1;      // 解释为执行 1 条指令
 - javap 是 JDK 自带的反编译工具，可以通过控制台查看字节码文件的内容。<font color=red>适合在服务器上查看字节码文件内容。</font>
 - 直接输入javap查看所有参数。
 - 输入 <font color=red>javap -v 字节码文件名称 </font> 查看具体的字节码信息。（如果jar包需要先使用 jar –xvf 命令解压）
-- ![](images\images-1.X\image-20240106135253105.png)
+- ![](images/images-1.X/image-20240106135253105.png)
 
-<img src="images\images-1.X\image-20240106135708286.png" alt="image-20240106135708286" style="zoom:50%;" />
+<img src="images/images-1.X/image-20240106135708286.png" alt="image-20240106135708286" style="zoom:50%;" />
 
-![](images\images-1.X\image-20240106140024494.png)
+![](images/images-1.X/image-20240106140024494.png)
 
 #### 2.2.3.2 jclasslib插件
 
@@ -240,7 +240,7 @@ k += 1;      // 解释为执行 1 条指令
 - 官网：https://arthas.aliyun.com/doc/ （通过官网查看相应的命令作用）
 - dump 类的全限定名：dump已加载类的字节码文件到特定目录。 
 - jad 类的全限定名：反编译已加载类的源码。
-- ![](images\images-1.X\image-20240106141821249.png)
+- ![](images/images-1.X/image-20240106141821249.png)
 
 ##### 环境准备
 
@@ -279,17 +279,17 @@ k += 1;      // 解释为执行 1 条指令
   
   - windows下：`java -classpath class文件的存放路径（包级别上一层） class文件的全名 `
     
-    ![image-20240106144742407](images\images-1.X\image-20240106144742407.png)
+    ![image-20240106144742407](images/images-1.X/image-20240106144742407.png)
   
   - Linux下：`java -classpath /usr/local/apps/java_apps com.study.jvm.demo3.MainTest`
     
-    ![](images\images-1.X\image-20240106145816946.png)
+    ![](images/images-1.X/image-20240106145816946.png)
 
 ##### 启动 arthas
 
 - 执行 <font color=red>`java -jar arthas-boot.jar`</font> 命令
   
-  ![](images\images-1.X\image-20240106151619677.png)
+  ![](images/images-1.X/image-20240106151619677.png)
   
   - 从上面日志可知 MainTest 程序的进程id 是 11857
 
@@ -297,21 +297,21 @@ k += 1;      // 解释为执行 1 条指令
 
 - 命令：`dump -d 生成文件的地址 文件的全限名 `
   
-  ![执行dump命令生成对应的字节码文件](images\images-1.X\image-20240106152742602.png)
+  ![执行dump命令生成对应的字节码文件](images/images-1.X/image-20240106152742602.png)
   
-  ![生成的结果在红框中的目录下](images\images-1.X\image-20240106153112193.png)
+  ![生成的结果在红框中的目录下](images/images-1.X/image-20240106153112193.png)
 
 ##### 通过 <font color=red>jad命令 反编译加载类的源码 </font>
 
 - 命令：`jad com.study.jvm.demo3.MainTest `
   
-  ![image-20240106153604754](images\images-1.X\image-20240106153604754.png)    
+  ![image-20240106153604754](images/images-1.X/image-20240106153604754.png)    
 
 ##### 通过 <font color=red>dashboard命令 查看程序的运行情况 (内存、CPU使用等信息) </font>
 
 - 命令：`dashboard -i 2000 -n 1 `  每隔两秒打印一次结果，总共打印1次
   
-  ![image-20240106152257465](images\images-1.X\image-20240106152257465.png)
+  ![image-20240106152257465](images/images-1.X/image-20240106152257465.png)
 
 ##### 案例：使用阿里arthas定位线上出现的字节码问题
 
@@ -331,15 +331,15 @@ k += 1;      // 解释为执行 1 条指令
 
 - **本地文件可以使用 jclasslib工具查看，开发环境使用 jclasslib 插件。**
   
-  <img src="images\images-1.X\image-20240106142710617.png" alt="image-20240106142710617" style="zoom:67%;" />
+  <img src="images/images-1.X/image-20240106142710617.png" alt="image-20240106142710617" style="zoom:67%;" />
 
 - **服务器上文件使用 javap 命令直接查看，也可以通过 arthas 的 dump 命令导出字节码文件，再查看本地文件。还可以使用 jad 命令反编译出源代码。**
   
-  ![image-20240106142815841](images\images-1.X\image-20240106142815841.png)    
+  ![image-20240106142815841](images/images-1.X/image-20240106142815841.png)    
 
 #### 2) 字节码文件的核心组成有哪些？
 
-<img src="images\images-1.X\image-20240106155118203.png" alt="image-20240106155118203" style="zoom:67%;" />
+<img src="images/images-1.X/image-20240106155118203.png" alt="image-20240106155118203" style="zoom:67%;" />
 
 # 3. 类的生命周期
 
@@ -351,11 +351,11 @@ k += 1;      // 解释为执行 1 条指令
 
 - 作为后续大量知识点的基础
   
-  <img src="images\images-1.X\2024-03-30-14-51-42-image.png" title="" alt="" data-align="center">
+  <img src="images/images-1.X/2024-03-30-14-51-42-image.png" title="" alt="" data-align="center">
 
 ## 3.1 生命周期概述
 
-<img title="" src="images\images-1.X\2024-03-30-15-20-58-image.png" alt="" data-align="center">
+<img title="" src="images/images-1.X/2024-03-30-15-20-58-image.png" alt="" data-align="center">
 
 ## 3.2 加载阶段
 
@@ -364,19 +364,19 @@ k += 1;      // 解释为执行 1 条指令
 1. 加载(Loading)阶段 第一步是类加载器根据类的全限定名通过不同的渠道以二进制流的方式获取字节码信息。
 - 程序员可以使用Java代码拓展的不同的渠道。
 
-<img title="" src="images\images-1.X\2024-03-30-14-57-15-image.png" alt="" data-align="inline">
+<img title="" src="images/images-1.X/2024-03-30-14-57-15-image.png" alt="" data-align="inline">
 
 2. 类加载器在加载完类之后，Java虚拟机会将字节码中的信息保存到方法区中。
 - <font color=red>生成一个InstanceKlass对象，保存类的所有信息，里边还包含实现特定功能比如多态的信息。</font>
 
 - 方法区是一个抽象的概念，老版本jdk将方法区放在老年代中，新版本jdk将方法区放在元空间中
   
-  ![](images\images-1.X\2024-03-30-15-01-40-image.png)
+  ![](images/images-1.X/2024-03-30-15-01-40-image.png)
 3. 同时，Java虚拟机还会在堆中生成一份与方法区中数据类似的java.lang.Class对象。
 - <font color=red>作用是在Java代码中去获取类的信息，以及存储静态字段的数据（JDK8及之后）。</font>
   
-    ![](images\images-1.X\2024-03-30-15-15-50-image.png)
-    ![](images\images-1.X\2024-03-30-15-15-21-image.png)
+    ![](images/images-1.X/2024-03-30-15-15-50-image.png)
+    ![](images/images-1.X/2024-03-30-15-15-21-image.png)
 
 - InstanceKclass是由C++语言开发的，java程序员无法直接访问。
 
@@ -390,7 +390,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - 推荐使用JDK自带的hsdb工具查看Java虚拟机内存信息。工具位于JDK安装目录下lib文件夹中的sa-jdi.jar中。
   
-  <img title="" src="images\images-1.X\2024-03-30-16-18-43-image.png" alt="" width="740">
+  <img title="" src="images/images-1.X/2024-03-30-16-18-43-image.png" alt="" width="740">
 
 - 启动命令：` java -cp sa-jdi.jar sun.jvm.hotspot.HSDB ` 
   
@@ -402,27 +402,27 @@ k += 1;      // 解释为执行 1 条指令
   
   1. 执行命令
      
-     <img src="images\images-1.X\2024-03-30-16-24-39-image.png" title="" alt="" width="698">
+     <img src="images/images-1.X/2024-03-30-16-24-39-image.png" title="" alt="" width="698">
   
   2. 启动准备的测试程序
      
-     <img src="images\images-1.X\2024-03-30-16-26-50-image.png" title="" alt="" width="701">
+     <img src="images/images-1.X/2024-03-30-16-26-50-image.png" title="" alt="" width="701">
   
   3. 查看该进程的id，在HSDB-HotSpot窗口中打开该进程（File -> Attach to HotSpot Process），填写进程Id，点击OK
      
-     <img src="images\images-1.X\2024-03-30-16-29-26-image.png" title="" alt="" width="710">
+     <img src="images/images-1.X/2024-03-30-16-29-26-image.png" title="" alt="" width="710">
   
   4. Tools -> Object Histogram(对象直方图)，搜索框中输入类名，找到后双击
      
-     ![](images\images-1.X\2024-03-30-16-37-41-image.png)
+     ![](images/images-1.X/2024-03-30-16-37-41-image.png)
   
   5. 点击Inspect
      
-     ![](images\images-1.X\2024-03-30-16-41-15-image.png)
+     ![](images/images-1.X/2024-03-30-16-41-15-image.png)
   
   6. 查看 InstanceKlass 与 Class 中是否有 静态变量i 的数据信息
      
-     ![](images\images-1.X\2024-03-30-16-48-20-image.png)
+     ![](images/images-1.X/2024-03-30-16-48-20-image.png)
 
 ## 3.3 连接阶段
 
@@ -438,7 +438,7 @@ k += 1;      // 解释为执行 1 条指令
   
   3. 验证程序执行指令的语义，比如方法内的指令执行中跳转到不正确的位置。(下面跳转到2是可以的，但是如果跳转到15就是错的)
      
-     <img title="" src="images\images-1.X\2024-03-30-15-24-24-image.png" alt="" data-align="center" width="374">
+     <img title="" src="images/images-1.X/2024-03-30-15-24-24-image.png" alt="" data-align="center" width="374">
   
   4. 符号引用验证，例如是否访问了其他类中private的方法等。
 
@@ -446,7 +446,7 @@ k += 1;      // 解释为执行 1 条指令
   
   - Hotspot JDK8中虚拟机源码对版本号检测的代码如下，你能读懂它的含义吗
     
-    <img title="" src="images\images-1.X\2024-03-30-15-25-59-image.png" alt="" width="949">
+    <img title="" src="images/images-1.X/2024-03-30-15-25-59-image.png" alt="" width="949">
 
 ### 3.3.2 连接阶段之准备
 
@@ -454,7 +454,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - <font color=red>注意：本章涉及到的内存结构只讨论JDK8及之后的版本，8之前的版本后续章节详述。</font>
   
-  <img title="" src="images\images-1.X\2024-03-30-15-32-07-image.png" alt="" width="735">
+  <img title="" src="images/images-1.X/2024-03-30-15-32-07-image.png" alt="" width="735">
 
 - 上述代码：在加载阶段时，在堆区中准备Class的内存；在连接的准备阶段时，在该Class的内存中的value变量赋初始值，即0。
 
@@ -465,7 +465,7 @@ k += 1;      // 解释为执行 1 条指令
   | int     | 0        |
   | long    | 0L       |
   | short   | 0        |
-  | char    | '\u0000' |
+  | char    | '/u0000' |
   | byte    | 0        |
   | boolean | false    |
   | double  | 0.0      |
@@ -473,11 +473,11 @@ k += 1;      // 解释为执行 1 条指令
 
 - **final修饰** 的 **基本数据类型** 的 **静态变量**，准备阶段直接会将代码中的值进行赋值。
   
-  <img title="" src="images\images-1.X\2024-03-30-15-32-37-image.png" alt="" width="708">
+  <img title="" src="images/images-1.X/2024-03-30-15-32-37-image.png" alt="" width="708">
 
-![](images\images-1.X\2024-03-30-17-14-00-image.png)
+![](images/images-1.X/2024-03-30-17-14-00-image.png)
 
-<img src="images\images-1.X\2024-03-30-17-16-39-image.png" title="" alt="" width="1080">
+<img src="images/images-1.X/2024-03-30-17-16-39-image.png" title="" alt="" width="1080">
 
 - 上述途中有错误：clinit方法是 class init，表示类的初始化方法，在类的初始化阶段执行
 
@@ -487,11 +487,11 @@ k += 1;      // 解释为执行 1 条指令
 
 - <font color=red>符号引用就是在字节码文件中使用编号来访问常量池中的内容。</font>
   
-  <img title="" src="images\images-1.X\2024-03-30-15-35-16-image.png" alt="" width="563">
+  <img title="" src="images/images-1.X/2024-03-30-15-35-16-image.png" alt="" width="563">
 
 - <font color=red>直接引用不在使用编号，而是使用内存中地址进行访问具体的数据。</font>
   
-  <img title="" src="images\images-1.X\2024-03-30-15-34-52-image.png" alt="" width="578">
+  <img title="" src="images/images-1.X/2024-03-30-15-34-52-image.png" alt="" width="578">
 
 ## 3.4 初始化阶段
 
@@ -501,7 +501,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - 初始化阶段会执行字节码文件中 <font color=red>clinit</font> 部分的字节码指令。
   
-  <img title="" src="images\images-1.X\2024-03-30-15-38-27-image.png" alt="" width="754">
+  <img title="" src="images/images-1.X/2024-03-30-15-38-27-image.png" alt="" width="754">
   
   ```java
   package com.study.jvm.methodAreaDemo.clinit;
@@ -756,9 +756,9 @@ k += 1;      // 解释为执行 1 条指令
 
 ## 3.5 总结
 
-<img src="images\images-1.X\2024-03-30-19-06-04-image.png" title="" alt="" width="799">
+<img src="images/images-1.X/2024-03-30-19-06-04-image.png" title="" alt="" width="799">
 
-<img src="images\images-1.X\2024-03-30-19-06-29-image.png" title="" alt="" width="765">
+<img src="images/images-1.X/2024-03-30-19-06-29-image.png" title="" alt="" width="765">
 
 几个要点：
 
@@ -774,7 +774,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - 类加载器只参与加载过程中的字节码获取并加载到内存这一部分。
   
-  <img src="images\images-1.X\2024-03-31-14-04-48-image.png" title="" alt="" width="903">
+  <img src="images/images-1.X/2024-03-31-14-04-48-image.png" title="" alt="" width="903">
 
 - 应用场景：
   
@@ -802,11 +802,11 @@ k += 1;      // 解释为执行 1 条指令
 
 类加载器分为两类，一类是Java代码中实现的，一类是Java虚拟机底层源码实现的。
 
-<img title="" src="images\images-1.X\2024-03-30-22-11-49-image.png" alt="" width="877">
+<img title="" src="images/images-1.X/2024-03-30-22-11-49-image.png" alt="" width="877">
 
 类加载器的设计JDK8和8之后的版本差别较大，JDK8及之前的版本中默认的类加载器有如下几种：
 
-<img title="" src="images\images-1.X\2024-03-30-23-21-44-image.png" alt="" width="881">
+<img title="" src="images/images-1.X/2024-03-30-23-21-44-image.png" alt="" width="881">
 
 ### Arthas中类加载器相关的功能1
 
@@ -814,7 +814,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - classloader -查看classloader 的继承树，urls，类加载信息，使用classloader 去 getResource
   
-  ![](images\images-1.X\2024-03-31-14-13-45-image.png)
+  ![](images/images-1.X/2024-03-31-14-13-45-image.png)
 
 ### 4.1.1 启动类加载器
 
@@ -822,7 +822,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - 默认加载 Java安装目录 /jre/lib 下的类文件，比如 rt.jar，tools.jar，resources.jar等。
   
-  <img title="" src="images\images-1.X\2024-03-30-23-32-45-image.png" alt="" width="533">
+  <img title="" src="images/images-1.X/2024-03-30-23-32-45-image.png" alt="" width="533">
 
 - 通过启动类加载器去加载用户jar包：
   
@@ -845,7 +845,7 @@ k += 1;      // 解释为执行 1 条指令
     }
     ```
     
-    ![](images\images-1.X\2024-03-31-15-04-06-image.png)
+    ![](images/images-1.X/2024-03-31-15-04-06-image.png)
     
     ```xml
     <!-- 打jar包时，只打包 com.study.jvm.demo.MyClassA 类，并且打包的名字设置为classloader-test -->
@@ -884,7 +884,7 @@ k += 1;      // 解释为执行 1 条指令
   }
   ```
   
-  <img src="images\images-1.X\2024-03-31-14-27-29-image.png" title="" alt="" width="634">
+  <img src="images/images-1.X/2024-03-31-14-27-29-image.png" title="" alt="" width="634">
 
 ### 4.1.2 Java中的默认类加载器
 
@@ -892,7 +892,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - <font color=red>它们的源码都位于sun.misc.Launcher中，是一个静态内部类。继承自URLClassLoader。具备通过目录或者指定jar包将字节码文件加载到内存中。</font>
 
-<img title="" src="images\images-1.X\2024-03-30-23-40-51-image.png" alt="" width="1026">
+<img title="" src="images/images-1.X/2024-03-30-23-40-51-image.png" alt="" width="1026">
 
 #### 4.1.2.1 扩展类加载器
 
@@ -900,7 +900,7 @@ k += 1;      // 解释为执行 1 条指令
 
 - 默认加载 Java安装目录 /jre/lib/ext 下的类文件。
   
-  <img src="images\images-1.X\2024-03-30-23-40-19-image.png" title="" alt="" width="579">
+  <img src="images/images-1.X/2024-03-30-23-40-19-image.png" title="" alt="" width="579">
 
 - 通过扩展类加载器去加载用户jar包：
   
@@ -926,7 +926,7 @@ k += 1;      // 解释为执行 1 条指令
     }
     ```
     
-    - 启动时，添加VM参数：`-Djava.ext.dirs=D:\jvm-classloader-demo\jar;D:\jdk1.8.0_161\jre\lib\ext`
+    - 启动时，添加VM参数：`-Djava.ext.dirs=D:/jvm-classloader-demo/jar;D:/jdk1.8.0_161/jre/lib/ext`
 
 #### 4.1.2.2 应用程序类加载器
 
@@ -963,9 +963,9 @@ public class AppClassLoaderDemo {
   
   2. 执行 `classloaser -c hash码值` 
      
-     ![](images\images-1.X\2024-03-31-15-47-29-image.png)
+     ![](images/images-1.X/2024-03-31-15-47-29-image.png)
      
-     ![](images\images-1.X\2024-03-31-15-56-25-image.png)
+     ![](images/images-1.X/2024-03-31-15-56-25-image.png)
 
 ## 4.2 双亲委派机制
 
@@ -992,7 +992,7 @@ System.out.println(clazz.getClassLoader()); // null
 
 - 启动类加载器使用C++编写，没有上级类加载器。
   
-  <img src="images\images-1.X\2024-03-31-10-30-34-image.png" title="" alt="" width="585">
+  <img src="images/images-1.X/2024-03-31-10-30-34-image.png" title="" alt="" width="585">
 3. 类加载步骤：
    
    1）在类加载的过程中，每个类加载器都会先检查是否已经加载了该类，如果已经加载则直接返回，否则会将加载请求委派给父类加载器。
@@ -1007,13 +1007,13 @@ System.out.println(clazz.getClassLoader()); // null
    
    - 向下委派加载起到了一个加载优先级的作用。
    
-   <img src="images\images-1.X\2024-03-31-10-36-47-image.png" title="" alt="" width="683">
+   <img src="images/images-1.X/2024-03-31-10-36-47-image.png" title="" alt="" width="683">
 
 ### Arthas中类加载器相关的功能3
 
 - 类加载器的继承关系可以通过classloader–t 查看：
   
-  <img src="images\images-1.X\2024-03-31-10-31-35-image.png" title="" alt="" width="876">
+  <img src="images/images-1.X/2024-03-31-10-31-35-image.png" title="" alt="" width="876">
 
 ### 4.2.2 三个问题
 
@@ -1080,32 +1080,32 @@ System.out.println(clazz.getClassLoader()); // null
 
 - 双亲委派机制的核心代码就位于loadClass方法中。
   
-  ![](images\images-1.X\2024-03-31-12-25-09-image.png)
+  ![](images/images-1.X/2024-03-31-12-25-09-image.png)
 
 - 阅读双亲委派机制的核心代码，分析如何通过自定义的类加载器打破双亲委派机制。
 
 - 打破双亲委派机制的核心就是将下边这一段代码重新实现。
   
-  ![](images\images-1.X\2024-03-31-12-26-39-image.png)
+  ![](images/images-1.X/2024-03-31-12-26-39-image.png)
 1. 自定义类加载器默认的父类加载器 
 - 自定义类加载器父类怎么是AppClassLoader呢？
   
-  <img src="images\images-1.X\2024-03-31-12-28-50-image.png" title="" alt="" width="569">
+  <img src="images/images-1.X/2024-03-31-12-28-50-image.png" title="" alt="" width="569">
 
 - 以Jdk8为例，ClassLoader类中提供了构造方法设置parent的内容：
   
-  ![](images\images-1.X\2024-03-31-12-29-30-image.png)
+  ![](images/images-1.X/2024-03-31-12-29-30-image.png)
 
 - 这个构造方法由另外一个构造方法调用，其中父类加载器由getSystemClassLoader方法设置，该方法返回的是AppClassLoader。
   
-  <img src="images\images-1.X\2024-03-31-12-30-38-image.png" title="" alt="" width="857">
+  <img src="images/images-1.X/2024-03-31-12-30-38-image.png" title="" alt="" width="857">
 2. 两个自定义类加载器加载相同限定名的类，不会冲突吗？
 - <font color=red>不会冲突</font>，在同一个Java虚拟机中，只有<font color=red>相同类加载器+相同的类限定名</font>才会被认为是同一个类。
 
 - 在Arthas中使用sc–d 类名的方式查看具体的情况。
 3. 正确的去实现一个自定义类加载器的方式是重写<font color=red>findClass</font>方法，这样不会破坏双亲委派机制。
    
-   ![](images\images-1.X\2024-03-31-12-33-41-image.png)
+   ![](images/images-1.X/2024-03-31-12-33-41-image.png)
 
 上述知识点，通过以下代码解析：
 
@@ -1133,7 +1133,7 @@ public class CustomizedClassLoader extends ClassLoader {
 
     private byte[] loadClassData(String name) {
         try {
-            String tempName = name.replaceAll("\\.", Matcher.quoteReplacement(File.separator));
+            String tempName = name.replaceAll("//.", Matcher.quoteReplacement(File.separator));
             FileInputStream fis = new FileInputStream(basePath + tempName + FILE_EXT);
             try {
                 return IOUtils.toByteArray(fis);
@@ -1162,12 +1162,12 @@ public class CustomizedClassLoader extends ClassLoader {
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
         // 创建自定义的类加载器对象
         CustomizedClassLoader classLoader1 = new CustomizedClassLoader();
-        classLoader1.setBasePath("D:\\code\\idea_code\\study-project-java-2023\\jvm-study\\jvm-classloader-demo\\lib\\");
+        classLoader1.setBasePath("D://code//idea_code//study-project-java-2023//jvm-study//jvm-classloader-demo//lib//");
         Class<?> clazz1 = classLoader1.loadClass("com.study.jvm.demo.MyClassA");
         System.out.println("MyClassA 的类加载器是：" + clazz1.getClassLoader());
 
         CustomizedClassLoader classLoader2 = new CustomizedClassLoader();
-        classLoader2.setBasePath("D:\\code\\idea_code\\study-project-java-2023\\jvm-study\\jvm-classloader-demo\\lib\\");
+        classLoader2.setBasePath("D://code//idea_code//study-project-java-2023//jvm-study//jvm-classloader-demo//lib//");
         Class<?> clazz2 = classLoader2.loadClass("com.study.jvm.demo.MyClassA");
         System.out.println("MyClassA 的类加载器是：" + clazz2.getClassLoader());
 
@@ -1192,19 +1192,19 @@ public class CustomizedClassLoader extends ClassLoader {
 
 - JDBC中使用了DriverManager来管理项目中引入的不同数据库的驱动，比如mysql驱动、oracle驱动。
   
-  ![](images\images-1.X\2024-03-31-12-36-09-image.png)
+  ![](images/images-1.X/2024-03-31-12-36-09-image.png)
 
 - DriverManager类位于rt.jar包中，由启动类加载器加载。
   
-  <img title="" src="images\images-1.X\2024-03-31-12-37-35-image.png" alt="" width="1073">
+  <img title="" src="images/images-1.X/2024-03-31-12-37-35-image.png" alt="" width="1073">
 
 - 依赖中的mysql驱动对应的类，由应用程序类加载器来加载。
   
-  <img title="" src="images\images-1.X\2024-03-31-12-38-18-image.png" alt="" width="1076">
+  <img title="" src="images/images-1.X/2024-03-31-12-38-18-image.png" alt="" width="1076">
 
 - DriverManager属于rt.jar是启动类加载器加载的。而用户jar包中的驱动需要由应用类加载器加载，这就违反了双亲委派机制。
   
-  ![](images\images-1.X\2024-03-31-12-39-27-image.png)
+  ![](images/images-1.X/2024-03-31-12-39-27-image.png)
 
 #### 4.3.2.1 JDBC案例之SPI机制
 
@@ -1214,41 +1214,41 @@ public class CustomizedClassLoader extends ClassLoader {
   
   1. 在 ClassPath路径下的 META-INF/services 文件夹中，以接口的全限定名来命名文件名，对应的文件里面写该接口的实现。
      
-     <img src="images\images-1.X\2024-04-01-10-18-10-image.png" title="" alt="" width="855">
+     <img src="images/images-1.X/2024-04-01-10-18-10-image.png" title="" alt="" width="855">
   
   2. 使用ServiceLoader加载实现类。
      
-     <img src="images\images-1.X\2024-04-01-10-19-54-image.png" title="" alt="" width="840">
+     <img src="images/images-1.X/2024-04-01-10-19-54-image.png" title="" alt="" width="840">
 
 #### 4.3.2.2 DriverManager怎么知道jar包中要加载的驱动在哪儿
 
 1. 通过 `conn = DriverManager.getConnection(DB_URL, USER, PASS);` 获取连接对象时，getConnection是DriverManager类的静态方法，调用该方法一定会导致DriverManager类的初始化(clinit)方法被执行。
    
-   <img src="images\images-1.X\2024-04-01-10-41-02-image.png" title="" alt="" width="1060">
+   <img src="images/images-1.X/2024-04-01-10-41-02-image.png" title="" alt="" width="1060">
 
 2. SPI机制加载实现类，即加载驱动实现类
    
-   <img src="images\images-1.X\2024-04-01-10-43-10-image.png" title="" alt="" width="635">
+   <img src="images/images-1.X/2024-04-01-10-43-10-image.png" title="" alt="" width="635">
 
 3. MySql的驱动jar包中，配置了相应的SPI信息，如下图所示：
    
-   ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-10-51-09-image.png)
+   ![](C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-10-51-09-image.png)
 
 4. `loadInitialDrviers()`方法中，会通过 `ServiceLoader.load(Driver.class)`获取项目中所有 `java.sql.Driver` 接口的实现类迭代器，然后依次遍历
    
-   ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-10-57-46-image.png)
+   ![](C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-10-57-46-image.png)
    
    - `ServiceLoader.load` 方法内部会通过获取当前线程的上下文类加载器，即应用程序类加载器，在后续使用该类加载器加载实现类。
      
-     <img src="images\images-1.X\2024-04-01-11-05-34-image.png" title="" alt="" width="904">
+     <img src="images/images-1.X/2024-04-01-11-05-34-image.png" title="" alt="" width="904">
    
    - 在 `driversIterator.next()` 方法中，会调用 `Class.forName`方法，导致实现类的初始化(clinit)方法被调用
      
-     ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-10-59-49-image.png)
+     ![](C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-10-59-49-image.png)
 
 5. MySql驱动包的实现类被加载，并执行对应的初始化方法
    
-   <img src="images\images-1.X\2024-04-01-11-01-57-image.png" title="" alt="" width="799">
+   <img src="images/images-1.X/2024-04-01-11-01-57-image.png" title="" alt="" width="799">
 
 #### 4.3.2.3 总结
 
@@ -1259,7 +1259,7 @@ public class CustomizedClassLoader extends ClassLoader {
 3. SPI中利用了线程上下文类加载器（应用程序类加载器）去加载类并创建对象 (Driver的具体实现类对象)。
 - <font color=red>这种由启动类加载器加载的类，委派应用程序类加载器去加载类的方式，打破了双亲委派机制。</font>
   
-  <img title="" src="images\images-1.X\2024-04-01-11-13-02-image.png" alt="" width="829">
+  <img title="" src="images/images-1.X/2024-04-01-11-13-02-image.png" alt="" width="829">
 
 ### 4.3.3 第三种方法：Osgi框架(已经不用了)
 
@@ -1296,20 +1296,20 @@ public class CustomizedClassLoader extends ClassLoader {
 
 - JDK8及之前的版本中，扩展类加载器和应用程序类加载器的源码位于rt.jar包中的sun.misc.Launcher.java。
 
-![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-11-26-15-image.png)
+![](C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-11-26-15-image.png)
 
 ### 4.4.2 JDK8之后的类加载器
 
 - 由于JDK9引入了module的概念，类加载器在设计上发生了很多变化。
   
-  ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-01-13-45-50-image.png)
+  ![](C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-13-45-50-image.png)
 1. 启动类加载器使用Java编写，位于 jdk.internal.loader.ClassLoaders 类中。
    
    - Java中的BootClassLoader 继承自 BuiltinClassLoader，实现从模块中找到要加载的字节码资源文件。
    
    - <font color=red>启动类加载器依然无法通过java代码获取到，返回的仍然是null，保持了统一。</font>避免用户操作启动类加载器
      
-     <img src="images\images-1.X\2024-04-01-13-46-26-image.png" title="" alt="" width="614">
+     <img src="images/images-1.X/2024-04-01-13-46-26-image.png" title="" alt="" width="614">
 
 2. 扩展类加载器被替换成了平台类加载器（Platform Class Loader）。
    
@@ -1319,7 +1319,7 @@ public class CustomizedClassLoader extends ClassLoader {
    
    - <font color=red>平台类加载器的存在更多的是为了与老版本的设计方案兼容，自身没有特殊的逻辑。</font>
      
-     <img title="" src="images\images-1.X\2024-04-01-13-49-52-image.png" alt="" width="678">
+     <img title="" src="images/images-1.X/2024-04-01-13-49-52-image.png" alt="" width="678">
 
 ## 4.5 总结
 
