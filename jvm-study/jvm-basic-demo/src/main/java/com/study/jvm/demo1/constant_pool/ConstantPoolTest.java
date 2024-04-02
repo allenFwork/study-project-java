@@ -1,4 +1,4 @@
-package com.study.jvm.demo1;
+package com.study.jvm.demo1.constant_pool;
 
 /**
  * 字节码中 常量池的学习：

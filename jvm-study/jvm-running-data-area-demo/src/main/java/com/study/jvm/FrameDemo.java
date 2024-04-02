@@ -1,5 +1,8 @@
 package com.study.jvm;
 
+/**
+ * 虚拟机栈
+ */
 public class FrameDemo {
     public static void main(String[] args) {
         recursion();

@@ -39,14 +39,14 @@
 #### 2.2.1.1 案例代码（修改后版本）
 
 ```java
-package com.study.jvm.demo1;
+package com.study.jvm.methodAreaDemo;
 
 public interface SimpleInterface {
     public void interfaceMethodDemo();
 }
 
 
-package com.study.jvm.demo1;
+package com.study.jvm.methodAreaDemo;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -504,7 +504,7 @@ k += 1;      // 解释为执行 1 条指令
   <img title="" src="images\images-1.X\2024-03-30-15-38-27-image.png" alt="" width="754">
   
   ```java
-  package com.study.jvm.demo1.clinit;
+  package com.study.jvm.methodAreaDemo.clinit;
   
   /**
    * 加载 - 连接 - 初始化 - 使用 - 卸载
@@ -512,9 +512,9 @@ k += 1;      // 解释为执行 1 条指令
    *
    * 该文件的字节码指令：
    * 0 iconst_1                                                     将常量1放入操作数栈中
-   * 1 putstatic #2 <com/study/jvm/demo1/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
+   * 1 putstatic #2 <com/study/jvm/methodAreaDemo/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
    * 4 iconst_2                                                     将常量2放入操作数栈中
-   * 5 putstatic #2 <com/study/jvm/demo1/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
+   * 5 putstatic #2 <com/study/jvm/methodAreaDemo/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
    * 8 return
    */
   public class Demo1 {
@@ -533,7 +533,7 @@ k += 1;      // 解释为执行 1 条指令
   ```
   
   ```java
-  package com.study.jvm.demo1.clinit;
+  package com.study.jvm.methodAreaDemo.clinit;
   
   /**
    * 加载 - 连接 - 初始化 - 使用 - 卸载
@@ -541,9 +541,9 @@ k += 1;      // 解释为执行 1 条指令
    * 
    * 字节码指令：
    * 0 iconst_2                                                     将常量2放入操作数栈中
-   * 1 putstatic #2 <com/study/jvm/demo1/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
+   * 1 putstatic #2 <com/study/jvm/methodAreaDemo/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
    * 4 iconst_1                                                     将常量1放入操作数栈中
-   * 5 putstatic #2 <com/study/jvm/demo1/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
+   * 5 putstatic #2 <com/study/jvm/methodAreaDemo/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
    * 8 return
    */
   public class Demo2 {
@@ -580,7 +580,7 @@ k += 1;      // 解释为执行 1 条指令
 1. 代码1：
    
    ```java
-   package com.study.jvm.demo1.interview;
+   package com.study.jvm.methodAreaDemo.interview;
    
    /**
     * 初始化阶段相关面试题
@@ -655,7 +655,7 @@ k += 1;      // 解释为执行 1 条指令
 - **直接访问父类的静态变量，不会触发子类的初始化**。
   
   ```java
-  package com.study.jvm.demo1.clinit;
+  package com.study.jvm.methodAreaDemo.clinit;
   
   public class Demo9 {
       public static void main(String[] args) {
@@ -684,7 +684,7 @@ k += 1;      // 解释为执行 1 条指令
 - 子类的初始化clinit调用之前，会先调用父类的clinit初始化方法。
   
   ```java
-  package com.study.jvm.demo1.clinit;
+  package com.study.jvm.methodAreaDemo.clinit;
   
   public class Demo9 {
       public static void main(String[] args) {
@@ -713,7 +713,7 @@ k += 1;      // 解释为执行 1 条指令
 - <font color=red>数组中的类创建，不会导致数组中元素的类进行初始化</font>
   
   ```java
-  package com.study.jvm.demo1.interview;
+  package com.study.jvm.methodAreaDemo.interview;
   
   /**
    * 初始化阶段相关面试题
@@ -734,7 +734,7 @@ k += 1;      // 解释为执行 1 条指令
 - <font color=red>final修饰的变量如果赋值的内容需要执行指令才能得出结果，会执行clinit方法进行初始化</font>
   
   ```java
-  package com.study.jvm.demo1.interview;
+  package com.study.jvm.methodAreaDemo.interview;
   
   /**
    * 初始化阶段相关面试题
