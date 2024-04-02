@@ -96,7 +96,7 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
   
   - 长度值为3：表示有3条指令可以使用该变量，即偏移量为2、3、4 的三条指令
 
-- 栈帧中的局部变量表是一个数组，数组中每一个位置称之为槽(slot) ，long和double类型占用两个槽，其他类型占用一个槽。
+- <font color=blue>**栈帧中的局部变量表是一个数组**</font>，数组中每一个位置称之为槽(slot) ，long和double类型占用两个槽，其他类型占用一个槽。
   
   <img src="images/image-1.3/2024-04-01-16-23-07-image.png" title="" alt="" width="1035">
   
@@ -218,9 +218,11 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
 
 - Java虚拟机栈存储了Java方法调用时的栈帧，而本地方法栈存储的是native本地方法的栈帧。
 
-- 在Hotspot虚拟机中，Java虚拟机栈和本地方法栈实现上使用了同一个栈空间。本地方法栈会在栈内
-
-- 存上生成一个栈帧，临时保存方法的参数同时方便出现异常时也把本地方法的栈信息打印出来。
+- 在Hotspot虚拟机中，<font color=red>Java虚拟机栈和本地方法栈实现上使用了同一个栈空间</font>。本地方法栈会在栈内存上生成一个栈帧，临时保存方法的参数同时方便出现异常时也把本地方法的栈信息打印出来。
+  
+  ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-02-10-20-11-image.png)
+  
+  <img title="" src="images/image-1.3/2024-04-02-10-24-32-image.png" alt="" width="220" data-align="inline">
 
 # 3. Java堆
 
@@ -238,7 +240,7 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
 
 现象：
 
-- 堆内存大小是有上限的，当对象一直向堆中放入对象达到上限之后，就会抛出OutOfMemory错误。
+- 堆内存大小是有上限的，当对象一直向堆中放入对象达到上限之后，就会抛出 OutOfMemory 错误。
   
   <img src="images/image-1.3/2024-04-01-18-03-59-image.png" title="" alt="" width="684">
 
@@ -268,7 +270,7 @@ Oracle官方文档：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/
 
 ## 3.3 设置大小
 
-- 要修改堆的大小，可以使用虚拟机参数 –Xmx（max最大值）和-Xms (初始的total)。
+- 要修改堆的大小，可以使用虚拟机参数 –Xmx（max最大值）和 -Xms (初始的total)。
 
 - 语法：`-Xmx值 -Xms值`
 
@@ -296,7 +298,7 @@ Oracle官方文档：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/
 
 - 字符串常量池：保存了字符串常量
 
-方法区是用来存储每个类的基本信息（元信息），一般称之为InstanceKlass对象。在类的加载阶段完成。
+方法区是用来存储每个类的基本信息（元信息），一般称之为**InstanceKlass对象**。在类的<font color=red>加载阶段</font>完成。
 
 <img src="images/image-1.3/2024-04-01-18-15-29-image.png" title="" alt="" width="798">
 
@@ -304,7 +306,7 @@ Oracle官方文档：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/
 
 字节码文件中通过编号查表的方式找到常量，这种常量池称为<font color=red>静态常量池</font>。当常量池加载到内存中之后，可以通过内存地址快速的定位到常量池中的内容，这种常量池称为<font color=red>运行时常量池</font>。
 
-![](C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-18-18-46-image.png)
+![](images/image-1.3/2024-04-01-18-18-46-image.png)
 
 方法区是《Java虚拟机规范》中设计的虚拟概念，每款Java虚拟机在实现上都各不相同。Hotspot设计如下：
 
@@ -353,13 +355,17 @@ ByteBuddy是一个基于Java的开源库，用于生成和操作Java字节码。
 3. 调用visit方法，创建字节码数据
    
    ```java
+   // 第一个参数：JDK版本(主版本和副版本号)；
+   // 第三个参数：类的全限定名
+   // 其余参数照着写，不能漏
    classWriter.visit(Opcodes.V1_8, Opcodes.ACC_PUBLIC, name, null, "java/lang/Object", null);
+   // 拿到字节码数据
    byte[] bytes = classWriter.toByteArray();
    ```
 
-实验发现，JDK7上运行大概十几万次，就出现了错误。在JDK8上运行百万次，程序都没有出现任何错误，但是内存会直线升高。这说明JDK7和JDK8在方法区的存放上，采用了不同的设计
+实验发现，JDK7上运行大概十几万次，就出现了错误。在JDK8上运行百万次，程序都没有出现任何错误，但是内存会直线升高。这说明JDK7和JDK8在方法区的存放上，采用了不同的设计。
 
-- JDK7将方法区存放在<font color=red>堆区域中的永久代空间</font>，堆的大小由虚拟机参数 <font color=red>-XX:MaxPermSize=值 </font>来控制
+- JDK7将方法区存放在<font color=red>堆区域中的永久代空间</font>，堆的大小由虚拟机参数 <font color=red>-XX:MaxPermSize=值 </font>来控制。
 
 - JDK8将方法区存放在<font color=red>元空间</font>中，元空间位于操作系统维护的直接内存中，默认情况下只要不超过操作系统承受的上限，可以一直分配。
   
@@ -379,6 +385,8 @@ ByteBuddy是一个基于Java的开源库，用于生成和操作Java字节码。
 
 ![](images/image-1.3/2024-04-01-21-41-38-image.png)
 
+- JDK8 之后，运行时常量池还在方法区中，方法区放在了元空间中，即类的基本信息和运行时常量池都在元空间中，而字符串常量池还放在堆中。
+
 练习题1：通过字节码指令如下代码的运行结果
 
 ```java
@@ -393,7 +401,12 @@ public static void main(String[] args) {
 
 ![](images/image-1.3/2024-04-01-22-09-43-image.png)
 
-- 变量连接使用StringBuilder
+- 字符串相加，底层使用的是 StringBuilder对象处理
+- 9 至 27 对应的指令就是 `String d = a + b` 的实现
+  - aload命令：表示将局部变量表1和2位置对应的数据拿到，即 “1” 和 "2" 字符串放到操作数栈中，
+  - append方法：将 “1” 和 “2” 连接在一起，得到 “12”
+  - toString方法：将 “12” 转为 String 类型，即在堆内存中创建了 “12” 的字符串对象
+  - astore命令：将上一步中的字符串对象地址 放到 局部变量表4位置处，即d
 
 练习题2：通过字节码指令如下代码的运行结果
 
@@ -407,9 +420,21 @@ public static void main(String[] args) {
 }
 ```
 
-- 常量，编译阶段直接连接
+- 常量，编译阶段直接连接，d的值来自于字符串常量池中，所以和c 指向同一个地址
 
 ### String 的 intern方法
+
+```java
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    // 接受字符串，并将其保存到常量池中，input1就是常量池中该字符串的地址
+    String input1 = scanner.next().intern();
+    String input2 = scanner.next().intern();
+
+    // 如果两次输入的字符串是一样的，那么input1和input2会指向常量池中的同一个字符串
+    System.out.println(input1 == input2);
+}
+```
 
 需求：
 
@@ -420,7 +445,7 @@ public static void main(String[] args) {
   ```java
   public static void main(String[] args) {
       String s1 = new StringBuilder().append("think").append("123").toString();
-      System.out.println(s1.intern() == s1);
+      System.out.println(s1.intern() == s1); 
   
       String s2 = new StringBuilder().append("ja").append("va").toString();
       System.out.println(s2.intern() == s2);
@@ -429,17 +454,47 @@ public static void main(String[] args) {
 
 分析：
 
-JDK6版本中 `intern()` 方法会把第一次遇到的字符串实例复制到永久代的字符串常量池中，返回的也是永久代里面这个字符串实例的引用。JVM启动时就会把java加入到常量池中。
+JDK6版本中 `intern()` 方法会把第一次遇到的字符串实例复制到永久代的字符串常量池中，返回的也是永久代里面这个字符串实例的引用。字符串“java”是JDK内部就有的字符串，所以JVM启动时就会把java加入到常量池中。字符串常量池在方法区中，方法区存放在永久代中。上述代码执行逻辑：
 
-JDK7及之后版本中由于字符串常量池在堆上，所以 `intern()` 方法会把第一次遇到的字符串的引用放入字符串常量池。
+1. 在堆中创建 "think123" 的字符串对象，s1指向它，假设 s1 为 0x0001
+
+2. 执行 `s1.intern()` ，将 "think123" 复制一份存放到字符串常量池中，并返回该地址，假设 `s1.intern()` 为 0x0010
+
+3. 所以 s1 不等于 `s1.intern()`
+
+4. 在堆中创建 "java" 的字符串对象，s2指向它，假设 s2 为 0x0002
+
+5. 因为 JVM 启动时，字符串常量池中就会生成对应的 "java" 字符串，所以 `s2.intern()` 就直接获取了字符串常量池中该字符串的地址，假设 0x0011
+
+6. 所以 s2 不等于 `s2.intern()`
+
+JDK7及之后版本中由于字符串常量池在堆上，所以 `intern()` 方法会把第一次遇到的字符串的引用放入字符串常量池。上述代码执行逻辑：
+
+1. 在堆中创建 "think123" 的字符串对象，s1指向它，假设 s1 为 0x0001
+
+2. 执行 `s1.intern()` ，将 "think123" 的地址复制到字符串常量池中，并返回该地址，假设 `s1.intern()` 为 0x0001
+
+3. 所以 s1 等于 `s1.intern()`
+
+4. 在堆中创建 "java" 的字符串对象，s2指向它，假设 s2 为 0x0002
+
+5. 因为 JVM 启动时，字符串常量池中就会生成对应的 "java" 字符串，所以 `s2.intern()` 就直接获取了字符串常量池中该字符串的地址，假设 0x0011
+
+6. 所以 s2 不等于 `s2.intern()`
+   
+   <img src="images/image-1.3/2024-04-02-13-46-51-image.png" title="" alt="" width="1030">
 
 ### 静态变量的存储
 
 运行时数据区都学完了，静态变量存储在哪里呢？
 
 - JDK6及之前的版本中，静态变量是存放在方法区中的，也就是永久代。
+  
+  <img title="" src="images/image-1.3/2024-04-02-13-48-33-image.png" alt="" width="715">
 
 - JDK7及之后的版本中，静态变量是存放在堆中的Class对象中，脱离了永久代。具体源码可参考虚拟机源码：BytecodeInterpreter针对putstatic指令的处理。
+  
+  <img src="images/image-1.3/2024-04-02-13-49-21-image.png" title="" alt="" width="556">
 
 # 5. 直接内存
 
@@ -453,7 +508,7 @@ JDK7及之后版本中由于字符串常量池在堆上，所以 `intern()` 方�
 
 现在直接放入直接内存即可，同时Java堆上维护直接内存的引用，减少了数据复制的开销。写文件也是类似的思路。
 
-![](images/image-1.3/2024-04-01-22-43-56-image.png)
+<img src="images/image-1.3/2024-04-01-22-43-56-image.png" title="" alt="" width="1142">
 
 - 要创建直接内存上的数据，可以使用ByteBuffer。
 
@@ -461,7 +516,22 @@ JDK7及之后版本中由于字符串常量池在堆上，所以 `intern()` 方�
 
 - 注意事项：arthas的memory命令可以查看直接内存大小，属性名direct。
 
-![](images/image-1.3/2024-04-01-22-44-37-image.png)
+- 代码：
+  
+  ```java
+  public static void main(String[] args) throws InterruptedException, IOException {
+      // 等待第一次输入后，开始向直接内存中放数据（等待arthas启动，监控该进程）
+      System.in.read();
+      while (true) {
+          ByteBuffer directBuffer = ByteBuffer.allocateDirect(size);
+          list.add(directBuffer);
+          System.out.println(++count);
+          Thread.sleep(5000);
+      }
+  }
+  ```
+  
+  ![](images/image-1.3/2024-04-01-22-44-37-image.png)  
 
 - 如果需要手动调整直接内存的大小，可以使用-XX:MaxDirectMemorySize=大小
   
@@ -480,3 +550,15 @@ JDK7及之后版本中由于字符串常量池在堆上，所以 `intern()` 方�
 1、运行时数据区分成哪几部分，每一部分的作用是什么？
 
 2、不同JDK版本之间运行时数据区域的区别是什么？
+
+- JDK6：
+  
+  <img title="" src="images/image-1.3/2024-04-02-14-28-12-image.png" alt="" width="424">
+
+- JDK7：
+  
+  <img src="images/image-1.3/2024-04-02-14-28-34-image.png" title="" alt="" width="424">
+
+- JDK8：
+  
+  <img src="images/image-1.3/2024-04-02-14-28-58-image.png" title="" alt="" width="416">
