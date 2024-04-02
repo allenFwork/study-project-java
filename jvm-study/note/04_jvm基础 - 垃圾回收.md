@@ -1,113 +1,295 @@
-![Image 1](images/image-1.4/image_1.png)
-![Image 2](images/image-1.4/image_2.png)
-![Image 3](images/image-1.4/image_3.png)
-![Image 4](images/image-1.4/image_4.png)
-![Image 5](images/image-1.4/image_5.png)
-![Image 6](images/image-1.4/image_6.png)
-![Image 7](images/image-1.4/image_7.png)
-![Image 8](images/image-1.4/image_8.png)
-![Image 9](images/image-1.4/image_9.png)
-![Image 10](images/image-1.4/image_10.png)
-![Image 11](images/image-1.4/image_11.png)
-![Image 12](images/image-1.4/image_12.png)
-![Image 13](images/image-1.4/image_13.png)
-![Image 14](images/image-1.4/image_14.png)
-![Image 15](images/image-1.4/image_15.png)
-![Image 16](images/image-1.4/image_16.png)
-![Image 17](images/image-1.4/image_17.png)
-![Image 18](images/image-1.4/image_18.png)
-![Image 19](images/image-1.4/image_19.png)
-![Image 20](images/image-1.4/image_20.png)
-![Image 21](images/image-1.4/image_21.png)
-![Image 22](images/image-1.4/image_22.png)
-![Image 23](images/image-1.4/image_23.png)
-![Image 24](images/image-1.4/image_24.png)
-![Image 25](images/image-1.4/image_25.png)
-![Image 26](images/image-1.4/image_26.png)
-![Image 27](images/image-1.4/image_27.png)
-![Image 28](images/image-1.4/image_28.png)
-![Image 29](images/image-1.4/image_29.png)
-![Image 30](images/image-1.4/image_30.png)
-![Image 31](images/image-1.4/image_31.png)
-![Image 32](images/image-1.4/image_32.png)
-![Image 33](images/image-1.4/image_33.png)
-![Image 34](images/image-1.4/image_34.png)
-![Image 35](images/image-1.4/image_35.png)
-![Image 36](images/image-1.4/image_36.png)
-![Image 37](images/image-1.4/image_37.png)
-![Image 38](images/image-1.4/image_38.png)
-![Image 39](images/image-1.4/image_39.png)
-![Image 40](images/image-1.4/image_40.png)
-![Image 41](images/image-1.4/image_41.png)
-![Image 42](images/image-1.4/image_42.png)
-![Image 43](images/image-1.4/image_43.png)
-![Image 44](images/image-1.4/image_44.png)
-![Image 45](images/image-1.4/image_45.png)
-![Image 46](images/image-1.4/image_46.png)
-![Image 47](images/image-1.4/image_47.png)
-![Image 48](images/image-1.4/image_48.png)
-![Image 49](images/image-1.4/image_49.png)
-![Image 50](images/image-1.4/image_50.png)
-![Image 51](images/image-1.4/image_51.png)
-![Image 52](images/image-1.4/image_52.png)
-![Image 53](images/image-1.4/image_53.png)
-![Image 54](images/image-1.4/image_54.png)
-![Image 55](images/image-1.4/image_55.png)
-![Image 56](images/image-1.4/image_56.png)
-![Image 57](images/image-1.4/image_57.png)
-![Image 58](images/image-1.4/image_58.png)
-![Image 59](images/image-1.4/image_59.png)
-![Image 60](images/image-1.4/image_60.png)
-![Image 61](images/image-1.4/image_61.png)
-![Image 62](images/image-1.4/image_62.png)
-![Image 63](images/image-1.4/image_63.png)
-![Image 64](images/image-1.4/image_64.png)
-![Image 65](images/image-1.4/image_65.png)
-![Image 66](images/image-1.4/image_66.png)
-![Image 67](images/image-1.4/image_67.png)
-![Image 68](images/image-1.4/image_68.png)
-![Image 69](images/image-1.4/image_69.png)
-![Image 70](images/image-1.4/image_70.png)
-![Image 71](images/image-1.4/image_71.png)
-![Image 72](images/image-1.4/image_72.png)
-![Image 73](images/image-1.4/image_73.png)
-![Image 74](images/image-1.4/image_74.png)
-![Image 75](images/image-1.4/image_75.png)
-![Image 76](images/image-1.4/image_76.png)
-![Image 77](images/image-1.4/image_77.png)
-![Image 78](images/image-1.4/image_78.png)
-![Image 79](images/image-1.4/image_79.png)
-![Image 80](images/image-1.4/image_80.png)
-![Image 81](images/image-1.4/image_81.png)
-![Image 82](images/image-1.4/image_82.png)
-![Image 83](images/image-1.4/image_83.png)
-![Image 84](images/image-1.4/image_84.png)
-![Image 85](images/image-1.4/image_85.png)
-![Image 86](images/image-1.4/image_86.png)
-![Image 87](images/image-1.4/image_87.png)
-![Image 88](images/image-1.4/image_88.png)
-![Image 89](images/image-1.4/image_89.png)
-![Image 90](images/image-1.4/image_90.png)
-![Image 91](images/image-1.4/image_91.png)
-![Image 92](images/image-1.4/image_92.png)
-![Image 93](images/image-1.4/image_93.png)
-![Image 94](images/image-1.4/image_94.png)
-![Image 95](images/image-1.4/image_95.png)
-![Image 96](images/image-1.4/image_96.png)
-![Image 97](images/image-1.4/image_97.png)
-![Image 98](images/image-1.4/image_98.png)
-![Image 99](images/image-1.4/image_99.png)
-![Image 100](images/image-1.4/image_100.png)
-![Image 101](images/image-1.4/image_101.png)
-![Image 102](images/image-1.4/image_102.png)
-![Image 103](images/image-1.4/image_103.png)
-![Image 104](images/image-1.4/image_104.png)
-![Image 105](images/image-1.4/image_105.png)
-![Image 106](images/image-1.4/image_106.png)
-![Image 107](images/image-1.4/image_107.png)
-![Image 108](images/image-1.4/image_108.png)
-![Image 109](images/image-1.4/image_109.png)
-![Image 110](images/image-1.4/image_110.png)
-![Image 111](images/image-1.4/image_111.png)
-![Image 112](images/image-1.4/image_112.png)
-![Image 113](images/image-1.4/image_113.png)
+# 1. 自动垃圾回收
+
+## 1.1 C/C++的内存管理
+
+在C/C++这类没有自动垃圾回收机制的语言中，一个对象如果不再使用，需要手动释放，否则就会出现内存泄漏。我们称这种释放对象的过程为垃圾回收，而需要程序员编写代码进行回收的方式为手动回收。
+
+内存泄漏指的是不再使用的对象在系统中未被回收，内存泄漏的积累可能会导致内存溢出。
+
+<img title="" src="images/image-1.4/2024-04-02-16-37-36-image.png" alt="" width="921">
+
+## 1.2 Java的内存管理
+
+Java中为了简化对象的释放，引入了自动的<font color=red>垃圾回收（Garbage Collection简称GC）</font>机制。通过垃圾回收器来对不再使用的对象完成自动的回收，垃圾回收器主要负责对堆上的内存进行回收。其他很多现代语言比如C#、Python、Go都拥有自己的垃圾回收器。
+
+<img src="images/image-1.4/2024-04-02-16-39-38-image.png" title="" alt="" width="926">
+
+## 1.3 垃圾回收对比
+
+自动垃圾回收（Java）：自动根据对象是否使用由虚拟机来回收对象
+
+- 优点：降低程序员实现难度、降低对象回收bug的可能性
+
+- 缺点：程序员无法控制内存回收的及时性
+
+手动垃圾回收（C/C++）：由程序员编程实现对象的删除
+
+- 优点：回收及时性高，由程序员把控回收的时机
+
+- 缺点：编写不当容易出现悬空指针、重复释放、内存泄漏等问题
+
+## 1.4 应用场景
+
+1. 解决系统僵死的问题
+   
+   - 大厂的系统出现的许多系统僵死问题都与频繁的垃圾回收有关
+
+2. 性能优化
+   
+   - 对垃圾回收器进行合理的设置，可以有效地提升程序的执行性能
+
+3. 高频面试题
+   
+   - 常见的垃圾回收器
+   
+   - 常见的垃圾回收算法
+   
+   - 四种引用
+   
+   - 项目中用了哪一种垃圾回收器
+
+## 1.5 Java的内存管理和自动垃圾回收
+
+- 线程不共享的部分，都是伴随着线程的创建而创建，线程的销毁而销毁。而方法的栈帧在执行完方法之后就会自动弹出栈并释放掉对应的内存。
+  
+  <img src="images/image-1.4/2024-04-02-16-49-26-image.png" title="" alt="" width="799">
+
+# 2. 方法区的回收
+
+## 2.1 回收内容
+
+方法区中能回收的内容主要就是不再使用的类。
+
+判定一个类可以被卸载。需要同时满足下面三个条件：
+
+1. 此类所有实例对象都已经被回收，在堆中不存在任何该类的实例对象以及子类对象。
+   
+   ```java
+   Class<?> clazz = loader.loadClass("com.study.jvm.demo.MyClassA");
+   Object object = clazz.newInstance();
+   o = null;
+   ```
+
+2. 加载该类的类加载器已经被回收。
+   
+   ```java
+   URLClassLoader loader = new URLClassLoader(new URL[]{new URL("file:D:\\lib\\")});
+   loader = null;
+   ```
+
+3. 该类对应的 java.lang.Class 对象没有在任何地方被引用。
+   
+   ```java
+   Class<?> clazz = loader.loadClass("com.study.jvm.demo.MyClassA");
+   clazz = null;
+   ```
+
+<font color=red>开发中此类场景一般很少出现，主要在如 OSGi、JSP 的热部署等应用场景中。每个jsp文件对应一个唯一的类加载器，当一个jsp文件修改了，就直接卸载这个jsp类加载器。重新创建类加载器，重新加载jsp文件</font>。
+
+## 2.2 手动触发回收
+
+- 如果需要手动触发垃圾回收，可以调用 System.gc() 方法。
+
+- 语法： System.gc()
+
+- 注意事项：
+  
+  调用System.gc()方法并不一定会立即回收垃圾，仅仅是向Java虚拟机发送一个垃圾回收的请求，具体是否需要执行垃圾回收Java虚拟机会自行判断。
+
+# 3. 堆回收
+
+1. 如何判断堆上的对象可以回收？
+
+Java中的对象是否能被回收，是根据对象是否被引用来决定的。如果对象被引用了，说明该对象还在使用，不允许被回收。
+
+比如下面代码的内存结构图：
+
+2. 如何判断堆上的对象没有被引用？
+- 常见的有两种判断方法：引用计数法和可达性分析法。
+
+## 3.1 引用计数法和可达性分析法
+
+### 3.1.1 引用计数法
+
+引用计数法会为每个对象维护一个引用计数器，当对象被引用时加1，取消引用时减1。
+
+<img src="images/image-1.4/2024-04-02-17-29-32-image.png" title="" alt="" width="928">
+
+### 3.1.2 引用计数法缺点：循环引用
+
+引用计数法的优点是实现简单，C++中的智能指针就采用了引用计数法，但是它也存在缺点，主要有两点：
+
+1. 每次引用和取消引用都需要维护计数器，对系统性能会有一定的影响
+
+2. 存在循环引用问题，所谓循环引用就是当A引用B，B同时引用A时会出现对象无法回收的问题。
+
+<img src="images/image-1.4/2024-04-02-17-31-28-image.png" title="" alt="" width="937">
+
+### 补充：查看垃圾回收日志
+
+- 如果想要查看垃圾回收的信息，可以使用 -verbose:gc 参数。
+
+- 语法： -verbose:gc
+  
+  <img src="images/image-1.4/2024-04-02-17-36-36-image.png" title="" alt="" width="910">
+
+### 3.1.3 可达性分析算法
+
+Java使用的是<font color=red>可达性分析算法</font>来判断对象是否可以被回收。
+
+可达性分析将对象分为两类：垃圾回收的根对象（GC Root）和普通对象，对象与对象之间存在引用关系。
+
+下图中A到B再到C和D，形成了一个引用链，可达性分析算法指的是如果从某个到GC Root对象是可达的，对象就不可被回收。
+
+<img src="images/image-1.4/2024-04-02-17-41-18-image.png" title="" alt="" width="951">
+
+哪些对象被称之为GC Root对象呢？
+
+- <font color=red>线程Thread对象，引用线程栈帧中的方法参数、局部变量等</font>
+
+- 系统类加载器加载的java.lang.Class对象，引用类中的静态变量
+
+- 监视器对象，用来保存同步锁synchronized关键字持有的对象
+
+- 本地方法调用时使用的全局对象。
+
+分析下面代码中的A实例对象和B示例对象，是如何通过可达性算法判断对象能被回收的？
+
+<img src="images/image-1.4/2024-04-02-17-44-43-image.png" title="" alt="" width="962">
+
+查看GC Root
+
+通过 arthas 和 eclipse Memory Analyzer (MAT) 工具可以查看GC Root，MAT工具是eclipse推出的Java堆内存检测工具。具体操作步骤如下：
+
+1. 使用arthas的heapdump命令将堆内存快照保存到本地磁盘中。
+
+2. 使用MAT工具打开堆内存快照文件。
+
+3. 选择GC Roots功能查看所有的GC Root。
+
+<img src="images/image-1.4/2024-04-02-17-53-52-image.png" title="" alt="" width="976">
+
+## 3.2 五种对象引用
+
+可达性算法中描述的对象引用，一般指的是强引用，即是GCRoot对象对普通对象有引用关系，只要这层关系存在，普通对象就不会被回收。
+
+除了强引用之外，Java中还设计了几种其他引用方式：
+
+- 软引用
+
+- 弱引用
+
+- 虚引用
+
+- 终结器引用
+
+### 3.2.1 软引用
+
+软引用相对于强引用是一种比较弱的引用关系，如果一个对象只有软引用关联到它，当程序内存不足时，就会将软引用中的数据进行回收。
+
+在 JDK 1.2 版之后提供了SoftReference类来实现软引用，软引用常用于缓存中。
+
+#### 软引用的执行过程如下
+
+1. 将对象使用软引用包装起来，**new SoftReference<对象类型>(对象)** 。
+
+2. 内存不足时，虚拟机尝试进行垃圾回收。
+
+3. 如果垃圾回收仍不能解决内存不足的问题，回收软引用中的对象。
+
+4. 如果依然内存不足，抛出OutOfMemory异常。
+
+#### 软引用使用示例
+
+将100m的数据放入软引用中
+
+```java
+byte[] bytes = new byte[1024 * 1024 * 100];
+SoftReference<byte[]> softReference = new SoftReference<byte[]>(bytes);
+```
+
+软引用中的对象如果在内存不足时回收，SoftReference对象本身也需要被回收。如何知道哪些SoftReference对象需要回收呢？
+
+SoftReference提供了一套队列机制：
+
+1. 软引用创建时，通过构造器传入引用队列
+
+2. 在软引用中包含的对象被回收时，该软引用对象会被放入引用队列
+
+3. 通过代码遍历引用队列，将SoftReference的强引用删除
+
+<img src="images/image-1.4/2024-04-02-18-00-53-image.png" title="" alt="" width="874">
+
+#### 软引用的使用场景-缓存
+
+软引用也可以使用继承自SoftReference类的方式来实现，StudentRef类就是一个软引用对象。
+
+通过构造器传入软引用包含的对象，以及引用队列。
+
+<img title="" src="images/image-1.4/2024-04-02-18-11-42-image.png" alt="" width="509">
+
+使用软引用实现学生数据的缓存：
+
+<img title="" src="images/image-1.4/2024-04-02-18-13-41-image.png" alt="" width="894">
+
+详细代码：
+
+```java
+
+```
+
+### 3.2.2 弱引用
+
+弱引用的整体机制和软引用基本一致，区别在于弱引用包含的对象在垃圾回收时，不管内存够不够都会直接被回收。
+
+在 JDK 1.2 版之后提供了 WeakReference 类来实现弱引用，弱引用主要在 ThreadLocal 中使用。
+
+弱引用对象本身也可以使用引用队列进行回收。
+
+<img src="images/image-1.4/2024-04-02-18-15-59-image.png" title="" alt="" width="701">
+
+### 3.2.3 虚引用和终结器引用
+
+- 这两种引用在常规开发中是不会使用的。
+
+- 虚引用也叫幽灵引用/幻影引用，不能通过虚引用对象获取到包含的对象。虚引用唯一的用途是：当对象被垃圾回收器回收时，可以接收到对应的通知。Java中使用 PhantomReference 实现了虚引用，直接内存中为了及时知道直接内存对象不再使用，从而回收内存，使用了虚引用来实现。
+
+- 终结器引用指的是在对象需要被回收时，终结器引用会关联对象并放置在Finalizer类中的引用队列中，在稍后由一条由FinalizerThread线程从队列中获取对象，然后执行对象的finalize方法，在对象第二次被回收时，该对象才真正的被回收。在这个过程中可以在finalize方法中再将自身对象使用强引用关联上，但是不建议这样做。
+
+## 3.3 垃圾回收算法 - 核心思想
+
+Java是如何实现垃圾回收的呢？简单来说，垃圾回收要做的有两件事：
+
+1. 找到内存中存活的对象
+
+2. 释放不再存活对象的内存，使得程序能再次利用这部分空间
+
+### 3.3.1 垃圾回收算法的历史和分类
+
+- 1960年John McCarthy发布了第一个GC算法：标记-清除算法。
+
+- 1963年Marvin L. Minsky 发布了复制算法。
+
+本质上后续所有的垃圾回收算法，都是在上述两种算法的基础上优化而来。
+
+<img src="images/image-1.4/2024-04-02-18-21-04-image.png" title="" alt="" width="943">
+
+### 3.3.2 垃圾回收算法的评价标准
+
+Java垃圾回收过程会通过单独的GC线程来完成，但是不管使用哪一种GC算法，都会有部分阶段需要停止所有的用户线程。
+
+这个过程被称之为 Stop The World，简称STW，如果STW时间过长，则会影响用户的使用。
+
+<img src="images/image-1.4/2024-04-02-18-22-10-image.png" title="" alt="" width="943">
+
+所以判断GC算法是否优秀，可以从三个方面来考虑：吞吐量、最大暂停时间、堆使用效率。
+
+#### 3.3.2.1 吞吐量
+
+- 吞吐量指的是 CPU 用于执行用户代码的时间 与 CPU 总执行时间的比值，即吞吐量 = 执行用户代码时间/(执行用户代码时间 + GC时间）。
+
+- 吞吐量数值越高，垃圾回收的效率就越高。
+
+- 比如：虚拟机总共运行了100 分钟，其中GC花掉1 分钟，那么吞吐量就是99%
+
+## 3.4 垃圾回收器

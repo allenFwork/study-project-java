@@ -220,7 +220,7 @@ Java虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管�
 
 - 在Hotspot虚拟机中，<font color=red>Java虚拟机栈和本地方法栈实现上使用了同一个栈空间</font>。本地方法栈会在栈内存上生成一个栈帧，临时保存方法的参数同时方便出现异常时也把本地方法的栈信息打印出来。
   
-  ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-02-10-20-11-image.png)
+  ![](images/image-1.3/2024-04-02-10-20-11-image.png)
   
   <img title="" src="images/image-1.3/2024-04-02-10-24-32-image.png" alt="" width="220" data-align="inline">
 
