@@ -1232,11 +1232,11 @@ public class CustomizedClassLoader extends ClassLoader {
 
 3. MySql的驱动jar包中，配置了相应的SPI信息，如下图所示：
    
-   ![](C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-10-51-09-image.png)
+   ![](images/images-1.X/2024-04-01-10-51-09-image.png)
 
 4. `loadInitialDrviers()`方法中，会通过 `ServiceLoader.load(Driver.class)`获取项目中所有 `java.sql.Driver` 接口的实现类迭代器，然后依次遍历
    
-   ![](C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-10-57-46-image.png)
+   ![](images/images-1.X/2024-04-01-10-57-46-image.png)
    
    - `ServiceLoader.load` 方法内部会通过获取当前线程的上下文类加载器，即应用程序类加载器，在后续使用该类加载器加载实现类。
      
@@ -1244,7 +1244,7 @@ public class CustomizedClassLoader extends ClassLoader {
    
    - 在 `driversIterator.next()` 方法中，会调用 `Class.forName`方法，导致实现类的初始化(clinit)方法被调用
      
-     ![](C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-10-59-49-image.png)
+     ![](images/images-1.X/2024-04-01-10-59-49-image.png)
 
 5. MySql驱动包的实现类被加载，并执行对应的初始化方法
    
@@ -1296,13 +1296,13 @@ public class CustomizedClassLoader extends ClassLoader {
 
 - JDK8及之前的版本中，扩展类加载器和应用程序类加载器的源码位于rt.jar包中的sun.misc.Launcher.java。
 
-![](C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-11-26-15-image.png)
+![](images/images-1.X/2024-04-01-11-26-15-image.png)
 
 ### 4.4.2 JDK8之后的类加载器
 
 - 由于JDK9引入了module的概念，类加载器在设计上发生了很多变化。
   
-  ![](C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-01-13-45-50-image.png)
+  ![](images/images-1.X/2024-04-01-13-45-50-image.png)
 1. 启动类加载器使用Java编写，位于 jdk.internal.loader.ClassLoaders 类中。
    
    - Java中的BootClassLoader 继承自 BuiltinClassLoader，实现从模块中找到要加载的字节码资源文件。
