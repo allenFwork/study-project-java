@@ -2,9 +2,9 @@
 
 ## 1.1 C/C++的内存管理
 
-在C/C++这类没有自动垃圾回收机制的语言中，一个对象如果不再使用，需要手动释放，否则就会出现内存泄漏。我们称这种释放对象的过程为垃圾回收，而需要程序员编写代码进行回收的方式为手动回收。
+在C/C++这类没有自动垃圾回收机制的语言中，一个对象如果不再使用，需要手动释放，否则就会出现<font color=red>内存泄漏</font>。我们称这种释放对象的过程为垃圾回收，而需要程序员编写代码进行回收的方式为手动回收。
 
-内存泄漏指的是不再使用的对象在系统中未被回收，内存泄漏的积累可能会导致内存溢出。
+<font color=red>内存泄漏</font>指的是不再使用的对象在系统中未被回收，内存泄漏的积累可能会导致<font color=red>内存溢出</font>。
 
 <img title="" src="images/image-1.4/2024-04-02-16-37-36-image.png" alt="" width="921">
 
@@ -18,21 +18,21 @@ Java中为了简化对象的释放，引入了自动的<font color=red>垃圾回
 
 自动垃圾回收（Java）：自动根据对象是否使用由虚拟机来回收对象
 
-- 优点：降低程序员实现难度、降低对象回收bug的可能性
+- <font color=green>优点：降低程序员实现难度、降低对象回收bug的可能性</font>
 
-- 缺点：程序员无法控制内存回收的及时性
+- <font color=red>缺点：程序员无法控制内存回收的及时性</font>
 
 手动垃圾回收（C/C++）：由程序员编程实现对象的删除
 
-- 优点：回收及时性高，由程序员把控回收的时机
+- <font color=green>优点：回收及时性高，由程序员把控回收的时机</font>
 
-- 缺点：编写不当容易出现悬空指针、重复释放、内存泄漏等问题
+- <font color=red>缺点：编写不当容易出现悬空指针、重复释放、内存泄漏等问题</font>
 
 ## 1.4 应用场景
 
 1. 解决系统僵死的问题
    
-   - 大厂的系统出现的许多系统僵死问题都与频繁的垃圾回收有关
+   - 大厂的系统出现的许多系统僵死问题，都与频繁的垃圾回收有关
 
 2. 性能优化
    
@@ -50,9 +50,13 @@ Java中为了简化对象的释放，引入了自动的<font color=red>垃圾回
 
 ## 1.5 Java的内存管理和自动垃圾回收
 
-- 线程不共享的部分，都是伴随着线程的创建而创建，线程的销毁而销毁。而方法的栈帧在执行完方法之后就会自动弹出栈并释放掉对应的内存。
+- 线程不共享的部分，都是<font color=red>伴随着线程的创建而创建，线程的销毁而销毁</font>。
+
+- 方法的栈帧在执行完方法之后，就会自动弹出栈并释放掉对应的内存。
+
+- 所以县城不共享部分的区域是不需要垃圾回收器管理的  
   
-  <img src="images/image-1.4/2024-04-02-16-49-26-image.png" title="" alt="" width="799">
+  <img title="" src="images/image-1.4/2024-04-02-16-49-26-image.png" alt="" width="932">
 
 # 2. 方法区的回收
 
@@ -60,7 +64,7 @@ Java中为了简化对象的释放，引入了自动的<font color=red>垃圾回
 
 方法区中能回收的内容主要就是不再使用的类。
 
-判定一个类可以被卸载。需要同时满足下面三个条件：
+<mark>判定一个**类可以被卸载**</mark>，需要同时满足下面三个条件：
 
 1. 此类所有实例对象都已经被回收，在堆中不存在任何该类的实例对象以及子类对象。
    
@@ -86,6 +90,50 @@ Java中为了简化对象的释放，引入了自动的<font color=red>垃圾回
 
 <font color=red>开发中此类场景一般很少出现，主要在如 OSGi、JSP 的热部署等应用场景中。每个jsp文件对应一个唯一的类加载器，当一个jsp文件修改了，就直接卸载这个jsp类加载器。重新创建类加载器，重新加载jsp文件</font>。
 
+示例：
+
+```java
+package com.study.jvm.gc;
+
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+
+/**
+ * 类的卸载
+ * 测试类会在什么情况下被回收
+ * 启动时添加VM参数：-XX:+TraceClassLoading -XX:+TraceClassUnloading，查看加载的类和卸载的类
+ */
+public class ClassUnload {
+    public static void main(String[] args) throws InterruptedException {
+        try {
+            ArrayList<Class<?>> classes = new ArrayList<>();
+            ArrayList<URLClassLoader> loaders = new ArrayList<>();
+            ArrayList<Object> objs = new ArrayList<>();
+            while (true) {
+                // 当循环进入到下一次后，以下三个对象就没人再使用了，JVM会将其回收掉
+                URLClassLoader loader = new URLClassLoader(new URL[]{new URL("file:D:\\programme\\idea\\idea_workspace\\study-project-java-2023\\jvm-study\\jvm-classloader-demo\\lib\\")});
+                Class<?> clazz = loader.loadClass("com.study.jvm.demo.MyClassA");
+                Object o = clazz.newInstance();
+
+                // 第一个条件：将对象添加到集合中，不会再被回收
+//                objs.add(o);
+                // 第二个条件：将类加载器对象添加到集合中，类加载器不会再被回收
+//                loaders.add(loader);
+                // 第三个条件：该类对应的 java.lang.Class对象被引用，并放到集合中，不会被回收
+//                classes.add(clazz);
+
+                // 手动触发垃圾回收
+                System.gc();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+```
+
 ## 2.2 手动触发回收
 
 - 如果需要手动触发垃圾回收，可以调用 System.gc() 方法。
@@ -99,19 +147,15 @@ Java中为了简化对象的释放，引入了自动的<font color=red>垃圾回
 # 3. 堆回收
 
 1. 如何判断堆上的对象可以回收？
-
-Java中的对象是否能被回收，是根据对象是否被引用来决定的。如果对象被引用了，说明该对象还在使用，不允许被回收。
-
-比如下面代码的内存结构图：
-
+- Java中的对象是否能被回收，是根据对象是否被引用来决定的。如果对象被引用了，说明该对象还在使用，不允许被回收。
 2. 如何判断堆上的对象没有被引用？
-- 常见的有两种判断方法：引用计数法和可达性分析法。
+- 常见的有两种判断方法：引用计数法 和 可达性分析法。
 
 ## 3.1 引用计数法和可达性分析法
 
 ### 3.1.1 引用计数法
 
-引用计数法会为每个对象维护一个引用计数器，当对象被引用时加1，取消引用时减1。
+引用计数法会为每个对象维护一个引用计数器，初始值是0，当对象被引用时加1，取消引用时减1。
 
 <img src="images/image-1.4/2024-04-02-17-29-32-image.png" title="" alt="" width="928">
 
@@ -133,31 +177,72 @@ Java中的对象是否能被回收，是根据对象是否被引用来决定的�
   
   <img src="images/image-1.4/2024-04-02-17-36-36-image.png" title="" alt="" width="910">
 
+- 示例：
+  
+  ```java
+  package com.study.jvm.reference;
+  
+  /**
+   * 引用计数
+   * 启动时，添加VM参数：-verbose:gc，打印对应垃圾回收日志
+   * 发现打印的日志中，gc回收完，年轻代中的占用内存数量级没有变化，没有发生内存泄漏，所以a1和b1一定都被回收了
+   */
+  public class ReferenceCountingDemo {
+      public static void main(String[] args) {
+          while (true) {
+              A a1 = new A();
+              B b1 = new B();
+              a1.b = b1;
+              b1.a = a1;
+              a1 = null;
+              b1 = null;
+              System.gc();
+          }
+      }
+  }
+  class A {
+      B b;
+  }
+  class B {
+      A a;
+  }
+  ```
+
 ### 3.1.3 可达性分析算法
+
+#### 3.1.3.1 核心思想
 
 Java使用的是<font color=red>可达性分析算法</font>来判断对象是否可以被回收。
 
 可达性分析将对象分为两类：垃圾回收的根对象（GC Root）和普通对象，对象与对象之间存在引用关系。
 
-下图中A到B再到C和D，形成了一个引用链，可达性分析算法指的是如果从某个到GC Root对象是可达的，对象就不可被回收。
+下图中A到B，再到C和D，形成了一个引用链，可达性分析算法指的是如果从某个到GC Root对象是可达的，对象就不可被回收。
 
 <img src="images/image-1.4/2024-04-02-17-41-18-image.png" title="" alt="" width="951">
 
-哪些对象被称之为GC Root对象呢？
+#### 3.1.3.2 GC Root对象
+
+哪些对象被称之为GC Root对象呢（四大类）？
 
 - <font color=red>线程Thread对象，引用线程栈帧中的方法参数、局部变量等</font>
+  
+  <img src="images/image-1.4/2024-04-02-17-44-43-image.png" title="" alt="" width="910">
 
 - 系统类加载器加载的java.lang.Class对象，引用类中的静态变量
+  
+  <img title="" src="images/image-1.4/2024-04-03-10-53-57-image.png" alt="" width="909">
+  
+  - 系统类加载器就是一个GC Root对象，如上图所示的 sun.misc.Launcher 类加载器，它有两个静态类(应用程序类加载器，扩展类加载器)，可以指向它们两个，而它们两个又可以找到对应加载的类对象，即java.lang.Class对象。上图中ReferenceCounting类中的a2变量是静态变量，该类对应的java.lang.Class可以找到该变量(a2)。这就是一个GC Root的引用链。
 
 - 监视器对象，用来保存同步锁synchronized关键字持有的对象
+  
+  <img title="" src="images/image-1.4/2024-04-03-11-00-19-image.png" alt="" width="912">
+  
+  - 使用 synchronized 包裹起来的类，会被虚拟机的监视器对象引用，监视器对象是GC Root。
 
 - 本地方法调用时使用的全局对象。
 
-分析下面代码中的A实例对象和B示例对象，是如何通过可达性算法判断对象能被回收的？
-
-<img src="images/image-1.4/2024-04-02-17-44-43-image.png" title="" alt="" width="962">
-
-查看GC Root
+#### 3.1.3.3 查看 GC Root
 
 通过 arthas 和 eclipse Memory Analyzer (MAT) 工具可以查看GC Root，MAT工具是eclipse推出的Java堆内存检测工具。具体操作步骤如下：
 
@@ -168,6 +253,57 @@ Java使用的是<font color=red>可达性分析算法</font>来判断对象是�
 3. 选择GC Roots功能查看所有的GC Root。
 
 <img src="images/image-1.4/2024-04-02-17-53-52-image.png" title="" alt="" width="976">
+
+示例：
+
+```java
+package com.study.jvm.reference;
+
+import java.io.IOException;
+
+/**
+ * 查看GC Root对象案例
+ */
+public class ReferenceCountingDemo2 {
+    public static A a2 = null;
+
+    public static void main(String[] args) throws IOException {
+        A a1 = new A();
+        B b1 = new B();
+        a1.b = b1;
+        b1.a = a1;
+        a2 = a1;
+        // 让程序阻塞在这里，方便arthas进入该进程，进行相关操作
+        System.in.read();
+    }
+}
+```
+
+<img title="" src="images/image-1.4/2024-04-03-11-14-22-image.png" alt="" width="925">
+
+![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-03-11-15-13-image.png)
+
+<img title="" src="images/image-1.4/2024-04-03-11-20-41-image.png" alt="" width="739">
+
+<img src="images/image-1.4/2024-04-03-12-30-39-image.png" title="" alt="" width="704">
+
+- 启动 MAT 后，选择 File -> Open Heap Dump ，然后选择对应的文件打开
+
+<img title="" src="images/image-1.4/2024-04-03-12-34-59-image.png" alt="" width="1120">
+
+- 点击上述图标，选择 Java Basics -> GC Roots，弹出下面的具体GC Root信息
+
+<img title="" src="images/image-1.4/2024-04-03-12-42-27-image.png" alt="" width="1124">
+
+<img title="" src="images/image-1.4/2024-04-03-12-49-40-image.png" alt="" width="1129">
+
+- 从上图的层级关系可以看出：蓝框中标出来的局部变量 都是 main 线程对象里的，并且其中有 A 和 B 对象的引用，即存储了对应的堆中的地址
+
+<img title="" src="images/image-1.4/2024-04-03-13-01-40-image.png" alt="" width="1140">
+
+<img title="" src="images/image-1.4/2024-04-03-13-04-27-image.png" alt="" width="1145">
+
+![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-03-13-14-52-image.png)
 
 ## 3.2 五种对象引用
 
@@ -185,7 +321,7 @@ Java使用的是<font color=red>可达性分析算法</font>来判断对象是�
 
 ### 3.2.1 软引用
 
-软引用相对于强引用是一种比较弱的引用关系，如果一个对象只有软引用关联到它，当程序内存不足时，就会将软引用中的数据进行回收。
+软引用相对于强引用是一种比较弱的引用关系，如果一个对象只有软引用关联到它，<font color=red>当程序内存不足时，就会将软引用中的数据进行回收</font>。
 
 在 JDK 1.2 版之后提供了SoftReference类来实现软引用，软引用常用于缓存中。
 
@@ -220,6 +356,46 @@ SoftReference提供了一套队列机制：
 
 <img src="images/image-1.4/2024-04-02-18-00-53-image.png" title="" alt="" width="874">
 
+```java
+package com.study.jvm.reference.soft;
+
+
+import java.io.IOException;
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+
+/**
+ * 软引用案例3 - 引用队列使用
+ * 启动时，设置最大堆内存：-Xmx200m
+ */
+public class SoftReferenceDemo3 {
+
+    public static void main(String[] args) throws IOException {
+        ArrayList<SoftReference> softReferences = new ArrayList<>();
+        ReferenceQueue<byte[]> queues = new ReferenceQueue<byte[]>();
+        /*
+            因为堆内存最大设置为200M，即实际对中能存放数据的空间小于200M，所以每创建100M大小的数组bytes时，之前软引用包裹的数组会被回收掉，并将该引用放到queues队列中。
+            因为循环了10次，所以最终queues中会有9个软引用对象，第十次循环创建的软引用包裹的空间不用回收，所以没有放到queues队列中。
+         */
+        for (int i = 0; i < 10; i++) {
+            byte[] bytes = new byte[1024 * 1024 * 100];
+            SoftReference studentRef = new SoftReference<byte[]>(bytes, queues);
+            softReferences.add(studentRef);
+        }
+
+        SoftReference<byte[]> ref = null;
+        int count = 0;
+        while ((ref = (SoftReference<byte[]>) queues.poll()) != null) {
+            count++;
+        }
+        System.out.println(count);
+    }
+}
+
+
+```
+
 #### 软引用的使用场景-缓存
 
 软引用也可以使用继承自SoftReference类的方式来实现，StudentRef类就是一个软引用对象。
@@ -228,14 +404,125 @@ SoftReference提供了一套队列机制：
 
 <img title="" src="images/image-1.4/2024-04-02-18-11-42-image.png" alt="" width="509">
 
-使用软引用实现学生数据的缓存：
+使用软引用实现学生数据的缓存，下图是设计方案：
 
 <img title="" src="images/image-1.4/2024-04-02-18-13-41-image.png" alt="" width="894">
 
 详细代码：
 
 ```java
+package com.study.jvm.reference.soft;
 
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.SoftReference;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * 软引用案例4 - 学生信息的缓存
+ */
+public class StudentCache {
+
+    private static StudentCache cache = new StudentCache();
+
+    public static void main(String[] args) {
+        for (int i = 0; ; i++) {
+            StudentCache.getInstance().cacheStudent(new Student(i, String.valueOf(i)));
+        }
+    }
+
+    private Map<Integer, StudentRef> StudentRefs;// 用于Cache内容的存储
+    private ReferenceQueue<Student> q;// 垃圾Reference的队列
+
+    // 继承SoftReference，使得每一个实例都具有可识别的标识。
+    // 并且该标识与其在HashMap内的key相同。
+    private class StudentRef extends SoftReference<Student> {
+        private Integer _key = null;
+
+        public StudentRef(Student em, ReferenceQueue<Student> q) {
+            super(em, q);
+            _key = em.getId();
+        }
+    }
+
+    // 构建一个缓存器实例
+    private StudentCache() {
+        StudentRefs = new HashMap<Integer, StudentRef>();
+        q = new ReferenceQueue<Student>();
+    }
+
+    // 取得缓存器实例
+    public static StudentCache getInstance() {
+        return cache;
+    }
+
+    // 以软引用的方式对一个Student对象的实例进行引用并保存该引用
+    private void cacheStudent(Student em) {
+        cleanCache();// 清除垃圾引用
+        StudentRef ref = new StudentRef(em, q);
+        StudentRefs.put(em.getId(), ref);
+        System.out.println(StudentRefs.size());
+    }
+
+    // 依据所指定的ID号，重新获取相应Student对象的实例
+    public Student getStudent(Integer id) {
+        Student em = null;
+        // 缓存中是否有该Student实例的软引用，如果有，从软引用中取得。
+        if (StudentRefs.containsKey(id)) {
+            StudentRef ref = StudentRefs.get(id);
+            em = ref.get();
+        }
+        // 如果没有软引用，或者从软引用中得到的实例是null，重新构建一个实例，并保存对这个新建实例的软引用
+        if (em == null) {
+            em = new Student(id, String.valueOf(id));
+            System.out.println("Retrieve From StudentInfoCenter. ID=" + id);
+            this.cacheStudent(em);
+        }
+        return em;
+    }
+
+    // 清除那些所软引用的Student对象已经被回收的StudentRef对象
+    private void cleanCache() {
+        StudentRef ref = null;
+        while ((ref = (StudentRef) q.poll()) != null) {
+            StudentRefs.remove(ref._key);
+        }
+    }
+
+//    // 清除Cache内的全部内容
+//    public void clearCache() {
+//        cleanCache();
+//        StudentRefs.clear();
+//        //System.gc();
+//        //System.runFinalization();
+//    }
+}
+
+class Student {
+    int id;
+    String name;
+
+    public Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
 ```
 
 ### 3.2.2 弱引用
@@ -247,6 +534,32 @@ SoftReference提供了一套队列机制：
 弱引用对象本身也可以使用引用队列进行回收。
 
 <img src="images/image-1.4/2024-04-02-18-15-59-image.png" title="" alt="" width="701">
+
+```java
+package com.study.jvm.reference.weak;
+
+import java.io.IOException;
+import java.lang.ref.WeakReference;
+
+/**
+ * 弱引用案例 - 基本使用
+ */
+public class WeakReferenceDemo {
+    public static void main(String[] args) throws IOException {
+
+        byte[] bytes = new byte[1024 * 1024 * 100];
+        WeakReference<byte[]> weakReference = new WeakReference<byte[]>(bytes);
+        bytes = null;
+        System.out.println(weakReference.get()); // 打印结果是有数据的
+
+        // 执行一次垃圾回收
+        System.gc();
+
+        System.out.println(weakReference.get()); // 打印结果为null
+    }
+}
+
+```
 
 ### 3.2.3 虚引用和终结器引用
 
@@ -316,8 +629,6 @@ Java垃圾回收过程会通过单独的GC线程来完成，但是不管使用�
 
 不同的垃圾回收算法，适用于不同的场景。
 
-
-
 ### 3.3.3 标记清除算法
 
 #### 3.3.3.1 核心思想
@@ -339,11 +650,9 @@ Java垃圾回收过程会通过单独的GC线程来完成，但是不管使用�
   
   <img src="images/image-1.4/2024-04-02-21-00-01-image.png" title="" alt="" width="710">
 2. 分配速度慢
-- 由于内存碎片的存在，需要维护一个空闲链表，极有可能发生每次需要遍历到链表的最后才能获得合适的内存空间。
+- 由于内存碎片的存在，需要维护一个<mark>空闲链表</mark>，极有可能发生每次需要遍历到链表的最后才能获得合适的内存空间。
   
   <img src="images/image-1.4/2024-04-02-21-01-31-image.png" title="" alt="" width="727">
-
-
 
 ### 3.3.4 复制算法
 
@@ -377,8 +686,6 @@ Java垃圾回收过程会通过单独的GC线程来完成，但是不管使用�
 - 复制算法在复制之后就会将对象按顺序放入To空间中，所以对象以外的区域都是可用空间，不存在碎片化内存空间
 3. 内存使用效率低
 - 每次只能让一半的内存空间来为创建对象使用
-
-
 
 ### 3.3.5 标记整理算法
 
@@ -425,23 +732,23 @@ arthas查看分代之后的内存情况
 
 根据以下虚拟机参数，调整堆的大小并观察结果。注意加上-XX:+UseSerialGC
 
-| 参数名                                 | 参数含义                                                  | 示例                                                             |
-|:-----------------------------------:|:-----------------------------------------------------:|:--------------------------------------------------------------:|
-| -Xms                                | 设置堆的最小和初始大小，必须是1024倍数，且大于1MB                          | 比如初始大小 6MB 的写法：
-<br/>-Xms6291456
-<br/>-Xms6144k
-<br/>-Xms6m    |
-| -Xmx                                | 设置最大堆的大小，必须是1024倍数，且大于2MB                             | 比如最大堆 80MB 的写法：
-<br/>-Xmx83886080
-<br/>-Xmx81920k
-<br/>-Xmx80m |
-| -Xmn                                | 新生代的大小                                                | 新生代256 MB的写法：<br/>-Xmn256m
-<br/>-Xmn262144k
-<br/>-Xmn268435456 |
-| -XX:SurvivorRatio                   | 伊甸园区和幸存区的比例，默认为8；<br/>新生代1g内存，伊甸园区800MB，S0 和 S1各100MB | 比例调整为4的写法：
-<br/>-XX:SurvivorRatio=4                            |
-| -XX:+PrintGCDetails
-<br/>verbose:gc | 打印GC日志                                                |                                                                |
+| 参数名                      | 参数含义                                                  | 示例                         |
+|:------------------------:|:-----------------------------------------------------:|:--------------------------:|
+| -Xms                     | 设置堆的最小和初始大小，必须是1024倍数，且大于1MB                          | 比如初始大小 6MB 的写法：            |
+| <br/>-Xms6291456         |                                                       |                            |
+| <br/>-Xms6144k           |                                                       |                            |
+| <br/>-Xms6m              |                                                       |                            |
+| -Xmx                     | 设置最大堆的大小，必须是1024倍数，且大于2MB                             | 比如最大堆 80MB 的写法：            |
+| <br/>-Xmx83886080        |                                                       |                            |
+| <br/>-Xmx81920k          |                                                       |                            |
+| <br/>-Xmx80m             |                                                       |                            |
+| -Xmn                     | 新生代的大小                                                | 新生代256 MB的写法：<br/>-Xmn256m |
+| <br/>-Xmn262144k         |                                                       |                            |
+| <br/>-Xmn268435456       |                                                       |                            |
+| -XX:SurvivorRatio        | 伊甸园区和幸存区的比例，默认为8；<br/>新生代1g内存，伊甸园区800MB，S0 和 S1各100MB | 比例调整为4的写法：                 |
+| <br/>-XX:SurvivorRatio=4 |                                                       |                            |
+| -XX:+PrintGCDetails      |                                                       |                            |
+| <br/>verbose:gc          | 打印GC日志                                                |                            |
 
 #### 3.3.6.2 处理步骤
 
@@ -471,8 +778,6 @@ Minor GC会把需要eden中和From需要回收的对象回收，把没有回收�
 
 从上图可以看到，Full GC无法回收掉老年代的对象，那么当对象继续放入老年代时，就会抛出Out Of Memory异常。
 
-
-
 问题2：为什么分代GC算法要把堆分成年轻代和老年代？
 
 - 系统中的大部分对象，都是创建出来之后很快就不再使用，可以被回收的。比如用户获取订单数据，订单数据返回给用户之后就可以释放了。
@@ -488,8 +793,6 @@ Minor GC会把需要eden中和From需要回收的对象回收，把没有回收�
 2. 新生代和老年代使用不同的垃圾回收算法，新生代一般选择复制算法，老年代可以选择标记-清除和标记-整理算法，由程序员来选择灵活度较高。
 
 3. 分代的设计中允许只回收新生代（minor gc），如果能满足对象分配的要求就不需要对整个堆进行回收(fullgc)，STW时间就会减少。
-
-
 
 ## 3.4 垃圾回收器
 
@@ -718,8 +1021,6 @@ G1垃圾回收有两种方式：
 
 年轻代回收（Young GC），回收Eden区和Survivor区中不用的对象。会导致STW，G1中可以通过参数 -XX:MaxGCPauseMillis=n（默认200）设置每次垃圾回收时的最大暂停时间毫秒数，G1垃圾回收器会尽可能地保证暂停时间。
 
-
-
 执行流程
 
 1、新创建的对象会存放在Eden区。当G1判断年轻代区不足（max默认60%），无法分配对象时需要回收时会执行
@@ -730,31 +1031,21 @@ Young GC。
 
 3、根据配置的最大暂停时间选择某些区域将存活对象复制到一个新的Survivor区中（年龄+1），清空这些区域。
 
-
-
 G1在进行Young GC的过程中会去记录每次垃圾回收时每个Eden区和Survivor区的平均耗时，以作为下次回收时的参考依据。这样就可以根据配置的最大暂停时间计算出本次回收时最多能回收多少个Region区域了。
 
 比如-XX:MaxGCPauseMillis=n（默认200），每个Region回收耗时40ms，那么这次回收最多只能回收4个Region。
-
-
 
 4、后续Young GC时与之前相同，只不过Survivor区中存活对象会被搬运到另一个Survivor区。
 
 5、当某个存活对象的年龄到达阈值（默认15），将被放入老年代。
 
-
-
 6、部分对象如果大小超过Region的一半，会直接放入老年代，这类老年代被称为Humongous区。比如堆内存是4G，每个Region是2M，只要一个大对象超过了1M就被放入Humongous区，如果对象过大会横跨多个Region。
-
-
 
 7、多次回收之后，会出现很多Old老年代区，此时总堆占有率达到阈值时
 
 （-XX:InitiatingHeapOccupancyPercent默认45%）会触发混合回收MixedGC。回收所有年轻代和
 
 部分老年代的对象以及大对象区。采用复制算法来完成。
-
-
 
 #### 3.4.8.4 G1垃圾回收器–混合回收
 
@@ -813,8 +1104,6 @@ G1垃圾回收器–FULL GC
 从JDK9之后，由于G1日趋成熟，JDK默认的垃圾回收器已经修改为G1，所以强烈建议在生产环境上使用G1。
 
 G1的实现原理将在《原理篇》中介绍，更多前沿技术ZGC、GraalVM将在《高级篇》中介绍。
-
-
 
 1、Java中有哪几块内存需要进行垃圾回收？
 

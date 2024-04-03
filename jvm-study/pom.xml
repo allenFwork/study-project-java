@@ -15,6 +15,7 @@
         <module>jvm-basic-demo</module>
         <module>jvm-classloader-demo</module>
         <module>jvm-running-data-area-demo</module>
+        <module>jvm-gc-demo</module>
     </modules>
 
     <properties>
