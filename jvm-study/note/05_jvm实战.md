@@ -207,16 +207,30 @@ Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 
    nohup java -jar -Darthas.enable-detail-pages=true arthas-tunnel-server-3.7.1-fatjar.jar &
    ```
    
-   ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-07-17-33-37-image.png)
+   ![](images/image-2/2024-04-07-17-33-37-image.png)
 
 3. 启动 java程序，配置端口号参数防止重复
    
    ```bash
-   nohup java -jar -Dserver.port=8081 -Darthas.http-port=3661 -Darthas.telnent-port=8565 jvm-service.jar &
-   nohup java -jar -Dserver.port=8082 -Darthas.http-port=3662 -Darthas.telnent-port=8566 jvm-service.jar &
+   nohup java -jar -Dserver.port=8081 -Darthas.http-port=3661 -Darthas.telnet-port=8565 jvm-service.jar &
+   nohup java -jar -Dserver.port=8082 -Darthas.http-port=3662 -Darthas.telnet-port=8566 jvm-service.jar &
    ```
 
-4. 打开tunnel的服务端页面，查看所有的进程列表，并选择进程进行arthas的操作。
+4. 打开tunnel的服务端页面，查看所有的进程列表，并选择进程进行arthas的操作。（以下是在192.168.80.4服务器上测试，与上面的不一致）
+   
+   - 访问 http://192.168.80.4:8080/apps.html 地址
+     
+     ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-04-07-22-21-00-image.png)
+   
+   - 点击 jvm-service，产看对应服务的不同节点
+     
+     <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-04-07-22-23-05-image.png" title="" alt="" width="651">
+   
+   - 点击任意一个进入该程序的arthas界面，查看相应的内存，垃圾回收等信息
+     
+     <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-04-07-22-24-32-image.png" title="" alt="" width="783">
+   
+   
 
 #### 1.2.1.4 Prometheus + Grafana
 
