@@ -131,7 +131,6 @@ public class ClassUnload {
         }
     }
 }
-
 ```
 
 ## 2.2 手动触发回收
@@ -392,8 +391,6 @@ public class SoftReferenceDemo3 {
         System.out.println(count);
     }
 }
-
-
 ```
 
 #### 软引用的使用场景-缓存
@@ -558,7 +555,6 @@ public class WeakReferenceDemo {
         System.out.println(weakReference.get()); // 打印结果为null
     }
 }
-
 ```
 
 ### 3.2.3 虚引用和终结器引用
@@ -707,7 +703,7 @@ Java垃圾回收过程会通过单独的GC线程来完成，但是不管使用�
 - 整个堆内存都可以使用，不会像复制算法只能使用半个堆内存
 2. 不会发生碎片化
 - 在整理阶段可以将对象往内存的一侧进行移动，剩下的空间都是可以分配对象的有效空间
-3. 整理阶段的效率不高
+3. 整理阶段的效率不高（需要遍历多次）
 - 整理算法有很多种，比如Lisp2整理算法需要对整个堆中的对象搜索3次，整体性能不佳。
 
 - 可以通过TwoFinger、表格算法、ImmixGC等高效的整理算法优化此阶段的性能
@@ -732,23 +728,13 @@ arthas查看分代之后的内存情况
 
 根据以下虚拟机参数，调整堆的大小并观察结果。注意加上-XX:+UseSerialGC
 
-| 参数名                      | 参数含义                                                  | 示例                         |
-|:------------------------:|:-----------------------------------------------------:|:--------------------------:|
-| -Xms                     | 设置堆的最小和初始大小，必须是1024倍数，且大于1MB                          | 比如初始大小 6MB 的写法：            |
-| <br/>-Xms6291456         |                                                       |                            |
-| <br/>-Xms6144k           |                                                       |                            |
-| <br/>-Xms6m              |                                                       |                            |
-| -Xmx                     | 设置最大堆的大小，必须是1024倍数，且大于2MB                             | 比如最大堆 80MB 的写法：            |
-| <br/>-Xmx83886080        |                                                       |                            |
-| <br/>-Xmx81920k          |                                                       |                            |
-| <br/>-Xmx80m             |                                                       |                            |
-| -Xmn                     | 新生代的大小                                                | 新生代256 MB的写法：<br/>-Xmn256m |
-| <br/>-Xmn262144k         |                                                       |                            |
-| <br/>-Xmn268435456       |                                                       |                            |
-| -XX:SurvivorRatio        | 伊甸园区和幸存区的比例，默认为8；<br/>新生代1g内存，伊甸园区800MB，S0 和 S1各100MB | 比例调整为4的写法：                 |
-| <br/>-XX:SurvivorRatio=4 |                                                       |                            |
-| -XX:+PrintGCDetails      |                                                       |                            |
-| <br/>verbose:gc          | 打印GC日志                                                |                            |
+| 参数名                            | 参数含义                                                  | 示例                                              |
+|:------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------:|
+| -Xms                           | 设置堆的最小和初始大小，必须是1024倍数，且大于1MB                          | 比如初始大小 6MB 的写法：-Xms6291456、-Xms6144k、-Xms6m     |
+| -Xmx                           | 设置最大堆的大小，必须是1024倍数，且大于2MB                             | 比如最大堆 80MB 的写法：-Xmx83886080、-Xmx81920k、-Xmx80m  |
+| -Xmn                           | 新生代的大小                                                | 新生代256 MB的写法：-Xmn256m、-Xmn262144k、-Xmn268435456 |
+| -XX:SurvivorRatio              | 伊甸园区和幸存区的比例，默认为8；<br/>新生代1g内存，伊甸园区800MB，S0 和 S1各100MB | 比例调整为4的写法：-XX:SurvivorRatio=4                   |
+| -XX:+PrintGCDetails verbose:gc | 打印GC日志                                                |                                                 |
 
 #### 3.3.6.2 处理步骤
 
@@ -774,7 +760,7 @@ Minor GC会把需要eden中和From需要回收的对象回收，把没有回收�
 
 问题1：下图中的程序为什么会出现OutOfMemory？
 
-![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-04-02-21-42-00-image.png)
+![](images/image-1.4/2024-04-02-21-42-00-image.png)
 
 从上图可以看到，Full GC无法回收掉老年代的对象，那么当对象继续放入老年代时，就会抛出Out Of Memory异常。
 
@@ -792,7 +778,7 @@ Minor GC会把需要eden中和From需要回收的对象回收，把没有回收�
 
 2. 新生代和老年代使用不同的垃圾回收算法，新生代一般选择复制算法，老年代可以选择标记-清除和标记-整理算法，由程序员来选择灵活度较高。
 
-3. 分代的设计中允许只回收新生代（minor gc），如果能满足对象分配的要求就不需要对整个堆进行回收(fullgc)，STW时间就会减少。
+3. 分代的设计中允许只回收新生代（minor gc），如果能满足对象分配的要求就不需要对整个堆进行回收(full gc)，STW时间就会减少。
 
 ## 3.4 垃圾回收器
 
@@ -819,9 +805,9 @@ Minor GC会把需要eden中和From需要回收的对象回收，把没有回收�
 
 ### 3.4.2 年轻代-Serial垃圾回收器
 
-Serial是是一种单线程串行回收年轻代的垃圾回收器。
+Serial是是一种<font color=red>单线程串行</font>回收年轻代的垃圾回收器。
 
-![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-04-02-21-54-39-image.png)
+![](images/image-1.4/2024-04-02-21-54-39-image.png)
 
 1. 回收年代和算法
 - 年轻代
@@ -840,7 +826,7 @@ SerialOld是Serial垃圾回收器的老年代版本，采用<font color=red>单�
 
 <font color=red>-XX:+UseSerialGC 新生代、老年代都使用串行回收器</font>。
 
-![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-04-02-21-57-49-image.png)
+![](images/image-1.4/2024-04-02-21-57-49-image.png)
 
 1. 回收年代和算法
 - 老年代
@@ -859,7 +845,7 @@ ParNew垃圾回收器本质上是对Serial在多CPU下的优化，使用<font co
 
 <font color=red>-XX:+UseParNewGC 新生代使用ParNew回收器，老年代使用串行回收器</font>
 
-![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-04-02-22-01-22-image.png)
+![](images/image-1.4/2024-04-02-22-01-22-image.png)
 
 1. 回收年代和算法
 - 年轻代
@@ -880,7 +866,7 @@ CMS，即 Concurrent Mark Sweep 的缩写
 
 CMS垃圾回收器关注的是系统的<font color=red>暂停时间</font>，允许用户线程和垃圾回收线程在某些步骤中同时执行，减少了用户线程的等待时间。
 
-参数：XX:+UseConcMarkSweepGC
+参数：-XX:+UseConcMarkSweepGC
 
 <img src="images/image-1.4/2024-04-02-22-06-36-image.png" title="" alt="" width="825">
 
@@ -893,15 +879,15 @@ CMS垃圾回收器关注的是系统的<font color=red>暂停时间</font>，允
 3. 缺点
 - 内存碎片问题
 
-- 退化问题
+- 退化问题：某些场景下会退化为SerialOld垃圾回收器
 
-- 浮动垃圾问题
+- 浮动垃圾问题：在清理过程中，有些垃圾可能会回收不掉
 4. 适用场景
 - 大型的互联网系统中用户请求数据量大、频率高的场景，比如订单接口、商品接口等
 
 #### 3.4.5.2 CMS执行步骤
 
-1. 初始标记，用极短的时间标记出GCRoots能直接关联到的对象。
+1. 初始标记，用极短的时间标记出GC Roots能<mark>直接关联</mark>到的对象。（标记时间很短，因为只标记直接关联的对象）
 
 2. 并发标记, 标记所有的对象，用户线程不需要暂停。
 
@@ -915,9 +901,11 @@ CMS垃圾回收器关注的是系统的<font color=red>暂停时间</font>，允
 
 缺点：
 
-1. CMS使用了标记-清除算法，在垃圾收集结束之后会出现大量的内存碎片，CMS会在Full GC时进行碎片的整理。这样会导致用户线程暂停，可以使用-XX:CMSFullGCsBeforeCompaction=N 参数（默认0）调整N次Full GC之后再整理。
+1. CMS使用了标记-清除算法，在垃圾收集结束之后会出现大量的内存碎片，CMS会在Full GC时进行碎片的整理。
+   
+   这样会导致用户线程暂停，可以使用 -XX:CMSFullGCsBeforeCompaction=N 参数（默认0）调整N次Full GC之后再整理。
 
-2. 无法处理在并发清理过程中产生的“浮动垃圾”，不能做到完全的垃圾回收。
+2. 无法处理在并发清理过程中产生的 “浮动垃圾”，不能做到完全的垃圾回收。
 
 3. 如果老年代内存不足无法分配对象，CMS就会退化成Serial Old单线程回收老年代。
 
@@ -1023,29 +1011,29 @@ G1垃圾回收有两种方式：
 
 执行流程
 
-1、新创建的对象会存放在Eden区。当G1判断年轻代区不足（max默认60%），无法分配对象时需要回收时会执行
+1. 新创建的对象会存放在Eden区。当G1判断年轻代区不足（max默认60%），无法分配对象时需要回收时会执行 Young GC。
 
-Young GC。
+2. 标记出Eden和Survivor区域中的存活对象，
 
-2、标记出Eden和Survivor区域中的存活对象，
+3. 根据配置的最大暂停时间选择某些区域将存活对象复制到一个新的Survivor区中（年龄+1），清空这些区域。
+   
+   - G1在进行Young GC的过程中，会去记录每次垃圾回收时每个Eden区和Survivor区的平均耗时，以作为下次回收时的参考依据。这样就可以根据配置的最大暂停时间计算出本次回收时最多能回收多少个Region区域了。
+   
+   - 比如 -XX:MaxGCPauseMillis=n（默认200），每个Region回收耗时40ms，那么这次回收最多只能回收4个Region。
+     
+     <img title="" src="images/image-1.4/2024-04-07-11-01-59-image.png" alt="" width="365">
 
-3、根据配置的最大暂停时间选择某些区域将存活对象复制到一个新的Survivor区中（年龄+1），清空这些区域。
+4. 后续Young GC时与之前相同，只不过Survivor区中存活对象会被搬运到另一个Survivor区。
 
-G1在进行Young GC的过程中会去记录每次垃圾回收时每个Eden区和Survivor区的平均耗时，以作为下次回收时的参考依据。这样就可以根据配置的最大暂停时间计算出本次回收时最多能回收多少个Region区域了。
+5. 当某个存活对象的年龄到达阈值（默认15），将被放入老年代。
 
-比如-XX:MaxGCPauseMillis=n（默认200），每个Region回收耗时40ms，那么这次回收最多只能回收4个Region。
+6. 部分对象如果大小超过Region的一半，会直接放入老年代，这类老年代被称为Humongous区。比如堆内存是4G，每个Region是2M，只要一个大对象超过了1M就被放入Humongous区，如果对象过大会横跨多个Region。
+   
+   - <img title="" src="images/image-1.4/2024-04-07-11-02-31-image.png" alt="" width="370">
 
-4、后续Young GC时与之前相同，只不过Survivor区中存活对象会被搬运到另一个Survivor区。
-
-5、当某个存活对象的年龄到达阈值（默认15），将被放入老年代。
-
-6、部分对象如果大小超过Region的一半，会直接放入老年代，这类老年代被称为Humongous区。比如堆内存是4G，每个Region是2M，只要一个大对象超过了1M就被放入Humongous区，如果对象过大会横跨多个Region。
-
-7、多次回收之后，会出现很多Old老年代区，此时总堆占有率达到阈值时
-
-（-XX:InitiatingHeapOccupancyPercent默认45%）会触发混合回收MixedGC。回收所有年轻代和
-
-部分老年代的对象以及大对象区。采用复制算法来完成。
+7. 多次回收之后，会出现很多Old老年代区，此时总堆占有率达到阈值时（-XX:InitiatingHeapOccupancyPercent默认45%）会触发混合回收MixedGC。回收所有年轻代 和 部分老年代的对象，以及大对象区。采用复制算法来完成。
+   
+   - <img title="" src="images/image-1.4/2024-04-07-11-03-04-image.png" alt="" width="488">
 
 #### 3.4.8.4 G1垃圾回收器–混合回收
 
@@ -1055,17 +1043,15 @@ G1对老年代的清理会选择存活度最低的区域来进行回收，这样
 
 <img src="images/image-1.4/2024-04-02-23-14-27-image.png" title="" alt="" width="1068">
 
-⚫G1对老年代的清理会选择存活度最低的区域来进行回收，这样可以保证回收效率最高，这也是G1（Garbage first）名称的由来。
-
-最后清理阶段使用复制算法，不会产生内存碎片。
+- G1对老年代的清理会选择存活度最低的区域来进行回收，这样可以保证回收效率最高，这也是G1（Garbage first）名称的由来。
+  
+  最后清理阶段使用复制算法，不会产生内存碎片。
 
 <img src="images/image-1.4/2024-04-02-23-15-24-image.png" title="" alt="" width="1073">
 
 G1垃圾回收器–FULL GC
 
-注意：如果清理过程中发现没有足够的空Region存放转移的对象，会出现Full GC。单线程执行标记-整理算法，
-
-此时会导致用户线程的暂停。所以尽量保证应该用的堆内存有一定多余的空间。
+注意：如果清理过程中发现没有足够的空Region存放转移的对象，会出现Full GC。单线程执行标记-整理算法，此时会导致用户线程的暂停。所以尽量保证应该用的堆内存有一定多余的空间。
 
 <img title="" src="images/image-1.4/2024-04-02-23-15-50-image.png" alt="" width="445" data-align="center">
 
@@ -1104,6 +1090,8 @@ G1垃圾回收器–FULL GC
 从JDK9之后，由于G1日趋成熟，JDK默认的垃圾回收器已经修改为G1，所以强烈建议在生产环境上使用G1。
 
 G1的实现原理将在《原理篇》中介绍，更多前沿技术ZGC、GraalVM将在《高级篇》中介绍。
+
+
 
 1、Java中有哪几块内存需要进行垃圾回收？
 
