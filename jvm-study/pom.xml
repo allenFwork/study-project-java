@@ -16,6 +16,7 @@
         <module>jvm-classloader-demo</module>
         <module>jvm-running-data-area-demo</module>
         <module>jvm-gc-demo</module>
+        <module>jvm-actual-combat</module>
     </modules>
 
     <properties>
