@@ -224,11 +224,11 @@ Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 
    
    - 点击 jvm-service，产看对应服务的不同节点
      
-     <img src="file:///images/image-2/2024-04-07-22-23-05-image.png" title="" alt="" width="651">
+     <img src="images/image-2/2024-04-07-22-23-05-image.png" title="" alt="" width="651">
    
    - 点击任意一个进入该程序的arthas界面，查看相应的内存，垃圾回收等信息
      
-     <img src="file:///images/image-2/2024-04-07-22-24-32-image.png" title="" alt="" width="783">
+     <img src="images/image-2/2024-04-07-22-24-32-image.png" title="" alt="" width="783">
 
 #### 1.2.1.4 Prometheus + Grafana
 
@@ -244,6 +244,87 @@ Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 
 
 缺点：环境搭建较为复杂，一般由运维人员完成
 
+步骤：
+
+##### 1.2.1.4.1 actuator组件暴露spring boot信息
+
+- spring boot 的监控功能使用
+1. 添加spring boot 的 监控依赖
+   
+   ```xml
+   <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <exclusions><!-- 去掉springboot默认配置 -->
+          <exclusion>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-logging</artifactId>
+          </exclusion>
+      </exclusions>
+   </dependency>
+   ```
+
+2. 配置web的监控端口信息
+   
+   ```yaml
+   management:
+     endpoints:
+       web:
+         exposure:
+           include: '*' #开放所有端口
+   ```
+
+3. 启动程序，访问 http://localhost:8881/actuator 测试，会查看到服务中的监控信息接口地址
+   
+   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-08-10-16-34-image.png" title="" alt="" width="789">
+
+4. 任选其中一个其中地址访问，此处使用 http://localhost:8881/actuator/beans 查看Bean信息
+   
+   <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-08-10-21-25-image.png" alt="" width="827">
+
+##### 1.2.1.4.2 Prometheus的使用
+
+- 通过 Prometheus 暴露所有需要用的信息
+1. 添加依赖
+   
+   ```xml
+   <!-- 将java的基本信息，虚拟机的信息，以及磁盘等信息全部收集起来，组装成prometheus能识别的数据信息 -->
+   <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+      <scope>runtime</scope>
+   </dependency>
+   ```
+
+2. 配置文件中添加Prometheus配置：将此服务的虚拟机等信息暴露出去，并且将此暴露的服务命名为 “jvm-test”
+   
+   ```yaml
+   management:
+     endpoint:
+       metrics:
+         enabled: true # 支持metrics
+       prometheus:
+         enabled: true #支持Prometheus
+     metrics:
+       export:
+         prometheus:
+           enabled: true
+       tags:
+         application: jvm-test #实例名采集
+   ```
+
+3. 通过 spring boot actuator 查看 Prometheus 接口信息
+   
+   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-08-10-31-17-image.png" title="" alt="" width="928">
+
+4. 通过Prometheus的查询接口，查询测试
+   
+   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-08-10-33-14-image.png" title="" alt="" width="942">
+
+5. 安装 Promethues 的服务器，通过Grafana分析数据，略 。。。
+   
+   具体内容查看： https://upwer66cqk.feishu.cn/wiki/Y5tNwJgL0i1wd9kauAAczM2znWg 
+
 ### 1.2.2 发现问题 - 堆内存状况的对比
 
 <img src="images/image-2/2024-04-07-13-38-51-image.png" title="" alt="" width="924">
@@ -254,7 +335,7 @@ Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 
 
 ##### 案例1：equals()和hashCode()导致的内存泄漏
 
-**问题：**
+**问题：** （出现频率2星）
 
         在定义新类时没有重写正确的equals()和hashCode()方法。在使用HashMap的场景下，如果使用这个类对象作为key，HashMap在判断key是否已经存在时会使用这些方法，如果重写方式不正确，会导致相同的数据被保存多份
 
@@ -290,17 +371,98 @@ Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 
 
 ##### 案例2：内部类引用外部类
 
-**问题：** (错误频率2星)
+**问题：** (出现频率2星)
 
 1. 非静态的内部类默认会持有外部类，尽管代码上不再使用外部类，所以如果有地方引用了这个非静态内部类，会导致外部类也被引用，垃圾回收时无法回收这个外部类。
+   
+   ```java
+   package com.study.jvm.actual_combat.memory_leak.demo3;
+   
+   import java.io.IOException;
+   import java.util.ArrayList;
+   
+   /**
+    * 内存泄露问题：内部类引用外部类
+    */
+   public class Outer {
+       private byte[] bytes = new byte[1024]; // 外部类持有数据：1KB
+       private String name = "测试";
+   
+       class Inner {
+           private String name;
+   
+           public Inner() {
+               // 内部类引用了外部类的成员，外部类的变量是成员变量，内部类是通过
+               this.name = Outer.this.name;
+           }
+       }
+   
+       public static void main(String[] args) throws IOException, InterruptedException {
+           System.in.read();
+           int count = 0;
+           ArrayList<Inner> inners = new ArrayList<>();
+   
+           while (true) {
+               if (count++ % 100 == 0) {
+                   Thread.sleep(10);
+               }
+               inners.add(new Outer().new Inner());
+           }
+       }
+   }
+   ```
 
 2. 匿名内部类对象如果在非静态方法中被创建，会持有调用者对象，垃圾回收时无法回收调用者。
+   
+   ```java
+   package com.study.jvm.actual_combat.memory_leak.demo4;
+   
+   import java.io.IOException;
+   import java.util.ArrayList;
+   import java.util.List;
+   
+   /**
+    * 内存泄露问题：内部类引用外部类情况2
+    * 匿名内部类对象如果在非静态方法中被创建，会持有调用者对象，垃圾回收时无法回收调用者。
+    */
+   public class Outer {
+       private byte[] bytes = new byte[1024 * 1024]; // 1M
+       public List<String> newList() {
+           // 使用匿名内部类的方式创建了数组对象，并将其返回
+           List<String> list = new ArrayList<String>() {{
+               add("1");
+               add("2");
+           }};
+           return list;
+       }
+   
+       public static void main(String[] args) throws IOException {
+           System.in.read();
+           int count = 0;
+           ArrayList<Object> objects = new ArrayList<>();
+           while (true) {
+               System.out.println(++count);
+               /*
+                   将通过匿名内部类创建的对象放入到objects数组中，但是运行过程中发现内存中有Outer对象，但它是不需要的，所以造成了内存泄漏。
+                   此处虽然无法拿到Outer对象，但是他在内存中占着空间
+                */
+               objects.add(new Outer().newList());
+           }
+       }
+   }
+   ```
+   
+    ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-08-13-49-20-image.png)   
 
 **解决方案：**
 
 1. 这个案例中，使用内部类的原因是可以直接获取到外部类中的成员变量值，简化开发。如果不想持有外部类对象，应该使用静态内部类。
 
-2. 使用静态方法，可以避免匿名内部类持有调用者对象。
+2. 使用静态方法，可以避免匿名内部类持有调用者对象。(以下图片是上述代码内存泄漏的原因)
+   
+   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-08-15-47-04-image.png" title="" alt="" width="939">
+   
+   <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-08-15-52-56-image.png" alt="" width="939">
 
 ##### 案例3：ThreadLocal的使用
 
@@ -310,13 +472,38 @@ Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 
 
 **解决方案：**
 
-线程方法执行完，一定要调用ThreadLocal中的remove方法清理对象。
+        线程方法执行完，一定要调用ThreadLocal中的remove方法清理对象。
 
 ##### 案例4：String的intern方法
 
 **问题：** (出现频率2星)
 
         JDK6中字符串常量池位于堆内存中的Perm Gen永久代中，如果不同字符串的intern方法被大量调用，字符串常量池会不停的变大超过永久代内存上限之后就会产生内存溢出问题。
+
+```java
+package com.study.jvm.actual_combat.memory_leak.demo6;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 内存泄露问题：String的intern方法
+ * JDK6中字符串常量池位于堆内存中的Perm Gen永久代中，
+ * 如果不同字符串的intern方法被大量调用，字符串常量池会不停的变大超过永久代内存上限之后就会产生内存溢出问题。
+ */
+public class Demo6 {
+    public static void main(String[] args) {
+        while (true) {
+            List<String> list = new ArrayList<String>();
+            int i = 0;
+            while (true) {
+                // String.valueOf(i++).intern(); // JDK1.6 perm gen ，发现会被回收，所以不会溢出
+                list.add(String.valueOf(i++).intern()); // 溢出
+            }
+        }
+    }
+}
+```
 
 解决方案：
 
@@ -373,10 +560,18 @@ Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 
 **步骤：**
 
 1. 安装Jmeter软件，添加线程组。
+   
+   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-08-16-47-36-image.png" title="" alt="" width="821">
 
 2. 在线程组中增加Http请求，添加随机参数。
+   
+   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-08-16-50-05-image.png" title="" alt="" width="822"><img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-08-17-02-43-image.png" title="" alt="" width="825">
+   
+   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-08-17-06-46-image.png" title="" alt="" width="826">
 
 3. 在线程组中添加监听器 – 聚合报告，用来展示最终结果。
+   
+   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-08-16-50-59-image.png" title="" alt="" width="823">
 
 4. 启动程序，运行线程组并观察程序是否出现内存溢出。
 
@@ -394,23 +589,25 @@ Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 
 
 #### MAT内存泄漏检测的原理 – 支配树
 
-MAT提供了称为支配树（Dominator Tree）的对象图。支配树展示的是对象实例间的支配关系。在对象引用图中，所有指向对象B的路径都经过对象A，则认为对象A支配对象B。
+MAT提供了称为<font color=red>支配树</font>（Dominator Tree）的对象图。支配树展示的是对象实例间的支配关系。在对象引用图中，所有指向对象B的路径都经过对象A，则认为对象A支配对象B。
 
 <img title="" src="images/image-2/2024-04-07-14-23-07-image.png" alt="" width="834">
 
 #### MAT内存泄漏检测的原理 – 深堆和浅堆
 
-支配树中对象本身占用的空间称之为浅堆(Shallow Heap）。
+支配树中对象本身占用的空间称之为<font color=red>浅堆(Shallow Heap）</font>。
 
-支配树中对象的子树就是所有被该对象支配的内容，这些内容组成了对象的深堆（Retained Heap），也称之为保留集（ Retained Set ） 。深堆的大小表示该对象如果可以被回收，能释放多大的内存空间。
+支配树中对象的子树就是所有被该对象支配的内容，这些内容组成了对象的<font color=red>深堆（Retained Heap）</font>，也称之为保留集（ Retained Set ） 。<font color=red>深堆的大小表示该对象如果可以被回收，能释放多大的内存空间</font>。
 
 <img title="" src="images/image-2/2024-04-07-14-24-01-image.png" alt="" width="449">
+
+- A的浅堆就是A本身，A的深堆就是ABCDEF
 
 需求：
 
 使用如下代码生成内存快照，并分析TestClass对象的深堆和浅堆。
 
-如何在不内存溢出情况下生成堆内存快照？-XX:+HeapDumpBeforeFullGC可以在FullGC之前就生成内存快照。
+<font color=red>如何在不内存溢出情况下生成堆内存快照？ -XX:+HeapDumpBeforeFullGC 可以在FullGC之前就生成内存快照</font>。
 
 #### MAT内存泄漏检测的原理
 
