@@ -9,5 +9,5 @@ import org.springframework.stereotype.Component;
 @Lazy // 懒加载
 @Component
 public class TestLazy {
-    private byte[] bytes = new byte[1024 * 1024 * 1024];
+    private byte[] bytes = new byte[1024 * 1024 * 1024]; // 内存一定溢出，没有溢出是因为Spring容器没有创建该对象的bean对象
 }

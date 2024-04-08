@@ -43,21 +43,24 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+
+        <!-- actuator组件暴露springboot服务的信息 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-
             <exclusions><!-- 去掉springboot默认配置 -->
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- 将java的基本信息，虚拟机的信息，以及磁盘等信息全部收集起来，组装成prometheus能识别的数据信息 -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- 添加arthas的相关依赖，将其信息注册到tunnel服务上 -->
@@ -67,7 +70,7 @@
             <version>3.7.1</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.30</version>
@@ -83,7 +86,7 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.3.1</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -121,10 +124,10 @@
         </dependency>
 
         <!--AMQP依赖，包含RabbitMQ-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
