@@ -220,17 +220,15 @@ Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 
    
    - 访问 http://192.168.80.4:8080/apps.html 地址
      
-     ![](C:\Users\Allen\AppData\Roaming\marktext\images\2024-04-07-22-21-00-image.png)
+     ![](images/image-2/2024-04-07-22-21-00-image.png)
    
    - 点击 jvm-service，产看对应服务的不同节点
      
-     <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-04-07-22-23-05-image.png" title="" alt="" width="651">
+     <img src="file:///images/image-2/2024-04-07-22-23-05-image.png" title="" alt="" width="651">
    
    - 点击任意一个进入该程序的arthas界面，查看相应的内存，垃圾回收等信息
      
-     <img src="file:///C:/Users/Allen/AppData/Roaming/marktext/images/2024-04-07-22-24-32-image.png" title="" alt="" width="783">
-   
-   
+     <img src="file:///images/image-2/2024-04-07-22-24-32-image.png" title="" alt="" width="783">
 
 #### 1.2.1.4 Prometheus + Grafana
 
