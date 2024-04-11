@@ -19,11 +19,11 @@ management:
 spring:
   application:
     name: jvm-service
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://192.168.80.4:3306/jvm_test?serverTimeZone=UTC&useUnicode=true&characterEncoding=UTF-8
-#    username: root
-#    password: 123456
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.80.4:3306/jvm-test?serverTimeZone=UTC&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
 #    url: jdbc:mysql://rm-cn-zpr3eymps0008cso.rwlb.rds.aliyuncs.com:3306/jvm?serverTimeZone=UTC&useUnicode=true&characterEncoding=UTF-8
 #    url: jdbc:mysql://rm-cn-zpr3eymps0008c.rwlb.rds.aliyuncs.com:3306/jvm?serverTimeZone=UTC&useUnicode=true&characterEncoding=UTF-8
 #    username: jvm
@@ -48,9 +48,9 @@ server:
   port: 8881
   tomcat:
     threads:
-      min-spare: 50
-      max: 500
+      min-spare: 50    # 设置tomcat的核心线程数为50，即使tomcat空闲下来，这些线程也不会回收 (此处即使设置为0，也不会生效，默认最小是10个核心线程)
+      max: 500         # 设置tomcat的线程池最大为500
 
-#mybatis:
-#  mapper-locations: classpath:mapper/*xml
-#  type-aliases-package: com.study.jvm.actual_combat.practice.demo.pojo
+mybatis:
+  mapper-locations: classpath:mapper/*xml
+  type-aliases-package: com.study.jvm.actual_combat.practice_demo.oom.pojo

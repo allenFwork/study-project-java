@@ -70,12 +70,7 @@
             <version>3.7.1</version>
         </dependency>
 
-        <!--<dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.30</version>
-        </dependency>
-
+        <!-- jol-core框架可以将整个类的组成打印出来 -->
         <dependency>
             <groupId>org.openjdk.jol</groupId>
             <artifactId>jol-core</artifactId>
@@ -83,10 +78,16 @@
         </dependency>
 
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.3.1</version>
-        </dependency>-->
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -110,7 +111,6 @@
             <version>5.8.16</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
@@ -124,10 +124,10 @@
         </dependency>
 
         <!--AMQP依赖，包含RabbitMQ-->
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>-->
+        </dependency>
 
     </dependencies>
 
