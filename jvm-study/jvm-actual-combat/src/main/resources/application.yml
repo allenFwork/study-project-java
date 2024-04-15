@@ -45,7 +45,8 @@ arthas:
   telnet-port: 9999
 
 server:
-  port: 8881
+#  port: 8881
+  port: ${random.int(2000,8000)} # 随机选择端口号,为了让JMH使用时不会出现问题
   tomcat:
     threads:
       min-spare: 50    # 设置tomcat的核心线程数为50，即使tomcat空闲下来，这些线程也不会回收 (此处即使设置为0，也不会生效，默认最小是10个核心线程)
