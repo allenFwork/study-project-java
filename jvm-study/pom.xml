@@ -17,6 +17,7 @@
         <module>jvm-running-data-area-demo</module>
         <module>jvm-gc-demo</module>
         <module>jvm-actual-combat</module>
+        <module>jmh-test</module>
     </modules>
 
     <properties>

@@ -650,15 +650,15 @@ MAT提供了称为<font color=red>支配树</font>（Dominator Tree）的对象�
 
 解析：
 
-<img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-09-56-37-image.png" alt="" width="1065">
+<img title="" src="images/image-2/2024-04-09-09-56-37-image.png" alt="" width="1065">
 
 验证：通过 MAT 工具验证，即用MAT打开此程序生成堆快照
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-10-05-20-image.png" title="" alt="" width="1007">
+<img src="images/image-2/2024-04-09-10-05-20-image.png" title="" alt="" width="1007">
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-10-21-50-image.png" title="" alt="" width="1009">
+<img src="images/image-2/2024-04-09-10-21-50-image.png" title="" alt="" width="1009">
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-10-35-08-image.png" title="" alt="" width="1015">
+<img src="images/image-2/2024-04-09-10-35-08-image.png" title="" alt="" width="1015">
 
 - 填充4个字节是为了字节数能被8整除，这是一种机制
 
@@ -680,11 +680,11 @@ MAT就是根据支配树，从叶子节点向根节点遍历，如果发现深�
 
 1. 通过JDK自带的jmap命令导出，格式为：<font color=red> jmap -dump:live,format=b,file=文件路径和文件名 进程ID </font> 
    
-   ![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-09-11-15-37-image.png)
+   ![](images/image-2/2024-04-09-11-15-37-image.png)
 
 2. 通过arthas的heapdump命令导出，格式为：<font color=red> heapdump --live 文件路径和文件名 </font> 
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-11-16-49-image.png" title="" alt="" width="1023">
+   <img src="images/image-2/2024-04-09-11-16-49-image.png" title="" alt="" width="1023">
 
 #### 补充: 分析超大堆的内存快照
 
@@ -698,11 +698,11 @@ MAT就是根据支配树，从叶子节点向根节点遍历，如果发现深�
 
 注意：默认MAT分析时只使用了1G的堆内存，如果快照文件超过1G，需要修改MAT目录下的 MemoryAnalyzer.ini配置文件调整最大堆内存。
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-10-56-49-image.png" title="" alt="" width="949">
+<img src="images/image-2/2024-04-09-10-56-49-image.png" title="" alt="" width="949">
 
-<img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-10-57-29-image.png" alt="" width="947">
+<img title="" src="images/image-2/2024-04-09-10-57-29-image.png" alt="" width="947">
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-11-22-38-image.png" title="" alt="" width="957">
+<img src="images/image-2/2024-04-09-11-22-38-image.png" title="" alt="" width="957">
 
 ## 1.3 案例实战 - 修复问题
 
@@ -948,7 +948,7 @@ GC调优<font color=red>没有没有唯一的标准答案</font>，如何调优�
 
 垃圾回收吞吐量指的是 CPU 用于执行用户代码的时间与 CPU 总执行时间的比值，即吞吐量 = 执行用户代码时间 /（执行用户代码时间 + GC时间）。吞吐量数值越高，垃圾回收的效率就越高，允许更多的CPU时间去处理用户的业务，相应的业务吞吐量也就越高。
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-19-31-image.png" title="" alt="" width="661">
+<img src="images/image-2/2024-04-09-16-19-31-image.png" title="" alt="" width="661">
 
 ### 2.1.2 延迟（Latency）
 
@@ -958,9 +958,9 @@ GC调优<font color=red>没有没有唯一的标准答案</font>，如何调优�
 
 延迟 = GC延迟 + 业务执行时间，所以如果GC时间过长，会影响到用户的使用。
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-20-59-image.png" title="" alt="" width="683">
+<img src="images/image-2/2024-04-09-16-20-59-image.png" title="" alt="" width="683">
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-22-24-image.png" title="" alt="" width="679">
+<img src="images/image-2/2024-04-09-16-22-24-image.png" title="" alt="" width="679">
 
 ### 2.1.3 内存使用量
 
@@ -970,7 +970,7 @@ GC调优<font color=red>没有没有唯一的标准答案</font>，如何调优�
 
 GC调优的步骤总共分为四个步骤：
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-24-01-image.png" title="" alt="" width="698">
+<img src="images/image-2/2024-04-09-16-24-01-image.png" title="" alt="" width="698">
 
 ### 2.2.1 发现问题 – jstat工具
 
@@ -978,7 +978,7 @@ Jstat工具是JDK自带的一款监控工具，可以提供各种垃圾回收、
 
 使用方法为：jstat -gc 进程ID 每次统计的间隔（毫秒） 统计次数
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-25-26-image.png" title="" alt="" width="884">
+<img src="images/image-2/2024-04-09-16-25-26-image.png" title="" alt="" width="884">
 
 - C代表Capacity容量，U代表Used使用量
 
@@ -1004,7 +1004,7 @@ Jstat工具是JDK自带的一款监控工具，可以提供各种垃圾回收、
 
 VisualVm中提供了一款Visual Tool插件，实时监控Java进程的堆内存结构、堆内存变化趋势以及垃圾回收时间的变化趋势。同时还可以监控对象晋升的直方图。
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-29-04-image.png" title="" alt="" width="774">
+<img src="images/image-2/2024-04-09-16-29-04-image.png" title="" alt="" width="774">
 
 优点：
 
@@ -1022,15 +1022,15 @@ VisualVm中提供了一款Visual Tool插件，实时监控Java进程的堆内存
 
 2. 在线安装插件，使用的是国外的服务器资源，可能比较慢
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-10-10-06-38-image.png" title="" alt="" width="733">
+   <img src="images/image-2/2024-04-10-10-06-38-image.png" title="" alt="" width="733">
 
 3. 本地安装插件
    
-   <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-10-10-17-43-image.png" alt="" width="740">
+   <img title="" src="images/image-2/2024-04-10-10-17-43-image.png" alt="" width="740">
 
 4. 通过插件查看GC状态
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-10-10-15-36-image.png" title="" alt="" width="771">
+   <img src="images/image-2/2024-04-10-10-15-36-image.png" title="" alt="" width="771">
 
 ### 2.2.3 发现问题 – Prometheus + Grafana
 
@@ -1056,17 +1056,17 @@ Java程序员要学会如何读懂Grafana展示的Java虚拟机相关的参数�
 
 使用方法（JDK 9+）：-Xlog:gc*:file=文件名
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-32-43-image.png" title="" alt="" width="789">
+<img src="images/image-2/2024-04-09-16-32-43-image.png" title="" alt="" width="789">
 
 操作示例：
 
 1. 在Idea的启动程序文件时，添加虚拟参数
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-10-10-35-55-image.png" title="" alt="" width="769">
+   <img src="images/image-2/2024-04-10-10-35-55-image.png" title="" alt="" width="769">
 
 2. 查看GC的日志文件
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-10-10-36-41-image.png" title="" alt="" width="774">
+   <img src="images/image-2/2024-04-10-10-36-41-image.png" title="" alt="" width="774">
 
 ### 2.2.4 发现问题 – GC Viewer
 
@@ -1078,11 +1078,11 @@ GCViewer是一个将GC日志转换成可视化图表的小工具，github地址�
 
 1. 执行命令
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-10-10-39-51-image.png" title="" alt="" width="788">
+   <img src="images/image-2/2024-04-10-10-39-51-image.png" title="" alt="" width="788">
 
 2. 查看GC 视图数据：可以通过View工具栏中选择想看的数据线；右下角图框是汇总数据统计分析
    
-   <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-10-10-48-23-image.png" alt="" width="793">
+   <img title="" src="images/image-2/2024-04-10-10-48-23-image.png" alt="" width="793">
 
 ### 2.2.5 发现问题 – GCeasy
 
@@ -1094,7 +1094,7 @@ GCeasy是业界首款使用AI机器学习技术在线进行GC分析和诊断的�
 
 账号/密码：allenwork2021@163.com/qwer1234
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-10-11-04-36-image.png" title="" alt="" width="858">
+<img src="images/image-2/2024-04-10-11-04-36-image.png" title="" alt="" width="858">
 
 ### 2.2.6 发现问题 –常见的GC模式
 
@@ -1102,7 +1102,7 @@ GCeasy是业界首款使用AI机器学习技术在线进行GC分析和诊断的�
 
 特点：呈现锯齿状，对象创建之后内存上升，一旦发生垃圾回收之后下降到底部，并且每次下降之后的内存大小接近，存留的对象较少。
 
-<img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-35-44-image.png" alt="" width="615">
+<img title="" src="images/image-2/2024-04-09-16-35-44-image.png" alt="" width="615">
 
 #### 2.2.6.2 缓存对象过多
 
@@ -1110,7 +1110,7 @@ GCeasy是业界首款使用AI机器学习技术在线进行GC分析和诊断的�
 
 问题产生原因： 程序中保存了大量的缓存对象，导致GC之后无法释放，可以使用MAT或者HeapHero等工具进行分析内存占用的原因。
 
-<img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-55-16-image.png" alt="" width="624">
+<img title="" src="images/image-2/2024-04-09-16-55-16-image.png" alt="" width="624">
 
 #### 2.2.6.3 内存泄漏
 
@@ -1118,7 +1118,7 @@ GCeasy是业界首款使用AI机器学习技术在线进行GC分析和诊断的�
 
 问题产生原因： 程序中保存了大量的内存泄漏对象，导致GC之后无法释放，可以使用MAT或者HeapHero等工具进行分析是哪些对象产生了内存泄漏。
 
-<img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-56-11-image.png" alt="" width="629">
+<img title="" src="images/image-2/2024-04-09-16-56-11-image.png" alt="" width="629">
 
 #### 2.2.6.4 持续的Full GC
 
@@ -1126,7 +1126,7 @@ GCeasy是业界首款使用AI机器学习技术在线进行GC分析和诊断的�
 
 问题产生原因： 在该时间范围请求量激增，程序开始生成更多对象，同时垃圾收集无法跟上对象创建速率，导致持续地在进行FULL GC。GC分析报告
 
-<img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-57-39-image.png" alt="" width="633">
+<img title="" src="images/image-2/2024-04-09-16-57-39-image.png" alt="" width="633">
 
 #### 2.2.6.5 元空间不足导致的FULL GC
 
@@ -1134,7 +1134,7 @@ GCeasy是业界首款使用AI机器学习技术在线进行GC分析和诊断的�
 
 问题产生原因： 元空间大小不足，导致持续FULLGC回收元空间的数据。
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-16-59-04-image.png" title="" alt="" width="645">
+<img src="images/image-2/2024-04-09-16-59-04-image.png" title="" alt="" width="645">
 
 ### 2.2.7 解决问题
 
@@ -1142,7 +1142,7 @@ GCeasy是业界首款使用AI机器学习技术在线进行GC分析和诊断的�
 
 解决GC问题的手段中，前三种是比较推荐的手段，第四种仅在前三种无法解决时选用：
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-17-00-07-image.png" title="" alt="" width="929">
+<img src="images/image-2/2024-04-09-17-00-07-image.png" title="" alt="" width="929">
 
 #### 2.2.7.1 解决问题 - 优化基础JVM参数
 
@@ -1154,7 +1154,7 @@ GCeasy是业界首款使用AI机器学习技术在线进行GC分析和诊断的�
 
 <font color=red>最合理的设置方式应该是根据最大并发量估算服务器的配置，然后再根据服务器配置计算最大堆内存的值</font>。
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-17-02-59-image.png" title="" alt="" width="926">
+<img src="images/image-2/2024-04-09-17-02-59-image.png" title="" alt="" width="926">
 
 -Xms用来设置初始堆大小，建议将-Xms设置的和-Xmx一样大，有以下几点好处：
 
@@ -1184,15 +1184,15 @@ GCeasy是业界首款使用AI机器学习技术在线进行GC分析和诊断的�
 
 - -Xmn 年轻代的大小，默认值为整个堆的1/3，可以根据峰值流量计算最大的年轻代大小，尽量让对象只存放在年轻代，不进入老年代。但是实际的场景中，接口的响应时间、创建对象的大小、程序内部还会有一些定时任务等不确定因素都会导致这个值的大小并不能仅凭计算得出，如果设置该值要进行大量的测试。G1垃圾回收器尽量不要设置该值，G1会动态调整年轻代的大小。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-17-08-18-image.png" title="" alt="" width="915">
+  <img src="images/image-2/2024-04-09-17-08-18-image.png" title="" alt="" width="915">
 
 - ‐XX:SurvivorRatio 伊甸园区和幸存者区的大小比例，默认值为8。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-17-09-26-image.png" title="" alt="" width="347">
+  <img src="images/image-2/2024-04-09-17-09-26-image.png" title="" alt="" width="347">
 
 - ‐XX:MaxTenuringThreshold 最大晋升阈值，年龄大于此值之后，会进入老年代。另外JVM有动态年龄判断机制：将年龄从小到大的对象占据的空间加起来，如果大于survivor区域的50%，然后把等于或大于该年龄的对象，放入到老年代。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-17-10-51-image.png" title="" alt="" width="910">
+  <img src="images/image-2/2024-04-09-17-10-51-image.png" title="" alt="" width="910">
 
 ##### 其他参数:
 
@@ -1257,9 +1257,9 @@ GCeasy是业界首款使用AI机器学习技术在线进行GC分析和诊断的�
 
         CMS的<font color=red>并发模式失败</font>（concurrent mode failure）现象。由于CMS的垃圾清理线程和用户线程是并行进行的，如果在并发清理的过程中老年代的空间不足以容纳放入老年代的对象，会产生<font color=red>并发模式失败</font>。
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-11-11-19-04-image.png" title="" alt="" width="856">
+<img src="images/image-2/2024-04-11-11-19-04-image.png" title="" alt="" width="856">
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-11-11-19-36-image.png" title="" alt="" width="860">
+<img src="images/image-2/2024-04-11-11-19-36-image.png" title="" alt="" width="860">
 
 - 尝试将伊甸园的对象放入到幸存者区，发现幸存者区空间不足，所以直接将该对象放入到老年代，但是发现老年代已经满了，没有空间存放对象，那么此时就会产生并发模式失败
 
@@ -1359,11 +1359,11 @@ GC调优的核心流程：
 
 1. 通过top命令查看CPU占用率高，接近100甚至多核CPU下超过100都是有可能的。
    
-   <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-17-56-58-image.png" alt="" width="793">
+   <img title="" src="images/image-2/2024-04-09-17-56-58-image.png" alt="" width="793">
 
 2. 请求单个服务处理时间特别长，多服务使用skywalking等监控系统来判断是哪一个环节性能低下。
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-17-57-56-image.png" title="" alt="" width="791">
+   <img src="images/image-2/2024-04-09-17-57-56-image.png" title="" alt="" width="791">
 
 3. 程序启动之后运行正常，但是在运行一段时间之后无法处理任何的请求（内存和GC正常）。
 
@@ -1373,24 +1373,24 @@ GC调优的核心流程：
 
 1. 通过 ` jstack 进程ID > 日志文件名` 命令
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-11-14-21-45-image.png" title="" alt="" width="778">
+   <img src="images/image-2/2024-04-11-14-21-45-image.png" title="" alt="" width="778">
 
 2. 通过 VisualVM 工具
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-11-14-23-17-image.png" title="" alt="" width="784">
+   <img src="images/image-2/2024-04-11-14-23-17-image.png" title="" alt="" width="784">
    
-   <img title="" src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-11-14-26-44-image.png" alt="" width="784">
+   <img title="" src="images/image-2/2024-04-11-14-26-44-image.png" alt="" width="784">
 - 选择左侧栏中对应的threaddump，右击选择 Save As，跳出文件存储框
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-11-14-28-30-image.png" title="" alt="" width="788">
+  <img src="images/image-2/2024-04-11-14-28-30-image.png" title="" alt="" width="788">
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-11-14-30-16-image.png" title="" alt="" width="794">
+  <img src="images/image-2/2024-04-11-14-30-16-image.png" title="" alt="" width="794">
 
 ### 3.2.2 线程转储的查看方式
 
 线程转储（Thread Dump）提供了对所有运行中的线程当前状态的快照。线程转储可以通过jstack、visualvm等工具获取。其中包含了线程名、优先级、线程ID、线程状态、线程栈信息等等内容，可以用来解决<font color=red>CPU占用率高、死锁等问题</font>。
 
-![](C:\Users\shiwei\AppData\Roaming\marktext\images\2024-04-09-17-59-25-image.png)
+![](images/image-2/2024-04-09-17-59-25-image.png)
 
 线程转储（Thread Dump）中的几个核心内容：
 
@@ -1432,11 +1432,11 @@ GC调优的核心流程：
 
 1. 通过top –c 命令找到CPU占用率高的进程，获取它的进程ID。
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-18-09-29-image.png" title="" alt="" width="903">
+   <img src="images/image-2/2024-04-09-18-09-29-image.png" title="" alt="" width="903">
 
 2. 使用top -p 进程ID单独监控某个进程，**按H可以查看到所有的线程以及线程对应的CPU使用率**，找到CPU使用率特别高的线程。
    
-   <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-09-18-10-58-image.png" title="" alt="" width="908">
+   <img src="images/image-2/2024-04-09-18-10-58-image.png" title="" alt="" width="908">
 
 3. 使用 `jstack 进程ID` 命令可以查看到所有线程正在执行的栈信息。使用 `jstack 进程ID > 文件名` 保存到文件中方便查看。
 
@@ -1454,9 +1454,7 @@ GC调优的核心流程：
 
 - 在定位CPU占用率高的问题时，比较需要关注的是状态为RUNNABLE的线程。但实际上，有一些线程执行本地方法时并不会消耗CPU，而只是在等待。但 JVM 仍然会将它们标识成“RUNNABLE”状态。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-11-17-18-17-image.png" title="" alt="" width="829">
-
-
+  <img src="images/image-2/2024-04-11-17-18-17-image.png" title="" alt="" width="829">
 
 ### 3.2.4 案例2：接口响应时间很长的问题
 
@@ -1467,8 +1465,6 @@ GC调优的核心流程：
 解决思路：
 
         已经确定是某个接口性能出现了问题，但是由于方法嵌套比较深，需要借助于arthas定位到具体的方法
-
-
 
 #### Arthas的trace命令
 
@@ -1505,8 +1501,6 @@ GC调优的核心流程：
 2、通过watch命令，查看此调用的参数和返回值，重点是参数，这样就可以在开发环境或者测试环境模拟类似的现象，通过debug找到具体的问题根源。
 
 3、使用stop命令将所有增强的对象恢复。
-
-
 
 ### 3.2.5 案例3：定位偏底层的性能问题
 
@@ -1563,17 +1557,13 @@ GC调优的核心流程：
 
 面试官：这样做是不准确的，第一测试时有些对象创建是懒加载的，所以会影响第一次的请求时间，第二因为虚拟机中JIT即时编译器会优化你的代码，所以你这个测试得出的时间并不一定是最终用户处理的时间。
 
-
-
 #### JIT对程序性能的影响
 
 - Java程序在运行过程中，JIT即时编译器会实时对代码进行性能优化，所以仅凭少量的测试是无法真实反应运行系统最终给用户提供的性能。
 
 - 如下图，随着执行次数的增加，程序性能会逐渐优化。
   
-  <img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-11-18-25-19-image.png" title="" alt="" width="391">
-
-
+  <img src="images/image-2/2024-04-11-18-25-19-image.png" title="" alt="" width="391">
 
 #### 正确地测试代码性能
 
@@ -1583,32 +1573,175 @@ OpenJDK中提供了一款叫JMH（Java Microbenchmark Harness）的工具，可�
 
 JMH会首先执行预热过程，确保JIT对代码进行优化之后再进行真正的迭代测试，最后输出测试的结果。
 
-<img src="file:///C:/Users/shiwei/AppData/Roaming/marktext/images/2024-04-11-18-27-04-image.png" title="" alt="" width="785">
+<img src="images/image-2/2024-04-11-18-27-04-image.png" title="" alt="" width="785">
 
+##### JMH环境搭建(初步使用)
 
+1. 创建基准测试项目，在CMD窗口中，使用以下命令创建JMH环境项目：
+   
+   ```bash
+   mvn archetype:generate \
+   -DinteractiveMode=false \
+   -DarchetypeGroupId=org.openjdk.jmh \
+   -DarchetypeArtifactId=jmh-java-benchmark-archetype \
+   -DgroupId=org.sample \
+   -DartifactId=test \
+   -Dversion=1.0
+   ```
+   
+   ![](images/image-2/2024-04-15-10-14-00-image.png)
 
-JMH环境搭建：
+2. 修改生成项目中的POM文件，修改JDK版本号和JMH版本号，JMH最新版本号参考Github。
+   
+   ```xml
+   <properties>
+       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+       <jmh.version>1.37</jmh.version>  <!-- jmh的版本号修改为1.37 -->
+       <javac.target>1.8</javac.target> <!-- JDK的版本号修改为 1.8 -->
+       <uberjar.name>benchmarks</uberjar.name>
+   </properties>
+   ```
 
-- 创建基准测试项目，在CMD窗口中，使用以下命令创建JMH环境项目：
+3. 编写测试代码
+   
+   ```java
+   package com.study.jvm;
+   
+   import org.openjdk.jmh.annotations.*;
+   import java.util.concurrent.TimeUnit;
+   
+   // @Warmup:当前方法需要预热的次数，此时表示1秒钟内预热5轮
+   @Warmup(iterations = 5, time = 1)
+   // @Fork:启动多少个进程进行测试，此处表示只启动一个进程进行测试，并且启动时追加了堆内存相关的虚拟机参数
+   @Fork(value = 1, jvmArgsAppend = {"-Xms1g", "-Xmx1g"})
+   // @BenchmarkMode:指定当前的显示结果，可以指定吞吐量、耗时时间等，此处表示打印平均耗时时间
+   @BenchmarkMode(Mode.AverageTime)
+   // @OutputTimeUnit:指定显示结果的单位，此处指定时间单位为纳秒
+   @OutputTimeUnit(TimeUnit.NANOSECONDS)
+   // @State:变量共享范围，变量是在整个测试过程中共享，还是在单个线程中共享，此处表示在整个测试过程中共享（如果想在单个线程中共享，使用Scope.Thread）
+   @State(Scope.Benchmark)
+   public class MyBenchmark {
+   
+       @Benchmark // 方法上标注了 @Benchmark 注解，表示此方法为测试方法
+       public int testMethod() {
+           // place your benchmarked code here
+           int i = 0;
+           i++;
+           return i;
+       }
+   
+   }
+   ```
+
+4. 通过项目的Maven的verify打包
+   
+   <img src="images/image-2/2024-04-15-10-34-41-image.png" title="" alt="" width="860">
+
+5. 执行命令，启动 jar 包：` java -jar .\benchmarks.jar `
+   
+   <img src="images/image-2/2024-04-15-10-43-20-image.png" title="" alt="" width="859">
+
+##### JMH编写测试方法，需要注意的点
+
+- 死代码问题：JIT会自动将一些代码优化掉，例如下面的情况会将方法中所有的代码删除掉，指向该方法耗时0秒
   
-  ```bash
-  mvn archetype:generate \
-  -DinteractiveMode=false \
-  -DarchetypeGroupId=org.openjdk.jmh \
-  -DarchetypeArtifactId=jmh-java-benchmark-archetype \
-  -DgroupId=org.sample \
-  -DartifactId=test \
-  -Dversion=1.0
+  ```java
+  public void testMethod() {
+      int i = 0;
+      i++;
+  }
   ```
 
-优点
+- 黑洞的用法
+  
+  ```java
+  @Benchmark // 方法上标注了 @Benchmark 注解，表示此方法为测试方法
+  public void testMethod2(Blackhole blackhole) {
+     int i = 0;
+     i++;
+     // 黑洞消费，这样JIT就不会将上述代码给优化掉，避免死代码的产生
+     blackhole.consume(i);
+  }
+  ```
 
-- 修改POM文件中的JDK版本号和JMH版本号，JMH最新版本号参考Github。
+- 测试结果，可以通过 https://jmh.morethan.io/ 生成可视化的结果。
 
+##### JMH完整案例:日期格式化方法性能测试
 
+问题：在JDK8中，可以使用Date进行日期的格式化，也可以使用LocalDateTime进行格式化，使用JMH对比这两种格式化的性能。
 
+解决思路：
 
+1. 搭建JMH测试环境。
 
+2. 编写JMH测试代码。
 
+3. 进行测试。
+
+4. 比对测试结果。
+
+步骤：略 。。。
+
+总结：日期格式化方法性能测试
+
+1. Date对象使用的SimpleDateFormatter是线程不安全的，所以每次需要重新创建对象或者将对象放入ThreadLocal中进行保存。其中每次重新创建对象性能比较差，将对象放入ThreadLocal之后性能相对还是比较好的。
+
+2. LocalDateTime对象使用的DateTimeFormatter线程安全，并且性能较好，如果能将DateTimeFormatter对象保存下来，性能可以得到进一步的提升。
+
+具体操作查看视频资料：[视频资料中第16个视频](https://upwer66cqk.feishu.cn/wiki/Y5tNwJgL0i1wd9kauAAczM2znWg?fromScene=spaceOverview)
 
 ## 3.3 案例实战
+
+问题：小李的项目中有一个获取用户信息的接口性能比较差，他希望能对这个接口在代码中进行彻底的优化，提升性能。
+
+- 10000数据量下，平均执行时间从原来的217ms优化至2ms。
+
+- 100000数据量下，平均执行时间从原来的57秒优化至18ms。
+
+解决思路：
+
+1. 使用trace分析性能瓶颈。
+
+2. 优化代码，反复使用trace测试性能提升的情况。
+
+3. 使用JMH在SpringBoot环境中进行测试。
+
+4. 比对测试结果。
+
+具体步骤：
+
+1. 本案例中性能问题产生的原因是两层for循环导致的循环次数过多，处理时间在循环次数变大的情况下变得非常长，考虑将一层循环拆出去，创建HashMap用来查询提升性能。
+
+2. 使用LocalDateTime替代SimpleDateFormat进行日期的格式化。
+
+3. 使用stream流改造代码，这一步可能会导致性能下降，主要是为了第四次优化准备。
+
+4. 使用并行流利用多核CPU的优势并行执行提升性能
+
+具体操作查看视频资料：[视频资料中第17个视频](https://upwer66cqk.feishu.cn/wiki/Y5tNwJgL0i1wd9kauAAczM2znWg?fromScene=spaceOverview)
+
+### 总结
+
+问题1：CPU占用率高的问题
+
+解决方案：通过top命令找到进程和线程 -> 使用jstack打印线程快照 -> 找到线程快照正在执行的方法 ，并优化性能。
+
+---
+
+问题2：接口响应时间特别长
+
+解决方案1：通过arthas的trace和watch命令，监控方法的执行耗时和参数、返回值等信息，定位性能瓶颈，并优化性能。
+
+解决方案2：通过arthas的profile火焰图功能，找到火焰图中顶部较平的方法，一般就是性能问题产生的根源，并优化性能。
+
+---
+
+问题3：线程不可用问题
+
+解决方案：通过jstack 、visualvm 、fastthread.io等工具，找到线程死锁的原因，解决死锁问题。
+
+---
+
+面试题：
+
+![](images/image-2/2024-04-15-13-52-39-image.png)
