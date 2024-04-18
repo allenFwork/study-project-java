@@ -18,6 +18,7 @@
         <module>jvm-gc-demo</module>
         <module>jvm-actual-combat</module>
         <module>jmh-test</module>
+        <module>java-agent</module>
     </modules>
 
     <properties>
