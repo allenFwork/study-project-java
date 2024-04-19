@@ -4,7 +4,7 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
 
-public class TheadCommand {
+public class ThreadCommand {
 
     // 打印线程信息
     public static void printThreadInfo() {

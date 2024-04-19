@@ -34,8 +34,10 @@ public class AttachMain {
 
         // 获取进程虚拟机对象
         VirtualMachine vm = VirtualMachine.attach(processId);
-        // 执行java agent里面的agentmain方法
-        vm.loadAgent("D:\\programme\\idea\\idea_workspace\\study-project-java-2023\\jvm-study\\java-agent\\target\\jvm-java-agent-jar-with-dependencies.jar");
+        // 执行java agent里面的agentmain方法(本地测试)
+        // vm.loadAgent("D:\\programme\\idea\\idea_workspace\\study-project-java-2023\\jvm-study\\java-agent\\target\\jvm-java-agent-jar-with-dependencies.jar");
+        // 服务器上将两个jar包放在同级目录下，即可直接写jar名字
+        vm.loadAgent("jvm-java-agent-jar-with-dependencies.jar");
     }
 
 }
