@@ -6,9 +6,9 @@ package com.study.jvm.demo1.clinit;
  *
  * 字节码指令：
  * 0 iconst_2                                                     将常量2放入操作数栈中
- * 1 putstatic #2 <com/study/jvm/demo1/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
+ * 1 putstatic #2 <com/study/jvm/com.study.jvm.theory.demo1/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
  * 4 iconst_1                                                     将常量1放入操作数栈中
- * 5 putstatic #2 <com/study/jvm/demo1/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
+ * 5 putstatic #2 <com/study/jvm/com.study.jvm.theory.demo1/clinit/Demo1.value : I>    从操作数栈中获取一个值，将该值设置到静态变量中区（此处的静态变量引用是#2，即value）
  * 8 return
  */
 public class Demo2 {

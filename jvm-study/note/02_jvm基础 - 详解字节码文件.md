@@ -247,7 +247,7 @@ k += 1;      // 解释为执行 1 条指令
 1. 启动一个 java程序，此处执行 MainTest.java 的 main方法
    
    ```
-   package com.study.jvm.demo3;
+   package com.study.jvm.com.study.jvm.theory.demo3;
    
    import java.io.IOException;
    
@@ -281,7 +281,7 @@ k += 1;      // 解释为执行 1 条指令
     
     ![image-20240106144742407](images/images-1.X/image-20240106144742407.png)
   
-  - Linux下：`java -classpath /usr/local/apps/java_apps com.study.jvm.demo3.MainTest`
+  - Linux下：`java -classpath /usr/local/apps/java_apps com.study.jvm.com.study.jvm.theory.demo3.MainTest`
     
     ![](images/images-1.X/image-20240106145816946.png)
 
@@ -303,7 +303,7 @@ k += 1;      // 解释为执行 1 条指令
 
 ##### 通过 <font color=red>jad命令 反编译加载类的源码 </font>
 
-- 命令：`jad com.study.jvm.demo3.MainTest `
+- 命令：`jad com.study.jvm.com.study.jvm.theory.demo3.MainTest `
   
   ![image-20240106153604754](images/images-1.X/image-20240106153604754.png)    
 

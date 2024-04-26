@@ -376,7 +376,7 @@ Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 
 1. 非静态的内部类默认会持有外部类，尽管代码上不再使用外部类，所以如果有地方引用了这个非静态内部类，会导致外部类也被引用，垃圾回收时无法回收这个外部类。
    
    ```java
-   package com.study.jvm.actual_combat.memory_leak.demo3;
+   package com.study.jvm.actual_combat.memory_leak.com.study.jvm.theory.demo3;
    
    import java.io.IOException;
    import java.util.ArrayList;
