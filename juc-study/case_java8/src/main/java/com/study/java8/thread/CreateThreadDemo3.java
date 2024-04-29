@@ -1,4 +1,4 @@
-package com.study.java8.test;
+package com.study.java8.thread;
 
 import lombok.extern.slf4j.Slf4j;
 

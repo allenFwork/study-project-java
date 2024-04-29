@@ -1,8 +1,11 @@
-package com.study.java8.n3;
+package com.study.java8;
 
-public class TestFrames {
+/**
+ * 线程中的栈帧
+ */
+public class FramesDemo {
     public static void main(String[] args) {
-        Thread t1 = new Thread(){
+        Thread t1 = new Thread() {
             @Override
             public void run() {
                 method1(20);
@@ -10,6 +13,7 @@ public class TestFrames {
         };
         t1.setName("t1");
         t1.start();
+
         method1(10);
     }
 

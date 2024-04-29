@@ -1,11 +1,11 @@
-package com.study.java8.test;
+package com.study.java8.thread;
 
 import com.study.java8.Constants;
 import com.study.java8.n2.util.FileReader;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j(topic = "c.Test4")
-public class Test4 {
+@Slf4j(topic = "c.Test2")
+public class Test2 {
 
     public static void main(String[] args) {
         Thread t1 = new Thread("t1") {
@@ -16,6 +16,9 @@ public class Test4 {
             }
         };
 
+        // 调用线程的run方法，此时还是使用主线程来执行该方法（同步处理，串行执行）
+//        t1.run();
+        // 调用线程的start方法，此时使用t1线程来执行该方法（异步处理，并行执行）
         t1.start();
         log.debug("do other things...");
     }
