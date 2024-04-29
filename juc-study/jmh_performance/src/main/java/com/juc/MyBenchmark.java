@@ -41,6 +41,7 @@ public class MyBenchmark {
         Arrays.fill(ARRAY, 1);
     }
 
+    // 测试多线程跑程序
     @Benchmark
     public int c() throws Exception {
         int[] array = ARRAY;
@@ -79,6 +80,7 @@ public class MyBenchmark {
         return t1.get() + t2.get() + t3.get() + t4.get();
     }
 
+    // 测试单线程跑程序
     @Benchmark
     public int d() throws Exception {
         int[] array = ARRAY;

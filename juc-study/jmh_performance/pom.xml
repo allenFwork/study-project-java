@@ -33,7 +33,7 @@ questions.
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>cn.study.juc.concurrent</groupId>
+    <groupId>cn.study.juc</groupId>
     <artifactId>jmh_performance</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
