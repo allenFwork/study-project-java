@@ -1,7 +1,7 @@
 package com.study.java8.thread;
 
 import com.study.java8.Constants;
-import com.study.java8.n2.util.FileReader;
+import com.study.java8.util.FileReader;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j(topic = "c.Test2")

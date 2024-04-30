@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 import java.util.concurrent.*;
 
-import static com.study.java8.n2.util.Sleeper.sleep;
+import static com.study.java8.util.Sleeper.sleep;
 
 @Slf4j(topic = "c.TestShutDown")
 public class TestShutDown {

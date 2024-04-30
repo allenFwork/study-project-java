@@ -1,4 +1,4 @@
-package com.study.java8.n2.util;
+package com.study.java8.util;
 
 import java.util.concurrent.TimeUnit;
 

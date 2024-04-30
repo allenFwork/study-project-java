@@ -2,7 +2,7 @@ package com.study.java8.n4;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static com.study.java8.n2.util.Sleeper.sleep;
+import static com.study.java8.util.Sleeper.sleep;
 
 @Slf4j(topic = "c.TestCorrectPosture")
 public class TestCorrectPostureStep1 {

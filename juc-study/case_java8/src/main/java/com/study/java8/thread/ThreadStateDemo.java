@@ -1,13 +1,13 @@
-package com.study.java8.n3;
+package com.study.java8.thread;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
-@Slf4j(topic = "c.TestState")
-public class TestState {
+@Slf4j(topic = "c.ThreadStateDemo")
+public class ThreadStateDemo {
     public static void main(String[] args) throws IOException {
-        Thread t1 = new Thread("t1") {
+        Thread t1 = new Thread("t1"){
             @Override
             public void run() {
                 log.debug("running...");
@@ -35,9 +35,9 @@ public class TestState {
         Thread t4 = new Thread("t4") {
             @Override
             public void run() {
-                synchronized (TestState.class) {
+                synchronized (ThreadStateDemo.class) {
                     try {
-                        Thread.sleep(1000000); // timed_waiting
+                        Thread.sleep(1000000); // TIMED_WAITING
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -50,7 +50,7 @@ public class TestState {
             @Override
             public void run() {
                 try {
-                    t2.join(); // waiting
+                    t2.join(); // WAITING
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -61,7 +61,7 @@ public class TestState {
         Thread t6 = new Thread("t6") {
             @Override
             public void run() {
-                synchronized (TestState.class) { // blocked
+                synchronized (ThreadStateDemo.class) { // BLOCKED
                     try {
                         Thread.sleep(1000000);
                     } catch (InterruptedException e) {

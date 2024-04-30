@@ -1,11 +1,11 @@
-package com.study.java8.n4;
+package com.study.java8.mutex;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static com.study.java8.n2.util.Sleeper.sleep;
+import static com.study.java8.util.Sleeper.sleep;
 
-@Slf4j(topic = "c.Test8Locks")
-public class Test8Locks {
+@Slf4j(topic = "c.SynchronizedLockDemo")
+public class SynchronizedLockDemo {
     public static void main(String[] args) {
         Number n1 = new Number();
         Number n2 = new Number();
@@ -17,15 +17,25 @@ public class Test8Locks {
             log.debug("begin");
             n2.b();
         }).start();
+        new Thread(() -> {
+            log.debug("begin");
+            n2.c();
+        }).start();
     }
 }
+
 @Slf4j(topic = "c.Number")
-class Number{
+class Number {
     public synchronized void a() {
         sleep(1);
         log.debug("1");
     }
+
     public synchronized void b() {
         log.debug("2");
+    }
+
+    public void c() {
+        log.debug("3");
     }
 }

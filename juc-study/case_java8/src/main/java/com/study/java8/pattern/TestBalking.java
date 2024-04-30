@@ -1,6 +1,6 @@
 package com.study.java8.pattern;
 
-import com.study.java8.n2.util.Sleeper;
+import com.study.java8.util.Sleeper;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;

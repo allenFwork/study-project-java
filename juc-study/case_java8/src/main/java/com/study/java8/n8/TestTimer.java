@@ -6,7 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.*;
 
-import static com.study.java8.n2.util.Sleeper.sleep;
+import static com.study.java8.util.Sleeper.sleep;
 
 @Slf4j(topic = "c.TestTimer")
 public class TestTimer {

@@ -1,6 +1,6 @@
 package com.study.java8.n4;
 
-import static com.study.java8.n2.util.Sleeper.sleep;
+import static com.study.java8.util.Sleeper.sleep;
 
 public class TestThreadHungry {
     public static void main(String[] args) throws InterruptedException {

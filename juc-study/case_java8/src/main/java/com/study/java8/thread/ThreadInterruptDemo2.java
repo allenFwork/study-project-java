@@ -1,9 +1,12 @@
-package com.study.java8.test;
+package com.study.java8.thread;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 打断阻塞：打断由sleep方法导致的阻塞
+ */
 @Slf4j(topic = "c.Test11")
-public class Test11 {
+public class ThreadInterruptDemo2 {
 
     public static void main(String[] args) throws InterruptedException {
         Thread t1 = new Thread(() -> {
@@ -13,9 +16,10 @@ public class Test11 {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        },"t1");
+        }, "t1");
 
         t1.start();
+        // 让主线程睡眠1秒，保证此时t1线程此时执行了sleep方法，进入了阻塞状态
         Thread.sleep(1000);
         log.debug("interrupt");
         t1.interrupt();

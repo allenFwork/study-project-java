@@ -1,6 +1,6 @@
 package com.study.java8.test;
 
-import com.study.java8.n2.util.Sleeper;
+import com.study.java8.util.Sleeper;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Hashtable;

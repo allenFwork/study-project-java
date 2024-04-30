@@ -1,11 +1,11 @@
 package com.study.java8.test;
 
-import com.study.java8.n2.util.Sleeper;
+import com.study.java8.util.Sleeper;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;
 
-import static com.study.java8.n2.util.Sleeper.sleep;
+import static com.study.java8.util.Sleeper.sleep;
 
 @Slf4j(topic = "c.Test21")
 public class Test21 {

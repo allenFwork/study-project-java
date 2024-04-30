@@ -1,4 +1,4 @@
-package com.study.java8.n2.util;
+package com.study.java8.util;
 
 import lombok.extern.slf4j.Slf4j;
 

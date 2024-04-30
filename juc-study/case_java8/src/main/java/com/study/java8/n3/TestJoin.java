@@ -2,7 +2,7 @@ package com.study.java8.n3;
 
 import lombok.extern.slf4j.Slf4j;
 
-import static com.study.java8.n2.util.Sleeper.sleep;
+import static com.study.java8.util.Sleeper.sleep;
 
 @Slf4j(topic = "c.TestJoin")
 public class TestJoin {
@@ -14,7 +14,7 @@ public class TestJoin {
         test3();
     }
 
-    public static void test3() throws InterruptedException {
+    private static void test3() throws InterruptedException {
         Thread t1 = new Thread(() -> {
             sleep(2);
             r1 = 10;
@@ -25,7 +25,7 @@ public class TestJoin {
 
         // 线程执行结束会导致 join 结束
         log.debug("join begin");
-        t1.join(3000);
+        t1.join(1500);
         long end = System.currentTimeMillis();
         log.debug("r1: {} r2: {} cost: {}", r1, r2, end - start);
     }
