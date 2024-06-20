@@ -1,4 +1,4 @@
-package com.study.java8.n4.exercise;
+package com.study.java8.exercise;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
+// 售票窗口
 @Slf4j(topic = "c.ExerciseSell")
 public class ExerciseSell {
     public static void main(String[] args) throws InterruptedException {
@@ -28,13 +29,14 @@ public class ExerciseSell {
             thread.start();
         }
 
+        // 保证主线程等到所有线程执行完，在接着执行
         for (Thread thread : threadList) {
             thread.join();
         }
 
         // 统计卖出的票数和剩余票数
-        log.debug("余票：{}",window.getCount());
-        log.debug("卖出的票数：{}", amountList.stream().mapToInt(i-> i).sum());
+        log.debug("余票：{}", window.getCount());
+        log.debug("卖出的票数：{}", amountList.stream().mapToInt(i -> i).sum());
     }
 
     // Random 为线程安全

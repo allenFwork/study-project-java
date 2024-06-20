@@ -1,4 +1,4 @@
-package com.study.java8.n4.exercise;
+package com.study.java8.exercise;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,7 +54,7 @@ class Account {
 
     // 转账
     public void transfer(Account target, int amount) {
-        synchronized(Account.class) {
+        synchronized (Account.class) {
             if (this.money >= amount) {
                 this.setMoney(this.getMoney() - amount);
                 target.setMoney(target.getMoney() + amount);
