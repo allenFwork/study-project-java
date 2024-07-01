@@ -7,6 +7,9 @@ import java.util.List;
 
 import static com.study.java8.util.Sleeper.sleep;
 
+/**
+ * 设计模式: 同步模式之保护性暂停 (版本2)
+ */
 @Slf4j(topic = "c.TestGuardedObjectV2")
 public class TestGuardedObjectV2 {
     public static void main(String[] args) {
@@ -16,9 +19,9 @@ public class TestGuardedObjectV2 {
             v2.complete(null);
             sleep(1);
             v2.complete(Arrays.asList("a", "b", "c"));
-        }).start();
+        }, "t1").start();
 
-        Object response = v2.get(2500);
+        Object response = v2.get(1500);
         if (response != null) {
             log.debug("get response: [{}] lines", ((List<String>) response).size());
         } else {
