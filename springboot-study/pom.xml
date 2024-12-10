@@ -26,6 +26,7 @@
         <module>springboot-basic-use</module>
         <module>springboot-cache-demo</module>
         <module>springboot-test-demo</module>
+        <module>springboot-log-demo</module>
     </modules>
 
     <properties>
