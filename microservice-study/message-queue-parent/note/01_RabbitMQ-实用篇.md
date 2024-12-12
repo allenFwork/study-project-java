@@ -831,7 +831,8 @@ public void testSendMap() throws InterruptedException {
 
 发送消息后查看控制台：
 
-![](assets\2024-01-20-11-22-21-image.png)
+![2024-01-20-11-22-21-image.png](assets/2024-01-20-11-22-21-image.png)
+
 
 ### 3.7.2. 配置JSON转换器
 
@@ -869,7 +870,8 @@ public void listenObjectQueue(Map<String, Object> msg){
 
 可以通过RabbitMQ的管理页面创建 object.queue 队列，从而向其中发送消息
 
-![](assets\2024-01-20-11-32-26-image.png)
+![2024-01-20-11-32-26-image.png](assets/2024-01-20-11-32-26-image.png)
+
 
 ### 3.7.3. 总结
 
