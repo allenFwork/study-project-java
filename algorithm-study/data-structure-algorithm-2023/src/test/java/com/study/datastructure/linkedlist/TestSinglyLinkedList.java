@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestSinglyLinkedList {
 
-
     @Test
     @DisplayName("测试 addFirst")
     public void test1() {

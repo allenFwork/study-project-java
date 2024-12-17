@@ -83,13 +83,25 @@ public class SinglyLinkedList implements Iterable<Integer> { // 整体
         }
     }
 
-    public void loop3(Consumer<Integer> before,
-                      Consumer<Integer> after) {
+    /**
+     * 递归遍历
+     *
+     * @param before
+     * @param after
+     */
+    public void loop3(Consumer<Integer> before, Consumer<Integer> after) {
         recursion(head, before, after);
     }
 
-    private void recursion(Node curr,
-                           Consumer<Integer> before, Consumer<Integer> after) { // 某个节点要进行的操作
+    /**
+     * 某个节点要进行的操作 ()
+     *
+     * @param curr
+     * @param before
+     * @param after
+     */
+    private void recursion(Node curr, Consumer<Integer> before, Consumer<Integer> after) {
+        // 结束递归条件
         if (curr == null) {
             return;
         }
@@ -210,16 +222,3 @@ public class SinglyLinkedList implements Iterable<Integer> { // 整体
         prev.next = removed.next;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
