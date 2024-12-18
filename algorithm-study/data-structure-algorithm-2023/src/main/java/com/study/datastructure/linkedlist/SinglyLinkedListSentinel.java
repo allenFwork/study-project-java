@@ -5,9 +5,10 @@ import java.util.function.Consumer;
 
 /**
  * 单向链表(带哨兵)
+ * 好处：和原来单向链表相比，带哨兵得单向链表的许多方法写起来少了很多代码，更简洁
  */
 public class SinglyLinkedListSentinel implements Iterable<Integer> { // 整体
-    private Node head = new Node(666, null); // 头指针
+    private Node head = new Node(666, null); // 头指针指向哨兵节点
 
     @Override
     public Iterator<Integer> iterator() {
