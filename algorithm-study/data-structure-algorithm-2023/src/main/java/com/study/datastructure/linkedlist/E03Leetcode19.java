@@ -29,21 +29,21 @@ public class E03Leetcode19 {
     */
     // 方法1
     public ListNode removeNthFromEnd1(ListNode head, int n) {
-        ListNode s = new ListNode(-1, head);
-        recursion(s, n);
-        return s.next;
+        ListNode sentinel = new ListNode(-1, head); // 通过哨兵处理第一个节点
+        recursion(sentinel, n);
+        return sentinel.next;
     }
 
     private int recursion(ListNode p, int n) {
         if (p == null) {
             return 0;
         }
-        int nth = recursion(p.next, n); // 下一个节点的倒数位置
-        if (nth == n) {
-            // p=3  p.next=4 p.next.next=5
+        int nextNodeNumber = recursion(p.next, n); // 下一个节点的倒数位置
+        if (nextNodeNumber == n) {
+            // 当 p=3 时,  p.next=4, p.next.next=5
             p.next = p.next.next;
         }
-        return nth + 1;
+        return nextNodeNumber + 1;
     }
 
     /*
@@ -80,11 +80,25 @@ public class E03Leetcode19 {
         return s.next;
     }
 
+    int count = 0;
+    public ListNode removeNthFromEnd2(ListNode head, int n) {
+        if (head == null) {
+            return null;
+        }
+        ListNode temp = removeNthFromEnd2(head.next, n);
+        count++;
+        if (count == n) {
+            return temp;
+        } else {
+            head.next = temp;
+            return head;
+        }
+    }
+
     public static void main(String[] args) {
         ListNode head = ListNode.of(1, 2, 3, 4, 5);
 //        ListNode head = ListNode.of(1,2);
         System.out.println(head);
-        System.out.println(new E03Leetcode19()
-                .removeNthFromEnd(head, 5));
+        System.out.println(new E03Leetcode19().removeNthFromEnd2(head, 3));
     }
 }

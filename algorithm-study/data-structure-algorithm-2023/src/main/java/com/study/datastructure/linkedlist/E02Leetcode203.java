@@ -19,9 +19,11 @@ public class E02Leetcode203 {
             if (p2.val == val) {
                 // 删除, p2 向后平移
                 p1.next = p2.next;
+                // p2 = p2.next; 此处等价于 p2 = p1.next; (提取到了while()中)
             } else {
                 // p1 p2 向后平移
                 p1 = p1.next;
+                // p2 = p2.next; 此处等价于 p2 = p1.next; (提取到了while()中)
             }
         }
         return s.next;
@@ -47,10 +49,9 @@ public class E02Leetcode203 {
     }
 
     public static void main(String[] args) {
-        ListNode head = ListNode.of(1, 2, 6, 3, 6);
-//        ListNode head = ListNode.of(7, 7, 7, 7);
+//        ListNode head = ListNode.of(1, 2, 6, 3, 6);
+        ListNode head = ListNode.of(7, 7, 7, 7);
         System.out.println(head);
-        System.out.println(new E02Leetcode203()
-                .removeElements(head, 6));
+        System.out.println(new E02Leetcode203().removeElements(head, 7));
     }
 }

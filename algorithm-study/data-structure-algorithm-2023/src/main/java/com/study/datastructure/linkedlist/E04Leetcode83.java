@@ -40,7 +40,8 @@ public class E04Leetcode83 {
     }
 
     public static void main(String[] args) {
-        ListNode head = ListNode.of(1, 1, 2, 3, 3);
+//        ListNode head = ListNode.of(1, 1, 2, 3, 3, 3, 4, 4, 4, 4, 5);
+        ListNode head = ListNode.of(1, 2, 3, 4, 5, 6);
         System.out.println(head);
         System.out.println(new E04Leetcode83().deleteDuplicates(head));
     }

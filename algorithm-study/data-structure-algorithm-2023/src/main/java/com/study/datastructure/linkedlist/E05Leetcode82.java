@@ -64,10 +64,27 @@ public class E05Leetcode82 {
         return s.next;
     }
 
+
+    public ListNode deleteDuplicates2(ListNode p) {
+        if (p == null || p.next == null) {
+            return p;
+        }
+
+        if (p.val == p.next.val) {
+            while (p.val == p.next.val) {
+                p = p.next;
+            }
+            return deleteDuplicates2(p);
+        } else {
+            p.next = deleteDuplicates2(p.next);
+            return p;
+        }
+    }
+
     public static void main(String[] args) {
-        ListNode head = ListNode.of(1, 2, 3, 3, 4, 4, 5);
+        ListNode head = ListNode.of(1, 2, 3, 3, 3, 4, 4, 5);
 //        ListNode head = ListNode.of(1, 1, 1, 2, 3);
         System.out.println(head);
-        System.out.println(new E05Leetcode82().deleteDuplicates(head));
+        System.out.println(new E05Leetcode82().deleteDuplicates2(head));
     }
 }
