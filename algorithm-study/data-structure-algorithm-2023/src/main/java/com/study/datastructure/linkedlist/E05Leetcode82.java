@@ -46,22 +46,21 @@ public class E05Leetcode82 {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode s = new ListNode(-1, head);
-        ListNode p1 = s;
+        ListNode sentinel = new ListNode(-1, head); // 哨兵节点
+        ListNode p1 = sentinel;
         ListNode p2, p3;
-        while ((p2 = p1.next) != null
-                && (p3 = p2.next) != null) {
+        while ((p2 = p1.next) != null && (p3 = p2.next) != null) {
             if (p2.val == p3.val) {
-                while ((p3 = p3.next) != null
-                        && p3.val == p2.val) {
+                while ((p3 = p3.next) != null && p3.val == p2.val) {
                 }
-                // p3 找到了不重复的值
+                // p3 找到了不重复的值,让p1指向p3即可
                 p1.next = p3;
             } else {
+                // p1向后移动一位,下一次循环的时候,p2 p3会跟着向后移动
                 p1 = p1.next;
             }
         }
-        return s.next;
+        return sentinel.next;
     }
 
 

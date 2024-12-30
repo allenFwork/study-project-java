@@ -6,8 +6,8 @@ package com.study.datastructure.linkedlist;
 public class E06Leetcode21 {
     // 方法1
     public ListNode mergeTwoLists(ListNode p1, ListNode p2) {
-        ListNode s = new ListNode(-1, null);
-        ListNode p = s;
+        ListNode sentinel = new ListNode(-1, null);
+        ListNode p = sentinel;
         while (p1 != null && p2 != null) {
             if (p1.val < p2.val) {
                 p.next = p1;
@@ -24,7 +24,7 @@ public class E06Leetcode21 {
         if (p2 != null) {
             p.next = p2;
         }
-        return s.next;
+        return sentinel.next;
     }
 
     // 方法2
@@ -49,18 +49,17 @@ public class E06Leetcode21 {
 //        ListNode p2 = ListNode.of(2, 4);
 
         ListNode p1 = new ListNode(1,
-            new ListNode(3,
-                new ListNode(8,
-                    new ListNode(9,
-                        new ListNode(10, null)
-                    )
+                new ListNode(3,
+                        new ListNode(8,
+                                new ListNode(9,
+                                        new ListNode(10, null)
+                                )
+                        )
                 )
-            )
         );
         ListNode p2 = new ListNode(2, new ListNode(4, null));
         System.out.println(p1);
         System.out.println(p2);
-        System.out.println(new E06Leetcode21()
-                .mergeTwoLists(p1, p2));
+        System.out.println(new E06Leetcode21().mergeTwoLists(p1, p2));
     }
 }

@@ -30,12 +30,15 @@ public class E07Leetcode23 {
 
     // 返回合并后的链表, i, j 代表左右边界
     private ListNode split(ListNode[] lists, int i, int j) {
+        // 切分到能解决的情况, 治
         if (i == j) { // 数组内只有一个链表
             return lists[i];
         }
         int m = (i + j) >>> 1;
+        // 一个问题切分成多个字问题, 分
         ListNode left = split(lists, i, m);
         ListNode right = split(lists, m + 1, j);
+        // 将两个子问题的结果合并在一起, 合
         return mergeTwoLists(left, right);
     }
 
