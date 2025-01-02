@@ -7,6 +7,7 @@ import java.util.LinkedList;
  */
 public class E03InfixToSuffix {
 
+    // 查看jdk编译的class文件中test方法，就可以看出底层使用的是后缀表达式
     public static void test() {
         int a = 10;
         int b = 20;
@@ -37,7 +38,7 @@ public class E03InfixToSuffix {
             - 否则把栈里优先级 >= 它 的都出栈, 它再入栈, 如: 栈中是 +*, 当前是 -
         3. 遍历完成, 栈里剩余运算符依次出栈
         4. 带()
-            - 左括号直接入栈, 左括号优先设置为0
+            - 左括号直接入栈, 但是左括号优先设置为0，因为这样不需要修改前三步逻辑
             - 右括号就把栈里到左括号为止的所有运算符出栈
      */
     public static void main(String[] args) {
@@ -50,6 +51,7 @@ public class E03InfixToSuffix {
         System.out.println(infixToSuffix("a*(b+c)"));
     }
 
+    // 编写返回加减乘除优先级方法，加减设置为1，乘除设置为2
     static int priority(char c) {
         return switch (c) {
             case '*', '/' -> 2;
@@ -60,6 +62,7 @@ public class E03InfixToSuffix {
     }
 
     static String infixToSuffix(String exp) {
+        // 准备存放字符的栈
         LinkedList<Character> stack = new LinkedList<>();
         StringBuilder sb = new StringBuilder(exp.length());
         for (int i = 0; i < exp.length(); i++) {
