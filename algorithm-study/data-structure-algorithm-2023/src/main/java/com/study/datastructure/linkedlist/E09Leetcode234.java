@@ -17,39 +17,37 @@ public class E09Leetcode234 {
     public boolean isPalindrome(ListNode head) {
         ListNode p1 = head; // 慢
         ListNode p2 = head; // 快
-        ListNode n1 = null; // 新头
-        ListNode o1 = head; // 旧头
+        ListNode newHead = null;  // 新头节点
+        ListNode oldHead1 = head; // 旧头节点
         while (p2 != null && p2.next != null) {
             p1 = p1.next;
             p2 = p2.next.next;
 
             // 反转链表
-            o1.next = n1;
-            n1 = o1;
-            o1 = p1;
+            oldHead1.next = newHead;
+            newHead = oldHead1;
+            oldHead1 = p1;
         }
-        System.out.println(n1);
+        System.out.println(newHead);
         System.out.println(p1);
 
-        if (p2 != null) { // 奇数节点
+        if (p2 != null) { // 奇数节点，将中间节点向后移一位，此时的链表与之前反转后的链表比较
             p1 = p1.next;
         }
 
-        while (n1 != null) {
-            if (n1.val != p1.val) {
+        while (newHead != null) {
+            if (newHead.val != p1.val) {
                 return false;
             }
-            n1 = n1.next;
+            newHead = newHead.next;
             p1 = p1.next;
         }
         return true;
     }
 
     public static void main(String[] args) {
-//        System.out.println(new E09Leetcode234()
-//                .isPalindrome(ListNode.of(1, 2, 2, 1)));
-        System.out.println(new E09Leetcode234()
-                .isPalindrome(ListNode.of(1, 2, 3, 2, 1)));
+        System.out.println(new E09Leetcode234().isPalindrome(ListNode.of(1, 2, 2, 1)));
+        System.out.println(new E09Leetcode234().isPalindrome(ListNode.of(1, 2, 3, 2, 1)));
     }
 
     /*
@@ -57,7 +55,7 @@ public class E09Leetcode234 {
                         p2
         1   2   3   2   1   null
 
-        n1
+     newHead
         2   1
      */
 

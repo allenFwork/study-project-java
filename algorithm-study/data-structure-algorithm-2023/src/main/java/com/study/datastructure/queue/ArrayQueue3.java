@@ -13,28 +13,29 @@ public class ArrayQueue3<E> implements Queue<E>, Iterable<E> {
         求模运算：
         - 如果除数是 2 的 n 次方
         - 那么被除数的后 n 位即为余数 (模)
-        - 求被除数的后 n 位方法： 与 2^n-1 按位与
+        - 求被除数的后 n 位方法： 与 2^n-1 数值进行 按位与 运算
      */
 
-    private final E[] array;
+    private final E[] array; // 因为array在初始化后就不会再进行修改了，所以可以使用final修饰
     int head = 0;
     int tail = 0;
 
     @SuppressWarnings("all")
-    public ArrayQueue3(int c) {
-        // 1. 抛异常
+    public ArrayQueue3(int capacity) {
+        // 解决方法1： 判断传入的容量是否是2的n次方值，如果不是，直接抛异常
         /*if ((capacity & capacity - 1) != 0) {
             throw new IllegalArgumentException("capacity 必须是2的幂");
         }*/
-        // 2. 改成 2^n    13 -> 16   22 -> 32
-        c -= 1;
-        c |= c >> 1;
-        c |= c >> 2;
-        c |= c >> 4;
-        c |= c >> 8;
-        c |= c >> 16;
-        c += 1;
-        array = (E[]) new Object[c];
+
+        // 解决方法2： 改成 2^n    13 -> 16   22 -> 32
+        capacity -= 1;
+        capacity |= capacity >> 1;
+        capacity |= capacity >> 2;
+        capacity |= capacity >> 4;
+        capacity |= capacity >> 8;
+        capacity |= capacity >> 16;
+        capacity += 1;
+        array = (E[]) new Object[capacity];
     }
 
     /*
@@ -51,7 +52,7 @@ public class ArrayQueue3<E> implements Queue<E>, Iterable<E> {
             return false;
         }
 //        array[(int) (Integer.toUnsignedLong(tail) % array.length)] = value;
-        array[tail & (array.length - 1)] = value;
+        array[tail & (array.length - 1)] = value; // tail 与 (array.length-1) 进行 按位与 运算
         tail++;
         return true;
     }

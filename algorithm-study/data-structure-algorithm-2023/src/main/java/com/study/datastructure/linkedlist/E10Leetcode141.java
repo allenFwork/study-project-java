@@ -5,12 +5,12 @@ package com.study.datastructure.linkedlist;
  */
 public class E10Leetcode141 {
     public boolean hasCycle(ListNode head) {
-        ListNode h = head; // 兔
-        ListNode t = head; // 龟
-        while (h != null && h.next != null) {
-            t = t.next;
-            h = h.next.next;
-            if(h == t){
+        ListNode hare = head;       // 兔
+        ListNode tortoise = head;   // 龟
+        while (hare != null && hare.next != null) {
+            tortoise = tortoise.next;
+            hare = hare.next.next;
+            if (hare == tortoise) {
                 return true;
             }
         }

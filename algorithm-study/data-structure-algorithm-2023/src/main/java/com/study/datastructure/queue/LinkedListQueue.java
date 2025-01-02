@@ -5,10 +5,10 @@ import java.util.StringJoiner;
 
 /**
  * 基于单向环形链表实现
+ *
  * @param <E> 队列中元素类型
  */
-public class LinkedListQueue<E>
-        implements Queue<E>, Iterable<E> {
+public class LinkedListQueue<E> implements Queue<E>, Iterable<E> {
 
     private static class Node<E> {
         E value;
@@ -20,10 +20,11 @@ public class LinkedListQueue<E>
         }
     }
 
+    // 头指向哨兵节点
     private final Node<E> head = new Node<>(null, null);
     private Node<E> tail = head;
-    int size = 0;
-    private int capacity = Integer.MAX_VALUE;
+    int size = 0; // 节点数
+    private int capacity = Integer.MAX_VALUE; // 容量
 
     {
         tail.next = head;
@@ -42,8 +43,8 @@ public class LinkedListQueue<E>
             return false;
         }
         Node<E> added = new Node<>(value, head);
-        tail.next = added;
-        tail = added;
+        tail.next = added; // 原来队列的最后一个节点就是tail,将它的下一位指向新添加的节点（容易忘了）
+        tail = added;      // 将tail执行新添加的节点
         size++;
         return true;
     }

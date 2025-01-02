@@ -16,8 +16,7 @@ public class TestArrayQueue3 {
 
     @Test
     public void generic() {
-        ArrayQueue3<String> queue =
-                new ArrayQueue3<>(4);
+        ArrayQueue3<String> queue = new ArrayQueue3<>(4);
         queue.offer("a");
         queue.offer("b");
         queue.offer("c");

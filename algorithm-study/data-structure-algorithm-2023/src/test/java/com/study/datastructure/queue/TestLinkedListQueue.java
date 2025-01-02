@@ -11,8 +11,7 @@ public class TestLinkedListQueue {
 
     @Test
     public void offerLimit() {
-        LinkedListQueue<Integer> queue =
-                new LinkedListQueue<>(3);
+        LinkedListQueue<Integer> queue = new LinkedListQueue<>(3);
         queue.offer(1);
         queue.offer(2);
         queue.offer(3);

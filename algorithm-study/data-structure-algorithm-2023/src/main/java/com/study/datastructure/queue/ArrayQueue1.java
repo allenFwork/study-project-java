@@ -13,8 +13,9 @@ public class ArrayQueue1<E> implements Queue<E>, Iterable<E> {
     private int head = 0;
     private int tail = 0;
 
-    @SuppressWarnings("all")
+    @SuppressWarnings("all") // 抑制产生警告的Java中的注解 java.lang.SuppressWarnings
     public ArrayQueue1(int capacity) {
+        // 设计的环形数组需要将其中一个位置留空，不存放数据，用来判断队列是否满了。所以数组的实际大小要比容量大一个空间。
         array = (E[]) new Object[capacity + 1];
     }
 
@@ -54,6 +55,7 @@ public class ArrayQueue1<E> implements Queue<E>, Iterable<E> {
 
     @Override
     public boolean isFull() {
+        // 数组中留了一个空位置，用来判断是否已满
         return (tail + 1) % array.length == head;
     }
 
@@ -75,5 +77,6 @@ public class ArrayQueue1<E> implements Queue<E>, Iterable<E> {
             }
         };
     }
+
 }
 

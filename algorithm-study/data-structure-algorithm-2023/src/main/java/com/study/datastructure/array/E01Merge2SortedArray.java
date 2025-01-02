@@ -68,8 +68,7 @@ public class E01Merge2SortedArray {
 
      */
     // 方法1
-    public static void merge(int[] a1, int i, int iEnd, int j, int jEnd,
-                             int[] a2, int k) {
+    public static void merge(int[] a1, int i, int iEnd, int j, int jEnd, int[] a2, int k) {
         if (i > iEnd) {
             System.arraycopy(a1, j, a2, k, jEnd - j + 1);
             return;
