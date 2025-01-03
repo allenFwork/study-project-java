@@ -51,8 +51,7 @@ public class PriorityQueue1<E extends Priority> implements Queue<E> {
     private void remove(int index) {
         if (index < size - 1) {
             // 移动
-            System.arraycopy(array, index + 1,
-                    array, index, size - 1 - index);
+            System.arraycopy(array, index + 1, array, index, size - 1 - index);
         }
         array[--size] = null; // help GC
     }

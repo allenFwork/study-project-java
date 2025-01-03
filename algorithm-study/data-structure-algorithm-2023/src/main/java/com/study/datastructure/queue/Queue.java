@@ -2,6 +2,7 @@ package com.study.datastructure.queue;
 
 /**
  * 队列接口
+ *
  * @param <E> 队列中元素类型
  */
 public interface Queue<E> {
