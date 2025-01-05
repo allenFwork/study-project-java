@@ -7,7 +7,8 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 双锁实现
+ * 线程安全的阻塞队列 - 双锁实现
+ *
  * @param <E> 元素类型
  */
 @SuppressWarnings("all")
@@ -16,11 +17,13 @@ public class BlockingQueue2<E> implements BlockingQueue<E> {
     private final E[] array;
     private int head;
     private int tail;
+    // 用原子整数类保护数据在不同线程里的安全使用
     private AtomicInteger size = new AtomicInteger();
 
+    // 堆poll操作的锁
     private ReentrantLock tailLock = new ReentrantLock();
     private Condition tailWaits = tailLock.newCondition();
-
+    // 堆offer操作的锁
     private ReentrantLock headLock = new ReentrantLock();
     private Condition headWaits = headLock.newCondition();
 
@@ -59,24 +62,22 @@ public class BlockingQueue2<E> implements BlockingQueue<E> {
 
             // 3. 修改 size
             /*
-                size = 6
-             */
-            c = size.getAndIncrement();
-            if (c + 1 < array.length) {
-                tailWaits.signal();
-            }
-            /*
+                int size 的 size++ 不是原子操作，分为3步：
                 1. 读取成员变量size的值  5
                 2. 自增 6
                 3. 结果写回成员变量size 6
              */
+            c = size.getAndIncrement(); // c获取的size一开始的值，不是+1后的值
+            if (c + 1 < array.length) {
+                tailWaits.signal();
+            }
         } finally {
             tailLock.unlock();
         }
 
         // 4. 如果从0变为非空，由offer这边唤醒等待非空的poll线程
         //                       0->1   1->2    2->3
-        if(c == 0) {
+        if (c == 0) {
             headLock.lock(); // offer_1 offer_2 offer_3
             try {
                 headWaits.signal();
@@ -121,10 +122,10 @@ public class BlockingQueue2<E> implements BlockingQueue<E> {
         }
 
         // 4. 队列从满->不满时 由poll唤醒等待不满的 offer 线程
-        if(c == array.length) {
+        if (c == array.length) {
             tailLock.lock();
             try {
-                tailWaits.signal(); // ctrl+alt+t
+                tailWaits.signal(); // 选中代码，ctrl+alt+t （Idea快捷键，出现try-catch选择）
             } finally {
                 tailLock.unlock();
             }
@@ -143,7 +144,7 @@ public class BlockingQueue2<E> implements BlockingQueue<E> {
         queue.offer("元素1");
         queue.offer("元素2");
 
-        new Thread(()->{
+        new Thread(() -> {
             try {
                 queue.offer("元素3");
             } catch (InterruptedException e) {
@@ -151,7 +152,7 @@ public class BlockingQueue2<E> implements BlockingQueue<E> {
             }
         }, "offer").start();
 
-        new Thread(()->{
+        new Thread(() -> {
             try {
                 queue.poll();
             } catch (InterruptedException e) {

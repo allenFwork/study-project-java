@@ -7,6 +7,9 @@ import com.study.datastructure.linkedlist.ListNode;
  */
 public class E01Leetcode23 {
     public ListNode mergeKLists2(ListNode[] lists) {
+        // 存放节点的空间1： 使用 jdk 的优先级队列实现
+//        PriorityQueue<ListNode> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a.val));
+        // 存放节点的空间2. 使用自定义小顶堆实现
         MinHeap heap = new MinHeap(100);
         // 1. 将链表的所有节点加入小顶堆
         for (ListNode p : lists) {
@@ -18,7 +21,7 @@ public class E01Leetcode23 {
         // 2. 不断从堆顶移除最小元素, 加入新链表
         ListNode s = new ListNode(-1, null);
         ListNode t = s;
-        while(!heap.isEmpty()) {
+        while (!heap.isEmpty()) {
             ListNode min = heap.poll();
             t.next = min;
             t = min;
@@ -31,19 +34,20 @@ public class E01Leetcode23 {
         MinHeap heap = new MinHeap(lists.length);
         // 1. 将链表的头节点加入小顶堆
         for (ListNode h : lists) {
-            if(h != null) {
+            if (h != null) {
                 heap.offer(h);
             }
         }
         // 2. 不断从堆顶移除最小元素, 加入新链表
         ListNode s = new ListNode(-1, null);
-        ListNode t = s;
-        while(!heap.isEmpty()) {
+        // 这里之所以使用了temp，是因为s这个引用是新链表的哨兵节点，得用来返回，不能修改引用的对象（temp表示第一个节点，一直在变）
+        ListNode temp = s;
+        while (!heap.isEmpty()) {
             ListNode min = heap.poll();
-            t.next = min;
-            t = min;
+            temp.next = min;
+            temp = min;
             // 将最小元素的下一个节点加入到堆
-            if(min.next != null) {
+            if (min.next != null) {
                 heap.offer(min.next);
             }
         }

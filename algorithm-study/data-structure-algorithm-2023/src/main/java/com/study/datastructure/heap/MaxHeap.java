@@ -96,7 +96,7 @@ public class MaxHeap {
 
     // 建堆
     private void heapify() {
-        // 如何找到最后这个非叶子节点  size / 2 - 1
+        // 如何找到最后这个非叶子节点  size / 2 - 1 (此时的索引是从0开始的)
         for (int i = size / 2 - 1; i >= 0; i--) {
             down(i);
         }
@@ -114,8 +114,8 @@ public class MaxHeap {
             max = right;
         }
         if (max != parent) { // 找到了更大的孩子
-            swap(max, parent);
-            down(max);
+            swap(max, parent); // 交换 max 与 parent 位置的节点（只交换内容，max与parent索引值不变）
+            down(max);         // 交换完，从max节点开始接着下潜
         }
     }
 

@@ -5,7 +5,7 @@ public class TestBlockingQueue1 {
     public static void main(String[] args) throws InterruptedException {
         BlockingQueue1<String> queue = new BlockingQueue1<>(3);
 
-        Thread t1 = new Thread(()->{
+        Thread t1 = new Thread(() -> {
             try {
                 System.out.println(System.currentTimeMillis() + " begin");
                 queue.offer("任务1");
@@ -20,9 +20,10 @@ public class TestBlockingQueue1 {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        },"生产者");
+        }, "生产者");
         t1.start();
 
+        // 两秒后，取走一个元素，测试插入任务4是否成功
         Thread.sleep(2000);
         queue.poll();
     }

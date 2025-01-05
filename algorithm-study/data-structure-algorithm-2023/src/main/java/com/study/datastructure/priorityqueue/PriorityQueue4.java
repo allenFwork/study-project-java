@@ -4,6 +4,7 @@ import com.study.datastructure.queue.Queue;
 
 /**
  * 基于<b>大顶堆</b>实现
+ *
  * @param <E> 队列中元素类型, 必须实现 Priority 接口
  */
 @SuppressWarnings("all")
@@ -28,12 +29,14 @@ public class PriorityQueue4<E extends Priority> implements Queue<E> {
             return false;
         }
         int child = size++;
+        // 孩子节点i找到父节点的公式：(i-1) / 2 向下取整
         int parent = (child - 1) / 2;
         while (child > 0 && offered.priority() > array[parent].priority()) {
             array[child] = array[parent];
             child = parent;
             parent = (child - 1) / 2;
         }
+        // 只需要执行一次，新加元素的赋值，之前都是在找该新加元素的位置
         array[child] = offered;
         return true;
     }
@@ -49,18 +52,20 @@ public class PriorityQueue4<E extends Priority> implements Queue<E> {
         if (isEmpty()) {
             return null;
         }
+        // 交换数组第一个元素和最后一个元素，即将堆顶的元素放到最后，也即要取出的那个优先级最高的元素放到了最后
         swap(0, size - 1);
         size--;
         Priority e = array[size];
         array[size] = null; // help GC
 
         // 下潜
-        down(0);
+        fallDown(0);
 
         return (E) e;
     }
 
-    private void down(int parent) {
+
+    private void fallDown(int parent) {
         int left = 2 * parent + 1;
         int right = left + 1;
         int max = parent; // 假设父元素优先级最高
@@ -72,7 +77,7 @@ public class PriorityQueue4<E extends Priority> implements Queue<E> {
         }
         if (max != parent) { // 有孩子比父亲大
             swap(max, parent);
-            down(max);
+            fallDown(max);
         }
     }
 
