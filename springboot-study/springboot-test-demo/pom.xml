@@ -49,6 +49,7 @@
     </dependencyManagement>
 
     <build>
+        <finalName>springboot-test-demo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -66,7 +67,7 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.study.springboot.test.demo.SpringBootDemoApplication</mainClass>
-                    <!--                    <skip>true</skip>-->
+                    <!--<skip>true</skip>-->
                 </configuration>
                 <executions>
                     <execution>
