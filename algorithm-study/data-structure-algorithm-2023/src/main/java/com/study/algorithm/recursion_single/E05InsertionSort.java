@@ -11,7 +11,8 @@ package com.study.algorithm.recursion_single;
  */
 public class E05InsertionSort {
     public static void sort(int[] a) {
-        insertion2(a, 1);
+//        insertion2(a, 1);
+        insertion3(a, 1, 4);
     }
 
     /**
@@ -57,5 +58,34 @@ public class E05InsertionSort {
         }
 
         insertion(a, low + 1);
+    }
+
+
+    private static void insertion3(int a[], int low, int high) {
+        if (low > high) {
+            return;
+        }
+        int i = low - 1;
+        int temp = a[low];
+        int index = leftMostByBinarySearch(a, i, temp);
+        if (index < low) {
+            System.arraycopy(a, index, a, index + 1, low - index);
+            a[index] = temp;
+        }
+        insertion3(a, low + 1, high);
+    }
+
+    private static int leftMostByBinarySearch(int a[], int size, int value) {
+        int i = 0;
+        int j = size;
+        while (i <= j) {
+            int mid = (i + j) >>> 1;
+            if (value > a[mid]) {
+                i = mid + 1;
+            } else {
+                j = mid - 1;
+            }
+        }
+        return i;
     }
 }
