@@ -19,6 +19,7 @@ public class MaxHeap {
      * @return 堆顶元素
      */
     public int peek() {
+        // 如果size是0，那么需要进行判断，返回失败（此处省略）
         return array[0];
     }
 
@@ -28,6 +29,7 @@ public class MaxHeap {
      * @return 堆顶元素
      */
     public int poll() {
+        // 如果size是0，那么需要进行判断，返回失败（此处省略）
         int top = array[0];
         swap(0, size - 1);
         size--;
@@ -42,6 +44,7 @@ public class MaxHeap {
      * @return 被删除元素
      */
     public int poll(int index) {
+        // 如果index不满足size得范围，那么需要进行判断，返回失败（此处省略）
         int deleted = array[index];
         up(Integer.MAX_VALUE, index);
         poll();
@@ -54,6 +57,7 @@ public class MaxHeap {
      * @param replaced 新元素
      */
     public void replace(int replaced) {
+        // 如果size是0，那么需要进行判断，返回失败（此处省略）
         array[0] = replaced;
         down(0);
     }
@@ -133,6 +137,7 @@ public class MaxHeap {
         System.out.println(Arrays.toString(heap.array));
 
         while (heap.size > 1) {
+            // 虽然swap是private的，但是此处是在本类中使用
             heap.swap(0, heap.size - 1);
             heap.size--;
             heap.down(0);

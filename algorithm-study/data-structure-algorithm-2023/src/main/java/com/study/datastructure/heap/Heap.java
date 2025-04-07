@@ -81,8 +81,7 @@ public class Heap {
     private void grow() {
         int capacity = size + (size >> 1);
         int[] newArray = new int[capacity];
-        System.arraycopy(array, 0,
-                newArray, 0, size);
+        System.arraycopy(array, 0, newArray, 0, size);
         array = newArray;
     }
 

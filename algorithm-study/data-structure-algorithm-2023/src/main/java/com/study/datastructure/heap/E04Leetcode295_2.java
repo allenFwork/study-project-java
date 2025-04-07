@@ -38,20 +38,20 @@ public class E04Leetcode295_2 {
      */
     public double findMedian() {
         if (left.size() == right.size()) {
-            return (left.peek() + right.peek()) / 2.0;
+            return (left.peek() + right.peek()) / 2.0;  // 黄色是因为有可能出现空指针，但是实际上是不可能的，题目要求
         } else {
-            return left.peek();
+            return left.peek();                         // 黄色是因为有可能出现空指针，但是实际上是不可能的，题目要求
         }
     }
 
-    // 大顶堆
+    // 使用java自带的 PriorityQueue 实现 大顶堆
     private PriorityQueue<Integer> left = new PriorityQueue<>(
             (a, b) -> Integer.compare(b, a) //
     );
 
     // 小顶堆
     private PriorityQueue<Integer> right = new PriorityQueue<>(
-            (a, b) -> Integer.compare(a, b) //
+            (a, b) -> Integer.compare(a, b) // 使用Lambda表达式表示的比较器：返回 -1 表示 a < b; 0 表示 a == b; 1 表示 a > b
     );
 
     public static void main(String[] args) {
