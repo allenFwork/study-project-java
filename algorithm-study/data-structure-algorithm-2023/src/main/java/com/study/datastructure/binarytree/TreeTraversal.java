@@ -33,7 +33,7 @@ public class TreeTraversal {
             return;
         }
         System.out.print(node.val + "\t"); // 值
-        preOrder(node.left); // 左
+        preOrder(node.left);  // 左
         preOrder(node.right); // 右
     }
 

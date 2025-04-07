@@ -7,10 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 二叉树前序遍历(值,左,右)
+ * 二叉树前序遍历(值,左,右) （根,左,右）
  */
 public class E01Leetcode144 {
     public List<Integer> preorderTraversal(TreeNode root) {
+        // 使用jdk的LinkedList作为站，实现记录父子关系，由子到父（栈弹出来时的顺序表示）
         LinkedList<TreeNode> stack = new LinkedList<>();
 
         TreeNode curr = root; // 代表当前节点
@@ -25,12 +26,9 @@ public class E01Leetcode144 {
                 curr = curr.left;
             } else {
                 TreeNode peek = stack.peek();
-                // 没有右子树
-                if (peek.right == null) {
+                if (peek.right == null) {       // 没有右子树，即右子树都处理完了
                     pop = stack.pop();
-                }
-                // 右子树处理完成
-                else if (peek.right == pop) {
+                } else if (peek.right == pop) { // 右子树处理完成
                     pop = stack.pop();
                 }
                 // 待处理右子树
@@ -58,13 +56,13 @@ public class E01Leetcode144 {
 
         TreeNode curr = root; // 代表当前节点
         while (curr != null || !stack.isEmpty()) {
-            if(curr != null) {
-                colorPrintln("去: " + curr.val,31);
+            if (curr != null) {
+                colorPrintln("去: " + curr.val, 31);
                 stack.push(curr); // 压入栈，为了记住回来的路
                 curr = curr.left;
             } else {
                 TreeNode pop = stack.pop();
-                colorPrintln("回: " + pop.val,34);
+                colorPrintln("回: " + pop.val, 34);
                 curr = pop.right;
             }
         }
