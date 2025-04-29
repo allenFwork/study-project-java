@@ -24,7 +24,7 @@ public class ChangeMakingProblemLeetcode518 {
      * @return 解的个数
      */
     public int rec(int index, int[] coins, int remainder, LinkedList<Integer> stack, boolean first) {
-        if(!first) {
+        if (!first) {
             stack.push(coins[index]);
         }
         // 情况1：剩余金额 < 0 - 无解
