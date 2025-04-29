@@ -13,17 +13,21 @@ public class E02Leetcode1636 {
             count[i + 100]++;
         }
         // 2. 比较器 按频率升序、再按数值降序
-        return Arrays.stream(nums).boxed().sorted((a, b) -> {
-            int af = count[a + 100];
-            int bf = count[b + 100];
-            if (af < bf) {
-                return -1;
-            } else if (af > bf) {
-                return 1;
-            } else {
-                return b - a;
-            }
-        }).mapToInt(Integer::intValue).toArray();
+        return Arrays.stream(nums)
+                // 将int类型转化为了包装类型：Integer，这样才能使用比较器
+                .boxed()
+                .sorted((a, b) -> {
+                    int af = count[a + 100];
+                    int bf = count[b + 100];
+                    if (af < bf) {
+                        return -1;
+                    } else if (af > bf) {
+                        return 1;
+                    } else {
+                        return b - a;
+                    }
+                })
+                .mapToInt(Integer::intValue).toArray();
     }
 
     public static void main(String[] args) {

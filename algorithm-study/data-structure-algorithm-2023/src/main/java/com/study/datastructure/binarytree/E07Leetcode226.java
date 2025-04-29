@@ -5,11 +5,11 @@ package com.study.datastructure.binarytree;
  */
 public class E07Leetcode226 {
     public TreeNode invertTree(TreeNode root) {
-        fn(root);
+        reverse(root);
         return root;
     }
 
-    private static void fn(TreeNode node) {
+    private static void reverse(TreeNode node) {
         if (node == null) {
             return;
         }
@@ -17,7 +17,7 @@ public class E07Leetcode226 {
         node.left = node.right;
         node.right = t;
 
-        fn(node.left);
-        fn(node.right);
+        reverse(node.left);
+        reverse(node.right);
     }
 }

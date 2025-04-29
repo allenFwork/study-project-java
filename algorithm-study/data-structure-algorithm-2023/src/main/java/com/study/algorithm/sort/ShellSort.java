@@ -10,7 +10,7 @@ public class ShellSort {
         for (int gap = a.length >> 1; gap >= 1; gap = gap >> 1) {
             // gap=4
             for (int low = gap; low < a.length; low++) {
-                int t = a[low]; // t=5
+                int t = a[low];
                 int i = low - gap;
                 // 自右向左找插入位置，如果比待插入元素大，则不断右移，空出插入位置
                 while (i >= 0 && t < a[i]) {

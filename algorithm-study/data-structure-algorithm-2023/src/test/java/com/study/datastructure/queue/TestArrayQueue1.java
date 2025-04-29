@@ -3,24 +3,26 @@ package com.study.datastructure.queue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestArrayQueue1 {
 
-    /*@Test
+    @Test
     public void test() {
         int v = 17;
         v--;
-        v |= v >>1;
-        v |= v >>2;
-        v |= v >>4;
-        v |= v >>6;
-        v |= v >>16;
+        v |= v >> 1;
+        v |= v >> 2;
+        v |= v >> 4;
+        v |= v >> 6;
+        v |= v >> 16;
         v++;
         System.out.println(v);
-    }*/
+    }
 
     @Test
     public void generic() {

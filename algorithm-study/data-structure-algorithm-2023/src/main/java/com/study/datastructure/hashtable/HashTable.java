@@ -29,8 +29,7 @@ import java.util.stream.Collectors;
  */
 public class HashTable {
 
-    // 摘要算法
-    // 散列算法
+    // 哈希算法，也被称为 摘要算法、散列算法
 
     // 节点类
     static class Entry {
@@ -48,8 +47,8 @@ public class HashTable {
 
     Entry[] table = new Entry[16];
     int size = 0; // 元素个数
-    float loadFactor = 0.75f; // 12 阈值
-    int threshold = (int) (loadFactor * table.length);
+    float loadFactor = 0.75f; // 负载因子，（JDK中的负载因子就是0.75）
+    int threshold = (int) (loadFactor * table.length); // 数组长度是16，12就是阈值
 
     /* 求模运算替换为位运算
         - 前提：数组长度是 2 的 n 次方
@@ -58,6 +57,7 @@ public class HashTable {
 
     // 根据 hash 码获取 value
     Object get(int hash, Object key) {
+        // 通过数组长度减一的值进行按位与操作，获取对应的存储的索引位置（比求模运算性能高）
         int idx = hash & (table.length - 1);
         if (table[idx] == null) {
             return null;
@@ -99,23 +99,25 @@ public class HashTable {
         }
     }
 
+    // 扩容方法
     private void resize() {
+        // 创建新数组，左移一位就是等于乘以2，比乘以2性能好
         Entry[] newTable = new Entry[table.length << 1];
         for (int i = 0; i < table.length; i++) {
             Entry p = table[i]; // 拿到每个链表头
             if (p != null) {
-            /*
-                拆分链表，移动到新数组，拆分规律
-                * 一个链表最多拆成两个
-                * hash & table.length == 0 的一组
-                * hash & table.length != 0 的一组
-                                          p
-                0->8->16->24->32->40->48->null
-                            a
-                0->16->32->48->null
-                        b
-                8->24->40->null
-             */
+                /*
+                    拆分链表，移动到新数组，拆分规律
+                    * 一个链表最多拆成两个
+                    * hash & table.length == 0 的一组
+                    * hash & table.length != 0 的一组
+                                              p
+                    0->8->16->24->32->40->48->null
+                                a
+                    0->16->32->48->null
+                            b
+                    8->24->40->null
+                 */
                 Entry a = null;
                 Entry b = null;
                 Entry aHead = null;
@@ -195,12 +197,15 @@ public class HashTable {
 
     private static int hash(Object key) {
         if (key instanceof String k) {
+            // 如果传入的实参是字符串类型的，就是用 murmur哈希计算哈希值
             return Hashing.murmur3_32().hashString(k, StandardCharsets.UTF_8).asInt();
         }
+        // 不是字符串类型就是用jdk的Object类型自带的计算哈希方法
         int hash = key.hashCode();
         return hash ^ (hash >>> 16);
     }
 
+    // 统计每个哈希表中链表的长度
     public void print() {
         int[] sums = new int[table.length];
         for (int i = 0; i < table.length; i++) {
@@ -212,7 +217,9 @@ public class HashTable {
         }
 //        System.out.println(Arrays.toString(sums));
 
-        Map<Integer, Long> collect = Arrays.stream(sums).boxed().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+        Map<Integer, Long> collect = Arrays.stream(sums)
+                .boxed() // boxed()表示将基本类型转化为包装类型
+                .collect(Collectors.groupingBy(e -> e, Collectors.counting())); // 根据元素自己分组，然后统计每组的个数
         System.out.println(collect);
     }
 
@@ -222,7 +229,10 @@ public class HashTable {
             Object obj = new Object();
             table.put(obj, obj);
         }*/
-        /*List<String> strings = Files.readAllLines(Path.of("words"));
+
+        // Files.readAllLines 读取 words文件中所有行的字符串
+        /*
+        List<String> strings = Files.readAllLines(Path.of("words"));
         for (String string : strings) {
             table.put(string, string);
         }*/
@@ -230,35 +240,40 @@ public class HashTable {
         table.put(2, 2);
         table.put(524290, 2);
 
+        // com.google.common.hash.Hashing
+        int hashCode = Hashing.murmur3_32() // 使用murmur哈希的第三个版本方法，产生32位(4个字节)的输出码
+                .hashString("abc", StandardCharsets.UTF_8) // hashString方法表示使用字符串生成hash
+                .asInt(); // 将生成hash码转化为int类型输出
+        System.out.println(hashCode);
+
         table.print();
     }
 /*
-    为什么计算索引位置用式子：
+    1.为什么计算索引位置用式子：
         【hash & (数组长度-1)】 等价于 【hash % 数组长度】
-        10进制中去除以 10，100，1000时，余数就是被除数的后1，2，3 位
+        10进制中去除以 10、100、1000时，余数就是被除数的后1，2，3 位
                     10^1 10^2 10^3
         2进制中去除以 10，100，1000时，余数也是被除数的后1，2，3 位
-                    2^1 2^2 2^3 2^4
+                    2^1 2^2 2^3
         因此求余数就是求二进制的后几位，而保留二进制后几位可以通过与
-            1，3，7，11 ... 等数字按位与来实现，这些数字恰巧是数组长度-1
+            1，3，7 ... 等数字按位与来实现，这些数字恰巧是数组长度-1
 
-    为什么旧链表会拆分成两条，一条 hash & 旧数组长度==0 另一条!=0
+    2.为什么旧链表会拆分成两条，一条 hash & 旧数组长度==0 另一条!=0
         旧数组长度换算成二进制后，其中的 1 就是我们要检查的倒数第几位
-            旧数组长度 8 二进制 => 1000 检查倒数第4位
+            旧数组长度 8  二进制 => 1000  检查倒数第4位
             旧数组长度 16 二进制 => 10000 检查倒数第5位
         hash & 旧数组长度 就是用来检查扩容前后索引位置（余数）会不会变
-    为什么拆分后的两条链表，一个原索引不变，另一个是原索引+旧数组长度
+
+    3.为什么拆分后的两条链表，一个原索引不变，另一个是原索引+旧数组长度
 
     它们都有个共同的前提：数组长度是 2 的 n 次方
-
-
  */
 
     /*
-            1. 按位与
-            2. 拆分链表
-            3. 高低位异或
+        1. 按位与
+        2. 拆分链表
+        3. 高低位异或
 
-            11 质数
+        11 质数
      */
 }

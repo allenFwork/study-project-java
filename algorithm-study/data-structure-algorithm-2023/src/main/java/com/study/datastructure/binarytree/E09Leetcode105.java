@@ -41,7 +41,9 @@ public class E09Leetcode105 {
                 int[] inLeft = Arrays.copyOfRange(inOrder, 0, i); // [4,2]
                 int[] inRight = Arrays.copyOfRange(inOrder, i + 1, inOrder.length); // [6,3,7]
 
+                // 与 inLeft 的数量一致，因为这表示的就是 根节点左子树所有的节点点
                 int[] preLeft = Arrays.copyOfRange(preOrder, 1, i + 1); // [2,4]
+                // 与 inRight 的数量一致，因为这表示的就是 根节点右子树所有的节点点
                 int[] preRight = Arrays.copyOfRange(preOrder, i + 1, inOrder.length); // [3,6,7]
 
                 root.left = buildTree(preLeft, inLeft); // 2

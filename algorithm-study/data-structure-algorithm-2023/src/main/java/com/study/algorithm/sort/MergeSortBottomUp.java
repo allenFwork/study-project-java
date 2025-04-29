@@ -40,7 +40,15 @@ public class MergeSortBottomUp {
         for (int width = 1; width < n; width *= 2) {
             // [left, right] 分别代表待合并区间的左右边界
             for (int left = 0; left < n; left += 2 * width) {
+
+                /** 宽度为1、2、4的前几个执行范围：
+                 * width = 1:   width = 2:    width = 4:
+                 *   0 0 1 1      0 1 2 3       0  3  4  7
+                 *   2 2 3 3      4 5 6 7       7 10  11 14
+                 *   。。。
+                 */
                 int right = Math.min(left + 2 * width - 1, n - 1);
+//                // printf 打印，%n表示换行
 //                System.out.printf("width %d [%d,%d]%n", width, left, right);
                 int m = Math.min(left + width - 1, n - 1);
                 merge(a1, left, m, m + 1, right, a2);

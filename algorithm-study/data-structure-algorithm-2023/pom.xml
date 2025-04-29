@@ -49,6 +49,7 @@
             <version>3.1.0</version>
         </dependency>
 
+        <!-- 想要使用 MurmurHash（第二代哈希算法，第一代是MD5那些），可以添加以下这个依赖 -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>

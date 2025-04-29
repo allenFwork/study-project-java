@@ -87,12 +87,14 @@ public class FloydWarshall {
         // 1）初始化
         for (int i = 0; i < size; i++) {
             Vertex v = graph.get(i); // v1 (v3)
+            // v1-->v3(经过的权重边假设是3)、v1-->v4(经过的权重边假设是4)，那么v1节点对应的Map就是 (v3,3)、(v4,4) 这两个
             Map<Vertex, Integer> map = v.edges.stream().collect(Collectors.toMap(e -> e.linked, e -> e.weight));
             for (int j = 0; j < size; j++) {
                 Vertex u = graph.get(j); // v3
                 if (v == u) {
                     dist[i][j] = 0;
                 } else {
+                    // 找到就给它设置对应map中的值，没有找到就设置视为Integer的最大值
                     dist[i][j] = map.getOrDefault(u, Integer.MAX_VALUE);
                     prev[i][j] = map.get(u) != null ? v : null;
                 }
@@ -112,9 +114,9 @@ public class FloydWarshall {
                 for (int j = 0; j < size; j++) {
 //                    dist[i][k]   +   dist[k][j] // i行的顶点，借助k顶点，到达j列顶点
 //                    dist[i][j]                  // i行顶点，直接到达j列顶点
-                    if (dist[i][k] != Integer.MAX_VALUE &&
-                            dist[k][j] != Integer.MAX_VALUE &&
-                            dist[i][k] + dist[k][j] < dist[i][j]) {
+                    if (dist[i][k] != Integer.MAX_VALUE
+                            && dist[k][j] != Integer.MAX_VALUE
+                            && dist[i][k] + dist[k][j] < dist[i][j]) {
                         dist[i][j] = dist[i][k] + dist[k][j];
                         prev[i][j] = prev[k][j];
                     }

@@ -160,11 +160,14 @@ public class BTree {
             }
             i++;
         }
-        if (node.leaf) {
+        if (node.leaf) {            // 如果当前节点是叶子节点，直接插入
             node.insertKey(key, i);
-        } else {
+        } else {                    // 如果当前节点是非叶子节点，需要继续在children[i]处继续递归插入
             doPut(node.children[i], key, node, i);
         }
+
+        // 如果当前节点的关键字数量达到上线，那么就对其进行分裂
+        // （插入叶子节点时可能发生，叶子节点向上分裂也可能导致发生）
         if (node.keyNumber == MAX_KEY_NUMBER) {
             split(node, parent, index);
         }
@@ -178,7 +181,13 @@ public class BTree {
      * @param index  分裂节点是第几个孩子
      */
     void split(Node left, Node parent, int index) {
-        // 分裂的是根节点
+
+        /**
+         * 判断分裂的节点是否是根节点
+         * 如果是根节点，需要进行特殊逻辑：
+         * 1.创建一个新的节点作为根节点，同时也是作为这个分裂节点的父节点；
+         * 2.这个新创建的根节点肯定不是叶子节点，因为这个正在分裂的节点就是他的子节点
+         */
         if (parent == null) {
             Node newRoot = new Node(t);
             newRoot.leaf = false;
@@ -186,6 +195,7 @@ public class BTree {
             this.root = newRoot;
             parent = newRoot;
         }
+
         // 1. 创建 right 节点，把 left 中 t 之后的 key 和 child 移动过去
         Node right = new Node(t);
         right.leaf = left.leaf;
@@ -199,9 +209,11 @@ public class BTree {
         }
         right.keyNumber = t - 1;
         left.keyNumber = t - 1;
+
         // 2. 中间的 key （t-1 处）插入到父节点
         int mid = left.keys[t - 1];
         parent.insertKey(mid, index);
+
         // 3. right 节点作为父节点的孩子
         parent.insertChild(right, index + 1);
     }
@@ -219,18 +231,24 @@ public class BTree {
             }
             i++;
         }
-        // i 找到：代表待删除 key 的索引
-        // i 没找到： 代表到第i个孩子继续查找
+        /**
+         * 走到这里i有两层含义：
+         *  1) i 找到：代表待删除 key 的索引
+         *  2) i 没找到： 代表到第i个孩子继续查找
+         */
         if (node.leaf) {
-            if (!found(node, key, i)) { // case1
+            if (!found(node, key, i)) { // case1：当前节点是叶子节点，但是没有找到
                 return;
-            } else { // case2
+            } else {                    // case2：当前节点是叶子节点，找到了
                 node.removeKey(i);
             }
         } else {
-            if (!found(node, key, i)) { // case3
+            if (!found(node, key, i)) { // case3：当前节点是非叶子节点，但是没有找到
+                /**
+                 * 当前节点是非叶子节点，但是没有找到。所以去当前节点的孩子节点中找
+                 */
                 doRemove(node, node.children[i], i, key);
-            } else { // case4
+            } else {                    // case4：当前节点是非叶子节点，找到了
                 // 1. 找到后继 key
                 Node s = node.children[i + 1];
                 while (!s.leaf) {
@@ -239,17 +257,18 @@ public class BTree {
                 int skey = s.keys[0];
                 // 2. 替换待删除 key
                 node.keys[i] = skey;
-                // 3. 删除后继 key
+                // 3. 删除后继 key （第一个node表示起点父节点，第二个node.children[i + 1]表示删除节点的起点）
                 doRemove(node, node.children[i + 1], i + 1, skey);
             }
         }
+        // 判断删除key后，是否触发了key数量的下限
         if (node.keyNumber < MIN_KEY_NUMBER) {
             // 调整平衡 case 5 case 6
             balance(parent, node, index);
         }
     }
 
-    private void balance(Node parent, Node x, int i) {
+    private void balance(Node parent, Node x, int index) {
         // case 6 根节点
         if (x == root) {
             if (root.keyNumber == 0 && root.children[0] != null) {
@@ -257,42 +276,51 @@ public class BTree {
             }
             return;
         }
-        Node left = parent.childLeftSibling(i);
-        Node right = parent.childRightSibling(i);
-        // case 5-1 左边富裕，右旋
+
+        Node left = parent.childLeftSibling(index);
+        Node right = parent.childRightSibling(index);
+
+        /**
+         * case 5-1 左边富裕，右旋:
+         *  当度(t)等于3的时候，一开始是平衡的，删除了5就不平衡了, 6所在节点就不平衡了
+         *  (根节点特殊不用管)
+         *        4                4              3
+         *     /    \    >>>    /    \   >>>    /   \
+         *  1|2|3   5|6      1|2|3    6      1|2    4|6 （这样调整就平衡了）
+         */
         if (left != null && left.keyNumber > MIN_KEY_NUMBER) {
             // a) 父节点中前驱key旋转下来
-            x.insertKey(parent.keys[i - 1], 0);
+            x.insertKey(parent.keys[index - 1], 0);
             if (!left.leaf) {
                 // b) left中最大的孩子换爹
                 x.insertChild(left.removeRightmostChild(), 0);
             }
             // c) left中最大的key旋转上去
-            parent.keys[i - 1] = left.removeRightmostKey();
+            parent.keys[index - 1] = left.removeRightmostKey();
             return;
         }
         // case 5-2 右边富裕，左旋
         if (right != null && right.keyNumber > MIN_KEY_NUMBER) {
             // a) 父节点中后继key旋转下来
-            x.insertKey(parent.keys[i], x.keyNumber);
+            x.insertKey(parent.keys[index], x.keyNumber);
             // b) right中最小的孩子换爹
             if (!right.leaf) {
                 x.insertChild(right.removeLeftmostChild(), x.keyNumber); // @TODO 学员指出多加了1
             }
             // c) right中最小的key旋转上去
-            parent.keys[i] = right.removeLeftmostKey();
+            parent.keys[index] = right.removeLeftmostKey();
             return;
         }
         // case 5-3 两边都不够借，向左合并
         if (left != null) {
             // 向左兄弟合并
-            parent.removeChild(i);
-            left.insertKey(parent.removeKey(i - 1), left.keyNumber);
+            parent.removeChild(index);
+            left.insertKey(parent.removeKey(index - 1), left.keyNumber);
             x.moveToTarget(left);
         } else {
             // 向自己合并
-            parent.removeChild(i + 1);
-            x.insertKey(parent.removeKey(i), x.keyNumber);
+            parent.removeChild(index + 1);
+            x.insertKey(parent.removeKey(index), x.keyNumber);
             right.moveToTarget(x);
         }
     }

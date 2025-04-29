@@ -24,6 +24,7 @@ public class E08Leetcode819 {
                 map.compute(key, (k, v) -> v == null ? 1 : v + 1);
             }
         }
+        //使用Lambda表达式，性能不是很好
         Optional<Map.Entry<String, Integer>> optional = map.entrySet().stream().max(Map.Entry.comparingByValue());
         return optional.map(Map.Entry::getKey).orElse(null);
     }
@@ -34,6 +35,7 @@ public class E08Leetcode819 {
         HashMap<String, Integer> map = new HashMap<>();
         for (String key : split) {
             if (!set.contains(key)) {
+                // 第一次加入，是null会将value设置为1；如果不是第一次加入，会对value的值加一
                 map.compute(key, (k, v) -> v == null ? 1 : v + 1);
             }
         }

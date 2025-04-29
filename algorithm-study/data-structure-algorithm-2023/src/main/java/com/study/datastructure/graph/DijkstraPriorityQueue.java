@@ -40,7 +40,7 @@ public class DijkstraPriorityQueue {
             // 3. 选取当前顶点
             Vertex curr = queue.peek();
             // 4. 更新当前顶点邻居距离
-            if(!curr.visited) {
+            if (!curr.visited) {
                 updateNeighboursDist(curr, queue);
                 curr.visited = true;
             }
@@ -61,6 +61,10 @@ public class DijkstraPriorityQueue {
                 if (dist < n.dist) {
                     n.dist = dist;
                     n.prev = curr;
+                    /*
+                     * 重新添加这个节点到优先级队列中，这样优先级队列才会重新对该节点进行排序，
+                     * 否则修改了该节点的距离(dist)，但是该节点在优先级队列中的位置没有发生变化
+                     */
                     queue.offer(n);
                 }
             }

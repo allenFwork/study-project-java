@@ -12,10 +12,12 @@ package com.study.datastructure.binarysearchtree;
 public class E06Leetcode1008 {
 
     public TreeNode bstFromPreorder(int[] preorder) {
-        TreeNode root = insert(null, preorder[0]);
-        for (int i = 1; i < preorder.length; i++) {
-            insert(root, preorder[i]);
-        }
+//        TreeNode root = insert(null, preorder[0]);
+//        for (int i = 1; i < preorder.length; i++) {
+//            insert(root, preorder[i]);
+//        }
+
+        TreeNode root = insert3(preorder, 0, preorder.length - 1);
         return root;
     }
 
@@ -23,12 +25,51 @@ public class E06Leetcode1008 {
         if (node == null) {
             return new TreeNode(val);
         }
-        if(val < node.val) {
+        if (val < node.val) {
             node.left = insert(node.left, val);
-        } else if(node.val < val){
+        } else if (node.val < val) {
             node.right = insert(node.right, val);
         }
         return node;
+    }
+
+    /*
+        依次处理 preorder 中每个值，返回创建好的节点或null1
+        1. 如果超过上限，返回 null 作为孩子返回
+        2. 如果没超过上限，创建节点，并设置其左右孩子
+            左右孩子完整后返回
+     */
+    int i = 0;
+
+    private TreeNode insert2(int[] preorder, int max) {
+        if (i == preorder.length) {
+            return null;
+        }
+        int value = preorder[i];
+        if (value > max) {
+            return null;
+        }
+        TreeNode node = new TreeNode(value);
+        i++;
+        node.left = insert2(preorder, value);
+        node.right = insert2(preorder, max);
+        return node;
+    }
+
+    // 分治思想
+    private TreeNode insert3(int[] preorder, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[start]);
+        int index = start + 1;
+        // 必须判断 index < end， 否则最后一个节点处理的时候, 会下标越界
+        while (index < end && preorder[start] > preorder[index]) {
+            index++;
+        }
+        root.left = insert3(preorder, start + 1, index - 1);
+        root.right = insert3(preorder, index, end);
+        return root;
     }
 
     public static void main(String[] args) {

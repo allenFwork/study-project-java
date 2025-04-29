@@ -34,6 +34,7 @@ public class QuickSortHoare {
         4. 如果有大量重复元素
      */
     private static int partition(int[] a, int left, int right) {
+        // 获取一个随意数
         int idx = ThreadLocalRandom.current().nextInt(right - left + 1) + left;
         // [0~9] right-left+1=3 [0,2]+4=[4,6]
         swap(a, idx, left);

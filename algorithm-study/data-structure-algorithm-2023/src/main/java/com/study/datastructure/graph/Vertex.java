@@ -11,12 +11,12 @@ public class Vertex {
     public List<Edge> edges;
 
     boolean visited; // 是否被访问过，用在 BFS 和 DFS
-    int inDegree; // 入度，用在拓扑排序
-    int status; // 状态 0-未访问 1-访问中 2-访问过，用在拓扑排序
+    int inDegree;    // 入度，用在拓扑排序
+    int status;      // 状态 0-未访问 1-访问中 2-访问过，用在拓扑排序
 
-    int dist = INF; // 距离
+    int dist = INF;     // 距离
     static final Integer INF = Integer.MAX_VALUE;
-    Vertex prev = null; // 记录从何而来
+    Vertex prev = null; // 记录从何而来(最短距离记录从哪个节点来的)
 
     public Vertex(String name) {
         this.name = name;

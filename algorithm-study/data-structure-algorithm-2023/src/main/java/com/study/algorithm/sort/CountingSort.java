@@ -26,7 +26,7 @@ public class CountingSort {
 
         [1   1   2   0   1   0   1 ] count
          0   1   2   3   4   5   6
-         -1  0   1       3       5
+        -1   0   1       3       5
      */
     public static void sort(int[] a) {
         int max = a[0];
