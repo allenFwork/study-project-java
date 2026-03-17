@@ -27,6 +27,8 @@ public class E03Leetcode164_3 {
             计算桶个数                   期望桶个数
             (max - min) / range + 1 = nums.length
             (max - min) / (nums.length - 1) = range
+
+            如果最大值和最小值是同一个值，即[1,1,1,1]这样的数组，保证range不为0
          */
         int range = Math.max((max - min) / (nums.length - 1), 1);
         DynamicArray[] buckets = new DynamicArray[(max - min) / range + 1];

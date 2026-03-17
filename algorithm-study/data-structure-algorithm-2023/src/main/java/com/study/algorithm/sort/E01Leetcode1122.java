@@ -1,6 +1,8 @@
 package com.study.algorithm.sort;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 /*
     根据另一个数组次序排序 前提
@@ -8,6 +10,12 @@ import java.util.Arrays;
     2. 两个数组长度 <= 1000
  */
 public class E01Leetcode1122 {
+
+    /**
+     *
+     * 输入：arr1 = [2,3,1,3,2,4,6,7,9,2,19], arr2 = [2,1,4,3,9,6]
+     * 输出：[2,2,2,1,4,3,3,9,6,7,19]
+     */
     public int[] relativeSortArray(int[] arr1, int[] arr2) {
         int[] count = new int[1001];
         for (int i : arr1) {
