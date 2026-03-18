@@ -1,6 +1,6 @@
 package com.study.java_basic.bio.demo6_qq_sample.client;
 
-import com.study.java_basic.bio.demo6_qq_sample.util.Constants
+import com.study.java_basic.bio.demo6_qq_sample.util.Constants;
 
 import java.io.DataInputStream;
 import java.net.Socket;
